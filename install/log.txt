@@ -1,0 +1,490 @@
+autoreconf: Entering directory `.'
+autoreconf: configure.ac: not using Gettext
+autoreconf: running: aclocal 
+autoreconf: configure.ac: tracing
+autoreconf: configure.ac: not using Libtool
+autoreconf: running: /usr/bin/autoconf
+autoreconf: configure.ac: not using Autoheader
+autoreconf: running: automake --add-missing --copy --no-force
+src/Makefile.am:5: warning: source file 'cmp/cmp_cli.c' is in a subdirectory,
+src/Makefile.am:5: but option 'subdir-objects' is disabled
+automake: warning: possible forward-incompatibility.
+automake: At least a source file is in a subdirectory, but the 'subdir-objects'
+automake: automake option hasn't been enabled.  For now, the corresponding output
+automake: object file(s) will be placed in the top-level directory.  However,
+automake: this behaviour will change in future Automake versions: they will
+automake: unconditionally cause object files to be placed in the same subdirectory
+automake: of the corresponding sources.
+automake: You are advised to start using 'subdir-objects' option throughout your
+automake: project, to avoid future incompatibilities.
+src/Makefile.am:5: warning: source file 'cmp/cmp_cmdexetor.c' is in a subdirectory,
+src/Makefile.am:5: but option 'subdir-objects' is disabled
+src/Makefile.am:5: warning: source file 'cmp/cmp_conasr.c' is in a subdirectory,
+src/Makefile.am:5: but option 'subdir-objects' is disabled
+src/Makefile.am:5: warning: source file 'cmp/cmp_defs.c' is in a subdirectory,
+src/Makefile.am:5: but option 'subdir-objects' is disabled
+src/Makefile.am:5: warning: source file 'cmp/cmp_fpsqrecver.c' is in a subdirectory,
+src/Makefile.am:5: but option 'subdir-objects' is disabled
+src/Makefile.am:5: warning: source file 'cmp/cmp_fpsqsender.c' is in a subdirectory,
+src/Makefile.am:5: but option 'subdir-objects' is disabled
+src/Makefile.am:5: warning: source file 'cmp/cmp_handshaker.c' is in a subdirectory,
+src/Makefile.am:5: but option 'subdir-objects' is disabled
+src/Makefile.am:5: warning: source file 'cmp/cmp_precver.c' is in a subdirectory,
+src/Makefile.am:5: but option 'subdir-objects' is disabled
+src/Makefile.am:5: warning: source file 'cmp/cmp_predefs.c' is in a subdirectory,
+src/Makefile.am:5: but option 'subdir-objects' is disabled
+src/Makefile.am:5: warning: source file 'cmp/cmp_psender.c' is in a subdirectory,
+src/Makefile.am:5: but option 'subdir-objects' is disabled
+src/Makefile.am:5: warning: source file 'cmp/cmp_pthsch.c' is in a subdirectory,
+src/Makefile.am:5: but option 'subdir-objects' is disabled
+src/Makefile.am:5: warning: source file 'cmp/cmp_screener.c' is in a subdirectory,
+src/Makefile.am:5: but option 'subdir-objects' is disabled
+src/Makefile.am:5: warning: source file 'cmp/cmp_tests.c' is in a subdirectory,
+src/Makefile.am:5: but option 'subdir-objects' is disabled
+src/Makefile.am:5: warning: source file 'cmp/cmp_tunreader.c' is in a subdirectory,
+src/Makefile.am:5: but option 'subdir-objects' is disabled
+src/Makefile.am:5: warning: source file 'cmp/cmp_tunwriter.c' is in a subdirectory,
+src/Makefile.am:5: but option 'subdir-objects' is disabled
+src/Makefile.am:5: warning: source file 'dmap/dmap_sel.c' is in a subdirectory,
+src/Makefile.am:5: but option 'subdir-objects' is disabled
+src/Makefile.am:5: warning: source file 'dmap/dmap.c' is in a subdirectory,
+src/Makefile.am:5: but option 'subdir-objects' is disabled
+src/Makefile.am:5: warning: source file 'etc/etc_auth.c' is in a subdirectory,
+src/Makefile.am:5: but option 'subdir-objects' is disabled
+src/Makefile.am:5: warning: source file 'etc/etc_cli.c' is in a subdirectory,
+src/Makefile.am:5: but option 'subdir-objects' is disabled
+src/Makefile.am:5: warning: source file 'etc/etc_dict.c' is in a subdirectory,
+src/Makefile.am:5: but option 'subdir-objects' is disabled
+src/Makefile.am:5: warning: source file 'etc/etc_endian.c' is in a subdirectory,
+src/Makefile.am:5: but option 'subdir-objects' is disabled
+src/Makefile.am:5: warning: source file 'etc/etc_iniparser.c' is in a subdirectory,
+src/Makefile.am:5: but option 'subdir-objects' is disabled
+src/Makefile.am:5: warning: source file 'etc/etc_ipsearch.c' is in a subdirectory,
+src/Makefile.am:5: but option 'subdir-objects' is disabled
+src/Makefile.am:5: warning: source file 'etc/etc_utils.c' is in a subdirectory,
+src/Makefile.am:5: but option 'subdir-objects' is disabled
+src/Makefile.am:5: warning: source file 'fsm/fsm_actions.c' is in a subdirectory,
+src/Makefile.am:5: but option 'subdir-objects' is disabled
+src/Makefile.am:5: warning: source file 'fsm/fsm_exist.c' is in a subdirectory,
+src/Makefile.am:5: but option 'subdir-objects' is disabled
+src/Makefile.am:5: warning: source file 'fsm/fsm_halt.c' is in a subdirectory,
+src/Makefile.am:5: but option 'subdir-objects' is disabled
+src/Makefile.am:5: warning: source file 'fsm/fsm_run.c' is in a subdirectory,
+src/Makefile.am:5: but option 'subdir-objects' is disabled
+src/Makefile.am:5: warning: source file 'fsm/fsm.c' is in a subdirectory,
+src/Makefile.am:5: but option 'subdir-objects' is disabled
+src/Makefile.am:5: warning: source file 'inc/inc_io.c' is in a subdirectory,
+src/Makefile.am:5: but option 'subdir-objects' is disabled
+src/Makefile.am:5: warning: source file 'inc/inc_mtime.c' is in a subdirectory,
+src/Makefile.am:5: but option 'subdir-objects' is disabled
+src/Makefile.am:5: warning: source file 'inc/inc_opcall.c' is in a subdirectory,
+src/Makefile.am:5: but option 'subdir-objects' is disabled
+src/Makefile.am:5: warning: source file 'lib/lib_debuglog.c' is in a subdirectory,
+src/Makefile.am:5: but option 'subdir-objects' is disabled
+src/Makefile.am:5: warning: source file 'lib/lib_dispers.c' is in a subdirectory,
+src/Makefile.am:5: but option 'subdir-objects' is disabled
+src/Makefile.am:5: warning: source file 'lib/lib_funcs.c' is in a subdirectory,
+src/Makefile.am:5: but option 'subdir-objects' is disabled
+src/Makefile.am:5: warning: source file 'lib/lib_heap.c' is in a subdirectory,
+src/Makefile.am:5: but option 'subdir-objects' is disabled
+src/Makefile.am:5: warning: source file 'lib/lib_interrupting.c' is in a subdirectory,
+src/Makefile.am:5: but option 'subdir-objects' is disabled
+src/Makefile.am:5: warning: source file 'lib/lib_makers.c' is in a subdirectory,
+src/Makefile.am:5: but option 'subdir-objects' is disabled
+src/Makefile.am:5: warning: source file 'lib/lib_predefs.c' is in a subdirectory,
+src/Makefile.am:5: but option 'subdir-objects' is disabled
+src/Makefile.am:5: warning: source file 'lib/lib_puffers.c' is in a subdirectory,
+src/Makefile.am:5: but option 'subdir-objects' is disabled
+src/Makefile.am:5: warning: source file 'lib/lib_threading.c' is in a subdirectory,
+src/Makefile.am:5: but option 'subdir-objects' is disabled
+src/Makefile.am:5: warning: source file 'lib/lib_tors.c' is in a subdirectory,
+src/Makefile.am:5: but option 'subdir-objects' is disabled
+src/Makefile.am:5: warning: source file 'lib/lib_vector.c' is in a subdirectory,
+src/Makefile.am:5: but option 'subdir-objects' is disabled
+src/Makefile.am:5: warning: source file 'sys/sys_confs.c' is in a subdirectory,
+src/Makefile.am:5: but option 'subdir-objects' is disabled
+src/Makefile.am:5: warning: source file 'sys/sys_ctrls.c' is in a subdirectory,
+src/Makefile.am:5: but option 'subdir-objects' is disabled
+src/Makefile.am:5: warning: source file 'sys/sys_prints.c' is in a subdirectory,
+src/Makefile.am:5: but option 'subdir-objects' is disabled
+autoreconf: Leaving directory `.'
+checking build system type... x86_64-unknown-linux-gnu
+checking host system type... x86_64-unknown-linux-gnu
+checking target system type... x86_64-unknown-linux-gnu
+checking for a BSD-compatible install... /usr/bin/install -c
+checking whether build environment is sane... yes
+checking for a thread-safe mkdir -p... /bin/mkdir -p
+checking for gawk... no
+checking for mawk... mawk
+checking whether make sets $(MAKE)... yes
+checking whether make supports nested variables... yes
+checking for gcc... gcc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether gcc accepts -g... yes
+checking for gcc option to accept ISO C89... none needed
+checking whether gcc understands -c and -o together... yes
+checking for style of include used by make... GNU
+checking dependency style of gcc... gcc3
+configure: Checking for b0rk and its requirements.
+checking for SSLv2_client_method in -lssl... no
+checking how to run the C preprocessor... gcc -E
+checking for grep that handles long lines and -e... /bin/grep
+checking for egrep... /bin/grep -E
+checking for ANSI C header files... yes
+checking for sys/types.h... yes
+checking for sys/stat.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for memory.h... yes
+checking for strings.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for unistd.h... yes
+checking sys/ioctl.h usability... yes
+checking sys/ioctl.h presence... yes
+checking for sys/ioctl.h... yes
+configure: Library dependency check ..Failed
+checking that generated files are newer than configure... done
+configure: creating ./config.status
+config.status: creating Makefile
+config.status: creating src/Makefile
+config.status: executing depfiles commands
+Making install in src
+make[1]: Entering directory `/home/balazs/workspace/mptsrv_025/src'
+make[2]: Entering directory `/home/balazs/workspace/mptsrv_025/src'
+ /bin/mkdir -p '/usr/local/bin'
+  /usr/bin/install -c ../bin/mptsrv '/usr/local/bin'
+make[2]: Nothing to be done for `install-data-am'.
+make[2]: Leaving directory `/home/balazs/workspace/mptsrv_025/src'
+make[1]: Leaving directory `/home/balazs/workspace/mptsrv_025/src'
+make[1]: Entering directory `/home/balazs/workspace/mptsrv_025'
+make[2]: Entering directory `/home/balazs/workspace/mptsrv_025'
+make[2]: Nothing to be done for `install-exec-am'.
+make[2]: Nothing to be done for `install-data-am'.
+make[2]: Leaving directory `/home/balazs/workspace/mptsrv_025'
+make[1]: Leaving directory `/home/balazs/workspace/mptsrv_025'
+mkdir: cannot create directory ‘/usr/local/etc/mptsrv’: File exists
+mkdir: cannot create directory ‘/usr/local/etc/mptsrv/conf’: File exists
+mkdir: cannot create directory ‘/usr/local/etc/mptsrv/bash’: File exists
+make  dist-gzip am__post_remove_distdir='@:'
+make[1]: Entering directory `/home/balazs/workspace/mptsrv_025'
+if test -d "mptsrv-0.25"; then find "mptsrv-0.25" -type d ! -perm -200 -exec chmod u+w {} ';' && rm -rf "mptsrv-0.25" || { sleep 5 && rm -rf "mptsrv-0.25"; }; else :; fi
+test -d "mptsrv-0.25" || mkdir "mptsrv-0.25"
+ (cd src && make  top_distdir=../mptsrv-0.25 distdir=../mptsrv-0.25/src \
+     am__remove_distdir=: am__skip_length_check=: am__skip_mode_fix=: distdir)
+make[2]: Entering directory `/home/balazs/workspace/mptsrv_025/src'
+make[2]: Leaving directory `/home/balazs/workspace/mptsrv_025/src'
+test -n "" \
+	|| find "mptsrv-0.25" -type d ! -perm -755 \
+		-exec chmod u+rwx,go+rx {} \; -o \
+	  ! -type d ! -perm -444 -links 1 -exec chmod a+r {} \; -o \
+	  ! -type d ! -perm -400 -exec chmod a+r {} \; -o \
+	  ! -type d ! -perm -444 -exec /bin/bash /home/balazs/workspace/mptsrv_025/install-sh -c -m a+r {} {} \; \
+	|| chmod -R a+r "mptsrv-0.25"
+tardir=mptsrv-0.25 && ${TAR-tar} chof - "$tardir" | GZIP=--best gzip -c >mptsrv-0.25.tar.gz
+make[1]: Leaving directory `/home/balazs/workspace/mptsrv_025'
+if test -d "mptsrv-0.25"; then find "mptsrv-0.25" -type d ! -perm -200 -exec chmod u+w {} ';' && rm -rf "mptsrv-0.25" || { sleep 5 && rm -rf "mptsrv-0.25"; }; else :; fi
+mptsrv-0.25/
+mptsrv-0.25/INSTALL
+mptsrv-0.25/Makefile.am
+mptsrv-0.25/compile
+mptsrv-0.25/NEWS
+mptsrv-0.25/missing
+mptsrv-0.25/config.guess
+mptsrv-0.25/install-sh
+mptsrv-0.25/src/
+mptsrv-0.25/src/Makefile.am
+mptsrv-0.25/src/fsm/
+mptsrv-0.25/src/fsm/fsm.c
+mptsrv-0.25/src/fsm/fsm.h
+mptsrv-0.25/src/fsm/fsm_exist.c
+mptsrv-0.25/src/fsm/fsm_run.c
+mptsrv-0.25/src/fsm/fsm_exist.h
+mptsrv-0.25/src/fsm/fsm_halt.c
+mptsrv-0.25/src/fsm/fsm_run.h
+mptsrv-0.25/src/fsm/fsm_halt.h
+mptsrv-0.25/src/fsm/fsm_actions.c
+mptsrv-0.25/src/fsm/fsm_actions.h
+mptsrv-0.25/src/inc/
+mptsrv-0.25/src/inc/inc_unistd.h
+mptsrv-0.25/src/inc/inc_io.c
+mptsrv-0.25/src/inc/inc_mtime.h
+mptsrv-0.25/src/inc/inc_opcall.h
+mptsrv-0.25/src/inc/inc_io.h
+mptsrv-0.25/src/inc/inc_texts.h
+mptsrv-0.25/src/inc/inc_socket.h
+mptsrv-0.25/src/inc/inc_mtime.c
+mptsrv-0.25/src/inc/inc_predefs.h
+mptsrv-0.25/src/inc/inc_opcall.c
+mptsrv-0.25/src/inc/inc_inet.h
+mptsrv-0.25/src/mpt_srv.c
+mptsrv-0.25/src/sys/
+mptsrv-0.25/src/sys/sys_predefs.h
+mptsrv-0.25/src/sys/sys_confs.c
+mptsrv-0.25/src/sys/sys_confs.h
+mptsrv-0.25/src/sys/sys_prints.h
+mptsrv-0.25/src/sys/sys_ctrls.c
+mptsrv-0.25/src/sys/sys_ctrls.h
+mptsrv-0.25/src/sys/sys_prints.c
+mptsrv-0.25/src/dmap/
+mptsrv-0.25/src/dmap/dmap_sel.c
+mptsrv-0.25/src/dmap/dmap_sel.h
+mptsrv-0.25/src/dmap/dmap.h
+mptsrv-0.25/src/dmap/dmap.c
+mptsrv-0.25/src/dmap/dmap_predefs.h
+mptsrv-0.25/src/dmap/dmap_defs.h
+mptsrv-0.25/src/etc/
+mptsrv-0.25/src/etc/etc_endian.h
+mptsrv-0.25/src/etc/etc_auth.c
+mptsrv-0.25/src/etc/etc_ipsearch.c
+mptsrv-0.25/src/etc/etc_cli.def
+mptsrv-0.25/src/etc/etc_endian.c
+mptsrv-0.25/src/etc/etc_auth.h
+mptsrv-0.25/src/etc/etc_dict.c
+mptsrv-0.25/src/etc/etc_ipsearch.h
+mptsrv-0.25/src/etc/etc_iniparser.c
+mptsrv-0.25/src/etc/etc_utils.c
+mptsrv-0.25/src/etc/etc_iniparser.h
+mptsrv-0.25/src/etc/etc_cli.h
+mptsrv-0.25/src/etc/etc_utils.h
+mptsrv-0.25/src/etc/etc_cli.c
+mptsrv-0.25/src/etc/etc_dict.h
+mptsrv-0.25/src/lib/
+mptsrv-0.25/src/lib/lib_funcs.c
+mptsrv-0.25/src/lib/lib_vector.h
+mptsrv-0.25/src/lib/lib_funcs.h
+mptsrv-0.25/src/lib/lib_heap.h
+mptsrv-0.25/src/lib/lib_interrupting.h
+mptsrv-0.25/src/lib/lib_vector.c
+mptsrv-0.25/src/lib/lib_dispers.c
+mptsrv-0.25/src/lib/lib_interrupting.c
+mptsrv-0.25/src/lib/lib_threading.h
+mptsrv-0.25/src/lib/lib_predefs.c
+mptsrv-0.25/src/lib/lib_threading.c
+mptsrv-0.25/src/lib/lib_debuglog.h
+mptsrv-0.25/src/lib/lib_puffers.h
+mptsrv-0.25/src/lib/lib_descs.h
+mptsrv-0.25/src/lib/lib_makers.c
+mptsrv-0.25/src/lib/lib_tors.h
+mptsrv-0.25/src/lib/lib_debuglog.c
+mptsrv-0.25/src/lib/lib_predefs.h
+mptsrv-0.25/src/lib/lib_tors.c
+mptsrv-0.25/src/lib/lib_heap.c
+mptsrv-0.25/src/lib/lib_defs.h
+mptsrv-0.25/src/lib/lib_puffers.c
+mptsrv-0.25/src/lib/lib_dispers.h
+mptsrv-0.25/src/lib/lib_makers.h
+mptsrv-0.25/src/cmp/
+mptsrv-0.25/src/cmp/cmp_pthsch.h
+mptsrv-0.25/src/cmp/cmp_tunwriter.h
+mptsrv-0.25/src/cmp/cmp_psender.c
+mptsrv-0.25/src/cmp/cmp_handshaker.c
+mptsrv-0.25/src/cmp/cmp_handshaker.h
+mptsrv-0.25/src/cmp/cmp_cli.h
+mptsrv-0.25/src/cmp/cmp_defs.h
+mptsrv-0.25/src/cmp/cmp_cmdexetor.c
+mptsrv-0.25/src/cmp/cmp_pthsch.c
+mptsrv-0.25/src/cmp/cmp_precver.c
+mptsrv-0.25/src/cmp/cmp_fpsqsender.c
+mptsrv-0.25/src/cmp/cmp_defs.c
+mptsrv-0.25/src/cmp/cmp_cmdexetor.h
+mptsrv-0.25/src/cmp/cmp_tunreader.h
+mptsrv-0.25/src/cmp/cmp_tunreader.c
+mptsrv-0.25/src/cmp/cmp_tests.h
+mptsrv-0.25/src/cmp/cmp_psender.h
+mptsrv-0.25/src/cmp/cmp_predefs.c
+mptsrv-0.25/src/cmp/cmp_cli.c
+mptsrv-0.25/src/cmp/cmp_conasr.c
+mptsrv-0.25/src/cmp/cmp_fpsqrecver.h
+mptsrv-0.25/src/cmp/cmp_precver.h
+mptsrv-0.25/src/cmp/cmp_predefs.h
+mptsrv-0.25/src/cmp/cmp_fpsqrecver.c
+mptsrv-0.25/src/cmp/cmp_tests.c
+mptsrv-0.25/src/cmp/cmp_fpsqsender.h
+mptsrv-0.25/src/cmp/cmp_screener.c
+mptsrv-0.25/src/cmp/cmp_conasr.h
+mptsrv-0.25/src/cmp/cmp_screener.h
+mptsrv-0.25/src/cmp/cmp_tunwriter.c
+mptsrv-0.25/src/Makefile.in
+mptsrv-0.25/aclocal.m4
+mptsrv-0.25/configure
+mptsrv-0.25/README
+mptsrv-0.25/config.sub
+mptsrv-0.25/AUTHORS
+mptsrv-0.25/configure.ac
+mptsrv-0.25/depcomp
+mptsrv-0.25/Makefile.in
+mptsrv-0.25/COPYING
+mptsrv-0.25/ChangeLog
+cp: cannot create regular file ‘/usr/local/etc/mptsrv/conf/interface.conf2’: Permission denied
+cp: cannot create regular file ‘/usr/local/etc/mptsrv/bash/ethtool.sh’: Permission denied
+cp: cannot create regular file ‘/usr/local/etc/mptsrv/bash/mpt_addr_adddel.sh’: Permission denied
+cp: cannot create regular file ‘/usr/local/etc/mptsrv/bash/mpt_int_updown.sh’: Permission denied
+cp: cannot create regular file ‘/usr/local/etc/mptsrv/bash/mpt_peer_routes.sh’: Permission denied
+cp: cannot create regular file ‘/usr/local/etc/mptsrv/bash/mpt_routes.sh’: Permission denied
+cp: cannot create regular file ‘/usr/local/etc/mptsrv/bash/mpt_tunnel_start.sh’: Permission denied
+cp: cannot create regular file ‘/usr/local/etc/mptsrv/connections/’: Not a directory
+checking build system type... i686-pc-linux-gnu
+checking host system type... i686-pc-linux-gnu
+checking target system type... i686-pc-linux-gnu
+checking for a BSD-compatible install... /usr/bin/install -c
+checking whether build environment is sane... yes
+checking for a thread-safe mkdir -p... /bin/mkdir -p
+checking for gawk... no
+checking for mawk... mawk
+checking whether make sets $(MAKE)... yes
+checking whether make supports nested variables... yes
+checking for gcc... gcc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether gcc accepts -g... yes
+checking for gcc option to accept ISO C89... none needed
+checking whether gcc understands -c and -o together... yes
+checking for style of include used by make... GNU
+checking dependency style of gcc... gcc3
+configure: Checking for b0rk and its requirements.
+checking for SSLv2_client_method in -lssl... no
+checking how to run the C preprocessor... gcc -E
+checking for grep that handles long lines and -e... /bin/grep
+checking for egrep... /bin/grep -E
+checking for ANSI C header files... yes
+checking for sys/types.h... yes
+checking for sys/stat.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for memory.h... yes
+checking for strings.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for unistd.h... yes
+checking sys/ioctl.h usability... yes
+checking sys/ioctl.h presence... yes
+checking for sys/ioctl.h... yes
+configure: Library dependency check ..Failed
+checking that generated files are newer than configure... done
+configure: creating ./config.status
+config.status: creating Makefile
+config.status: creating src/Makefile
+config.status: executing depfiles commands
+Making install in src
+make[1]: Entering directory `/home/balazs/mptsrv-0.25/src'
+gcc -DPACKAGE_NAME=\"mptsrv\" -DPACKAGE_TARNAME=\"mptsrv\" -DPACKAGE_VERSION=\"0.25\" -DPACKAGE_STRING=\"mptsrv\ 0.25\" -DPACKAGE_BUGREPORT=\"\" -DPACKAGE_URL=\"\" -DPACKAGE=\"mptsrv\" -DVERSION=\"0.25\" -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -I.  -Iinc -Icmp -Idmap -Ifsm -Ilib -Isys -Ietc -std=gnu99   -g -O2 -MT mpt_srv.o -MD -MP -MF .deps/mpt_srv.Tpo -c -o mpt_srv.o mpt_srv.c
+mpt_srv.c: In function ‘init_sysio’:
+mpt_srv.c:52:22: warning: assignment from incompatible pointer type [enabled by default]
+  sysio->tunnel_write = write;
+                      ^
+mpt_srv.c:53:23: warning: assignment from incompatible pointer type [enabled by default]
+  sysio->udpsock_close = close;
+                       ^
+mpt_srv.c:55:22: warning: assignment from incompatible pointer type [enabled by default]
+  sysio->udpsock_recv = recvfrom;
+                      ^
+mpt_srv.c:56:22: warning: assignment from incompatible pointer type [enabled by default]
+  sysio->udpsock_send = sendto;
+                      ^
+mv -f .deps/mpt_srv.Tpo .deps/mpt_srv.Po
+gcc -DPACKAGE_NAME=\"mptsrv\" -DPACKAGE_TARNAME=\"mptsrv\" -DPACKAGE_VERSION=\"0.25\" -DPACKAGE_STRING=\"mptsrv\ 0.25\" -DPACKAGE_BUGREPORT=\"\" -DPACKAGE_URL=\"\" -DPACKAGE=\"mptsrv\" -DVERSION=\"0.25\" -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -I.  -Iinc -Icmp -Idmap -Ifsm -Ilib -Isys -Ietc -std=gnu99   -g -O2 -MT cmp_cli.o -MD -MP -MF .deps/cmp_cli.Tpo -c -o cmp_cli.o `test -f 'cmp/cmp_cli.c' || echo './'`cmp/cmp_cli.c
+mv -f .deps/cmp_cli.Tpo .deps/cmp_cli.Po
+gcc -DPACKAGE_NAME=\"mptsrv\" -DPACKAGE_TARNAME=\"mptsrv\" -DPACKAGE_VERSION=\"0.25\" -DPACKAGE_STRING=\"mptsrv\ 0.25\" -DPACKAGE_BUGREPORT=\"\" -DPACKAGE_URL=\"\" -DPACKAGE=\"mptsrv\" -DVERSION=\"0.25\" -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -I.  -Iinc -Icmp -Idmap -Ifsm -Ilib -Isys -Ietc -std=gnu99   -g -O2 -MT cmp_cmdexetor.o -MD -MP -MF .deps/cmp_cmdexetor.Tpo -c -o cmp_cmdexetor.o `test -f 'cmp/cmp_cmdexetor.c' || echo './'`cmp/cmp_cmdexetor.c
+cmp/cmp_cmdexetor.c: In function ‘_cmp_cmdexe_process’:
+cmp/cmp_cmdexetor.c:276:2: warning: passing argument 1 of ‘ptrmov’ from incompatible pointer type [enabled by default]
+  ptrmov(&next_command, &command->next_command);
+  ^
+In file included from cmp/cmp_predefs.h:6:0,
+                 from cmp/cmp_cmdexetor.h:3,
+                 from cmp/cmp_cmdexetor.c:1:
+lib/lib_funcs.h:29:6: note: expected ‘void **’ but argument is of type ‘struct command_t **’
+ void ptrmov(void **dst, void **src);
+      ^
+cmp/cmp_cmdexetor.c:276:2: warning: passing argument 2 of ‘ptrmov’ from incompatible pointer type [enabled by default]
+  ptrmov(&next_command, &command->next_command);
+  ^
+In file included from cmp/cmp_predefs.h:6:0,
+                 from cmp/cmp_cmdexetor.h:3,
+                 from cmp/cmp_cmdexetor.c:1:
+lib/lib_funcs.h:29:6: note: expected ‘void **’ but argument is of type ‘struct command_struct_t **’
+ void ptrmov(void **dst, void **src);
+      ^
+cmp/cmp_cmdexetor.c:277:2: warning: passing argument 1 of ‘ptrmov’ from incompatible pointer type [enabled by default]
+  ptrmov(&request, &command->request);
+  ^
+In file included from cmp/cmp_predefs.h:6:0,
+                 from cmp/cmp_cmdexetor.h:3,
+                 from cmp/cmp_cmdexetor.c:1:
+lib/lib_funcs.h:29:6: note: expected ‘void **’ but argument is of type ‘struct request_t **’
+ void ptrmov(void **dst, void **src);
+      ^
+cmp/cmp_cmdexetor.c:277:2: warning: passing argument 2 of ‘ptrmov’ from incompatible pointer type [enabled by default]
+  ptrmov(&request, &command->request);
+  ^
+In file included from cmp/cmp_predefs.h:6:0,
+                 from cmp/cmp_cmdexetor.h:3,
+                 from cmp/cmp_cmdexetor.c:1:
+lib/lib_funcs.h:29:6: note: expected ‘void **’ but argument is of type ‘struct request_t **’
+ void ptrmov(void **dst, void **src);
+      ^
+mv -f .deps/cmp_cmdexetor.Tpo .deps/cmp_cmdexetor.Po
+gcc -DPACKAGE_NAME=\"mptsrv\" -DPACKAGE_TARNAME=\"mptsrv\" -DPACKAGE_VERSION=\"0.25\" -DPACKAGE_STRING=\"mptsrv\ 0.25\" -DPACKAGE_BUGREPORT=\"\" -DPACKAGE_URL=\"\" -DPACKAGE=\"mptsrv\" -DVERSION=\"0.25\" -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -I.  -Iinc -Icmp -Idmap -Ifsm -Ilib -Isys -Ietc -std=gnu99   -g -O2 -MT cmp_conasr.o -MD -MP -MF .deps/cmp_conasr.Tpo -c -o cmp_conasr.o `test -f 'cmp/cmp_conasr.c' || echo './'`cmp/cmp_conasr.c
+mv -f .deps/cmp_conasr.Tpo .deps/cmp_conasr.Po
+gcc -DPACKAGE_NAME=\"mptsrv\" -DPACKAGE_TARNAME=\"mptsrv\" -DPACKAGE_VERSION=\"0.25\" -DPACKAGE_STRING=\"mptsrv\ 0.25\" -DPACKAGE_BUGREPORT=\"\" -DPACKAGE_URL=\"\" -DPACKAGE=\"mptsrv\" -DVERSION=\"0.25\" -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -I.  -Iinc -Icmp -Idmap -Ifsm -Ilib -Isys -Ietc -std=gnu99   -g -O2 -MT cmp_defs.o -MD -MP -MF .deps/cmp_defs.Tpo -c -o cmp_defs.o `test -f 'cmp/cmp_defs.c' || echo './'`cmp/cmp_defs.c
+mv -f .deps/cmp_defs.Tpo .deps/cmp_defs.Po
+gcc -DPACKAGE_NAME=\"mptsrv\" -DPACKAGE_TARNAME=\"mptsrv\" -DPACKAGE_VERSION=\"0.25\" -DPACKAGE_STRING=\"mptsrv\ 0.25\" -DPACKAGE_BUGREPORT=\"\" -DPACKAGE_URL=\"\" -DPACKAGE=\"mptsrv\" -DVERSION=\"0.25\" -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -I.  -Iinc -Icmp -Idmap -Ifsm -Ilib -Isys -Ietc -std=gnu99   -g -O2 -MT cmp_fpsqrecver.o -MD -MP -MF .deps/cmp_fpsqrecver.Tpo -c -o cmp_fpsqrecver.o `test -f 'cmp/cmp_fpsqrecver.c' || echo './'`cmp/cmp_fpsqrecver.c
+mv -f .deps/cmp_fpsqrecver.Tpo .deps/cmp_fpsqrecver.Po
+gcc -DPACKAGE_NAME=\"mptsrv\" -DPACKAGE_TARNAME=\"mptsrv\" -DPACKAGE_VERSION=\"0.25\" -DPACKAGE_STRING=\"mptsrv\ 0.25\" -DPACKAGE_BUGREPORT=\"\" -DPACKAGE_URL=\"\" -DPACKAGE=\"mptsrv\" -DVERSION=\"0.25\" -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -I.  -Iinc -Icmp -Idmap -Ifsm -Ilib -Isys -Ietc -std=gnu99   -g -O2 -MT cmp_fpsqsender.o -MD -MP -MF .deps/cmp_fpsqsender.Tpo -c -o cmp_fpsqsender.o `test -f 'cmp/cmp_fpsqsender.c' || echo './'`cmp/cmp_fpsqsender.c
+cmp/cmp_fpsqsender.c: In function ‘_cmp_fpsqsender_receiver’:
+cmp/cmp_fpsqsender.c:66:18: warning: initialization from incompatible pointer type [enabled by default]
+  uint32_t *end = packet->bytes + packet->length;
+                  ^
+cmp/cmp_fpsqsender.c:67:6: warning: assignment makes pointer from integer without a cast [enabled by default]
+  end = _actual++;
+      ^
+mv -f .deps/cmp_fpsqsender.Tpo .deps/cmp_fpsqsender.Po
+gcc -DPACKAGE_NAME=\"mptsrv\" -DPACKAGE_TARNAME=\"mptsrv\" -DPACKAGE_VERSION=\"0.25\" -DPACKAGE_STRING=\"mptsrv\ 0.25\" -DPACKAGE_BUGREPORT=\"\" -DPACKAGE_URL=\"\" -DPACKAGE=\"mptsrv\" -DVERSION=\"0.25\" -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -I.  -Iinc -Icmp -Idmap -Ifsm -Ilib -Isys -Ietc -std=gnu99   -g -O2 -MT cmp_handshaker.o -MD -MP -MF .deps/cmp_handshaker.Tpo -c -o cmp_handshaker.o `test -f 'cmp/cmp_handshaker.c' || echo './'`cmp/cmp_handshaker.c
+mv -f .deps/cmp_handshaker.Tpo .deps/cmp_handshaker.Po
+gcc -DPACKAGE_NAME=\"mptsrv\" -DPACKAGE_TARNAME=\"mptsrv\" -DPACKAGE_VERSION=\"0.25\" -DPACKAGE_STRING=\"mptsrv\ 0.25\" -DPACKAGE_BUGREPORT=\"\" -DPACKAGE_URL=\"\" -DPACKAGE=\"mptsrv\" -DVERSION=\"0.25\" -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -I.  -Iinc -Icmp -Idmap -Ifsm -Ilib -Isys -Ietc -std=gnu99   -g -O2 -MT cmp_precver.o -MD -MP -MF .deps/cmp_precver.Tpo -c -o cmp_precver.o `test -f 'cmp/cmp_precver.c' || echo './'`cmp/cmp_precver.c
+mv -f .deps/cmp_precver.Tpo .deps/cmp_precver.Po
+gcc -DPACKAGE_NAME=\"mptsrv\" -DPACKAGE_TARNAME=\"mptsrv\" -DPACKAGE_VERSION=\"0.25\" -DPACKAGE_STRING=\"mptsrv\ 0.25\" -DPACKAGE_BUGREPORT=\"\" -DPACKAGE_URL=\"\" -DPACKAGE=\"mptsrv\" -DVERSION=\"0.25\" -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -I.  -Iinc -Icmp -Idmap -Ifsm -Ilib -Isys -Ietc -std=gnu99   -g -O2 -MT cmp_predefs.o -MD -MP -MF .deps/cmp_predefs.Tpo -c -o cmp_predefs.o `test -f 'cmp/cmp_predefs.c' || echo './'`cmp/cmp_predefs.c
+mv -f .deps/cmp_predefs.Tpo .deps/cmp_predefs.Po
+gcc -DPACKAGE_NAME=\"mptsrv\" -DPACKAGE_TARNAME=\"mptsrv\" -DPACKAGE_VERSION=\"0.25\" -DPACKAGE_STRING=\"mptsrv\ 0.25\" -DPACKAGE_BUGREPORT=\"\" -DPACKAGE_URL=\"\" -DPACKAGE=\"mptsrv\" -DVERSION=\"0.25\" -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -I.  -Iinc -Icmp -Idmap -Ifsm -Ilib -Isys -Ietc -std=gnu99   -g -O2 -MT cmp_psender.o -MD -MP -MF .deps/cmp_psender.Tpo -c -o cmp_psender.o `test -f 'cmp/cmp_psender.c' || echo './'`cmp/cmp_psender.c
+mv -f .deps/cmp_psender.Tpo .deps/cmp_psender.Po
+gcc -DPACKAGE_NAME=\"mptsrv\" -DPACKAGE_TARNAME=\"mptsrv\" -DPACKAGE_VERSION=\"0.25\" -DPACKAGE_STRING=\"mptsrv\ 0.25\" -DPACKAGE_BUGREPORT=\"\" -DPACKAGE_URL=\"\" -DPACKAGE=\"mptsrv\" -DVERSION=\"0.25\" -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -I.  -Iinc -Icmp -Idmap -Ifsm -Ilib -Isys -Ietc -std=gnu99   -g -O2 -MT cmp_pthsch.o -MD -MP -MF .deps/cmp_pthsch.Tpo -c -o cmp_pthsch.o `test -f 'cmp/cmp_pthsch.c' || echo './'`cmp/cmp_pthsch.c
+cmp/cmp_pthsch.c: In function ‘_cmp_pthsch_stop’:
+cmp/cmp_pthsch.c:143:3: warning: implicit declaration of function ‘pathring_dtor’ [-Wimplicit-function-declaration]
+   pathring_dtor(_rings[index]);
+   ^
+mv -f .deps/cmp_pthsch.Tpo .deps/cmp_pthsch.Po
+gcc -DPACKAGE_NAME=\"mptsrv\" -DPACKAGE_TARNAME=\"mptsrv\" -DPACKAGE_VERSION=\"0.25\" -DPACKAGE_STRING=\"mptsrv\ 0.25\" -DPACKAGE_BUGREPORT=\"\" -DPACKAGE_URL=\"\" -DPACKAGE=\"mptsrv\" -DVERSION=\"0.25\" -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -I.  -Iinc -Icmp -Idmap -Ifsm -Ilib -Isys -Ietc -std=gnu99   -g -O2 -MT cmp_screener.o -MD -MP -MF .deps/cmp_screener.Tpo -c -o cmp_screener.o `test -f 'cmp/cmp_screener.c' || echo './'`cmp/cmp_screener.c
+cmp/cmp_screener.c: In function ‘_thr_checker_main_proc’:
+cmp/cmp_screener.c:237:4: warning: implicit declaration of function ‘make_cmd_path_down’ [-Wimplicit-function-declaration]
+    send_cmd(make_cmd_path_down(dmap_get_pth(0)));
+    ^
+cmp/cmp_screener.c:237:4: warning: passing argument 1 of ‘send_cmd’ makes pointer from integer without a cast [enabled by default]
+cmp/cmp_screener.c:237:4: note: expected ‘struct command_t *’ but argument is of type ‘int’
+mv -f .deps/cmp_screener.Tpo .deps/cmp_screener.Po
+gcc -DPACKAGE_NAME=\"mptsrv\" -DPACKAGE_TARNAME=\"mptsrv\" -DPACKAGE_VERSION=\"0.25\" -DPACKAGE_STRING=\"mptsrv\ 0.25\" -DPACKAGE_BUGREPORT=\"\" -DPACKAGE_URL=\"\" -DPACKAGE=\"mptsrv\" -DVERSION=\"0.25\" -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -I.  -Iinc -Icmp -Idmap -Ifsm -Ilib -Isys -Ietc -std=gnu99   -g -O2 -MT cmp_tests.o -MD -MP -MF .deps/cmp_tests.Tpo -c -o cmp_tests.o `test -f 'cmp/cmp_tests.c' || echo './'`cmp/cmp_tests.c
+mv -f .deps/cmp_tests.Tpo .deps/cmp_tests.Po
+gcc -DPACKAGE_NAME=\"mptsrv\" -DPACKAGE_TARNAME=\"mptsrv\" -DPACKAGE_VERSION=\"0.25\" -DPACKAGE_STRING=\"mptsrv\ 0.25\" -DPACKAGE_BUGREPORT=\"\" -DPACKAGE_URL=\"\" -DPACKAGE=\"mptsrv\" -DVERSION=\"0.25\" -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -I.  -Iinc -Icmp -Idmap -Ifsm -Ilib -Isys -Ietc -std=gnu99   -g -O2 -MT cmp_tunreader.o -MD -MP -MF .deps/cmp_tunreader.Tpo -c -o cmp_tunreader.o `test -f 'cmp/cmp_tunreader.c' || echo './'`cmp/cmp_tunreader.c
+mv -f .deps/cmp_tunreader.Tpo .deps/cmp_tunreader.Po
+gcc -DPACKAGE_NAME=\"mptsrv\" -DPACKAGE_TARNAME=\"mptsrv\" -DPACKAGE_VERSION=\"0.25\" -DPACKAGE_STRING=\"mptsrv\ 0.25\" -DPACKAGE_BUGREPORT=\"\" -DPACKAGE_URL=\"\" -DPACKAGE=\"mptsrv\" -DVERSION=\"0.25\" -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -I.  -Iinc -Icmp -Idmap -Ifsm -Ilib -Isys -Ietc -std=gnu99   -g -O2 -MT cmp_tunwriter.o -MD -MP -MF .deps/cmp_tunwriter.Tpo -c -o cmp_tunwriter.o `test -f 'cmp/cmp_tunwriter.c' || echo './'`cmp/cmp_tunwriter.c
+mv -f .deps/cmp_tunwriter.Tpo .deps/cmp_tunwriter.Po
+gcc -DPACKAGE_NAME=\"mptsrv\" -DPACKAGE_TARNAME=\"mptsrv\" -DPACKAGE_VERSION=\"0.25\" -DPACKAGE_STRING=\"mptsrv\ 0.25\" -DPACKAGE_BUGREPORT=\"\" -DPACKAGE_URL=\"\" -DPACKAGE=\"mptsrv\" -DVERSION=\"0.25\" -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -I.  -Iinc -Icmp -Idmap -Ifsm -Ilib -Isys -Ietc -std=gnu99   -g -O2 -MT dmap_sel.o -MD -MP -MF .deps/dmap_sel.Tpo -c -o dmap_sel.o `test -f 'dmap/dmap_sel.c' || echo './'`dmap/dmap_sel.c
+mv -f .deps/dmap_sel.Tpo .deps/dmap_sel.Po
+gcc -DPACKAGE_NAME=\"mptsrv\" -DPACKAGE_TARNAME=\"mptsrv\" -DPACKAGE_VERSION=\"0.25\" -DPACKAGE_STRING=\"mptsrv\ 0.25\" -DPACKAGE_BUGREPORT=\"\" -DPACKAGE_URL=\"\" -DPACKAGE=\"mptsrv\" -DVERSION=\"0.25\" -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -I.  -Iinc -Icmp -Idmap -Ifsm -Ilib -Isys -Ietc -std=gnu99   -g -O2 -MT dmap.o -MD -MP -MF .deps/dmap.Tpo -c -o dmap.o `test -f 'dmap/dmap.c' || echo './'`dmap/dmap.c
+mv -f .deps/dmap.Tpo .deps/dmap.Po
+gcc -DPACKAGE_NAME=\"mptsrv\" -DPACKAGE_TARNAME=\"mptsrv\" -DPACKAGE_VERSION=\"0.25\" -DPACKAGE_STRING=\"mptsrv\ 0.25\" -DPACKAGE_BUGREPORT=\"\" -DPACKAGE_URL=\"\" -DPACKAGE=\"mptsrv\" -DVERSION=\"0.25\" -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -I.  -Iinc -Icmp -Idmap -Ifsm -Ilib -Isys -Ietc -std=gnu99   -g -O2 -MT etc_auth.o -MD -MP -MF .deps/etc_auth.Tpo -c -o etc_auth.o `test -f 'etc/etc_auth.c' || echo './'`etc/etc_auth.c
+etc/etc_auth.c:10:25: fatal error: openssl/evp.h: No such file or directory
+ #include <openssl/evp.h>
+                         ^
+compilation terminated.
+make[1]: *** [etc_auth.o] Error 1
+make[1]: Leaving directory `/home/balazs/mptsrv-0.25/src'
+make: *** [install-recursive] Error 1

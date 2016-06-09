@@ -1,0 +1,209 @@
+#include "fsm.h"
+#include "lib_tors.h"
+#include "dmap.h"
+#include "inc_predefs.h"
+#include "sys_prints.h"
+#include "sys_confs.h"
+#include "lib_makers.h"
+#include "lib_dispers.h"
+
+#include "cmp_defs.h"
+#include "cmp_predefs.h"
+
+//states:
+#include "fsm_halt.h"
+#include "fsm_exist.h"
+#include "fsm_run.h"
+#include "fsm_client.h"
+
+static void  _fsm_mpt_init();
+static void  _fsm_mpt_deinit();
+#define FSM_NAME_MPT "MPT system machine"
+CMP_DEF(, 			         /*type of definitions*/ 										   \
+		fsm_t,       /*type of component*/ 										  	   \
+		FSM_NAME_MPT,   /*name of the component*/ 										   \
+		 _fsm_mpt,        /*variable name of the component*/  							   \
+		 fsm_ctor,    /*name of the constructor function implemented automatically*/     \
+		 fsm_dtor,    /*name of the destructor function implemented automatically*/      \
+		 _fsm_mpt_init,   /*name of the external function called after construction*/        \
+		 __NO_TEST_FUNC_,      /*name of the external function called after initialization*/       \
+		 _fsm_mpt_deinit  /*name of the external function called before destruction*/        \
+		);																						   \
+
+CMP_DEF_GET_PROC(get_fsm, fsm_t, _fsm_mpt);
+
+//fire function
+static void _fsm_fire(int, void*);
+
+//private tools
+static void _str_state(int32_t state, char_t *dst);
+static void _str_event(int32_t event, char_t *dst);
+//----------------------------------------------------------------------------------------------------
+//------------------------- Initializations  ---------------------------------------------------------
+//----------------------------------------------------------------------------------------------------
+
+void _fsm_mpt_init()
+{
+	CMP_DEF_THIS(fsm_t, _fsm_mpt);
+
+	//Construct
+	this->signal = signal_ctor();
+
+	dmap_init();
+	cmplib_init();
+
+	//Binding
+	CMP_BIND(this->fire, _fsm_fire);
+
+	//Connecting
+
+	//start value:
+	this->current = MPT_STATE_EXIST;
+}
+
+void _fsm_mpt_deinit()
+{
+	CMP_DEF_THIS(fsm_t, _fsm_mpt);
+
+	signal_dtor(this->signal);
+}
+
+//----------------------------------------------------------------------------------------------------
+//------------------------- FIRE  ---------------------------------------------------------
+//----------------------------------------------------------------------------------------------------
+
+void _fsm_fire(int32_t event, void *arg)
+{
+	CMP_DEF_THIS(fsm_t, _fsm_mpt);
+
+	_str_event(event, this->event_str);
+	_str_state(this->current, this->state_str);
+	INFOPRINT("FSM: %s event is fired, actual state is %s", this->event_str, this->state_str);
+
+	switch(this->current)
+	{
+	case MPT_STATE_EXIST:
+		this->current = _fsm_exist_trans(event, arg);
+			break;
+	case MPT_STATE_RUN:
+		this->current = _fsm_run_trans(event, arg);
+			break;
+	case MPT_STATE_HALT:
+		this->current = _fsm_halt_trans(event, arg);
+			break;
+	case MPT_STATE_CLIENT:
+		this->current = _fsm_client_trans(event, arg);
+			break;
+	default:
+		ERRORPRINT("MPT machine is in unknown state");
+	}
+
+	_str_state(this->current, this->state_str);
+	INFOPRINT("FSM: Transitions performed, the actual state is %s ", this->state_str, this->current);
+}
+
+
+
+//----------------------------------------------------------------------------------------------------
+//------------------------- Actions  ---------------------------------------------------------
+//----------------------------------------------------------------------------------------------------
+
+
+void _str_state(int32_t state, char_t *dst)
+{
+	char_t str[255];
+	switch(state)
+	{
+	case MPT_STATE_RUN:
+		strcpy(dst, "Run");
+		break;
+	case MPT_STATE_HALT:
+		strcpy(dst, "Halt");
+		break;
+	case MPT_STATE_EXIST:
+		strcpy(dst, "Exist");
+		break;
+	case MPT_STATE_CLIENT:
+		strcpy(dst, "Client");
+		break;
+	default:
+		sprintf(str, "Unknown (%d)", state);
+		strcpy(dst, str);
+		break;
+	}
+}
+
+void _str_event(int32_t event, char_t *dst)
+{
+	char_t str[255];
+	switch(event)
+	{
+	case MPT_EVENT_CONNECTION_DELETE:
+		strcpy(dst, "Connection delete");
+		break;
+	case MPT_EVENT_CONNECTION_RELOAD:
+		strcpy(dst, "Connection reload");
+		break;
+	case MPT_EVENT_CONNECTION_SAVE:
+		strcpy(dst, "Connection save");
+		break;
+	case MPT_EVENT_CONNECTION_ADD:
+		strcpy(dst, "Connection add");
+		break;
+	case MPT_EVENT_SETUP:
+		strcpy(dst, "Setup");
+		break;
+	case MPT_EVENT_SHUTDOWN:
+		strcpy(dst, "Shutdown");
+		break;
+	case MPT_EVENT_INTERFACE_DOWN:
+		strcpy(dst, "Interface down");
+		break;
+	case MPT_EVENT_INTERFACE_UP:
+		strcpy(dst, "Interface up");
+		break;
+	case MPT_EVENT_PATH_DOWN:
+		strcpy(dst, "Path down");
+		break;
+	case MPT_EVENT_PATH_UP:
+		strcpy(dst, "Path up");
+		break;
+	case MPT_EVENT_PATH_ADD:
+		strcpy(dst, "Path add");
+		break;
+	case MPT_EVENT_NETWORK_ADD:
+		strcpy(dst, "Network add");
+		break;
+	case MPT_EVENT_START:
+		strcpy(dst, "Start");
+		break;
+	case MPT_EVENT_STOP:
+		strcpy(dst, "Stop");
+		break;
+	case MPT_EVENT_CLIENT_DO:
+		strcpy(dst, "Do client things");
+		break;
+	case MPT_EVENT_SET_CLIENT_AUTH:
+		strcpy(dst, "Set authentication mode");
+		break;
+	case MPT_EVENT_SET_CLIENT_KEY:
+		strcpy(dst, "Set authentication key");
+		break;
+	case MPT_EVENT_SET_CLIENT_PORT:
+		strcpy(dst, "Set server port number");
+		break;
+	case MPT_EVENT_SET_CLIENT_SERVER_ADDR:
+		strcpy(dst, "Set server ip address");
+		break;
+	case MPT_EVENT_SET_CLIENT_SERVER_IP6:
+		strcpy(dst, "Set ip version 6 mode");
+		break;
+	case MPT_EVENT_CREATE_CLIENT:
+		strcpy(dst, "Create client");
+		break;
+	default:
+		sprintf(str, "Unknown (%d)", event);
+		strcpy(dst, str);
+		break;
+	}
+}
