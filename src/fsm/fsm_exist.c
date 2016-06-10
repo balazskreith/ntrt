@@ -18,14 +18,14 @@ fsm_states_t _fsm_exist_trans(int32_t event, void *arg)
 
 	switch(event)
 	{
-	case MPT_EVENT_SETUP:
+	case NTRT_EVENT_SETUP:
 		_fsm_mptsrv_ctor();
 		_sys_load();
-		return MPT_STATE_HALT;
+		return NTRT_STATE_HALT;
 		break;
-	case MPT_EVENT_CREATE_CLIENT:
+	case NTRT_EVENT_CREATE_CLIENT:
 		_fsm_mptclt_ctor(arg);
-		return MPT_STATE_CLIENT;
+		return NTRT_STATE_CLIENT;
 		break;
 	default:
 		WARNINGPRINT("The event (%s) you required doesn't have transition in the current state (%s)", this->event_str, this->state_str);

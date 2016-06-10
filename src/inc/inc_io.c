@@ -28,8 +28,8 @@ int32_t sysio_tunnel_start(tunnel_t *tun)
 {
 	char cmdbuf[256], ipstr[256];
 	//int mtu = 1452; // 1500-sizeof(IPv6+UDP header)
-	int mtu = MPT_MTU_SIZE - 48; // 1500-sizeof(IPv6+UDP header)
-	int qlen = MPT_MTU_SIZE, sockfd;
+	int mtu = NTRT_MTU_SIZE - 48; // 1500-sizeof(IPv6+UDP header)
+	int qlen = NTRT_MTU_SIZE, sockfd;
 	struct ifreq ifr;
 	int32_t result;
 	if ((result = open(tun->device, O_RDWR)) < 0){

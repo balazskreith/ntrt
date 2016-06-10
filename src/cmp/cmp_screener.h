@@ -1,5 +1,5 @@
-#ifndef INCGUARD_MPT_COMPONENT_SCREENER_H_
-#define INCGUARD_MPT_COMPONENT_SCREENER_H_
+#ifndef INCGUARD_NTRT_COMPONENT_SCREENER_H_
+#define INCGUARD_NTRT_COMPONENT_SCREENER_H_
 #include "lib_descs.h"
 
 typedef struct cmp_screener_struct_t
@@ -18,4 +18,4 @@ void cmp_screener_dtor();
 cmp_screener_t* get_cmp_screener();
 
 
-#endif //INCGUARD_MPT_COMPONENT_SCREENER_H_
+#endif //INCGUARD_NTRT_COMPONENT_SCREENER_H_

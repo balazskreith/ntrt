@@ -27,26 +27,26 @@ fsm_states_t _fsm_client_trans(int32_t event, void *arg)
 	}
 	switch(event)
 	{
-	case MPT_EVENT_SHUTDOWN:
+	case NTRT_EVENT_SHUTDOWN:
 		_fsm_mptclt_dtor();
-		return MPT_STATE_EXIST;
+		return NTRT_STATE_EXIST;
 		break;
-	case MPT_EVENT_SET_CLIENT_AUTH:
+	case NTRT_EVENT_SET_CLIENT_AUTH:
 		_set_auth((char_t*) arg, strlen((const char_t*)arg));
 		break;
-	case MPT_EVENT_SET_CLIENT_KEY:
+	case NTRT_EVENT_SET_CLIENT_KEY:
 		_set_key((char_t*) arg, strlen((const char_t*)arg));
 		break;
-	case MPT_EVENT_SET_CLIENT_PORT:
+	case NTRT_EVENT_SET_CLIENT_PORT:
 		_set_port((int32_t*) arg);
 		break;
-	case MPT_EVENT_SET_CLIENT_SERVER_ADDR:
+	case NTRT_EVENT_SET_CLIENT_SERVER_ADDR:
 		_set_ipaddr((char_t*) arg, strlen((const char_t*)arg));
 		break;
-	case MPT_EVENT_CLIENT_DO:
+	case NTRT_EVENT_CLIENT_DO:
 		_process();
 		break;
-	case MPT_EVENT_SET_CLIENT_SERVER_IP6:
+	case NTRT_EVENT_SET_CLIENT_SERVER_IP6:
 		_con->ip_version = 6;
 		break;
 	default:

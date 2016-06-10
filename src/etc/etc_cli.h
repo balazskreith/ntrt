@@ -35,19 +35,19 @@ command_t* make_cmd_from_str(char * cmd, int32_t *rv);
 
 /**
  * @brief The parser() function sets in its 2nd parameter that witch command were recognised
- * These values are the corresponding indexes of the successfully matched regular expressions or MPT_NOCMD if nothing was matched.
+ * These values are the corresponding indexes of the successfully matched regular expressions or NTRT_NOCMD if nothing was matched.
  */
 typedef enum {
 #define CLI_COMMAND(name, regex) name,
-	CLI_COMMAND( MPT_INT, "^(int|interface)( ([^[:space:]]+) (up|down))$" )   ///< mpt int[erface] IF {up|down}
-	CLI_COMMAND( MPT_ADDR, "^(addr|address)( (add|del) ("REGEX_IPV4"|"REGEX_IPV6")(/([[:digit:]]+))? dev ([[:alnum:]]+)|.*)$" )   ///< mpt addr[ess] {add|del} IP[/PREFIX] dev IF
-	CLI_COMMAND( MPT_RELOAD, "^reload(| ([^ ]+)| .*)$" )    ///< mpt reload [FILENAME]
-	CLI_COMMAND( MPT_DELETE, "^delete( ([^ ]+)|.*)$" )      ///< mpt delete FILENAME
-	CLI_COMMAND( MPT_SAVE, "^save(| ([^ ]+)| .*)$" )        ///< mpt save [FILENAME]
-	CLI_COMMAND( MPT_PATH, "^path( (up|down) ("REGEX_IPV4"|"REGEX_IPV6") ("REGEX_IPV4"|"REGEX_IPV6")| .*|)$" )    ///< mpt path {up|down} SRC_IP DST_IP
-	CLI_COMMAND( MPT_STATUS, "^show status$" )              ///< mpt show status
+	CLI_COMMAND( NTRT_INT, "^(int|interface)( ([^[:space:]]+) (up|down))$" )   ///< mpt int[erface] IF {up|down}
+	CLI_COMMAND( NTRT_ADDR, "^(addr|address)( (add|del) ("REGEX_IPV4"|"REGEX_IPV6")(/([[:digit:]]+))? dev ([[:alnum:]]+)|.*)$" )   ///< mpt addr[ess] {add|del} IP[/PREFIX] dev IF
+	CLI_COMMAND( NTRT_RELOAD, "^reload(| ([^ ]+)| .*)$" )    ///< mpt reload [FILENAME]
+	CLI_COMMAND( NTRT_DELETE, "^delete( ([^ ]+)|.*)$" )      ///< mpt delete FILENAME
+	CLI_COMMAND( NTRT_SAVE, "^save(| ([^ ]+)| .*)$" )        ///< mpt save [FILENAME]
+	CLI_COMMAND( NTRT_PATH, "^path( (up|down) ("REGEX_IPV4"|"REGEX_IPV6") ("REGEX_IPV4"|"REGEX_IPV6")| .*|)$" )    ///< mpt path {up|down} SRC_IP DST_IP
+	CLI_COMMAND( NTRT_STATUS, "^show status$" )              ///< mpt show status
 #undef CLI_COMMAND
-    MPT_NOCMD                   ///< None of the commands above was matched
+    NTRT_NOCMD                   ///< None of the commands above was matched
 } CMDTYPE;
 
 /**

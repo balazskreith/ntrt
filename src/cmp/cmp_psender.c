@@ -57,7 +57,7 @@ typedef struct _pinfo_struct_t
 	bool_t               available;
 }pinfo_t;
 
-static pinfo_t _pinfos[MPT_MAX_PATH_NUM];
+static pinfo_t _pinfos[NTRT_MAX_PATH_NUM];
 
 void  _cmp_psender_init()
 {
@@ -71,7 +71,7 @@ void  _cmp_psender_init()
 	CMP_BIND(_cmp_psender->datpck_receiver, _cmp_datsender_sender);
 	CMP_BIND(_cmp_psender->cmdpck_receiver, _cmp_cmdsender_process);
 
-	for(index = 0; index < MPT_MAX_PATH_NUM; ++index){
+	for(index = 0; index < NTRT_MAX_PATH_NUM; ++index){
 		_pinfos[index].available = BOOL_FALSE;
 	}
 
@@ -117,8 +117,8 @@ void _cmp_datsender_sender(packet_t *packet)
 	if(_pinfos[packet->path_out].available == BOOL_FALSE){
 		int32_t index = 0;
 		WARNINGPRINT("Desired path is not available for sending", 0);
-		for(packet->path_out = 0; packet->path_out < MPT_MAX_PATH_NUM && _pinfos[packet->path_out].available == BOOL_FALSE; ++packet->path_out);
-		if( index == MPT_MAX_PATH_NUM){
+		for(packet->path_out = 0; packet->path_out < NTRT_MAX_PATH_NUM && _pinfos[packet->path_out].available == BOOL_FALSE; ++packet->path_out);
+		if( index == NTRT_MAX_PATH_NUM){
 			WARNINGPRINT("No path available for sending.");
 			this->send(packet);
 			return;
@@ -150,13 +150,13 @@ void _cmp_cmdsender_process(packet_t *packet)
 	con = dmap_get_con(packet->con_id);
 	for(index = 0; dmap_itr_table_pth(&index, &path) == BOOL_TRUE; ++index)
 	{
-		if( path->con_dmap_id == packet->con_id && path->status == MPT_REQ_STAT_OK)
+		if( path->con_dmap_id == packet->con_id && path->status == NTRT_REQ_STAT_OK)
 		{
 			break;
 		}
 	}
 	dmap_rdunlock_table_pth();
-	if(index == MPT_MAX_PATH_NUM){
+	if(index == NTRT_MAX_PATH_NUM){
 		ERRORPRINT("Packet sender: No available path for sending command at con: %s", con->name);
 		dmap_rdunlock_table_con();
 		return;
@@ -191,7 +191,7 @@ void _refresh_pinfos()
 	dmap_rdlock_table_con();
 	for(index = 0; dmap_itr_table_pth(&index, &path) == BOOL_TRUE; ++index)
 	{
-		if(path->status != MPT_REQ_STAT_OK){
+		if(path->status != NTRT_REQ_STAT_OK){
 			_pinfos[index].available = BOOL_FALSE;
 			continue;
 		}

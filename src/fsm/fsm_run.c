@@ -34,30 +34,30 @@ fsm_states_t _fsm_run_trans(int32_t event, void *arg)
 
 	switch(event)
 	{
-	case MPT_EVENT_STOP:
+	case NTRT_EVENT_STOP:
 		_sys_stop();
-		return MPT_STATE_HALT;
+		return NTRT_STATE_HALT;
 		break;
-	case MPT_EVENT_CONNECTION_SAVE:
+	case NTRT_EVENT_CONNECTION_SAVE:
 		_con_save((char_t*)arg);
 		break;
-	case MPT_EVENT_PATH_UP:
-		_path_change((path_t*) arg, MPT_REQ_STAT_OK);
+	case NTRT_EVENT_PATH_UP:
+		_path_change((path_t*) arg, NTRT_REQ_STAT_OK);
 		break;
-	case MPT_EVENT_PATH_ADD:
+	case NTRT_EVENT_PATH_ADD:
 		_path_add((path_t*) arg);
 		break;
-	case MPT_EVENT_NETWORK_ADD:
+	case NTRT_EVENT_NETWORK_ADD:
 		_network_add((network_t*) arg);
 		break;
-	case MPT_EVENT_PATH_DOWN:
-		_path_change((path_t*) arg, MPT_REQ_STAT_PATH_DOWN);
+	case NTRT_EVENT_PATH_DOWN:
+		_path_change((path_t*) arg, NTRT_REQ_STAT_PATH_DOWN);
 		break;
-	case MPT_EVENT_INTERFACE_UP:
-		_interface_change((interface_t*) arg, MPT_REQ_STAT_OK, "add");
+	case NTRT_EVENT_INTERFACE_UP:
+		_interface_change((interface_t*) arg, NTRT_REQ_STAT_OK, "add");
 		break;
-	case MPT_EVENT_INTERFACE_DOWN:
-		_interface_change((interface_t*) arg, MPT_REQ_STAT_IF_DOWN, "del");
+	case NTRT_EVENT_INTERFACE_DOWN:
+		_interface_change((interface_t*) arg, NTRT_REQ_STAT_IF_DOWN, "del");
 		break;
 	default:
 		WARNINGPRINT("The event (%s) you required doesn't have transition in the current state (%s)", this->event_str, this->state_str);

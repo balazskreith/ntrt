@@ -50,9 +50,9 @@ typedef struct _cmp_checker_struct_t
 
 typedef struct _cmp_keepalives_struct_t
 {
-	time_t         sent[MPT_MAX_PATH_NUM];
-	time_t         received[MPT_MAX_PATH_NUM];
-	time_t         commanded[MPT_MAX_PATH_NUM];
+	time_t         sent[NTRT_MAX_PATH_NUM];
+	time_t         received[NTRT_MAX_PATH_NUM];
+	time_t         commanded[NTRT_MAX_PATH_NUM];
 	packet_t*    (*demand_pck)();
 	spin_t*        spin;
 	void         (*receiver)(packet_t*);
@@ -157,7 +157,7 @@ void _cmp_screener_init()
 	_cmp_recycle_ctor();
 
 	_cmp_keepalives->spin = spin_ctor();
-	for(index = 0; index < MPT_MAX_PATH_NUM; ++index){
+	for(index = 0; index < NTRT_MAX_PATH_NUM; ++index){
 		_cmp_keepalives->received[index] = time(NULL);
 		_cmp_keepalives->sent[index] = time(NULL);
 		_cmp_keepalives->commanded[index] = time(NULL);
@@ -235,7 +235,7 @@ void _thr_checker_main_proc(thread_t *thread)
 		continue;
 		if(tick == 15){
 			send_cmd(make_cmd_path_down(dmap_get_pth(0)));
-			//send_req(MPT_REQ_CMD_P_STATUS_CHANGE, MPT_REQ_STAT_PATH_DOWN, dmap_get_con(0), dmap_get_pth(0));
+			//send_req(NTRT_REQ_CMD_P_STATUS_CHANGE, NTRT_REQ_STAT_PATH_DOWN, dmap_get_con(0), dmap_get_pth(0));
 		}
 	}while(thread->state == THREAD_STATE_RUN);
 }
@@ -245,7 +245,7 @@ void _cmp_router_process(packet_t *packet)
 	CMP_DEF_THIS(_cmp_router_t, _cmp_router);
 	switch(packet->bytes[0])
 	{
-	case MPT_REQ_CMD_KEEPALIVE:
+	case NTRT_REQ_CMD_KEEPALIVE:
 		this->send_keepalive(packet);
 		break;
 	}
@@ -291,26 +291,26 @@ void _cmp_keepalives_checker()
 				continue;
 			}
 			elapsed = difftime(now, this->received[path_index]);
-			if(con->deadtimer < elapsed && path->status == MPT_REQ_STAT_OK){
+			if(con->deadtimer < elapsed && path->status == NTRT_REQ_STAT_OK){
 				if(difftime(now, this->commanded[path_index]) < 10){
 					continue;
 				}
-				command = make_event_cmd(MPT_EVENT_PATH_DOWN, path);
+				command = make_event_cmd(NTRT_EVENT_PATH_DOWN, path);
 				command->request = make_request_path_down(path);
 				set_ipstr(text, 255, path->ip_remote, path->ip_version);
 				INFOPRINT("Keepalive is not received from %s", text);
 				send_cmd(command);
-				//send_req(MPT_REQ_CMD_P_STATUS_CHANGE, MPT_REQ_STAT_PATH_DOWN, con, path);
+				//send_req(NTRT_REQ_CMD_P_STATUS_CHANGE, NTRT_REQ_STAT_PATH_DOWN, con, path);
 				_cmp_keepalives->commanded[path_index] = now;
 				continue;
 			}
 			elapsed = difftime(now, this->sent[path_index]);
-			if(elapsed < con->keepalive || path->status != MPT_REQ_STAT_OK){
+			if(elapsed < con->keepalive || path->status != NTRT_REQ_STAT_OK){
 				continue;
 			}
 			//CMP_DEMAND(CMP_NAME_CHECKER, packet, this->demand_pck);
 			packet = this->demand_pck();
-			packet->bytes[0] = MPT_REQ_CMD_KEEPALIVE;
+			packet->bytes[0] = NTRT_REQ_CMD_KEEPALIVE;
 			packet->bytes[5] = path->ip_version;
 			memcpy(&packet->bytes[8], con->ip_local, SIZE_IN6ADDR);
 			memcpy(&packet->bytes[24], con->ip_remote, SIZE_IN6ADDR);
@@ -359,16 +359,16 @@ void _cmp_keepalives_receiver(packet_t *packet)
 			if(memcmp(packet->source, path->ip_remote, SIZE_IN6ADDR) != 0){
 				continue;
 			}
-			if(path->status == MPT_REQ_STAT_PATH_DOWN){
+			if(path->status == NTRT_REQ_STAT_PATH_DOWN){
 				if(difftime(now, this->commanded[path_index]) < 10){
 					continue;
 				}
-				command = make_event_cmd(MPT_EVENT_PATH_UP, path);
+				command = make_event_cmd(NTRT_EVENT_PATH_UP, path);
 				command->request = make_request_path_up(path);
 				set_ipstr(text, 255, path->ip_remote, path->ip_version);
 				INFOPRINT("Keepalive is received from %s", text);
 				send_cmd(command);
-				//send_req(MPT_REQ_CMD_P_STATUS_CHANGE, MPT_REQ_STAT_OK, con, path);
+				//send_req(NTRT_REQ_CMD_P_STATUS_CHANGE, NTRT_REQ_STAT_OK, con, path);
 				_cmp_keepalives->commanded[path_index] = now;
 			}
 			this->received[path_index] = now;
@@ -390,7 +390,7 @@ void _cmp_keepalives_receiver(packet_t *packet)
 
 void _clean_packet(packet_t *packet)
 {
-	//memset(packet->bytes, 0, MPT_PACKET_LENGTH);
+	//memset(packet->bytes, 0, NTRT_PACKET_LENGTH);
 	packet->connection = NULL;
 	packet->path_out = -1;
 }

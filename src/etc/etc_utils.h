@@ -1,5 +1,5 @@
-#ifndef INCGUARD_MPT_ETC_UTILS_H_
-#define INCGUARD_MPT_ETC_UTILS_H_
+#ifndef INCGUARD_NTRT_ETC_UTILS_H_
+#define INCGUARD_NTRT_ETC_UTILS_H_
 
 #include "lib_defs.h"
 #include "lib_descs.h"
@@ -28,4 +28,4 @@ void setup_peer(struct sockaddr_in6 *peer, byte_t* ip_remote, int16_t port);
 
 int32_t open_ipv6_dgram_socket();
 
-#endif //INCGUARD_MPT_ETC_UTILS_H_
+#endif //INCGUARD_NTRT_ETC_UTILS_H_

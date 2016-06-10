@@ -5,43 +5,43 @@
  * @copyright Project maintained by Almasi, Bela; Debrecen, Hungary
  * @date 2014.02.11
 */
-#ifndef INCGUARD_MPT_LIBRARY_DESCRIPTIONS_H_
-#define INCGUARD_MPT_LIBRARY_DESCRIPTIONS_H_
+#ifndef INCGUARD_NTRT_LIBRARY_DESCRIPTIONS_H_
+#define INCGUARD_NTRT_LIBRARY_DESCRIPTIONS_H_
 
 #include <time.h>
 #include "lib_defs.h"
 #include "lib_threading.h"
 #include <signal.h>
 
-#define MPT_MAX_PATH_NUM 10
-#define MPT_MAX_NETWORK_NUM 10
-#define MPT_MAX_TUNNEL_NUM 2
-#define MPT_MAX_CONNECTION_NUM 2
-#define MPT_MAX_INTERFACE_NUM 10
-#define MPT_MAX_THREAD_NUM 32
+#define NTRT_MAX_PATH_NUM 10
+#define NTRT_MAX_NETWORK_NUM 10
+#define NTRT_MAX_TUNNEL_NUM 2
+#define NTRT_MAX_CONNECTION_NUM 2
+#define NTRT_MAX_INTERFACE_NUM 10
+#define NTRT_MAX_THREAD_NUM 32
 
-#define MPT_MAX_SCHCAT_NUM 4
-#define MPT_SCHEDULER_CLOCK_BASE 16
-#define MPT_TICK_PER_MS_RATIO 1.024
-#define MPT_MS_PER_TICK_RATIO 0.9765625
+#define NTRT_MAX_SCHCAT_NUM 4
+#define NTRT_SCHEDULER_CLOCK_BASE 16
+#define NTRT_TICK_PER_MS_RATIO 1.024
+#define NTRT_MS_PER_TICK_RATIO 0.9765625
 
-#define MPT_SCHEDULER_SIGNAL SIGRTMIN
-#define MPT_PSENDER_SIGNAL SIGRTMIN + 1
+#define NTRT_SCHEDULER_SIGNAL SIGRTMIN
+#define NTRT_PSENDER_SIGNAL SIGRTMIN + 1
 
-#define MPT_PACKET_LENGTH 2048
-#define MPT_MTU_SIZE 1500
+#define NTRT_PACKET_LENGTH 2048
+#define NTRT_MTU_SIZE 1500
 
 /**
  * @defgroup CMDValues CMD values
  * @brief CMD values starts from 0xA0
  * @{
  */
-#define MPT_REQ_CMD_KEEPALIVE           0xA1    ///< Keepalive packet
-#define MPT_REQ_CMD_ECHO                0xA2    ///< ECHO
-#define MPT_REQ_CMD_P_STATUS_CHANGE     0xA3    ///< Path status change request
-#define MPT_REQ_CMD_CONNECTION_SEND     0xA4    ///< Connection update request
-#define MPT_REQ_CMD_NETWORK_SEND        0xA5    ///< Connection update request
-#define MPT_REQ_CMD_PATH_SEND           0xA6    ///< Connection update request
+#define NTRT_REQ_CMD_KEEPALIVE           0xA1    ///< Keepalive packet
+#define NTRT_REQ_CMD_ECHO                0xA2    ///< ECHO
+#define NTRT_REQ_CMD_P_STATUS_CHANGE     0xA3    ///< Path status change request
+#define NTRT_REQ_CMD_CONNECTION_SEND     0xA4    ///< Connection update request
+#define NTRT_REQ_CMD_NETWORK_SEND        0xA5    ///< Connection update request
+#define NTRT_REQ_CMD_PATH_SEND           0xA6    ///< Connection update request
 
 /// @}
 
@@ -50,29 +50,29 @@
  * @brief Status values of connections and pathes
  * @{
  */
-#define MPT_REQ_STAT_OK                 0x00    ///< Status OK
-#define MPT_REQ_STAT_PATH_DOWN          0x80    ///< Path is down
-#define MPT_REQ_STAT_IF_DOWN            0x81    ///< Interface is down
-#define MPT_REQ_STAT_ADDRESS_DOWN       0x82    ///< Address is down
-#define MPT_REQ_STAT_DISABLED           0xFF    ///< Disabled
+#define NTRT_REQ_STAT_OK                 0x00    ///< Status OK
+#define NTRT_REQ_STAT_PATH_DOWN          0x80    ///< Path is down
+#define NTRT_REQ_STAT_IF_DOWN            0x81    ///< Interface is down
+#define NTRT_REQ_STAT_ADDRESS_DOWN       0x82    ///< Address is down
+#define NTRT_REQ_STAT_DISABLED           0xFF    ///< Disabled
 /// @}
 
 
-#define MPT_CONNECTION_STRUCT_DEFAULT_NAME "connection"
-#define MPT_CONNECTION_STRUCT_DEFAULT_IP_VERSION 6
-#define MPT_CONNECTION_STRUCT_DEFAULT_SOURCE_IP "127.0.0.1"
-#define MPT_CONNECTION_STRUCT_DEFAULT_DEST_IP "127.0.0.1"
-#define MPT_CONNECTION_STRUCT_DEFAULT_DATA_REMOTE_PORT 65060
-#define MPT_CONNECTION_STRUCT_DEFAULT_DATA_LOCAL_PORT 65060
-#define MPT_CONNECTION_STRUCT_DEFAULT_PERMISSION 0
-#define MPT_CONNECTION_STRUCT_DEFAULT_CMD_PORT 65050
+#define NTRT_CONNECTION_STRUCT_DEFAULT_NAME "connection"
+#define NTRT_CONNECTION_STRUCT_DEFAULT_IP_VERSION 6
+#define NTRT_CONNECTION_STRUCT_DEFAULT_SOURCE_IP "127.0.0.1"
+#define NTRT_CONNECTION_STRUCT_DEFAULT_DEST_IP "127.0.0.1"
+#define NTRT_CONNECTION_STRUCT_DEFAULT_DATA_REMOTE_PORT 65060
+#define NTRT_CONNECTION_STRUCT_DEFAULT_DATA_LOCAL_PORT 65060
+#define NTRT_CONNECTION_STRUCT_DEFAULT_PERMISSION 0
+#define NTRT_CONNECTION_STRUCT_DEFAULT_CMD_PORT 65050
 
-#define MPT_CONNECTION_STRUCT_DEFAULT_DEADTIME 20
-#define MPT_CONNECTION_STRUCT_DEFAULT_KEEPALIVE 5
-#define MPT_CONNECTION_STRUCT_DEFAULT_STATUS 0
-#define MPT_CONNECTION_STRUCT_DEFAULT_SCHEDULING_TYPE "windowed"
-#define MPT_CONNECTION_STRUCT_DEFAULT_AUTH_KEY 0
-#define MPT_CONNECTION_STRUCT_DEFAULT_AUTH_TYPE 0
+#define NTRT_CONNECTION_STRUCT_DEFAULT_DEADTIME 20
+#define NTRT_CONNECTION_STRUCT_DEFAULT_KEEPALIVE 5
+#define NTRT_CONNECTION_STRUCT_DEFAULT_STATUS 0
+#define NTRT_CONNECTION_STRUCT_DEFAULT_SCHEDULING_TYPE "windowed"
+#define NTRT_CONNECTION_STRUCT_DEFAULT_AUTH_KEY 0
+#define NTRT_CONNECTION_STRUCT_DEFAULT_AUTH_TYPE 0
 
 typedef struct eveter_arg_struct_t
 {
@@ -158,7 +158,7 @@ typedef struct network_struct_t
   int32_t  con_dmap_id;    ///< dmap_id used for linking the path to a connection
 } network_t;
 
-#define MPT_SCHEDULING_TYPES_NUM 2
+#define NTRT_SCHEDULING_TYPES_NUM 2
 typedef enum
 {
 	PACKET_SCHEDULING_WINDOWED    = 0,
@@ -193,14 +193,14 @@ typedef struct connection_struct_t
     //shandler_t shandler;
     int32_t    sockd;
     packet_scheduling_t scheduling_type;
-    //int32_t   path_ids[MPT_MAX_PATH_NUM]; ///< The paths asociated to the connection
-    //int32_t   network_ids[MPT_MAX_NETWORK_NUM]; ///< The networks connected by the connection
+    //int32_t   path_ids[NTRT_MAX_PATH_NUM]; ///< The paths asociated to the connection
+    //int32_t   network_ids[NTRT_MAX_NETWORK_NUM]; ///< The networks connected by the connection
 
 } connection_t; //sum: 484 byte!
 
 typedef struct request_struct_t
 {
-	byte_t            message[MPT_PACKET_LENGTH];
+	byte_t            message[NTRT_PACKET_LENGTH];
 	int32_t           size;
 	byte_t            command;
 	byte_t            status;
@@ -318,4 +318,4 @@ typedef struct devlegoio_struct_t
 
 devlegoio_t *sysio;
 
-#endif //INCGUARD_MPT_LIBRARY_DESCRIPTIONS_H_
+#endif //INCGUARD_NTRT_LIBRARY_DESCRIPTIONS_H_

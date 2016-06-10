@@ -31,7 +31,7 @@ DMAP_DEF_SPECT_TABLE(																	 		 \
 	conn_dtor,			   /*name of the destructor for the specified data*/					 \
 	_dmap_table_con,	   /*name of the variable reference to the table*/						 \
 	DMAP_NAME_TABLE_CON,   /*name of the table*/						 	     				 \
-	MPT_MAX_CONNECTION_NUM,/*maximal number of item the table can contain. */                    \
+	NTRT_MAX_CONNECTION_NUM,/*maximal number of item the table can contain. */                    \
 	dmap_init_table_con,   /*name of the process initialize the table*/                          \
 	dmap_deinit_table_con, /*name of the process deinitialze the table*/                         \
 	dmap_get_table_con,	   /*name of the process gets the table*/								 \
@@ -60,7 +60,7 @@ DMAP_DEF_SPECT_TABLE(																	 		 \
 	tunnel_dtor,		   /*name of the destructor for the specified data*/					 \
 	_dmap_table_tun,	   /*name of the variable reference to the table*/						 \
 	DMAP_NAME_TABLE_TUN,   /*name of the table*/						 	     				 \
-	MPT_MAX_TUNNEL_NUM,    /*maximal number of item the table can contain. */                    \
+	NTRT_MAX_TUNNEL_NUM,    /*maximal number of item the table can contain. */                    \
 	dmap_init_table_tun,   /*name of the process initialize the table*/                          \
 	dmap_deinit_table_tun, /*name of the process deinitialze the table*/                         \
 	dmap_get_table_tun,	   /*name of the process gets the table*/								 \
@@ -91,7 +91,7 @@ DMAP_DEF_SPECT_TABLE(																	 		 \
 	interface_dtor,		   /*name of the destructor for the specified data*/					 \
 	_dmap_table_inf,	   /*name of the variable reference to the table*/						 \
 	DMAP_NAME_TABLE_INF,   /*name of the table*/						 	     				 \
-	MPT_MAX_INTERFACE_NUM,   /*maximal number of item the table can contain. */                  \
+	NTRT_MAX_INTERFACE_NUM,   /*maximal number of item the table can contain. */                  \
 	dmap_init_table_inf,   /*name of the process initialize the table*/                          \
 	dmap_deinit_table_inf, /*name of the process deinitialze the table*/                         \
 	dmap_get_table_inf,	   /*name of the process gets the table*/								 \
@@ -112,7 +112,7 @@ DMAP_DEF_SPECT_TABLE(																	 		 \
 	network_dtor,		   /*name of the destructor for the specified data*/					 \
 	_dmap_table_net,	   /*name of the variable reference to the table*/						 \
 	DMAP_NAME_TABLE_NET,   /*name of the table*/						 	     				 \
-	MPT_MAX_NETWORK_NUM,   /*maximal number of item the table can contain. */                    \
+	NTRT_MAX_NETWORK_NUM,   /*maximal number of item the table can contain. */                    \
 	dmap_init_table_net,   /*name of the process initialize the table*/                          \
 	dmap_deinit_table_net, /*name of the process deinitialze the table*/                         \
 	dmap_get_table_net,	   /*name of the process gets the table*/								 \
@@ -132,7 +132,7 @@ DMAP_DEF_SPECT_TABLE(																	 		 \
 	path_dtor,			   /*name of the destructor for the specified data*/					 \
 	_dmap_table_pth,	   /*name of the variable reference to the table*/						 \
 	DMAP_NAME_TABLE_PTH,   /*name of the table*/						 	     				 \
-	MPT_MAX_PATH_NUM,      /*maximal number of item the table can contain. */                    \
+	NTRT_MAX_PATH_NUM,      /*maximal number of item the table can contain. */                    \
 	dmap_init_table_pth,   /*name of the process initialize the table*/                          \
 	dmap_deinit_table_pth, /*name of the process deinitialze the table*/                         \
 	dmap_get_table_pth,	   /*name of the process gets the table*/								 \
@@ -152,7 +152,7 @@ DMAP_DEF_SPECT_TABLE(																	 		 \
 	thread_dtor,		   /*name of the destructor for the specified data*/					 \
 	_dmap_table_thr,	   /*name of the variable reference to the table*/						 \
 	DMAP_NAME_TABLE_THR,   /*name of the table*/						 	     				 \
-	MPT_MAX_THREAD_NUM,    /*maximal number of item the table can contain. */                    \
+	NTRT_MAX_THREAD_NUM,    /*maximal number of item the table can contain. */                    \
 	dmap_init_table_thr,   /*name of the process initialize the table*/                          \
 	dmap_deinit_table_thr, /*name of the process deinitialze the table*/                         \
 	dmap_get_table_thr,	   /*name of the process gets the table*/								 \
@@ -170,7 +170,7 @@ DMAP_DEF_SPECT_TABLE(																	 		 \
 DMAP_DEF_VOIDT_TABLE(																	 		 \
 	_dmap_table_etc,	   /*name of the variable reference to the table*/						 \
 	DMAP_NAME_TABLE_CON,   /*name of the table*/						 	     				 \
-	MPT_DMAP_TABLE_ETC_NUM,/*maximal number of item the table can contain. */                    \
+	NTRT_DMAP_TABLE_ETC_NUM,/*maximal number of item the table can contain. */                    \
 	dmap_init_table_etc,   /*name of the process initialize the table*/                          \
 	dmap_deinit_table_etc, /*name of the process deinitialze the table*/                         \
 	dmap_get_table_etc,	   /*name of the process gets the table*/								 \

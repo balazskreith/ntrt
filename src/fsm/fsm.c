@@ -18,10 +18,10 @@
 
 static void  _fsm_mpt_init();
 static void  _fsm_mpt_deinit();
-#define FSM_NAME_MPT "MPT system machine"
+#define FSM_NAME_NTRT "NTRT system machine"
 CMP_DEF(, 			         /*type of definitions*/ 										   \
 		fsm_t,       /*type of component*/ 										  	   \
-		FSM_NAME_MPT,   /*name of the component*/ 										   \
+		FSM_NAME_NTRT,   /*name of the component*/ 										   \
 		 _fsm_mpt,        /*variable name of the component*/  							   \
 		 fsm_ctor,    /*name of the constructor function implemented automatically*/     \
 		 fsm_dtor,    /*name of the destructor function implemented automatically*/      \
@@ -58,7 +58,7 @@ void _fsm_mpt_init()
 	//Connecting
 
 	//start value:
-	this->current = MPT_STATE_EXIST;
+	this->current = NTRT_STATE_EXIST;
 }
 
 void _fsm_mpt_deinit()
@@ -82,20 +82,20 @@ void _fsm_fire(int32_t event, void *arg)
 
 	switch(this->current)
 	{
-	case MPT_STATE_EXIST:
+	case NTRT_STATE_EXIST:
 		this->current = _fsm_exist_trans(event, arg);
 			break;
-	case MPT_STATE_RUN:
+	case NTRT_STATE_RUN:
 		this->current = _fsm_run_trans(event, arg);
 			break;
-	case MPT_STATE_HALT:
+	case NTRT_STATE_HALT:
 		this->current = _fsm_halt_trans(event, arg);
 			break;
-	case MPT_STATE_CLIENT:
+	case NTRT_STATE_CLIENT:
 		this->current = _fsm_client_trans(event, arg);
 			break;
 	default:
-		ERRORPRINT("MPT machine is in unknown state");
+		ERRORPRINT("NTRT machine is in unknown state");
 	}
 
 	_str_state(this->current, this->state_str);
@@ -114,16 +114,16 @@ void _str_state(int32_t state, char_t *dst)
 	char_t str[255];
 	switch(state)
 	{
-	case MPT_STATE_RUN:
+	case NTRT_STATE_RUN:
 		strcpy(dst, "Run");
 		break;
-	case MPT_STATE_HALT:
+	case NTRT_STATE_HALT:
 		strcpy(dst, "Halt");
 		break;
-	case MPT_STATE_EXIST:
+	case NTRT_STATE_EXIST:
 		strcpy(dst, "Exist");
 		break;
-	case MPT_STATE_CLIENT:
+	case NTRT_STATE_CLIENT:
 		strcpy(dst, "Client");
 		break;
 	default:
@@ -138,67 +138,67 @@ void _str_event(int32_t event, char_t *dst)
 	char_t str[255];
 	switch(event)
 	{
-	case MPT_EVENT_CONNECTION_DELETE:
+	case NTRT_EVENT_CONNECTION_DELETE:
 		strcpy(dst, "Connection delete");
 		break;
-	case MPT_EVENT_CONNECTION_RELOAD:
+	case NTRT_EVENT_CONNECTION_RELOAD:
 		strcpy(dst, "Connection reload");
 		break;
-	case MPT_EVENT_CONNECTION_SAVE:
+	case NTRT_EVENT_CONNECTION_SAVE:
 		strcpy(dst, "Connection save");
 		break;
-	case MPT_EVENT_CONNECTION_ADD:
+	case NTRT_EVENT_CONNECTION_ADD:
 		strcpy(dst, "Connection add");
 		break;
-	case MPT_EVENT_SETUP:
+	case NTRT_EVENT_SETUP:
 		strcpy(dst, "Setup");
 		break;
-	case MPT_EVENT_SHUTDOWN:
+	case NTRT_EVENT_SHUTDOWN:
 		strcpy(dst, "Shutdown");
 		break;
-	case MPT_EVENT_INTERFACE_DOWN:
+	case NTRT_EVENT_INTERFACE_DOWN:
 		strcpy(dst, "Interface down");
 		break;
-	case MPT_EVENT_INTERFACE_UP:
+	case NTRT_EVENT_INTERFACE_UP:
 		strcpy(dst, "Interface up");
 		break;
-	case MPT_EVENT_PATH_DOWN:
+	case NTRT_EVENT_PATH_DOWN:
 		strcpy(dst, "Path down");
 		break;
-	case MPT_EVENT_PATH_UP:
+	case NTRT_EVENT_PATH_UP:
 		strcpy(dst, "Path up");
 		break;
-	case MPT_EVENT_PATH_ADD:
+	case NTRT_EVENT_PATH_ADD:
 		strcpy(dst, "Path add");
 		break;
-	case MPT_EVENT_NETWORK_ADD:
+	case NTRT_EVENT_NETWORK_ADD:
 		strcpy(dst, "Network add");
 		break;
-	case MPT_EVENT_START:
+	case NTRT_EVENT_START:
 		strcpy(dst, "Start");
 		break;
-	case MPT_EVENT_STOP:
+	case NTRT_EVENT_STOP:
 		strcpy(dst, "Stop");
 		break;
-	case MPT_EVENT_CLIENT_DO:
+	case NTRT_EVENT_CLIENT_DO:
 		strcpy(dst, "Do client things");
 		break;
-	case MPT_EVENT_SET_CLIENT_AUTH:
+	case NTRT_EVENT_SET_CLIENT_AUTH:
 		strcpy(dst, "Set authentication mode");
 		break;
-	case MPT_EVENT_SET_CLIENT_KEY:
+	case NTRT_EVENT_SET_CLIENT_KEY:
 		strcpy(dst, "Set authentication key");
 		break;
-	case MPT_EVENT_SET_CLIENT_PORT:
+	case NTRT_EVENT_SET_CLIENT_PORT:
 		strcpy(dst, "Set server port number");
 		break;
-	case MPT_EVENT_SET_CLIENT_SERVER_ADDR:
+	case NTRT_EVENT_SET_CLIENT_SERVER_ADDR:
 		strcpy(dst, "Set server ip address");
 		break;
-	case MPT_EVENT_SET_CLIENT_SERVER_IP6:
+	case NTRT_EVENT_SET_CLIENT_SERVER_IP6:
 		strcpy(dst, "Set ip version 6 mode");
 		break;
-	case MPT_EVENT_CREATE_CLIENT:
+	case NTRT_EVENT_CREATE_CLIENT:
 		strcpy(dst, "Create client");
 		break;
 	default:

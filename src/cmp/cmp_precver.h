@@ -1,5 +1,5 @@
-#ifndef INCGUARD_MPT_COMPONENT_precver_H_
-#define INCGUARD_MPT_COMPONENT_precver_H_
+#ifndef INCGUARD_NTRT_COMPONENT_precver_H_
+#define INCGUARD_NTRT_COMPONENT_precver_H_
 #include "cmp_predefs.h"
 #include "lib_descs.h"
 
@@ -29,4 +29,4 @@ cmp_precver_t* get_cmp_precver();
 
 
 
-#endif //INCGUARD_MPT_COMPONENT_precver_H_
+#endif //INCGUARD_NTRT_COMPONENT_precver_H_

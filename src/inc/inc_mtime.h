@@ -4,8 +4,8 @@
 #include <sys\timeb.h>
 #endif //platform dependent defintions end
 
-#ifndef INGUARD_MPT_INC_MTIME_H_
-#define INGUARD_MPT_INC_MTIME_H_
+#ifndef INGUARD_NTRT_INC_MTIME_H_
+#define INGUARD_NTRT_INC_MTIME_H_
 
 
 #ifndef _WIN32 //platform dependent defintions begin
@@ -22,4 +22,4 @@ double diffmtime_fromnow(mtime_t *end);
 
 
 
-#endif //INGUARD_MPT_INCLUDE_TIME_H_
+#endif //INGUARD_NTRT_INCLUDE_TIME_H_

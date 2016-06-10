@@ -1,5 +1,5 @@
-#ifndef INCGUARD_MPT_DMAP_DEFINITIONS_H_
-#define INCGUARD_MPT_DMAP_DEFINITIONS_H_
+#ifndef INCGUARD_NTRT_DMAP_DEFINITIONS_H_
+#define INCGUARD_NTRT_DMAP_DEFINITIONS_H_
 
 #include "lib_defs.h"
 #include "lib_threading.h"
@@ -29,4 +29,4 @@ typedef struct dmap_table_struct_t{
 	dmap_row_t 			**rows;
 }dmap_table_t;
 
-#endif //INCGUARD_MPT_DMAP_DEFINITIONS_H_
+#endif //INCGUARD_NTRT_DMAP_DEFINITIONS_H_

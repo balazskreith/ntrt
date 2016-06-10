@@ -1,7 +1,5 @@
 #include "fsm_cmpactions.h"
 
-#include "../cmp/cmp_mprtprecver.h"
-#include "../cmp/cmp_mprtpsender.h"
 #include "fsm.h"
 #include "lib_tors.h"
 
@@ -34,8 +32,6 @@ void _fsm_mptsrv_ctor()
 	cmp_handshaker_ctor();
 	cmp_cli_ctor();
 	cmp_tunwriter_ctor();
-	cmp_mprtprecver_ctor();
-	cmp_mprtpsender_ctor();
 
 	cmp_conasr_t *conasr = get_cmp_conasr();
 	cmp_screener_t* screener = get_cmp_screener();
@@ -69,8 +65,6 @@ void _fsm_mptsrv_ctor()
 	CMP_CONNECT(get_cmp_precver()->send_locpck, get_cmp_cli()->pck_receiver);
 	CMP_CONNECT(get_cmp_precver()->send_datpck, get_cmp_tunwriter()->receiver);
 	CMP_CONNECT(get_cmp_tunwriter()->send, get_cmp_precver()->receiver);
-	//CMP_CONNECT(get_cmp_precver()->send_datpck, get_cmp_fpsqrecver()->receiver);
-	CMP_CONNECT(get_cmp_mprtprecver()->send, get_cmp_tunwriter()->receiver);
 	CMP_CONNECT(get_cmp_cli()->send, get_cmp_cmdexetor()->receiver);
 	CMP_CONNECT(handshaker->send_cmd, get_cmp_cmdexetor()->receiver);
 	CMP_CONNECT(get_cmp_cmdexetor()->send, handshaker->req_receiver);

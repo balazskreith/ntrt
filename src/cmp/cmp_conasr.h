@@ -1,5 +1,5 @@
-#ifndef INCGUARD_MPT_COMPONENT_PACKET_CONASR_H_
-#define INCGUARD_MPT_COMPONENT_PACKET_CONASR_H_
+#ifndef INCGUARD_NTRT_COMPONENT_PACKET_CONASR_H_
+#define INCGUARD_NTRT_COMPONENT_PACKET_CONASR_H_
 #include "lib_descs.h"
 
 #define CMP_PUFFER_CONASR_SIZE 2
@@ -21,4 +21,4 @@ void cmp_conasr_ctor();
 void cmp_conasr_dtor();
 cmp_conasr_t* get_cmp_conasr();
 
-#endif //INCGUARD_MPT_COMPONENT_PACKET_CONASR_H_
+#endif //INCGUARD_NTRT_COMPONENT_PACKET_CONASR_H_

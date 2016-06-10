@@ -642,7 +642,7 @@ void _thr_##CMP_UNIQUE##_main_proc(thread_t *thread)				\
 			);														\
 typedef struct _thrs_##CMP_UNIQUE##_struct_t						\
 {																	\
-	thread_t*      threads[MPT_MAX_THREAD_NUM];						\
+	thread_t*      threads[NTRT_MAX_THREAD_NUM];						\
 	rwmutex_t*     rwmutex;											\
 }_thrs_##CMP_UNIQUE##_t;											\
 																	\
@@ -651,7 +651,7 @@ DECL_TYPE void CHAIN_CTOR_PROC_NAME()								\
 {																	\
 	int32_t  index;													\
 	_thrs_##CMP_UNIQUE.rwmutex = rwmutex_ctor();					\
-	for(index = 0; index < MPT_MAX_THREAD_NUM; ++index){			\
+	for(index = 0; index < NTRT_MAX_THREAD_NUM; ++index){			\
 		_thrs_##CMP_UNIQUE.threads[index] = NULL;					\
 	}																\
 }																	\
@@ -688,9 +688,9 @@ DECL_TYPE void _wrunlock_##CMP_UNIQUE()								\
 DECL_TYPE bool_t CHAIN_ITR_PROC_NAME(int32_t* index, thread_t **thread) \
 {																	\
 	*thread = NULL;													\
-	for(; *index < MPT_MAX_THREAD_NUM								\
+	for(; *index < NTRT_MAX_THREAD_NUM								\
 		&& _thrs_##CMP_UNIQUE.threads[*index] == NULL; ++(*index)); \
-	if(*index == MPT_MAX_THREAD_NUM){								\
+	if(*index == NTRT_MAX_THREAD_NUM){								\
 		return BOOL_FALSE;											\
 	}																\
 	*thread = _thrs_##CMP_UNIQUE.threads[*index];					\

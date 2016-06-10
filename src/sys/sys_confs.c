@@ -105,14 +105,14 @@ connection_t * con_from_conf(dictionary *conf)
 
 	result = conn_ctor();
 
-	read_str = iniparser_getstring(conf, "connection:name", MPT_CONNECTION_STRUCT_DEFAULT_NAME);
+	read_str = iniparser_getstring(conf, "connection:name", NTRT_CONNECTION_STRUCT_DEFAULT_NAME);
 	strcpy(result->name, read_str);
 
 	result->permission =
-				iniparser_getint(conf, "connection:permission",MPT_CONNECTION_STRUCT_DEFAULT_PERMISSION);
+				iniparser_getint(conf, "connection:permission",NTRT_CONNECTION_STRUCT_DEFAULT_PERMISSION);
 
 	result->ip_version =
-			iniparser_getint(conf, "connection:ip_ver", MPT_CONNECTION_STRUCT_DEFAULT_IP_VERSION);
+			iniparser_getint(conf, "connection:ip_ver", NTRT_CONNECTION_STRUCT_DEFAULT_IP_VERSION);
 	if (result->ip_version == 6) {
 		af = AF_INET6;
 		start = 0;
@@ -126,32 +126,32 @@ connection_t * con_from_conf(dictionary *conf)
 	}
 	read_str = iniparser_getstring(conf,
 			"connection:ip_local",
-			MPT_CONNECTION_STRUCT_DEFAULT_SOURCE_IP
+			NTRT_CONNECTION_STRUCT_DEFAULT_SOURCE_IP
 			);
 
 	inet_pton(af, read_str, &(result->ip_local[start]));
 
 	result->port_local = iniparser_getint(conf,
 			"connection:local_port",
-			MPT_CONNECTION_STRUCT_DEFAULT_DATA_LOCAL_PORT
+			NTRT_CONNECTION_STRUCT_DEFAULT_DATA_LOCAL_PORT
 			);
 
 	read_str = iniparser_getstring(conf,
 			"connection:ip_remote",
-			MPT_CONNECTION_STRUCT_DEFAULT_DEST_IP
+			NTRT_CONNECTION_STRUCT_DEFAULT_DEST_IP
 			);
 	inet_pton(af, read_str, &(result->ip_remote[start]));
 
 	result->port_remote =
 			iniparser_getint(conf,
 					"connection:remote_port",
-					MPT_CONNECTION_STRUCT_DEFAULT_DATA_REMOTE_PORT
+					NTRT_CONNECTION_STRUCT_DEFAULT_DATA_REMOTE_PORT
 					);
 
 	result->cmd_port_remote =
 			iniparser_getint(conf,
 					"connection:remote_cmd_port",
-					MPT_CONNECTION_STRUCT_DEFAULT_CMD_PORT);
+					NTRT_CONNECTION_STRUCT_DEFAULT_CMD_PORT);
 
 	result->path_count =
 			iniparser_getint(conf, "connection:path_count", 0);
@@ -167,12 +167,12 @@ connection_t * con_from_conf(dictionary *conf)
 
 	result->status = iniparser_getint(conf,
 						"connection:status",
-						MPT_CONNECTION_STRUCT_DEFAULT_STATUS
+						NTRT_CONNECTION_STRUCT_DEFAULT_STATUS
 						);
 
 	read_str = iniparser_getstring(conf,
 			"connection:scheduling_type",
-			MPT_CONNECTION_STRUCT_DEFAULT_SCHEDULING_TYPE
+			NTRT_CONNECTION_STRUCT_DEFAULT_SCHEDULING_TYPE
 			);
 
 	if(strcmp("balanced", read_str) == 0){
@@ -183,7 +183,7 @@ connection_t * con_from_conf(dictionary *conf)
 
 	read_str = iniparser_getstring(conf,
 			"connection:auth_key",
-			MPT_CONNECTION_STRUCT_DEFAULT_AUTH_KEY
+			NTRT_CONNECTION_STRUCT_DEFAULT_AUTH_KEY
 			);
 
 	strcpy(result->auth_key, read_str);
@@ -191,7 +191,7 @@ connection_t * con_from_conf(dictionary *conf)
 	result->auth_type =
 			iniparser_getint(conf,
 					"connection:auth_type",
-					MPT_CONNECTION_STRUCT_DEFAULT_AUTH_TYPE
+					NTRT_CONNECTION_STRUCT_DEFAULT_AUTH_TYPE
 					);
 
 	return result;

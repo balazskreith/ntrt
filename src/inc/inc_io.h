@@ -19,7 +19,7 @@
 #include "lib_descs.h"
 #include "lib_defs.h"
 
-#define MPT_MAX_TUNRW_BYTES_NUM 2048
+#define NTRT_MAX_TUNRW_BYTES_NUM 2048
 
 void sysio_print_stdlog(const char *format, ...);
 void sysio_print_stdout(const char *format, ...);

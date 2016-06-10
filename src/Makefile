@@ -60,10 +60,10 @@ am__make_running_with_option = \
   test $$has_opt = yes
 am__make_dryrun = (target_option=n; $(am__make_running_with_option))
 am__make_keepgoing = (target_option=k; $(am__make_running_with_option))
-pkgdatadir = $(datadir)/mptsrv
-pkgincludedir = $(includedir)/mptsrv
-pkglibdir = $(libdir)/mptsrv
-pkglibexecdir = $(libexecdir)/mptsrv
+pkgdatadir = $(datadir)/ntrt
+pkgincludedir = $(includedir)/ntrt
+pkglibdir = $(libdir)/ntrt
+pkglibexecdir = $(libexecdir)/ntrt
 am__cd = CDPATH="$${ZSH_VERSION+.}$(PATH_SEPARATOR)" && cd
 install_sh_DATA = $(install_sh) -c -m 644
 install_sh_PROGRAM = $(install_sh) -c
@@ -79,7 +79,7 @@ POST_UNINSTALL = :
 build_triplet = x86_64-unknown-linux-gnu
 host_triplet = x86_64-unknown-linux-gnu
 target_triplet = x86_64-unknown-linux-gnu
-bin_PROGRAMS = $(top_builddir)/bin/mpt$(EXEEXT)
+bin_PROGRAMS = $(top_builddir)/bin/ntrt$(EXEEXT)
 subdir = src
 DIST_COMMON = $(srcdir)/Makefile.in $(srcdir)/Makefile.am \
 	$(top_srcdir)/depcomp
@@ -92,10 +92,9 @@ CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
 am__installdirs = "$(DESTDIR)$(bindir)"
 PROGRAMS = $(bin_PROGRAMS)
-am___top_builddir__bin_mpt_OBJECTS = mpt_srv.$(OBJEXT) \
-	cmp_cli.$(OBJEXT) cmp_cmdexetor.$(OBJEXT) cmp_conasr.$(OBJEXT) \
-	cmp_defs.$(OBJEXT) cmp_fpsqrecver.$(OBJEXT) \
-	cmp_fpsqsender.$(OBJEXT) cmp_handshaker.$(OBJEXT) \
+am___top_builddir__bin_ntrt_OBJECTS = ntrt.$(OBJEXT) cmp_cli.$(OBJEXT) \
+	cmp_cmdexetor.$(OBJEXT) cmp_conasr.$(OBJEXT) \
+	cmp_defs.$(OBJEXT) cmp_handshaker.$(OBJEXT) \
 	cmp_precver.$(OBJEXT) cmp_predefs.$(OBJEXT) \
 	cmp_psender.$(OBJEXT) cmp_pthsch.$(OBJEXT) \
 	cmp_screener.$(OBJEXT) cmp_tests.$(OBJEXT) \
@@ -115,9 +114,9 @@ am___top_builddir__bin_mpt_OBJECTS = mpt_srv.$(OBJEXT) \
 	lib_threading.$(OBJEXT) lib_tors.$(OBJEXT) \
 	lib_vector.$(OBJEXT) sys_confs.$(OBJEXT) sys_ctrls.$(OBJEXT) \
 	sys_prints.$(OBJEXT)
-__top_builddir__bin_mpt_OBJECTS =  \
-	$(am___top_builddir__bin_mpt_OBJECTS)
-__top_builddir__bin_mpt_LDADD = $(LDADD)
+__top_builddir__bin_ntrt_OBJECTS =  \
+	$(am___top_builddir__bin_ntrt_OBJECTS)
+__top_builddir__bin_ntrt_LDADD = $(LDADD)
 am__dirstamp = $(am__leading_dot)dirstamp
 AM_V_P = $(am__v_P_$(V))
 am__v_P_ = $(am__v_P_$(AM_DEFAULT_VERBOSITY))
@@ -151,8 +150,8 @@ AM_V_CCLD = $(am__v_CCLD_$(V))
 am__v_CCLD_ = $(am__v_CCLD_$(AM_DEFAULT_VERBOSITY))
 am__v_CCLD_0 = @echo "  CCLD    " $@;
 am__v_CCLD_1 = 
-SOURCES = $(__top_builddir__bin_mpt_SOURCES)
-DIST_SOURCES = $(__top_builddir__bin_mpt_SOURCES)
+SOURCES = $(__top_builddir__bin_ntrt_SOURCES)
+DIST_SOURCES = $(__top_builddir__bin_ntrt_SOURCES)
 am__can_run_installinfo = \
   case $$AM_UPDATE_INFO_DIR in \
     n|no|NO) false;; \
@@ -178,19 +177,19 @@ am__define_uniq_tagged_files = \
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
-ACLOCAL = ${SHELL} /home/balazs/workspace/mptsrv_025/missing aclocal-1.14
+ACLOCAL = ${SHELL} /home/balazs/gst/master/ntrt/missing aclocal-1.14
 AMTAR = $${TAR-tar}
 AM_DEFAULT_VERBOSITY = 1
-AUTOCONF = ${SHELL} /home/balazs/workspace/mptsrv_025/missing autoconf
-AUTOHEADER = ${SHELL} /home/balazs/workspace/mptsrv_025/missing autoheader
-AUTOMAKE = ${SHELL} /home/balazs/workspace/mptsrv_025/missing automake-1.14
-AWK = mawk
+AUTOCONF = ${SHELL} /home/balazs/gst/master/ntrt/missing autoconf
+AUTOHEADER = ${SHELL} /home/balazs/gst/master/ntrt/missing autoheader
+AUTOMAKE = ${SHELL} /home/balazs/gst/master/ntrt/missing automake-1.14
+AWK = gawk
 CC = gcc
 CCDEPMODE = depmode=gcc3
 CFLAGS = -g -O2
 CPPFLAGS = 
 CYGPATH_W = echo
-DEFS = -DPACKAGE_NAME=\"mptsrv\" -DPACKAGE_TARNAME=\"mptsrv\" -DPACKAGE_VERSION=\"0.25\" -DPACKAGE_STRING=\"mptsrv\ 0.25\" -DPACKAGE_BUGREPORT=\"\" -DPACKAGE_URL=\"\" -DPACKAGE=\"mptsrv\" -DVERSION=\"0.25\"
+DEFS = -DPACKAGE_NAME=\"ntrt\" -DPACKAGE_TARNAME=\"ntrt\" -DPACKAGE_VERSION=\"0.25\" -DPACKAGE_STRING=\"ntrt\ 0.25\" -DPACKAGE_BUGREPORT=\"\" -DPACKAGE_URL=\"\" -DPACKAGE=\"ntrt\" -DVERSION=\"0.25\"
 DEPDIR = .deps
 ECHO_C = 
 ECHO_N = -n
@@ -205,14 +204,14 @@ LDFLAGS =
 LIBOBJS = 
 LIBS = -lpthread -lm -lcrypto -lssl
 LTLIBOBJS = 
-MAKEINFO = ${SHELL} /home/balazs/workspace/mptsrv_025/missing makeinfo
+MAKEINFO = ${SHELL} /home/balazs/gst/master/ntrt/missing makeinfo
 MKDIR_P = /bin/mkdir -p
 OBJEXT = o
-PACKAGE = mptsrv
+PACKAGE = ntrt
 PACKAGE_BUGREPORT = 
-PACKAGE_NAME = mptsrv
-PACKAGE_STRING = mptsrv 0.25
-PACKAGE_TARNAME = mptsrv
+PACKAGE_NAME = ntrt
+PACKAGE_STRING = ntrt 0.25
+PACKAGE_TARNAME = ntrt
 PACKAGE_URL = 
 PACKAGE_VERSION = 0.25
 PATH_SEPARATOR = :
@@ -220,10 +219,10 @@ SET_MAKE =
 SHELL = /bin/bash
 STRIP = 
 VERSION = 0.25
-abs_builddir = /home/balazs/workspace/mptsrv_025/src
-abs_srcdir = /home/balazs/workspace/mptsrv_025/src
-abs_top_builddir = /home/balazs/workspace/mptsrv_025
-abs_top_srcdir = /home/balazs/workspace/mptsrv_025
+abs_builddir = /home/balazs/gst/master/ntrt/src
+abs_srcdir = /home/balazs/gst/master/ntrt/src
+abs_top_builddir = /home/balazs/gst/master/ntrt
+abs_top_srcdir = /home/balazs/gst/master/ntrt
 ac_ct_CC = gcc
 am__include = include
 am__leading_dot = .
@@ -250,7 +249,7 @@ host_vendor = unknown
 htmldir = ${docdir}
 includedir = ${prefix}/include
 infodir = ${datarootdir}/info
-install_sh = ${SHELL} /home/balazs/workspace/mptsrv_025/install-sh
+install_sh = ${SHELL} /home/balazs/gst/master/ntrt/install-sh
 libdir = ${exec_prefix}/lib
 libexecdir = ${exec_prefix}/libexec
 localedir = ${datarootdir}/locale
@@ -275,8 +274,8 @@ top_build_prefix = ../
 top_builddir = ..
 top_srcdir = ..
 AM_CPPFLAGS = -Iinc -Icmp -Idmap -Ifsm -Ilib -Isys -Ietc -std=gnu99
-__top_builddir__bin_mpt_SOURCES = \
-			  mpt_srv.c                 \
+__top_builddir__bin_ntrt_SOURCES = \
+			  ntrt.c                    \
 			  cmp/cmp_cli.h             \
 			  cmp/cmp_cli.c             \
 			  cmp/cmp_cmdexetor.h       \
@@ -285,10 +284,6 @@ __top_builddir__bin_mpt_SOURCES = \
 			  cmp/cmp_conasr.c          \
 			  cmp/cmp_defs.h            \
 			  cmp/cmp_defs.c            \
-			  cmp/cmp_fpsqrecver.h      \
-			  cmp/cmp_fpsqrecver.c      \
-			  cmp/cmp_fpsqsender.h      \
-			  cmp/cmp_fpsqsender.c      \
 			  cmp/cmp_handshaker.h      \
 			  cmp/cmp_handshaker.c      \
 			  cmp/cmp_precver.h         \
@@ -467,9 +462,9 @@ $(top_builddir)/bin/$(am__dirstamp):
 	@$(MKDIR_P) $(top_builddir)/bin
 	@: > $(top_builddir)/bin/$(am__dirstamp)
 
-$(top_builddir)/bin/mpt$(EXEEXT): $(__top_builddir__bin_mpt_OBJECTS) $(__top_builddir__bin_mpt_DEPENDENCIES) $(EXTRA___top_builddir__bin_mpt_DEPENDENCIES) $(top_builddir)/bin/$(am__dirstamp)
-	@rm -f $(top_builddir)/bin/mpt$(EXEEXT)
-	$(AM_V_CCLD)$(LINK) $(__top_builddir__bin_mpt_OBJECTS) $(__top_builddir__bin_mpt_LDADD) $(LIBS)
+$(top_builddir)/bin/ntrt$(EXEEXT): $(__top_builddir__bin_ntrt_OBJECTS) $(__top_builddir__bin_ntrt_DEPENDENCIES) $(EXTRA___top_builddir__bin_ntrt_DEPENDENCIES) $(top_builddir)/bin/$(am__dirstamp)
+	@rm -f $(top_builddir)/bin/ntrt$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(__top_builddir__bin_ntrt_OBJECTS) $(__top_builddir__bin_ntrt_LDADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
@@ -481,8 +476,6 @@ include ./$(DEPDIR)/cmp_cli.Po
 include ./$(DEPDIR)/cmp_cmdexetor.Po
 include ./$(DEPDIR)/cmp_conasr.Po
 include ./$(DEPDIR)/cmp_defs.Po
-include ./$(DEPDIR)/cmp_fpsqrecver.Po
-include ./$(DEPDIR)/cmp_fpsqsender.Po
 include ./$(DEPDIR)/cmp_handshaker.Po
 include ./$(DEPDIR)/cmp_precver.Po
 include ./$(DEPDIR)/cmp_predefs.Po
@@ -523,7 +516,7 @@ include ./$(DEPDIR)/lib_puffers.Po
 include ./$(DEPDIR)/lib_threading.Po
 include ./$(DEPDIR)/lib_tors.Po
 include ./$(DEPDIR)/lib_vector.Po
-include ./$(DEPDIR)/mpt_srv.Po
+include ./$(DEPDIR)/ntrt.Po
 include ./$(DEPDIR)/sys_confs.Po
 include ./$(DEPDIR)/sys_ctrls.Po
 include ./$(DEPDIR)/sys_prints.Po
@@ -597,34 +590,6 @@ cmp_defs.obj: cmp/cmp_defs.c
 #	$(AM_V_CC)source='cmp/cmp_defs.c' object='cmp_defs.obj' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
 #	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o cmp_defs.obj `if test -f 'cmp/cmp_defs.c'; then $(CYGPATH_W) 'cmp/cmp_defs.c'; else $(CYGPATH_W) '$(srcdir)/cmp/cmp_defs.c'; fi`
-
-cmp_fpsqrecver.o: cmp/cmp_fpsqrecver.c
-	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT cmp_fpsqrecver.o -MD -MP -MF $(DEPDIR)/cmp_fpsqrecver.Tpo -c -o cmp_fpsqrecver.o `test -f 'cmp/cmp_fpsqrecver.c' || echo '$(srcdir)/'`cmp/cmp_fpsqrecver.c
-	$(AM_V_at)$(am__mv) $(DEPDIR)/cmp_fpsqrecver.Tpo $(DEPDIR)/cmp_fpsqrecver.Po
-#	$(AM_V_CC)source='cmp/cmp_fpsqrecver.c' object='cmp_fpsqrecver.o' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o cmp_fpsqrecver.o `test -f 'cmp/cmp_fpsqrecver.c' || echo '$(srcdir)/'`cmp/cmp_fpsqrecver.c
-
-cmp_fpsqrecver.obj: cmp/cmp_fpsqrecver.c
-	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT cmp_fpsqrecver.obj -MD -MP -MF $(DEPDIR)/cmp_fpsqrecver.Tpo -c -o cmp_fpsqrecver.obj `if test -f 'cmp/cmp_fpsqrecver.c'; then $(CYGPATH_W) 'cmp/cmp_fpsqrecver.c'; else $(CYGPATH_W) '$(srcdir)/cmp/cmp_fpsqrecver.c'; fi`
-	$(AM_V_at)$(am__mv) $(DEPDIR)/cmp_fpsqrecver.Tpo $(DEPDIR)/cmp_fpsqrecver.Po
-#	$(AM_V_CC)source='cmp/cmp_fpsqrecver.c' object='cmp_fpsqrecver.obj' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o cmp_fpsqrecver.obj `if test -f 'cmp/cmp_fpsqrecver.c'; then $(CYGPATH_W) 'cmp/cmp_fpsqrecver.c'; else $(CYGPATH_W) '$(srcdir)/cmp/cmp_fpsqrecver.c'; fi`
-
-cmp_fpsqsender.o: cmp/cmp_fpsqsender.c
-	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT cmp_fpsqsender.o -MD -MP -MF $(DEPDIR)/cmp_fpsqsender.Tpo -c -o cmp_fpsqsender.o `test -f 'cmp/cmp_fpsqsender.c' || echo '$(srcdir)/'`cmp/cmp_fpsqsender.c
-	$(AM_V_at)$(am__mv) $(DEPDIR)/cmp_fpsqsender.Tpo $(DEPDIR)/cmp_fpsqsender.Po
-#	$(AM_V_CC)source='cmp/cmp_fpsqsender.c' object='cmp_fpsqsender.o' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o cmp_fpsqsender.o `test -f 'cmp/cmp_fpsqsender.c' || echo '$(srcdir)/'`cmp/cmp_fpsqsender.c
-
-cmp_fpsqsender.obj: cmp/cmp_fpsqsender.c
-	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT cmp_fpsqsender.obj -MD -MP -MF $(DEPDIR)/cmp_fpsqsender.Tpo -c -o cmp_fpsqsender.obj `if test -f 'cmp/cmp_fpsqsender.c'; then $(CYGPATH_W) 'cmp/cmp_fpsqsender.c'; else $(CYGPATH_W) '$(srcdir)/cmp/cmp_fpsqsender.c'; fi`
-	$(AM_V_at)$(am__mv) $(DEPDIR)/cmp_fpsqsender.Tpo $(DEPDIR)/cmp_fpsqsender.Po
-#	$(AM_V_CC)source='cmp/cmp_fpsqsender.c' object='cmp_fpsqsender.obj' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o cmp_fpsqsender.obj `if test -f 'cmp/cmp_fpsqsender.c'; then $(CYGPATH_W) 'cmp/cmp_fpsqsender.c'; else $(CYGPATH_W) '$(srcdir)/cmp/cmp_fpsqsender.c'; fi`
 
 cmp_handshaker.o: cmp/cmp_handshaker.c
 	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT cmp_handshaker.o -MD -MP -MF $(DEPDIR)/cmp_handshaker.Tpo -c -o cmp_handshaker.o `test -f 'cmp/cmp_handshaker.c' || echo '$(srcdir)/'`cmp/cmp_handshaker.c

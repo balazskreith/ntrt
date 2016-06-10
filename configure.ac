@@ -1,7 +1,7 @@
 dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.59)
-AC_INIT(mptsrv, 0.25)
+AC_INIT(ntrt, 0.25)
 
 
 AC_CANONICAL_SYSTEM

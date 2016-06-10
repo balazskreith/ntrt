@@ -549,7 +549,7 @@ void _cmp_pcksender_process(packet_t *packet)
 	CMP_DEF_THIS(_cmp_pcksender_t, _cmp_pcksender);
 	void (*send)(packet_t*);
 	send = *(this->send);
-	authSet(packet->connection, (char*) packet->bytes, MPT_PACKET_LENGTH);
+	authSet(packet->connection, (char*) packet->bytes, NTRT_PACKET_LENGTH);
 	//CMP_SEND(CMP_NAME_PCKSENDER, send, packet);
 	send(packet);
 }

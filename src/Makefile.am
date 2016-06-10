@@ -1,9 +1,9 @@
 AM_CPPFLAGS = -Iinc -Icmp -Idmap -Ifsm -Ilib -Isys -Ietc -std=gnu99
 LIBS = -lpthread -lm -lcrypto -lssl
 
-bin_PROGRAMS = $(top_builddir)/bin/mpt
-__top_builddir__bin_mpt_SOURCES =       \
-			  mpt_srv.c                 \
+bin_PROGRAMS = $(top_builddir)/bin/ntrt
+__top_builddir__bin_ntrt_SOURCES =       \
+			  ntrt.c                    \
 			  cmp/cmp_cli.h             \
 			  cmp/cmp_cli.c             \
 			  cmp/cmp_cmdexetor.h       \
@@ -12,10 +12,6 @@ __top_builddir__bin_mpt_SOURCES =       \
 			  cmp/cmp_conasr.c          \
 			  cmp/cmp_defs.h            \
 			  cmp/cmp_defs.c            \
-			  cmp/cmp_fpsqrecver.h      \
-			  cmp/cmp_fpsqrecver.c      \
-			  cmp/cmp_fpsqsender.h      \
-			  cmp/cmp_fpsqsender.c      \
 			  cmp/cmp_handshaker.h      \
 			  cmp/cmp_handshaker.c      \
 			  cmp/cmp_precver.h         \

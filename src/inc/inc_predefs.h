@@ -1,5 +1,5 @@
-#ifndef INGUARD_MPT_INC_PREDEFS_H_
-#define INGUARD_MPT_INC_PREDEFS_H_
+#ifndef INGUARD_NTRT_INC_PREDEFS_H_
+#define INGUARD_NTRT_INC_PREDEFS_H_
 #include <stdio.h>
 #include <stdlib.h>     /* exit, EXIT_FAILURE */
 #include <string.h>
@@ -34,4 +34,4 @@ extern int errno;
 #define BZERO(mem_addr, size) memset(mem_addr, 0, size)
 #define OTUNSETIFF     (('T'<< 8) | 202)
 
-#endif //INCGUARD_MPT_LIBRARY_PREPROCESSES_H_
+#endif //INCGUARD_NTRT_LIBRARY_PREPROCESSES_H_

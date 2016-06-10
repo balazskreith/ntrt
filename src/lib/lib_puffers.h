@@ -5,8 +5,8 @@
  * @copyright Project maintained by Almasi, Bela; Debrecen, Hungary
  * @date 2014.02.11
 */
-#ifndef INCGUARD_MPT_LIBRARY_PUFFER_H_
-#define INCGUARD_MPT_LIBRARY_PUFFER_H_
+#ifndef INCGUARD_NTRT_LIBRARY_PUFFER_H_
+#define INCGUARD_NTRT_LIBRARY_PUFFER_H_
 #include "../inc/inc_predefs.h"
 #include "lib_defs.h"
 #include "lib_descs.h"
@@ -138,11 +138,11 @@ typedef struct datapuffer_struct_t
 	//Milk policy implementation end*/
 
 
-#define GEN_PUFF_SUPL_PROC(PUFFER_PTR, DATA_TYPE, DATA_PTR, EMPTY_RESULT)				\
+#define GEN_PUFF_SUPL_PROC(PUFFER_PTR, DATA_TYPE, DATA_PTR, ENTRTY_RESULT)				\
 	/*Data supply process*/																\
 	if(datapuffer_isempty(PUFFER_PTR) == BOOL_TRUE)										\
 	{																					\
-		return EMPTY_RESULT;															\
+		return ENTRTY_RESULT;															\
 	}																					\
 	DEBUGPRINT("Reading from the puffer");												\
 	DATA_PTR = (DATA_TYPE*) datapuffer_read(PUFFER_PTR);
@@ -155,4 +155,4 @@ typedef struct datapuffer_struct_t
 			ITEM_DTOR(item);															\
 		}																				\
 
-#endif //INCGUARD_MPT_LIBRARY_PUFFER_H_
+#endif //INCGUARD_NTRT_LIBRARY_PUFFER_H_

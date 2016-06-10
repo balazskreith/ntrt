@@ -105,7 +105,7 @@ CMP_THREADS(static,          //type of declarations
 		_thr_conlistener_proc_main, //name of the thread process called after initialization
 		connection_t,               //name of the type used for activating different thread
 		connection,                 //name of the attribute inside the component used for pointing to the activator type
-		_conlistener_start,			//name of the process used creating and activating a component
+		_conlistener_start,         //name of the process used creating and activating a component
 		_conlistener_stop           //name of the process used for deactivating and disposing a threaded component
 		)
 
@@ -270,7 +270,7 @@ void _thr_conlistener_proc_main(thread_t *thread)
 		//CMP_DEMAND(CMP_NAME_CONLISTENER, packet, this->demand);
 		packet = this->demand();
 
-		packet->length = sysio->udpsock_recv(sockd, packet->bytes, MPT_PACKET_LENGTH, 0,
+		packet->length = sysio->udpsock_recv(sockd, packet->bytes, NTRT_PACKET_LENGTH, 0,
 						(struct sockaddr *)&client, &client_size);
 		/*
 		DEBUGPRINT("Packet source: %x.%x.%x.%x:ver:%d, port:%d<->%d",
@@ -307,7 +307,7 @@ void _thr_tunhandler_cmdrec_proc(thread_t *thread)
 	do{
 		//CMP_DEMAND(CMP_NAME_TUNHANDLER, packet, this->demand);
 		packet = this->demand();
-		packet->length = sysio->udpsock_recv(sockd, packet->bytes, MPT_PACKET_LENGTH, 0,
+		packet->length = sysio->udpsock_recv(sockd, packet->bytes, NTRT_PACKET_LENGTH, 0,
 				(struct sockaddr *)&client, &client_size);
 
 		memcpy(packet->source, &client.sin6_addr.__in6_u.__u6_addr32, SIZE_IN6ADDR);
@@ -354,8 +354,8 @@ void _cmp_pckswitcher_process(packet_t *packet)
 	//CMP_RECEIVE(CMP_NAME_PCKSWITCHER, packet);
 	switch(packet->bytes[0])
 	{
-	case MPT_REQ_CMD_KEEPALIVE:
-	case MPT_REQ_CMD_ECHO:
+	case NTRT_REQ_CMD_KEEPALIVE:
+	case NTRT_REQ_CMD_ECHO:
 		if(packet->connection == NULL){
 			ERRORPRINT("Diagnostic packet can not exists without connection");
 			break;
@@ -364,10 +364,10 @@ void _cmp_pckswitcher_process(packet_t *packet)
 		send_diagpck(packet);
 		break;
 
-	case MPT_REQ_CMD_CONNECTION_SEND:
-	case MPT_REQ_CMD_NETWORK_SEND:
-	case MPT_REQ_CMD_PATH_SEND:
-	case MPT_REQ_CMD_P_STATUS_CHANGE:
+	case NTRT_REQ_CMD_CONNECTION_SEND:
+	case NTRT_REQ_CMD_NETWORK_SEND:
+	case NTRT_REQ_CMD_PATH_SEND:
+	case NTRT_REQ_CMD_P_STATUS_CHANGE:
 		//CMP_SEND(CMP_NAME_PCKSWITCHER, send_cmdpck, packet);
 		send_cmdpck(packet);
 		break;

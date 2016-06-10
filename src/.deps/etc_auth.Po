@@ -68,7 +68,13 @@ etc_auth.o: etc/etc_auth.c /usr/include/stdc-predef.h etc/etc_auth.h \
  /usr/include/openssl/crypto.h /usr/include/openssl/stack.h \
  /usr/include/openssl/safestack.h /usr/include/openssl/opensslv.h \
  /usr/include/openssl/objects.h /usr/include/openssl/obj_mac.h \
- /usr/include/openssl/asn1.h /usr/include/openssl/bn.h
+ /usr/include/openssl/asn1.h /usr/include/openssl/bn.h \
+ /usr/lib/gcc/x86_64-linux-gnu/4.8/include-fixed/limits.h \
+ /usr/lib/gcc/x86_64-linux-gnu/4.8/include-fixed/syslimits.h \
+ /usr/include/limits.h /usr/include/x86_64-linux-gnu/bits/posix1_lim.h \
+ /usr/include/x86_64-linux-gnu/bits/local_lim.h \
+ /usr/include/linux/limits.h \
+ /usr/include/x86_64-linux-gnu/bits/posix2_lim.h
 
 /usr/include/stdc-predef.h:
 
@@ -273,3 +279,17 @@ lib/../inc/inc_predefs.h:
 /usr/include/openssl/asn1.h:
 
 /usr/include/openssl/bn.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/4.8/include-fixed/limits.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/4.8/include-fixed/syslimits.h:
+
+/usr/include/limits.h:
+
+/usr/include/x86_64-linux-gnu/bits/posix1_lim.h:
+
+/usr/include/x86_64-linux-gnu/bits/local_lim.h:
+
+/usr/include/linux/limits.h:
+
+/usr/include/x86_64-linux-gnu/bits/posix2_lim.h:

@@ -1,13 +1,13 @@
 #ifndef _WIN32
-#ifndef INCGUARD_MPT_UNISTD_H_
-#define INCGUARD_MPT_UNISTD_H_    1
+#ifndef INCGUARD_NTRT_UNISTD_H_
+#define INCGUARD_NTRT_UNISTD_H_    1
 #include <unistd.h>
 #endif
 
 #else // _WIN32 is defined
 
-#ifndef INCGUARD_MPT_UNISTD_H_
-#define INCGUARD_MPT_UNISTD_H_    1
+#ifndef INCGUARD_NTRT_UNISTD_H_
+#define INCGUARD_NTRT_UNISTD_H_    1
 
 /* This file intended to serve as a drop-in replacement for 
  *  inc_unistd.h on Windows

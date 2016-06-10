@@ -4,8 +4,8 @@
  * @brief Macro and function definitons for auth.c
  */
 
-#ifndef MPT_ETC_AUTH_H_
-#define MPT_ETC_AUTH_H_
+#ifndef NTRT_ETC_AUTH_H_
+#define NTRT_ETC_AUTH_H_
 #include "lib_defs.h"
 #include "lib_descs.h"
 
@@ -28,4 +28,4 @@ void setKey(connection_t *conn, char * hex);
 void saveKey(FILE * fd, connection_t *conn);
 int keySize(int authType);
 
-#endif //MPT_ETC_AUTH_H_
+#endif //NTRT_ETC_AUTH_H_

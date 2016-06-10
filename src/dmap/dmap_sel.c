@@ -10,7 +10,7 @@ int32_t dmap_getid_bycon(connection_t *con)
 	connection_t *itr;
 	int32_t result;
 	for(result = 0; dmap_itr_table_con(&result, &itr) == BOOL_TRUE && con != itr; ++result);
-	if(result == MPT_MAX_CONNECTION_NUM){
+	if(result == NTRT_MAX_CONNECTION_NUM){
 		ERRORPRINT("No id found in dmap for connection: %d", con->name);
 		return DEVCLEGO_DMAP_ERROR_ITEM_NOT_FOUND;
 	}

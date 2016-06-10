@@ -1,5 +1,5 @@
-#ifndef INCGUARD_MPT_COMPONENT_PACKET_PTHSCH_H_
-#define INCGUARD_MPT_COMPONENT_PACKET_PTHSCH_H_
+#ifndef INCGUARD_NTRT_COMPONENT_PACKET_PTHSCH_H_
+#define INCGUARD_NTRT_COMPONENT_PACKET_PTHSCH_H_
 #include "lib_descs.h"
 
 #define CMP_PUFFER_PTHSCH_SIZE 128
@@ -20,4 +20,4 @@ void cmp_pthsch_ctor();
 void cmp_pthsch_dtor();
 cmp_pthsch_t* get_cmp_pthsch();
 
-#endif //INCGUARD_MPT_COMPONENT_PACKET_PTHSCH_H_
+#endif //INCGUARD_NTRT_COMPONENT_PACKET_PTHSCH_H_

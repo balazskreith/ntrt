@@ -1,12 +1,12 @@
-#ifndef INCGUARD_MPT_LIBRARY_THREADING_H_
-#define INCGUARD_MPT_LIBRARY_THREADING_H_
+#ifndef INCGUARD_NTRT_LIBRARY_THREADING_H_
+#define INCGUARD_NTRT_LIBRARY_THREADING_H_
 
 #include "../inc/inc_predefs.h"
 #include "lib_defs.h"
 //#include "lib_descs.h"
 #include <pthread.h>
 
-#define MPT_USE_SPINLOCK
+#define NTRT_USE_SPINLOCK
 
 typedef pthread_spinlock_t    spin_t;
 typedef pthread_mutex_t       mutex_t;
@@ -91,4 +91,4 @@ void start_thread(thread_t*);
 void stop_thread(thread_t*);
 void setup_thread(thread_t*, void* (*)(void*), void*);
 
-#endif //INCGUARD_MPT_LIBRARY_THREADING_H_
+#endif //INCGUARD_NTRT_LIBRARY_THREADING_H_

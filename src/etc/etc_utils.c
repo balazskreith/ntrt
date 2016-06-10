@@ -286,7 +286,7 @@ int32_t open_ipv6_dgram_socket()
 		EXERROR("Socket creation error.", EXIT_FAILURE);
 	}
 
-#ifdef MPT_COM_IPV6_ONLY
+#ifdef NTRT_COM_IPV6_ONLY
 	setsockopt(cmp->sockid, IPPROTO_IPV6, IPV6_V6ONLY, (char *)&off, sizeof off);
 #endif
 

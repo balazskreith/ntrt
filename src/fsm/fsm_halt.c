@@ -34,21 +34,21 @@ fsm_states_t _fsm_halt_trans(int32_t event, void *arg)
 
 	switch(event)
 	{
-	case MPT_EVENT_START:
+	case NTRT_EVENT_START:
 		_sys_start();
-		return MPT_STATE_RUN;
+		return NTRT_STATE_RUN;
 		break;
-	case MPT_EVENT_SHUTDOWN:
+	case NTRT_EVENT_SHUTDOWN:
 		_sys_shutdown();
 		_fsm_mptsrv_dtor();
-		return MPT_STATE_EXIST;
+		return NTRT_STATE_EXIST;
 		break;
-	case MPT_EVENT_CONNECTION_ADD:
+	case NTRT_EVENT_CONNECTION_ADD:
 		break;
-	case MPT_EVENT_CONNECTION_DELETE:
+	case NTRT_EVENT_CONNECTION_DELETE:
 		_con_delete((char_t*)arg);
 		break;
-	case MPT_EVENT_CONNECTION_RELOAD:
+	case NTRT_EVENT_CONNECTION_RELOAD:
 		_con_reload((char_t*)arg);
 		break;
 	default:

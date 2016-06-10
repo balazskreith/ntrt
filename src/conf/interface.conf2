@@ -1,13 +1,13 @@
 ####################### Interface Information: ###############################
 # Here you can configure the interfaces,  which is goning to be handled      #
-# by the MPT server. The general section contains the information            #
+# by the NTRT server. The general section contains the information            #
 # necessary for the further interpretation. These are the following:         #
 #         									 #
 # inf_num = [VALUE], where the value determines the number of                #
 # interfaces we want to configure.                                           #
 #                                                                            #
 # cmdport_local = [VALUE], where the value determines the portnum            #
-# we use to receive commands from a remote MPT_srv or client                 #
+# we use to receive commands from a remote NTRT_srv or client                 #
 #										 #
 # acceptance = [VALUE], where the value determines the acceptance            #
 # of a remote new connection request                                         #

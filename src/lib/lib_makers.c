@@ -139,8 +139,8 @@ packet_t* make_packet()
 {
 	packet_t* result;
 	result = packet_ctor();
-	result->bytes = bytes_ctor(MPT_PACKET_LENGTH);
-	result->length = MPT_PACKET_LENGTH;
+	result->bytes = bytes_ctor(NTRT_PACKET_LENGTH);
+	result->length = NTRT_PACKET_LENGTH;
 	result->header = (ip_packet_header_t*) result->bytes;
 	result->con_id = -1;
 	result->path_out = -1;

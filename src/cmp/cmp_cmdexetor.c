@@ -217,7 +217,7 @@ void _thr_cmdrelayer_main_proc(thread_t *thread)
 		command = this->demand();
 		time(&now);
 		seconds = difftime(now,command->created);
-		if(seconds > MPT_COMMAND_TIMEOUT_IN_SECOND){
+		if(seconds > NTRT_COMMAND_TIMEOUT_IN_SECOND){
 			ERRORPRINT("Command %s execution failed. Reason: Timeout\n", command->name);
 			_cmd_dtor(command);
 			return;

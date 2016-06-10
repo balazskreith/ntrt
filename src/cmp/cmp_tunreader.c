@@ -154,7 +154,7 @@ packet_t*  _reader_process()
 	result = this->demand();
 	//result = this->demand();
 	//comment: tunnel_read in inc.io.h for platform independency
-	result->length = read(this->fd, result->bytes, MPT_PACKET_LENGTH);
+	result->length = read(this->fd, result->bytes, NTRT_PACKET_LENGTH);
 
 	//CMP_SUPPLY(CMP_NAME_TUNREADER, result);
 	return result;

@@ -1,5 +1,5 @@
-#ifndef INCGUARD_MPT_DMAP_SELECTS_H_
-#define INCGUARD_MPT_DMAP_SELECTS_H_
+#ifndef INCGUARD_NTRT_DMAP_SELECTS_H_
+#define INCGUARD_NTRT_DMAP_SELECTS_H_
 #include "lib_defs.h"
 #include "lib_descs.h"
 #include "dmap.h"
@@ -20,4 +20,4 @@ path_t* dmap_get_pth_byip(uint32_t* ip_local, uint32_t* ip_remote, int32_t* dmap
 void dmap_rem_pths_byconid(int32_t con_dmap_id);
 void dmap_rem_net_byconid(int32_t con_dmap_id);
 
-#endif //INCGUARD_MPT_DMAP_SELECTS_H_
+#endif //INCGUARD_NTRT_DMAP_SELECTS_H_

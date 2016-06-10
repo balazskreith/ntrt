@@ -5,8 +5,8 @@
  *      Author: balazs
  */
 
-#ifndef INC_MPTTIME_H_
-#define INC_MPTTIME_H_
+#ifndef INC_NTRTTIME_H_
+#define INC_NTRTTIME_H_
 /*
 typedef struct mpttime_struct_t
 {
@@ -26,4 +26,4 @@ typedef struct mpttime_struct_t
 void setmpttime(mpttime_t *);
 */
 
-#endif /* INC_MPTTIME_H_ */
+#endif /* INC_NTRTTIME_H_ */

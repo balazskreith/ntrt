@@ -329,7 +329,7 @@ void con_save_to_file(char_t *filename)
 
 	time ( &rawtime );
 	timeinfo = localtime ( &rawtime );
-	fprintf(fd, "\n\n\n#Modified by MPT application at %s\n",  asctime (timeinfo) );
+	fprintf(fd, "\n\n\n#Modified by NTRT application at %s\n",  asctime (timeinfo) );
 	fclose(fd);
 	INFOPRINT("Connection config is saved into %s", filename);
 	return;
@@ -352,15 +352,15 @@ bool_t path_has_already_changed(path_t *path, uint8_t *status)
 {
 	switch(*status)
 	{
-		case MPT_REQ_STAT_OK:
-			if(path->status  == MPT_REQ_STAT_OK){
+		case NTRT_REQ_STAT_OK:
+			if(path->status  == NTRT_REQ_STAT_OK){
 				return BOOL_TRUE;
 			}
 			break;
 
 		default:
-			*status = path->status | MPT_REQ_STAT_PATH_DOWN;
-			if((path->status  & MPT_REQ_STAT_PATH_DOWN) > 0){
+			*status = path->status | NTRT_REQ_STAT_PATH_DOWN;
+			if((path->status  & NTRT_REQ_STAT_PATH_DOWN) > 0){
 				return BOOL_TRUE;
 			}
 			break;

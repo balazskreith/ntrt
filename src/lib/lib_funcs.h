@@ -5,8 +5,8 @@
  * @copyright Project maintained by Almasi, Bela; Debrecen, Hungary
  * @date 2014.02.11
 */
-#ifndef INCGUARD_MPT_LIBRARY_FUNCTIONS_H_
-#define INCGUARD_MPT_LIBRARY_FUNCTIONS_H_
+#ifndef INCGUARD_NTRT_LIBRARY_FUNCTIONS_H_
+#define INCGUARD_NTRT_LIBRARY_FUNCTIONS_H_
 
 #include "inc_predefs.h"
 #include "lib_defs.h"
@@ -34,4 +34,4 @@ void ptrmov(void **dst, void **src);
 #define set_array_item(ARRAYPTR, ITEM_NUM, ITEM) \
 	ARRAYPTR->items[ITEM_NUM] = ITEM;
 
-#endif //INCGUARD_MPT_LIBRARY_FUNCTIONS_H_
+#endif //INCGUARD_NTRT_LIBRARY_FUNCTIONS_H_

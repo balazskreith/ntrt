@@ -50,7 +50,7 @@ bool_t set_bytes_for_sending(void *dst, void *src, int32_t size)
 
 void set_packet_for_sending(packet_t *packet)
 {
-	byte_t copied[MPT_PACKET_LENGTH];
+	byte_t copied[NTRT_PACKET_LENGTH];
 	if(packet == NULL){
 		WARNINGPRINT("Packet is null at sending.");
 		return;
@@ -89,7 +89,7 @@ bool_t set_bytes_for_receiving(void *dst, void *src, int32_t size)
 
 void set_packet_for_receiving(packet_t *packet)
 {
-	byte_t copied[MPT_PACKET_LENGTH];
+	byte_t copied[NTRT_PACKET_LENGTH];
 	if(packet == NULL){
 		WARNINGPRINT("Packet is null at receiving.");
 		return;

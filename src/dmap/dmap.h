@@ -1,11 +1,11 @@
-#ifndef INCGUARD_MPT_DMAP_DMAP_H_
-#define INCGUARD_MPT_DMAP_DMAP_H_
+#ifndef INCGUARD_NTRT_DMAP_DMAP_H_
+#define INCGUARD_NTRT_DMAP_DMAP_H_
 #include "lib_defs.h"
 #include "lib_descs.h"
 #include "lib_threading.h"
 #include "dmap_defs.h"
 
-#define MPT_DMAP_TABLE_ETC_NUM 32
+#define NTRT_DMAP_TABLE_ETC_NUM 32
 //errors
 #define DEVCLEGO_ERROR_TABLE_IS_FULL -1
 #define DEVCLEGO_DMAP_ERROR_ITEM_NOT_FOUND -1
@@ -139,4 +139,4 @@ DMAP_DECL_ITEM(
 );
 
 
-#endif //INCGUARD_MPT_DMAP_DMAP_H_
+#endif //INCGUARD_NTRT_DMAP_DMAP_H_

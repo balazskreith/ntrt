@@ -5,8 +5,8 @@
  * @copyright Project maintained by Almasi, Bela; Debrecen, Hungary
  * @date 2014.02.11
 */
-#ifndef INCGUARD_MPT_LIBRARY_MAKERS_H_
-#define INCGUARD_MPT_LIBRARY_MAKERS_H_
+#ifndef INCGUARD_NTRT_LIBRARY_MAKERS_H_
+#define INCGUARD_NTRT_LIBRARY_MAKERS_H_
 #include "lib_defs.h"
 #include "lib_descs.h"
 #include "inc_predefs.h"
@@ -161,4 +161,4 @@ request_t *make_request(byte_t command, byte_t status, byte_t *message, connecti
 
 eventer_arg_t *make_eventer_arg(int32_t event, void *arg);
 
-#endif //INCGUARD_MPT_LIBRARY_MAKERS_H_
+#endif //INCGUARD_NTRT_LIBRARY_MAKERS_H_

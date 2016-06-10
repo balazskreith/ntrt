@@ -1,5 +1,5 @@
-#ifndef INCGUARD_MPT_LIBRARY_VECTOR_H_
-#define INCGUARD_MPT_LIBRARY_VECTOR_H_
+#ifndef INCGUARD_NTRT_LIBRARY_VECTOR_H_
+#define INCGUARD_NTRT_LIBRARY_VECTOR_H_
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -41,4 +41,4 @@ void vector_grow(vector_t *, size_t);
 void vector_swap(void *, void *, size_t);
 
 
-#endif /* INCGUARD_MPT_LIBRARY_VECTOR_H_ */
+#endif /* INCGUARD_NTRT_LIBRARY_VECTOR_H_ */

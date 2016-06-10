@@ -18,9 +18,9 @@ typedef struct _pthsch_confs_struct_t
 {
 	spin_t*  spin;
 	void    (*selector)(packet_t*);
-	int32_t   selected_index[MPT_MAX_CONNECTION_NUM];
-	int32_t   packet_counter[MPT_MAX_CONNECTION_NUM];
-	path_t*   selected_path[MPT_MAX_CONNECTION_NUM];
+	int32_t   selected_index[NTRT_MAX_CONNECTION_NUM];
+	int32_t   packet_counter[NTRT_MAX_CONNECTION_NUM];
+	path_t*   selected_path[NTRT_MAX_CONNECTION_NUM];
 }_pthsch_confs_t;
 
 typedef void (*_packet_scheduler_t)(packet_t*);
@@ -64,9 +64,9 @@ CMP_DEF_GET_PROC(get_cmp_pthsch, cmp_pthsch_t, _cmp_pthsch);
 //----------------------------------------------------------------------------------------------------
 //---------------------------- Private declarations --------------------------------------------------
 //----------------------------------------------------------------------------------------------------
-static _packet_scheduler_t _schedulers[MPT_SCHEDULING_TYPES_NUM];
-static pathring_t* _rings[MPT_MAX_CONNECTION_NUM];
-static int32_t _con2schtype[MPT_MAX_CONNECTION_NUM];
+static _packet_scheduler_t _schedulers[NTRT_SCHEDULING_TYPES_NUM];
+static pathring_t* _rings[NTRT_MAX_CONNECTION_NUM];
+static int32_t _con2schtype[NTRT_MAX_CONNECTION_NUM];
 
 static void _cmp_pthsch_process(packet_t*);
 //static path selector
@@ -85,7 +85,7 @@ void  _cmp_pthsch_init()
 
 	//initialization
 	int32_t index;
-	for(index = 0; index < MPT_SCHEDULING_TYPES_NUM; ++index){
+	for(index = 0; index < NTRT_SCHEDULING_TYPES_NUM; ++index){
 		_schedulers[index] = _cmp_pholder->receiver;
 	}
 
@@ -136,7 +136,7 @@ void* _cmp_pthsch_start()
 	path_t *path;
 	pathring_t *ring;
 	for(index = 0; dmap_itr_table_pth(&index, &path) == BOOL_TRUE; ++index){
-		if(path->status != MPT_REQ_STAT_OK){
+		if(path->status != NTRT_REQ_STAT_OK){
 			continue;
 		}
 		ring = pathring_add(&_rings[path->con_dmap_id], path);
@@ -168,7 +168,7 @@ void* _cmp_pthsch_stop()
 
 	dmap_rdunlock_table_pth();
 
-	for(index = 0; index < MPT_MAX_CONNECTION_NUM; ++index){
+	for(index = 0; index < NTRT_MAX_CONNECTION_NUM; ++index){
 		if(_rings[index] == NULL){
 			continue;
 		}

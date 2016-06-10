@@ -159,7 +159,7 @@ int parser(char * cmd, CMDTYPE * rettype, void ** ret) {
             *rettype = i;
             *ret = NULL;
             switch(i) {
-                case MPT_INT:
+                case NTRT_INT:
                     if(pmatch[3].rm_so >= 0) {
                         struct mpt_int * ret_int = NULL;
 
@@ -171,7 +171,7 @@ int parser(char * cmd, CMDTYPE * rettype, void ** ret) {
                         save_match(&(ret_int->mark), cmd, pmatch[4]);
                     } else rv = PARSE_ERR_PARAMS;
                     break;
-                case MPT_ADDR:
+                case NTRT_ADDR:
                     if(pmatch[3].rm_so >= 0) {
                         struct mpt_addr * ret_addr = NULL;
 
@@ -207,20 +207,20 @@ int parser(char * cmd, CMDTYPE * rettype, void ** ret) {
                         }
                     } else rv = PARSE_ERR_PARAMS;
                     break;
-                case MPT_RELOAD:
-                case MPT_SAVE:
+                case NTRT_RELOAD:
+                case NTRT_SAVE:
                     // commands with 1 optional parameter
                     if(pmatch[2].rm_so >= 0) {
                         save_match((char**)ret, cmd, pmatch[2]);
                     } else if(pmatch[1].rm_eo - pmatch[1].rm_so > 0) rv = PARSE_ERR_PARAMS;
                     break;
-                case MPT_DELETE:
+                case NTRT_DELETE:
                     // commands with 1 mandatory parameter
                     if(pmatch[2].rm_so >= 0) {
                         save_match((char**)ret, cmd, pmatch[2]);
                     } else rv = PARSE_ERR_PARAMS;
                     break;
-                case MPT_PATH:
+                case NTRT_PATH:
                     {
                         char * temp;
                         int start;
@@ -284,7 +284,7 @@ int parser(char * cmd, CMDTYPE * rettype, void ** ret) {
     }
 
     // invalid command
-    *rettype = MPT_NOCMD;
+    *rettype = NTRT_NOCMD;
     return rv;
 }
 
@@ -296,7 +296,7 @@ int parser(char * cmd, CMDTYPE * rettype, void ** ret) {
  */
 int parse_cmd(char * cmd) {
     int rv;
-    CMDTYPE rettype = MPT_NOCMD;
+    CMDTYPE rettype = NTRT_NOCMD;
     void * ret = NULL;
 
     rv=parser(cmd, &rettype, &ret);
@@ -313,12 +313,12 @@ int parse_cmd(char * cmd) {
             break;
         case PARSE_ERR_PARAMS:
         	INFOPRINT("ERROR: Wrong parameters specified\n");
-            if(rettype == MPT_INT) printf(HELP_INT);
-            else if(rettype == MPT_ADDR) printf(HELP_ADDR);
-            else if(rettype == MPT_RELOAD) printf(HELP_RELOAD);
-            else if(rettype == MPT_DELETE) printf(HELP_DELETE);
-            else if(rettype == MPT_SAVE) printf(HELP_SAVE);
-            else if(rettype == MPT_PATH) printf(HELP_PATH);
+            if(rettype == NTRT_INT) printf(HELP_INT);
+            else if(rettype == NTRT_ADDR) printf(HELP_ADDR);
+            else if(rettype == NTRT_RELOAD) printf(HELP_RELOAD);
+            else if(rettype == NTRT_DELETE) printf(HELP_DELETE);
+            else if(rettype == NTRT_SAVE) printf(HELP_SAVE);
+            else if(rettype == NTRT_PATH) printf(HELP_PATH);
             else INFOPRINT(HELP);
             break;
         default:
@@ -327,18 +327,18 @@ int parse_cmd(char * cmd) {
     }
 
     switch(rettype) {
-        case MPT_INT:
+        case NTRT_INT:
             mpt_int_destructor((struct mpt_int **)&ret);
             break;
-        case MPT_ADDR:
+        case NTRT_ADDR:
             mpt_addr_destructor((struct mpt_addr **)&ret);
             break;
-        case MPT_PATH:
+        case NTRT_PATH:
             mpt_change_path_destructor((struct mpt_change_path **)&ret);
             break;
-        case MPT_RELOAD:
-        case MPT_DELETE:
-        case MPT_SAVE:
+        case NTRT_RELOAD:
+        case NTRT_DELETE:
+        case NTRT_SAVE:
             free(ret);
             break;
         default:
@@ -348,8 +348,8 @@ int parse_cmd(char * cmd) {
     return rv;
 }
 
-#define MPT_SERVER
-#ifdef MPT_SERVER
+#define NTRT_SERVER
+#ifdef NTRT_SERVER
 /**
  * Check CLI command syntax on server side and execute that
  * @todo Check result of commands and if something went wrong return an error code and put some explanation in cmd parameter.
@@ -359,7 +359,7 @@ int parse_cmd(char * cmd) {
  */
 //int exec_cmd(char * cmd, int sock, struct sockaddr * client, unsigned int csize) {
 command_t* make_cmd_from_str(char * cmd, int32_t *rv) {
-    CMDTYPE rettype = MPT_NOCMD;
+    CMDTYPE rettype = NTRT_NOCMD;
 	int32_t       index;
 	char_t        part[255];
     command_t    *result = NULL;
@@ -371,7 +371,7 @@ command_t* make_cmd_from_str(char * cmd, int32_t *rv) {
     *rv = PARSE_ERR_NOCMD;
     *rv=parser(cmd, &rettype, &ret);
     switch(rettype) {
-        case MPT_INT:
+        case NTRT_INT:
         	if(*rv != PARSE_OK) {
         		return NULL;
         	}
@@ -381,13 +381,13 @@ command_t* make_cmd_from_str(char * cmd, int32_t *rv) {
 				return NULL;
 			}
 			if(strcmp(ret_int->mark, "down") == 0) {
-				result = make_event_cmd(MPT_EVENT_INTERFACE_DOWN, interface);
+				result = make_event_cmd(NTRT_EVENT_INTERFACE_DOWN, interface);
 			} else {
-				result = make_event_cmd(MPT_EVENT_INTERFACE_UP, interface);
+				result = make_event_cmd(NTRT_EVENT_INTERFACE_UP, interface);
 			}
             mpt_int_destructor((struct mpt_int **)&ret);
             break;
-        case MPT_ADDR:
+        case NTRT_ADDR:
         	if(*rv != PARSE_OK) {
         		return NULL;
         	}
@@ -401,21 +401,21 @@ command_t* make_cmd_from_str(char * cmd, int32_t *rv) {
 
             mpt_addr_destructor((struct mpt_addr **)&ret);
             break;
-        case MPT_RELOAD:
-			result = make_event_cmd(MPT_EVENT_STOP, NULL);
-			cmdcat(result, make_event_cmd(MPT_EVENT_CONNECTION_RELOAD, ret));
-			cmdcat(result, make_event_cmd(MPT_EVENT_START, NULL));
+        case NTRT_RELOAD:
+			result = make_event_cmd(NTRT_EVENT_STOP, NULL);
+			cmdcat(result, make_event_cmd(NTRT_EVENT_CONNECTION_RELOAD, ret));
+			cmdcat(result, make_event_cmd(NTRT_EVENT_START, NULL));
             break;
-        case MPT_DELETE:
-			result = make_event_cmd(MPT_EVENT_STOP, NULL);
-			cmdcat(result, make_event_cmd(MPT_EVENT_CONNECTION_DELETE, ret));
-			cmdcat(result, make_event_cmd(MPT_EVENT_START, NULL));
+        case NTRT_DELETE:
+			result = make_event_cmd(NTRT_EVENT_STOP, NULL);
+			cmdcat(result, make_event_cmd(NTRT_EVENT_CONNECTION_DELETE, ret));
+			cmdcat(result, make_event_cmd(NTRT_EVENT_START, NULL));
             break;
-        case MPT_SAVE:
+        case NTRT_SAVE:
         	DEBUGPRINT("found command is mpt event connection save (%s)", ret);
-			result = make_event_cmd(MPT_EVENT_CONNECTION_SAVE, ret);
+			result = make_event_cmd(NTRT_EVENT_CONNECTION_SAVE, ret);
             break;
-        case MPT_PATH:
+        case NTRT_PATH:
         	if(*rv != PARSE_OK) {
         		return NULL;
         	}
@@ -425,13 +425,13 @@ command_t* make_cmd_from_str(char * cmd, int32_t *rv) {
         		return NULL;
         	}
         	if(strcmp(ret_path->op, "up") == 0){
-        		result = make_event_cmd(MPT_EVENT_PATH_UP, path);
+        		result = make_event_cmd(NTRT_EVENT_PATH_UP, path);
         	}else if(strcmp(ret_path->op, "down")){
-        		result = make_event_cmd(MPT_EVENT_PATH_DOWN, path);
+        		result = make_event_cmd(NTRT_EVENT_PATH_DOWN, path);
         	}
         	mpt_change_path_destructor((struct mpt_change_path **)&ret);
             break;
-        case MPT_STATUS:
+        case NTRT_STATUS:
         	/*
             {
                 connection_type * p = mp_global_conn;

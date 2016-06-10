@@ -22,7 +22,7 @@ static void _d_pprint(packet_t *packet);
 
 void debug_packet(packet_t *packet)
 {
-	char_t message[MPT_PACKET_LENGTH];
+	char_t message[NTRT_PACKET_LENGTH];
 	int32_t index;
 	for(index = 0; index < 64; ++index){
 		sprintf(&message[index], "%X", packet->bytes[index]);

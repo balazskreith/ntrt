@@ -5,8 +5,8 @@
  * @developers Balázs Kreith, Debrecen Hungary
  * @date 2014.02.11
 */
-#ifndef INCGUARD_MPT_LIBRARY_CONSTRUCTORS_H_
-#define INCGUARD_MPT_LIBRARY_CONSTRUCTORS_H_
+#ifndef INCGUARD_NTRT_LIBRARY_CONSTRUCTORS_H_
+#define INCGUARD_NTRT_LIBRARY_CONSTRUCTORS_H_
 #include "lib_defs.h"
 #include "lib_descs.h"
 
@@ -247,4 +247,4 @@ void clock_event_dtor(void *clock_event);
 
 void array_dtor(void *target);
 
-#endif //INCGUARD_MPT_LIBRARY_CONSTRUCTORS_H_
+#endif //INCGUARD_NTRT_LIBRARY_CONSTRUCTORS_H_

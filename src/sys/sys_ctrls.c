@@ -52,40 +52,40 @@ command_t* make_command_from_request(request_t *request)
 
 	switch(request->command)
 	{
-		case MPT_REQ_CMD_P_STATUS_CHANGE:
+		case NTRT_REQ_CMD_P_STATUS_CHANGE:
 			memcpy(ip_local,  &request->message[16], SIZE_IN6ADDR);
 			memcpy(ip_remote, &request->message[0],  SIZE_IN6ADDR);
 			path = dmap_get_pth_byip(ip_local, ip_remote, NULL);
 			//DEBUGPRINT("path :%p", path);
-			if(request->status == MPT_REQ_STAT_OK){
-				result = make_event_cmd(MPT_EVENT_PATH_UP, path);
-			}else if(request->status == MPT_REQ_STAT_PATH_DOWN){
-				result = make_event_cmd(MPT_EVENT_PATH_DOWN, path);
+			if(request->status == NTRT_REQ_STAT_OK){
+				result = make_event_cmd(NTRT_EVENT_PATH_UP, path);
+			}else if(request->status == NTRT_REQ_STAT_PATH_DOWN){
+				result = make_event_cmd(NTRT_EVENT_PATH_DOWN, path);
 			}
 			//result->request = _make_request_path_change(path, request->status);
 			break;
-		case MPT_REQ_CMD_CONNECTION_SEND:
+		case NTRT_REQ_CMD_CONNECTION_SEND:
 			conn = conn_ctor();
 			memcpy(conn, request->message, request->size);
-			result = make_event_cmd(MPT_EVENT_STOP, NULL);
-			cmdcat(result, make_event_cmd(MPT_EVENT_CONNECTION_ADD, conn));
-			cmdcat(result, make_event_cmd(MPT_EVENT_START, NULL));
+			result = make_event_cmd(NTRT_EVENT_STOP, NULL);
+			cmdcat(result, make_event_cmd(NTRT_EVENT_CONNECTION_ADD, conn));
+			cmdcat(result, make_event_cmd(NTRT_EVENT_START, NULL));
 			break;
 
-		case MPT_REQ_CMD_NETWORK_SEND:
+		case NTRT_REQ_CMD_NETWORK_SEND:
 			net = network_ctor();
 			memcpy(ip_local, request->message, SIZE_IN6ADDR);
 			dmap_get_con_byremoteip(ip_local, &net->con_dmap_id);
 			memcpy(net, &request->message[SIZE_IN6ADDR], request->size - SIZE_IN6ADDR);
-			result = make_event_cmd(MPT_EVENT_NETWORK_ADD, net);
+			result = make_event_cmd(NTRT_EVENT_NETWORK_ADD, net);
 			break;
 
-		case MPT_REQ_CMD_PATH_SEND:
+		case NTRT_REQ_CMD_PATH_SEND:
 			path = path_ctor();
 			memcpy(ip_local, request->message, SIZE_IN6ADDR);
 			dmap_get_con_byremoteip(ip_local, &path->con_dmap_id);
 			memcpy(path, &request->message[SIZE_IN6ADDR], request->size - SIZE_IN6ADDR);
-			result = make_event_cmd(MPT_EVENT_PATH_ADD, path);
+			result = make_event_cmd(NTRT_EVENT_PATH_ADD, path);
 			break;
 	}
 
@@ -95,18 +95,18 @@ command_t* make_command_from_request(request_t *request)
 
 request_t* make_request_path_up(path_t *path)
 {
-	return _make_request_path_change(path, MPT_REQ_STAT_OK);
+	return _make_request_path_change(path, NTRT_REQ_STAT_OK);
 }
 
 request_t* make_request_path_down(path_t *path)
 {
-	return _make_request_path_change(path, MPT_REQ_STAT_PATH_DOWN);
+	return _make_request_path_change(path, NTRT_REQ_STAT_PATH_DOWN);
 }
 
 request_t* make_request_con_send(connection_t *subject, connection_t *send)
 {
 	request_t *result;
-	byte_t  message[MPT_PACKET_LENGTH];
+	byte_t  message[NTRT_PACKET_LENGTH];
 	int32_t size;
 
 	dmap_rdlock_table_con();
@@ -117,14 +117,14 @@ request_t* make_request_con_send(connection_t *subject, connection_t *send)
 	((connection_t*) message)->sockd = -3;
 	dmap_rdunlock_table_con();
 
-	result = make_request(MPT_REQ_CMD_CONNECTION_SEND, 0, message, send, size);
+	result = make_request(NTRT_REQ_CMD_CONNECTION_SEND, 0, message, send, size);
 	return result;
 }
 
 request_t* make_request_pth_send(path_t *subject, connection_t *send)
 {
 	request_t *result;
-	byte_t  message[MPT_PACKET_LENGTH];
+	byte_t  message[NTRT_PACKET_LENGTH];
 	connection_t *conn;
 	int32_t size;
 
@@ -139,7 +139,7 @@ request_t* make_request_pth_send(path_t *subject, connection_t *send)
 	swap_ip6addr(((path_t*) message)->ip_local, ((path_t*) message)->ip_remote);
 	dmap_rdunlock_table_pth();
 
-	result = make_request(MPT_REQ_CMD_PATH_SEND, 0, message, send, size);
+	result = make_request(NTRT_REQ_CMD_PATH_SEND, 0, message, send, size);
 	return result;
 }
 
@@ -147,7 +147,7 @@ request_t* make_request_pth_send(path_t *subject, connection_t *send)
 request_t* make_request_net_send(network_t *subject, connection_t *send)
 {
 	request_t *result;
-	byte_t  message[MPT_PACKET_LENGTH];
+	byte_t  message[NTRT_PACKET_LENGTH];
 	connection_t *conn;
 	int32_t size;
 
@@ -162,14 +162,14 @@ request_t* make_request_net_send(network_t *subject, connection_t *send)
 	swap_nets((network_t*) &message[SIZE_IN6ADDR]);
 	dmap_rdunlock_table_pth();
 
-	result = make_request(MPT_REQ_CMD_NETWORK_SEND, 0, message, send, size);
+	result = make_request(NTRT_REQ_CMD_NETWORK_SEND, 0, message, send, size);
 	return result;
 }
 //_---------------------------------------------------------------------------------
 request_t* _make_request_path_change(path_t *path, byte_t status)
 {
 	request_t *result;
-	byte_t  message[MPT_PACKET_LENGTH];
+	byte_t  message[NTRT_PACKET_LENGTH];
 	int32_t size;
 	connection_t *con;
 
@@ -184,7 +184,7 @@ request_t* _make_request_path_change(path_t *path, byte_t status)
 	size = SIZE_IN6ADDR << 1;
 	dmap_rdunlock_table_pth();
 
-	result = make_request(MPT_REQ_CMD_P_STATUS_CHANGE, status, message, con, size);
+	result = make_request(NTRT_REQ_CMD_P_STATUS_CHANGE, status, message, con, size);
 	return result;
 }
 

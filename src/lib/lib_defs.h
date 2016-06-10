@@ -5,8 +5,8 @@
  * @copyright Project maintained by Almasi, Bela; Debrecen, Hungary
  * @date 2014.02.11
 */
-#ifndef INCGUARD_MPT_LIBRARY_DEFINITIONS_H_
-#define INCGUARD_MPT_LIBRARY_DEFINITIONS_H_
+#ifndef INCGUARD_NTRT_LIBRARY_DEFINITIONS_H_
+#define INCGUARD_NTRT_LIBRARY_DEFINITIONS_H_
 
 #include "inc_predefs.h"
 #include "inc_inet.h"
@@ -277,4 +277,4 @@ typedef struct datchain_struct_t{
 	struct datchain_struct_t* prev;      ///< Pointing to the previous element of the chain
 }datchain_t;
 
-#endif //INCGUARD_MPT_LIBRARY_DEFINITIONS_H_
+#endif //INCGUARD_NTRT_LIBRARY_DEFINITIONS_H_
