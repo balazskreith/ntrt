@@ -10,7 +10,6 @@
 extern int errno;
 
 bool_t* dwbv_; //debugging watched boolean variable
-void debug_packet(packet_t*);
 #define DEBUG_FLOWS
 //#define LOGGING_ENABLED
 #define RUNTIME_WARNINGS

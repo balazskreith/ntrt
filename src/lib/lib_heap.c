@@ -3,8 +3,8 @@
 
 #include "lib_heap.h"
 
-//#define CMP(a, b) ((a) >= (b))
-#define HEAP_CMP(a, b) ((a)->seq_num <= (b)->seq_num)
+#define CMP(a, b) ((a) >= (b))
+//#define HEAP_CMP(a, b) ((a)->seq_num <= (b)->seq_num)
 
 static const unsigned int base_size = 4;
 

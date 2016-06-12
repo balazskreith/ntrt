@@ -58,7 +58,7 @@ void _fsm_mpt_init()
 	//Connecting
 
 	//start value:
-	this->current = NTRT_STATE_EXIST;
+	this->current = NTRT_STATE_HALT;
 }
 
 void _fsm_mpt_deinit()
@@ -82,17 +82,11 @@ void _fsm_fire(int32_t event, void *arg)
 
 	switch(this->current)
 	{
-	case NTRT_STATE_EXIST:
-		this->current = _fsm_exist_trans(event, arg);
-			break;
 	case NTRT_STATE_RUN:
 		this->current = _fsm_run_trans(event, arg);
 			break;
 	case NTRT_STATE_HALT:
 		this->current = _fsm_halt_trans(event, arg);
-			break;
-	case NTRT_STATE_CLIENT:
-		this->current = _fsm_client_trans(event, arg);
 			break;
 	default:
 		ERRORPRINT("NTRT machine is in unknown state");
@@ -120,12 +114,6 @@ void _str_state(int32_t state, char_t *dst)
 	case NTRT_STATE_HALT:
 		strcpy(dst, "Halt");
 		break;
-	case NTRT_STATE_EXIST:
-		strcpy(dst, "Exist");
-		break;
-	case NTRT_STATE_CLIENT:
-		strcpy(dst, "Client");
-		break;
 	default:
 		sprintf(str, "Unknown (%d)", state);
 		strcpy(dst, str);
@@ -138,68 +126,17 @@ void _str_event(int32_t event, char_t *dst)
 	char_t str[255];
 	switch(event)
 	{
-	case NTRT_EVENT_CONNECTION_DELETE:
-		strcpy(dst, "Connection delete");
-		break;
-	case NTRT_EVENT_CONNECTION_RELOAD:
-		strcpy(dst, "Connection reload");
-		break;
-	case NTRT_EVENT_CONNECTION_SAVE:
-		strcpy(dst, "Connection save");
-		break;
-	case NTRT_EVENT_CONNECTION_ADD:
-		strcpy(dst, "Connection add");
-		break;
 	case NTRT_EVENT_SETUP:
 		strcpy(dst, "Setup");
 		break;
 	case NTRT_EVENT_SHUTDOWN:
 		strcpy(dst, "Shutdown");
 		break;
-	case NTRT_EVENT_INTERFACE_DOWN:
-		strcpy(dst, "Interface down");
-		break;
-	case NTRT_EVENT_INTERFACE_UP:
-		strcpy(dst, "Interface up");
-		break;
-	case NTRT_EVENT_PATH_DOWN:
-		strcpy(dst, "Path down");
-		break;
-	case NTRT_EVENT_PATH_UP:
-		strcpy(dst, "Path up");
-		break;
-	case NTRT_EVENT_PATH_ADD:
-		strcpy(dst, "Path add");
-		break;
-	case NTRT_EVENT_NETWORK_ADD:
-		strcpy(dst, "Network add");
-		break;
 	case NTRT_EVENT_START:
 		strcpy(dst, "Start");
 		break;
 	case NTRT_EVENT_STOP:
 		strcpy(dst, "Stop");
-		break;
-	case NTRT_EVENT_CLIENT_DO:
-		strcpy(dst, "Do client things");
-		break;
-	case NTRT_EVENT_SET_CLIENT_AUTH:
-		strcpy(dst, "Set authentication mode");
-		break;
-	case NTRT_EVENT_SET_CLIENT_KEY:
-		strcpy(dst, "Set authentication key");
-		break;
-	case NTRT_EVENT_SET_CLIENT_PORT:
-		strcpy(dst, "Set server port number");
-		break;
-	case NTRT_EVENT_SET_CLIENT_SERVER_ADDR:
-		strcpy(dst, "Set server ip address");
-		break;
-	case NTRT_EVENT_SET_CLIENT_SERVER_IP6:
-		strcpy(dst, "Set ip version 6 mode");
-		break;
-	case NTRT_EVENT_CREATE_CLIENT:
-		strcpy(dst, "Create client");
 		break;
 	default:
 		sprintf(str, "Unknown (%d)", event);

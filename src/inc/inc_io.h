@@ -24,8 +24,6 @@
 void sysio_print_stdlog(const char *format, ...);
 void sysio_print_stdout(const char *format, ...);
 
-int32_t sysio_tunnel_start(tunnel_t *);
-void sysio_tunnel_stop(tunnel_t*);
 int32_t sysio_bind_socket(int32_t port);
 
 

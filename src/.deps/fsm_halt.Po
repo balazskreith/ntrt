@@ -1,6 +1,6 @@
-fsm_halt.o: fsm/fsm_halt.c /usr/include/stdc-predef.h fsm/fsm.h \
- lib/lib_descs.h /usr/include/time.h /usr/include/features.h \
- /usr/include/x86_64-linux-gnu/sys/cdefs.h \
+fsm_halt.o: fsm/fsm_halt.c /usr/include/stdc-predef.h \
+ fsm/../cmp/cmp_pcapreader.h lib/lib_descs.h /usr/include/time.h \
+ /usr/include/features.h /usr/include/x86_64-linux-gnu/sys/cdefs.h \
  /usr/include/x86_64-linux-gnu/bits/wordsize.h \
  /usr/include/x86_64-linux-gnu/gnu/stubs.h \
  /usr/include/x86_64-linux-gnu/gnu/stubs-64.h \
@@ -61,23 +61,22 @@ fsm_halt.o: fsm/fsm_halt.c /usr/include/stdc-predef.h fsm/fsm.h \
  /usr/include/x86_64-linux-gnu/bits/sigcontext.h \
  /usr/include/x86_64-linux-gnu/bits/sigstack.h \
  /usr/include/x86_64-linux-gnu/sys/ucontext.h \
- /usr/include/x86_64-linux-gnu/bits/sigthread.h lib/lib_threading.h \
- fsm/fsm_actions.h cmp/cmp_predefs.h lib/lib_predefs.h lib/lib_debuglog.h \
- lib/lib_descs.h lib/lib_funcs.h inc/inc_texts.h lib/lib_puffers.h \
- etc/etc_iniparser.h etc/etc_dict.h /usr/include/unistd.h \
- /usr/include/x86_64-linux-gnu/bits/posix_opt.h \
+ /usr/include/x86_64-linux-gnu/bits/sigthread.h fsm/fsm.h \
+ lib/lib_threading.h fsm/fsm_actions.h cmp/cmp_predefs.h \
+ lib/lib_predefs.h lib/lib_debuglog.h lib/lib_descs.h lib/lib_funcs.h \
+ inc/inc_texts.h lib/lib_puffers.h etc/etc_iniparser.h etc/etc_dict.h \
+ /usr/include/unistd.h /usr/include/x86_64-linux-gnu/bits/posix_opt.h \
  /usr/include/x86_64-linux-gnu/bits/environments.h \
  /usr/include/x86_64-linux-gnu/bits/confname.h /usr/include/getopt.h \
  /usr/include/x86_64-linux-gnu/bits/unistd.h dmap/dmap.h lib/lib_defs.h \
  dmap/dmap_defs.h dmap/dmap_predefs.h fsm/fsm_cmpactions.h cmp/cmp_defs.h \
  cmp/cmp_conasr.h cmp/cmp_cmdexetor.h cmp/cmp_predefs.h cmp/cmp_pthsch.h \
  cmp/cmp_precver.h cmp/cmp_psender.h cmp/cmp_defs.h cmp/cmp_cli.h \
- cmp/cmp_tunreader.h cmp/cmp_screener.h cmp/cmp_handshaker.h \
- cmp/cmp_tunwriter.h
+ cmp/cmp_screener.h cmp/cmp_handshaker.h
 
 /usr/include/stdc-predef.h:
 
-fsm/fsm.h:
+fsm/../cmp/cmp_pcapreader.h:
 
 lib/lib_descs.h:
 
@@ -249,6 +248,8 @@ lib/../inc/inc_predefs.h:
 
 /usr/include/x86_64-linux-gnu/bits/sigthread.h:
 
+fsm/fsm.h:
+
 lib/lib_threading.h:
 
 fsm/fsm_actions.h:
@@ -311,10 +312,6 @@ cmp/cmp_defs.h:
 
 cmp/cmp_cli.h:
 
-cmp/cmp_tunreader.h:
-
 cmp/cmp_screener.h:
 
 cmp/cmp_handshaker.h:
-
-cmp/cmp_tunwriter.h:

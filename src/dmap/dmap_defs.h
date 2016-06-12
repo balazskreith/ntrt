@@ -6,16 +6,11 @@
 #include "dmap_predefs.h"
 
 #define DMAP_NAME "Managed datamap"
-#define DMAP_NAME_TABLE_ETC "Etc table"
-#define DMAP_NAME_TABLE_CON "Connection table" //16
-#define DMAP_NAME_TABLE_TUN "Tunnel table"
-#define DMAP_NAME_TABLE_INF "Interface table" //15
-#define DMAP_NAME_TABLE_NET "Networks table"
-#define DMAP_NAME_TABLE_PTH "Path table"
+#define DMAP_NAME_TABLE_FEATURES "Features Table"
+#define DMAP_NAME_TABLE_FILES "Files table" //16
+#define DMAP_NAME_TABLE_PCAPLS "PCAP Listeners"
 #define DMAP_NAME_TABLE_THR "Threads tables" //14
 #define DMAP_NAME_SYSDAT    "System global data"//18
-#define DMAP_NAME_TABLE_CLK_EVENT "Clock events table" //18
-#define DMAP_NAME_TABLE_SCH "Scheduler table" //18
 
 typedef struct dmap_row_struct_t{
 	void *item;
@@ -25,8 +20,8 @@ typedef struct dmap_row_struct_t{
 typedef struct dmap_table_struct_t{
 	char_t      		name[64];
 	int32_t     		size;
-	rwmutex_t           *rwmutex;
-	dmap_row_t 			**rows;
+	rwmutex_t             *rwmutex;
+	dmap_row_t 	      **rows;
 }dmap_table_t;
 
 #endif //INCGUARD_NTRT_DMAP_DEFINITIONS_H_

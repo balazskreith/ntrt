@@ -83,18 +83,6 @@ void swap_ip6addr(byte_t* ip1, byte_t* ip2)
 	memcpy(ip2, ipt, SIZE_IN6ADDR);
 }
 
-void swap_nets(network_t *net)
-{
-	byte_t temp[SIZE_IN6ADDR];
-	uint32_t temp_int;
-	memcpy(temp, net->destination, SIZE_IN6ADDR);
-	temp_int = net->destination_prefix_length;
-	memcpy(net->destination, net->source, SIZE_IN6ADDR);
-	net->destination_prefix_length = net->source_prefix_length;
-	memcpy(net->source, temp, SIZE_IN6ADDR);
-	net->source_prefix_length = temp_int;
-}
-
 /**
  * Convert the MAC address string (':' or '-' byte delimiter) to binary form
  */
@@ -154,17 +142,6 @@ void set_ipstr(char_t* result, int32_t result_size, uint32_t* ip, uint8_t versio
 	}
 }
 
-void set_pathstr(char_t *result, path_t *path)
-{
-	if(path == NULL){
-		sprintf(result, "Not exists");
-		return;
-	}
-	char_t     ip_local[255], ip_remote[255];
-	set_ipstr(ip_local,  128, path->ip_local, path->ip_version);
-	set_ipstr(ip_remote, 128, path->ip_remote, path->ip_version);
-	sprintf(result, "%s -> %s", ip_local, ip_remote);
-}
 
 void str_repeat(char_t *result, char_t *str, int32_t num)
 {
@@ -260,15 +237,6 @@ char_t** stumpy_strtbl(char_t **table, int32_t table_size, int32_t start_row, in
 
 		}
 	}
-}
-
-void setup_peer_for_path(struct sockaddr_in6 *peer, path_t* path)
-{
-	connection_t *con;
-	dmap_rdlock_table_con();
-	con = dmap_get_con(path->con_dmap_id);
-	setup_peer(peer, (byte_t*) path->ip_remote, con->port_remote);
-	dmap_rdunlock_table_con();
 }
 
 void setup_peer(struct sockaddr_in6 *peer, byte_t* ip_remote, int16_t port)

@@ -40,56 +40,38 @@ void* execute_rcback(rcallback_t *rcback)
 	return NULL;
 }
 
-void datchain_add_item(datchain_t *chain, void *item)
+datchain_t* datchain_prepend(datchain_t *chain, ptr_t item)
 {
-	datchain_t *end;
-	datchain_t *new_;
-	new_ = datchain_ctor();
-	new_->item = item;
-	if(chain == NULL){
-		chain = new_;
-		return;
-	}
-	end = chain;
-	while(end->next != NULL);
-	new_->prev = end;
-	end->next = new_;
+  datchain_t *head;
+  head = make_datchain(item);
+  if(!chain){
+    return head;
+  }
+  head->next = chain;
+  chain->prev = head;
+  return head;
 }
 
-void datchain_rem_item(datchain_t *item)
+datchain_t* datchain_append(datchain_t *chain, ptr_t item)
 {
-	datchain_t *prev;
-	datchain_t *next;
-	if(item == NULL){
-		return;
-	}
-	prev = item->prev;
-	next = item->next;
-	if(prev != NULL){
-		prev->next = item->next;
-	}
-	item->prev = NULL;
-	if(next != NULL){
-		next->prev = item->prev;
-	}
-	item->next = NULL;
-	datchain_dtor(item);
+  datchain_t *tail,*head;
+  tail = make_datchain(item);
+  if(!chain){
+    return tail;
+  }
+  for(head = chain; chain; chain = chain->next){
+    tail->prev = chain;
+    chain = chain->next;
+  }
+  tail->prev->next = tail;
+  return head;
 }
 
-pathring_t* pathring_add(pathring_t** ring, path_t *path)
+void datchain_foreach(datchain_t* chain, void (*process)(datchain_t*, ptr_t), ptr_t data)
 {
-	pathring_t *actual;
-	if(*ring == NULL){
-		*ring = pathring_ctor();
-		(*ring)->actual = path;
-		(*ring)->next = *ring;
-		return *ring;
-	}
-	actual = pathring_ctor();
-	actual->actual = path;
-	actual->next = (*ring)->next;
-	(*ring)->next = actual;
-	return actual;
+  for(; chain; chain = chain->next){
+    process(chain, data);
+  }
 }
 
 void *eventer(eventer_arg_t *eventer_arg)
@@ -104,17 +86,6 @@ void *eventer(eventer_arg_t *eventer_arg)
 
 	get_fsm()->fire(event, arg);
 	return NULL;
-}
-
-command_t* cmdcat(command_t *first , command_t *last)
-{
-	command_t *cmd;
-	if(first == NULL){
-		return last;
-	}
-	for(cmd = first; cmd->next_command != NULL; cmd = cmd->next_command);
-	cmd->next_command = last;
-	return first;
 }
 
 void ptrmov(void **dst, void **src)

@@ -31,76 +31,32 @@ int32_t     _dmap_add_row(dmap_table_t *table, dmap_row_t *row)                 
 //------------------------------------------------------------------------------------------------
 //------------------------------------ Table declarations ----------------------------------------
 //------------------------------------------------------------------------------------------------
-void dmap_rem_con_and_close(connection_t*);
 DMAP_DECL_SPECT_TABLE(
-	connection_t,		   /*type of the items stored in the table*/
-	dmap_get_table_con,	   /*name of the process gets the table*/
-	dmap_get_con,		   /*name of the process gets an item from the table by index*/
-	dmap_add_con,		   /*name of the process adds an item and returns with its index*/
-	dmap_rem_con_byindex,  /*name of the process remove an item from the table by index*/
-	dmap_rem_con, 		   /*name of the process remove an item from the table by pointer*/
-	dmap_rdlock_table_con,  /*name of the process lock the table for reading*/
-	dmap_rdunlock_table_con,/*name of the process unlock the table from reading*/
-	dmap_wrlock_table_con,  /*name of the process lock the table for writing*/
-	dmap_wrunlock_table_con,/*name of the process unlock the table from writing*/
-	dmap_itr_table_con	   /*name of the process iterate the table*/
-);
-
-void dmap_rem_tun_and_close(tunnel_t*);
-DMAP_DECL_SPECT_TABLE(
-	tunnel_t,		  	   /*type of the items stored in the table*/
-	dmap_get_table_tun,	   /*name of the process gets the table*/
-	dmap_get_tun,		   /*name of the process gets an item from the table by index*/
-	dmap_add_tun,		   /*name of the process adds an item and returns with its index*/
-	dmap_rem_tun_byindex,  /*name of the process remove an item from the table by index*/
-	dmap_rem_tun, 		   /*name of the process remove an item from the table by pointer*/
-	dmap_rdlock_table_tun,  /*name of the process lock the table for reading*/
-	dmap_rdunlock_table_tun,/*name of the process unlock the table from reading*/
-	dmap_wrlock_table_tun,  /*name of the process lock the table for writing*/
-	dmap_wrunlock_table_tun,/*name of the process unlock the table from writing*/
-	dmap_itr_table_tun	   /*name of the process iterate the table*/
+	feature_t,		   /*type of the items stored in the table*/
+	dmap_get_table_features,	   /*name of the process gets the table*/
+	dmap_get_features,		   /*name of the process gets an item from the table by index*/
+	dmap_add_features,		   /*name of the process adds an item and returns with its index*/
+	dmap_rem_feature_byindex,  /*name of the process remove an item from the table by index*/
+	dmap_rem_features, 		   /*name of the process remove an item from the table by pointer*/
+	dmap_rdlock_table_features,  /*name of the process lock the table for reading*/
+	dmap_rdunlock_table_features,/*name of the process unlock the table from reading*/
+	dmap_wrlock_table_features,  /*name of the process lock the table for writing*/
+	dmap_wrunlock_table_features,/*name of the process unlock the table from writing*/
+	dmap_itr_table_feature	   /*name of the process iterate the table*/
 );
 
 DMAP_DECL_SPECT_TABLE(
-	interface_t,		   /*type of the items stored in the table*/
-	dmap_get_table_inf,	   /*name of the process gets the table*/
-	dmap_get_inf,		   /*name of the process gets an item from the table by index*/
-	dmap_add_inf,		   /*name of the process adds an item and returns with its index*/
-	dmap_rem_inf_byindex,  /*name of the process remove an item from the table by index*/
-	dmap_rem_inf, 		   /*name of the process remove an item from the table by pointer*/
-	dmap_rdlock_table_inf,  /*name of the process lock the table for reading*/
-	dmap_rdunlock_table_inf,/*name of the process unlock the table from reading*/
-	dmap_wrlock_table_inf,  /*name of the process lock the table for writing*/
-	dmap_wrunlock_table_inf,/*name of the process unlock the table from writing*/
-	dmap_itr_table_inf	   /*name of the process iterate the table*/
-);
-
-DMAP_DECL_SPECT_TABLE(
-	network_t,		   	   /*type of the items stored in the table*/
-	dmap_get_table_net,	   /*name of the process gets the table*/
-	dmap_get_net,		   /*name of the process gets an item from the table by index*/
-	dmap_add_net,		   /*name of the process adds an item and returns with its index*/
-	dmap_rem_net_byindex,  /*name of the process remove an item from the table by index*/
-	dmap_rem_net, 		   /*name of the process remove an item from the table by pointer*/
-	dmap_rdlock_table_net,  /*name of the process lock the table for reading*/
-	dmap_rdunlock_table_net,/*name of the process unlock the table from reading*/
-	dmap_wrlock_table_net,  /*name of the process lock the table for writing*/
-	dmap_wrunlock_table_net,/*name of the process unlock the table from writing*/
-	dmap_itr_table_net	   /*name of the process iterate the table*/
-);
-
-DMAP_DECL_SPECT_TABLE(
-	path_t,				   /*type of the items stored in the table*/
-	dmap_get_table_pth,	   /*name of the process gets the table*/
-	dmap_get_pth,		   /*name of the process gets an item from the table by index*/
-	dmap_add_pth,		   /*name of the process adds an item and returns with its index*/
-	dmap_rem_pth_byindex,  /*name of the process remove an item from the table by index*/
-	dmap_rem_pth, 		   /*name of the process remove an item from the table by pointer*/
-	dmap_rdlock_table_pth,  /*name of the process lock the table for reading*/
-	dmap_rdunlock_table_pth,/*name of the process unlock the table from reading*/
-	dmap_wrlock_table_pth,  /*name of the process lock the table for writing*/
-	dmap_wrunlock_table_pth,/*name of the process unlock the table from writing*/
-	dmap_itr_table_pth	   /*name of the process iterate the table*/
+        pcap_listener_t,		  	   /*type of the items stored in the table*/
+	dmap_get_table_pcapls,	   /*name of the process gets the table*/
+	dmap_get_pcapls,		   /*name of the process gets an item from the table by index*/
+	dmap_add_pcapls,		   /*name of the process adds an item and returns with its index*/
+	dmap_rem_pcapls_byindex,  /*name of the process remove an item from the table by index*/
+	dmap_rem_pcapls, 		   /*name of the process remove an item from the table by pointer*/
+	dmap_rdlock_table_pcapls,  /*name of the process lock the table for reading*/
+	dmap_rdunlock_table_pcapls,/*name of the process unlock the table from reading*/
+	dmap_wrlock_table_pcapls,  /*name of the process lock the table for writing*/
+	dmap_wrunlock_table_pcapls,/*name of the process unlock the table from writing*/
+	dmap_itr_table_pcapls	   /*name of the process iterate the table*/
 );
 
 DMAP_DECL_SPECT_TABLE(
@@ -115,19 +71,6 @@ DMAP_DECL_SPECT_TABLE(
 	dmap_wrlock_table_thr,  /*name of the process lock the table for writing*/
 	dmap_wrunlock_table_thr,/*name of the process unlock the table from writing*/
 	dmap_itr_table_thr	   /*name of the process iterate the table*/
-);
-
-DMAP_DECL_VOIDT_TABLE(
-	dmap_get_table_etc,	    /*name of the process gets the table*/
-	dmap_get_etc,		    /*name of the process gets an item from the table by index*/
-	dmap_add_etc,		    /*name of the process adds an item and returns with its index*/
-	dmap_rem_etc_byindex,   /*name of the process remove an item from the table by index*/
-	dmap_rem_etc, 		    /*name of the process remove an item from the table by pointer*/
-	dmap_rdlock_table_etc,  /*name of the process lock the table for reading*/
-	dmap_rdunlock_table_etc,/*name of the process unlock the table from reading*/
-	dmap_wrlock_table_etc,  /*name of the process lock the table for writing*/
-	dmap_wrunlock_table_etc,/*name of the process unlock the table from writing*/
-	dmap_itr_table_etc	    /*name of the process iterate the table*/
 );
 
 

@@ -27,124 +27,43 @@ static int32_t     _dmap_add_row(dmap_table_t *table, dmap_row_t *row)          
 //------------------------------------ Table definitions -----------------------------------------
 //------------------------------------------------------------------------------------------------
 DMAP_DEF_SPECT_TABLE(																	 		 \
-	connection_t,		   /*name of the specific data type*/									 \
-	conn_dtor,			   /*name of the destructor for the specified data*/					 \
-	_dmap_table_con,	   /*name of the variable reference to the table*/						 \
-	DMAP_NAME_TABLE_CON,   /*name of the table*/						 	     				 \
-	NTRT_MAX_CONNECTION_NUM,/*maximal number of item the table can contain. */                    \
-	dmap_init_table_con,   /*name of the process initialize the table*/                          \
-	dmap_deinit_table_con, /*name of the process deinitialze the table*/                         \
-	dmap_get_table_con,	   /*name of the process gets the table*/								 \
-	dmap_get_con,		   /*name of the process gets an item from the table by index*/			 \
-	dmap_add_con,		   /*name of the process adds an item and returns with its index*/  	 \
-	dmap_rem_con_byindex,  /*name of the process remove an item from the table by index*/   	 \
-	dmap_rem_con, 		   /*name of the process remove an item from the table by pointer*/ 	 \
-	dmap_rdlock_table_con,  /*name of the process lock the table for reading*/					 \
-	dmap_rdunlock_table_con,/*name of the process unlock the table from reading*/				 \
-	dmap_wrlock_table_con,  /*name of the process lock the table for writing*/					 \
-	dmap_wrunlock_table_con,/*name of the process unlock the table from writing*/				 \
-	dmap_itr_table_con	   /*name of the process iterate the table*/							 \
-);
-
-void dmap_rem_con_and_close(connection_t *conn)
-{
-	if(conn->sockd != 0){
-		sysio->udpsock_close(conn->sockd);
-	}
-	dmap_rem_con(conn);
-}
-
-
-DMAP_DEF_SPECT_TABLE(																	 		 \
-	tunnel_t,		 	   /*name of the specific data type*/									 \
-	tunnel_dtor,		   /*name of the destructor for the specified data*/					 \
-	_dmap_table_tun,	   /*name of the variable reference to the table*/						 \
-	DMAP_NAME_TABLE_TUN,   /*name of the table*/						 	     				 \
-	NTRT_MAX_TUNNEL_NUM,    /*maximal number of item the table can contain. */                    \
-	dmap_init_table_tun,   /*name of the process initialize the table*/                          \
-	dmap_deinit_table_tun, /*name of the process deinitialze the table*/                         \
-	dmap_get_table_tun,	   /*name of the process gets the table*/								 \
-	dmap_get_tun,		   /*name of the process gets an item from the table by index*/			 \
-	dmap_add_tun,		   /*name of the process adds an item and returns with its index*/  	 \
-	dmap_rem_tun_byindex,  /*name of the process remove an item from the table by index*/   	 \
-	dmap_rem_tun, 		   /*name of the process remove an item from the table by pointer*/ 	 \
-	dmap_rdlock_table_tun,  /*name of the process lock the table for reading*/					 \
-	dmap_rdunlock_table_tun,/*name of the process unlock the table from reading*/				 \
-	dmap_wrlock_table_tun,  /*name of the process lock the table for writing*/					 \
-	dmap_wrunlock_table_tun,/*name of the process unlock the table from writing*/				 \
-	dmap_itr_table_tun	   /*name of the process iterate the table*/							 \
-);
-
-void dmap_rem_tun_and_close(tunnel_t *tun)
-{
-	if(tun->sockd != 0){
-		sysio->udpsock_close(tun->sockd);
-	}
-	if(tun->fd != 0){
-		sysio->tunnel_stop(tun);
-	}
-	dmap_rem_tun(tun);
-}
-
-DMAP_DEF_SPECT_TABLE(																	 		 \
-	interface_t,		   /*name of the specific data type*/									 \
-	interface_dtor,		   /*name of the destructor for the specified data*/					 \
-	_dmap_table_inf,	   /*name of the variable reference to the table*/						 \
-	DMAP_NAME_TABLE_INF,   /*name of the table*/						 	     				 \
-	NTRT_MAX_INTERFACE_NUM,   /*maximal number of item the table can contain. */                  \
-	dmap_init_table_inf,   /*name of the process initialize the table*/                          \
-	dmap_deinit_table_inf, /*name of the process deinitialze the table*/                         \
-	dmap_get_table_inf,	   /*name of the process gets the table*/								 \
-	dmap_get_inf,		   /*name of the process gets an item from the table by index*/			 \
-	dmap_add_inf,		   /*name of the process adds an item and returns with its index*/  	 \
-	dmap_rem_inf_byindex,  /*name of the process remove an item from the table by index*/   	 \
-	dmap_rem_inf, 		   /*name of the process remove an item from the table by pointer*/ 	 \
-	dmap_rdlock_table_inf,  /*name of the process lock the table for reading*/					 \
-	dmap_rdunlock_table_inf,/*name of the process unlock the table from reading*/				 \
-	dmap_wrlock_table_inf,  /*name of the process lock the table for writing*/					 \
-	dmap_wrunlock_table_inf,/*name of the process unlock the table from writing*/				 \
-	dmap_itr_table_inf	   /*name of the process iterate the table*/							 \
-);
-
-
-DMAP_DEF_SPECT_TABLE(																	 		 \
-	network_t,		  	   /*name of the specific data type*/									 \
-	network_dtor,		   /*name of the destructor for the specified data*/					 \
-	_dmap_table_net,	   /*name of the variable reference to the table*/						 \
-	DMAP_NAME_TABLE_NET,   /*name of the table*/						 	     				 \
-	NTRT_MAX_NETWORK_NUM,   /*maximal number of item the table can contain. */                    \
-	dmap_init_table_net,   /*name of the process initialize the table*/                          \
-	dmap_deinit_table_net, /*name of the process deinitialze the table*/                         \
-	dmap_get_table_net,	   /*name of the process gets the table*/								 \
-	dmap_get_net,		   /*name of the process gets an item from the table by index*/			 \
-	dmap_add_net,		   /*name of the process adds an item and returns with its index*/  	 \
-	dmap_rem_net_byindex,  /*name of the process remove an item from the table by index*/   	 \
-	dmap_rem_net, 		   /*name of the process remove an item from the table by pointer*/ 	 \
-	dmap_rdlock_table_net,  /*name of the process lock the table for reading*/					 \
-	dmap_rdunlock_table_net,/*name of the process unlock the table from reading*/				 \
-	dmap_wrlock_table_net,  /*name of the process lock the table for writing*/					 \
-	dmap_wrunlock_table_net,/*name of the process unlock the table from writing*/				 \
-	dmap_itr_table_net	   /*name of the process iterate the table*/							 \
+	feature_t,		   /*name of the specific data type*/									 \
+	feature_dtor,			   /*name of the destructor for the specified data*/					 \
+	_dmap_table_features,	   /*name of the variable reference to the table*/						 \
+	DMAP_NAME_TABLE_FEATURES,   /*name of the table*/						 	     				 \
+	NTRT_MAX_FEATURES_NUM,/*maximal number of item the table can contain. */                    \
+	dmap_init_table_features,   /*name of the process initialize the table*/                          \
+	dmap_deinit_table_features, /*name of the process deinitialze the table*/                         \
+	dmap_get_table_features,	   /*name of the process gets the table*/								 \
+	dmap_get_features,		   /*name of the process gets an item from the table by index*/			 \
+	dmap_add_features,		   /*name of the process adds an item and returns with its index*/  	 \
+	dmap_rem_feature_byindex,  /*name of the process remove an item from the table by index*/   	 \
+	dmap_rem_features, 		   /*name of the process remove an item from the table by pointer*/ 	 \
+	dmap_rdlock_table_features,  /*name of the process lock the table for reading*/					 \
+	dmap_rdunlock_table_features,/*name of the process unlock the table from reading*/				 \
+	dmap_wrlock_table_features,  /*name of the process lock the table for writing*/					 \
+	dmap_wrunlock_table_features,/*name of the process unlock the table from writing*/				 \
+	dmap_itr_table_feature	   /*name of the process iterate the table*/							 \
 );
 
 DMAP_DEF_SPECT_TABLE(																	 		 \
-	path_t,				   /*name of the specific data type*/									 \
-	path_dtor,			   /*name of the destructor for the specified data*/					 \
-	_dmap_table_pth,	   /*name of the variable reference to the table*/						 \
-	DMAP_NAME_TABLE_PTH,   /*name of the table*/						 	     				 \
-	NTRT_MAX_PATH_NUM,      /*maximal number of item the table can contain. */                    \
-	dmap_init_table_pth,   /*name of the process initialize the table*/                          \
-	dmap_deinit_table_pth, /*name of the process deinitialze the table*/                         \
-	dmap_get_table_pth,	   /*name of the process gets the table*/								 \
-	dmap_get_pth,		   /*name of the process gets an item from the table by index*/			 \
-	dmap_add_pth,		   /*name of the process adds an item and returns with its index*/  	 \
-	dmap_rem_pth_byindex,  /*name of the process remove an item from the table by index*/   	 \
-	dmap_rem_pth, 		   /*name of the process remove an item from the table by pointer*/ 	 \
-	dmap_rdlock_table_pth,  /*name of the process lock the table for reading*/					 \
-	dmap_rdunlock_table_pth,/*name of the process unlock the table from reading*/				 \
-	dmap_wrlock_table_pth,  /*name of the process lock the table for writing*/					 \
-	dmap_wrunlock_table_pth,/*name of the process unlock the table from writing*/				 \
-	dmap_itr_table_pth	   /*name of the process iterate the table*/							 \
+	pcap_listener_t,         /*name of the specific data type*/									 \
+	pcap_listener_dtor,		   /*name of the destructor for the specified data*/					 \
+	_dmap_table_pcapls,	   /*name of the variable reference to the table*/						 \
+	DMAP_NAME_TABLE_PCAPLS,   /*name of the table*/						 	     				 \
+	NTRT_MAX_PCAPLS_NUM,    /*maximal number of item the table can contain. */                    \
+	dmap_init_table_pcapls,   /*name of the process initialize the table*/                          \
+	dmap_deinit_table_pcapls, /*name of the process deinitialze the table*/                         \
+	dmap_get_table_pcapls,	   /*name of the process gets the table*/								 \
+	dmap_get_pcapls,		   /*name of the process gets an item from the table by index*/			 \
+	dmap_add_pcapls,		   /*name of the process adds an item and returns with its index*/  	 \
+	dmap_rem_pcapls_byindex,  /*name of the process remove an item from the table by index*/   	 \
+	dmap_rem_pcapls, 		   /*name of the process remove an item from the table by pointer*/ 	 \
+	dmap_rdlock_table_pcapls,  /*name of the process lock the table for reading*/					 \
+	dmap_rdunlock_table_pcapls,/*name of the process unlock the table from reading*/				 \
+	dmap_wrlock_table_pcapls,  /*name of the process lock the table for writing*/					 \
+	dmap_wrunlock_table_pcapls,/*name of the process unlock the table from writing*/				 \
+	dmap_itr_table_pcapls	   /*name of the process iterate the table*/							 \
 );
 
 DMAP_DEF_SPECT_TABLE(																	 		 \
@@ -167,26 +86,6 @@ DMAP_DEF_SPECT_TABLE(																	 		 \
 	dmap_itr_table_thr	   /*name of the process iterate the table*/							 \
 );
 
-DMAP_DEF_VOIDT_TABLE(																	 		 \
-	_dmap_table_etc,	   /*name of the variable reference to the table*/						 \
-	DMAP_NAME_TABLE_CON,   /*name of the table*/						 	     				 \
-	NTRT_DMAP_TABLE_ETC_NUM,/*maximal number of item the table can contain. */                    \
-	dmap_init_table_etc,   /*name of the process initialize the table*/                          \
-	dmap_deinit_table_etc, /*name of the process deinitialze the table*/                         \
-	dmap_get_table_etc,	   /*name of the process gets the table*/								 \
-	dmap_get_etc,		   /*name of the process gets an item from the table by index*/			 \
-	dmap_add_etc,		   /*name of the process adds an item and returns with its index*/  	 \
-	dmap_rem_etc_byindex,  /*name of the process remove an item from the table by index*/   	 \
-	dmap_rem_etc, 		   /*name of the process remove an item from the table by pointer*/ 	 \
-	dmap_rdlock_table_etc,  /*name of the process lock the table for reading*/					 \
-	dmap_rdunlock_table_etc,/*name of the process unlock the table from reading*/				 \
-	dmap_wrlock_table_etc,  /*name of the process lock the table for writing*/					 \
-	dmap_wrunlock_table_etc,/*name of the process unlock the table from writing*/				 \
-	dmap_itr_table_etc	   /*name of the process iterate the table*/							 \
-);
-
-
-
 
 DMAP_DEF_ITEM(																				 	 \
 		sysdat_t,			   /*name of the specific data type*/								 \
@@ -208,13 +107,9 @@ DMAP_DEF_ITEM(																				 	 \
 void dmap_init()
 {
 	PRINTING_CONSTRUCTING_SG(DMAP_NAME);
-	dmap_init_table_con();
-	dmap_init_table_etc();
-	dmap_init_table_inf();
-	dmap_init_table_net();
-	dmap_init_table_pth();
+	dmap_init_table_features();
 	dmap_init_table_thr();
-	dmap_init_table_tun();
+	dmap_init_table_pcapls();
 	_dmap_sysdat_mutex = mutex_ctor();
 	PRINTING_SG_IS_CONSTRUCTED(DMAP_NAME);
 }
@@ -223,13 +118,9 @@ void dmap_deinit()
 {
 	PRINTING_DESTRUCTING_SG(DMAP_NAME);
 	mutex_dtor(_dmap_sysdat_mutex);
-	dmap_deinit_table_con();
-	dmap_deinit_table_etc();
-	dmap_deinit_table_inf();
-	dmap_deinit_table_net();
-	dmap_deinit_table_pth();
+	dmap_deinit_table_features();
 	dmap_deinit_table_thr();
-	dmap_deinit_table_tun();
+	dmap_deinit_table_pcapls();
 	PRINTING_SG_IS_DESTRUCTED(DMAP_NAME);
 }
 //------------------------------------------------------------------------------------------------

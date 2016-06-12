@@ -4,6 +4,9 @@
 
 #define PRINTING(TYPE, ...) INFOPRINT(GET_TEXT_##TYPE(__VA_ARGS__))
 
+#define GET_TEXT_INSTALLED_SG(sg, ...) sg" is installed "
+#define PRINTING_INSTALLED_SG(sg, ...) PRINTING(INSTALLED_SG, sg, __VA_ARGS__)
+
 #define GET_TEXT_STARTING_SG(sg, ...) "Start "sg
 #define PRINTING_STARTING_SG(sg, ...) PRINTING(STARTING_SG, sg, __VA_ARGS__)
 

@@ -12,7 +12,8 @@
 // WARNING: Requires C99 compatible compiler
 
 //typedef int heap_item_t;
-typedef packet_t* HeapItem;
+//typedef packet_t* HeapItem;
+typedef int HeapItem;
 
 struct Heap
 {

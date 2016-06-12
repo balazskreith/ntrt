@@ -96,34 +96,7 @@ typedef char char_t;
 
 typedef unsigned char byte_t;
 
-/** \typedef char_t
-      \brief indicates a single character
-  */
-
-typedef enum
-{
-	IP_VERSION_4 = 4,
-	IP_VERSION_6 = 6
-}ipversion_t;
-
-/** \typedef connection_status_t
-      \brief indicates connection statuses
-  */
-typedef enum 
-{
-	CONNECTION_STATUS_DOWN = 0,
-	CONNECTION_STATUS_UP = 1
-}connection_status_t;
-
-/** \typedef connection_permission_t
-      \brief indicates permission statuses
-  */
-typedef enum 
-{
-	CONNECTION_PERMISSION_READ = 1,
-	CONNECTION_PERMISSION_WRITE = 2
-}connection_permission_t;
-
+typedef void* ptr_t;
 
 /** \typedef ipv6_addr_t
       \brief describes an ipv6 address
@@ -223,18 +196,6 @@ typedef struct rcallback_struct_t{
 	void*			parameter;                 ///< pointing to the parameter of the parameterized function.
 	bool_t          disposable;
 }rcallback_t;
-
-/** \typedef command_state_t
-      \brief describes the states a command
-  */
-typedef enum{
-	COMMAND_STATE_CREATED = 0,            ///< Indicates that the command is created
-	COMMAND_STATE_ISSUED = 1,             ///< Indicates that the command is fullfilled with actions
-	COMMAND_STATE_PUFFERED = 2,           ///< Indicates that the command is buffered for executions
-	COMMAND_STATE_EXECUTEABLE = 3,        ///< Indicating weather the command is executeable or not.
-	COMMAND_STATE_EXECUTED = 4,           ///< Indicates that the command is executed
-	COMMAND_STATE_TRASHED = 5,            ///< Indicates that the command is dropped to the trash for destruction.
-}command_state_t;
 
 
 typedef struct diagmsg_struct_t

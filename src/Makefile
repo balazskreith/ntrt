@@ -95,20 +95,19 @@ PROGRAMS = $(bin_PROGRAMS)
 am___top_builddir__bin_ntrt_OBJECTS = ntrt.$(OBJEXT) cmp_cli.$(OBJEXT) \
 	cmp_cmdexetor.$(OBJEXT) cmp_conasr.$(OBJEXT) \
 	cmp_defs.$(OBJEXT) cmp_handshaker.$(OBJEXT) \
-	cmp_precver.$(OBJEXT) cmp_predefs.$(OBJEXT) \
-	cmp_psender.$(OBJEXT) cmp_pthsch.$(OBJEXT) \
-	cmp_screener.$(OBJEXT) cmp_tests.$(OBJEXT) \
-	cmp_tunreader.$(OBJEXT) cmp_tunwriter.$(OBJEXT) \
-	dmap_sel.$(OBJEXT) dmap.$(OBJEXT) etc_cli.$(OBJEXT) \
-	etc_argtable2.$(OBJEXT) etc_auth.$(OBJEXT) etc_dict.$(OBJEXT) \
-	etc_endian.$(OBJEXT) etc_iniparser.$(OBJEXT) \
-	etc_ipsearch.$(OBJEXT) etc_utils.$(OBJEXT) \
-	fsm_actions.$(OBJEXT) fsm_cmpactions.$(OBJEXT) \
-	fsm_exist.$(OBJEXT) fsm_halt.$(OBJEXT) fsm_run.$(OBJEXT) \
-	fsm_client.$(OBJEXT) fsm.$(OBJEXT) inc_io.$(OBJEXT) \
-	inc_mtime.$(OBJEXT) inc_opcall.$(OBJEXT) \
-	lib_debuglog.$(OBJEXT) lib_dispers.$(OBJEXT) \
-	lib_funcs.$(OBJEXT) lib_heap.$(OBJEXT) \
+	cmp_pcapreader.$(OBJEXT) cmp_precver.$(OBJEXT) \
+	cmp_predefs.$(OBJEXT) cmp_psender.$(OBJEXT) \
+	cmp_pthsch.$(OBJEXT) cmp_screener.$(OBJEXT) \
+	cmp_tests.$(OBJEXT) dmap_sel.$(OBJEXT) dmap.$(OBJEXT) \
+	etc_cli.$(OBJEXT) etc_argtable2.$(OBJEXT) etc_auth.$(OBJEXT) \
+	etc_dict.$(OBJEXT) etc_endian.$(OBJEXT) \
+	etc_iniparser.$(OBJEXT) etc_ipsearch.$(OBJEXT) \
+	etc_utils.$(OBJEXT) fsm_actions.$(OBJEXT) \
+	fsm_cmpactions.$(OBJEXT) fsm_exist.$(OBJEXT) \
+	fsm_halt.$(OBJEXT) fsm_run.$(OBJEXT) fsm_client.$(OBJEXT) \
+	fsm.$(OBJEXT) inc_io.$(OBJEXT) inc_mtime.$(OBJEXT) \
+	inc_opcall.$(OBJEXT) lib_debuglog.$(OBJEXT) \
+	lib_dispers.$(OBJEXT) lib_funcs.$(OBJEXT) lib_heap.$(OBJEXT) \
 	lib_interrupting.$(OBJEXT) lib_makers.$(OBJEXT) \
 	lib_predefs.$(OBJEXT) lib_puffers.$(OBJEXT) \
 	lib_threading.$(OBJEXT) lib_tors.$(OBJEXT) \
@@ -286,6 +285,8 @@ __top_builddir__bin_ntrt_SOURCES = \
 			  cmp/cmp_defs.c            \
 			  cmp/cmp_handshaker.h      \
 			  cmp/cmp_handshaker.c      \
+			  cmp/cmp_pcapreader.h      \
+			  cmp/cmp_pcapreader.c      \
 			  cmp/cmp_precver.h         \
 			  cmp/cmp_precver.c         \
 			  cmp/cmp_predefs.h         \
@@ -298,10 +299,6 @@ __top_builddir__bin_ntrt_SOURCES = \
 			  cmp/cmp_screener.c        \
 			  cmp/cmp_tests.h           \
 			  cmp/cmp_tests.c           \
-			  cmp/cmp_tunreader.h       \
-			  cmp/cmp_tunreader.c       \
-			  cmp/cmp_tunwriter.h       \
-			  cmp/cmp_tunwriter.c       \
 			  dmap/dmap_defs.h          \
 			  dmap/dmap_predefs.h       \
 			  dmap/dmap_sel.h           \
@@ -477,14 +474,13 @@ include ./$(DEPDIR)/cmp_cmdexetor.Po
 include ./$(DEPDIR)/cmp_conasr.Po
 include ./$(DEPDIR)/cmp_defs.Po
 include ./$(DEPDIR)/cmp_handshaker.Po
+include ./$(DEPDIR)/cmp_pcapreader.Po
 include ./$(DEPDIR)/cmp_precver.Po
 include ./$(DEPDIR)/cmp_predefs.Po
 include ./$(DEPDIR)/cmp_psender.Po
 include ./$(DEPDIR)/cmp_pthsch.Po
 include ./$(DEPDIR)/cmp_screener.Po
 include ./$(DEPDIR)/cmp_tests.Po
-include ./$(DEPDIR)/cmp_tunreader.Po
-include ./$(DEPDIR)/cmp_tunwriter.Po
 include ./$(DEPDIR)/dmap.Po
 include ./$(DEPDIR)/dmap_sel.Po
 include ./$(DEPDIR)/etc_argtable2.Po
@@ -605,6 +601,20 @@ cmp_handshaker.obj: cmp/cmp_handshaker.c
 #	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
 #	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o cmp_handshaker.obj `if test -f 'cmp/cmp_handshaker.c'; then $(CYGPATH_W) 'cmp/cmp_handshaker.c'; else $(CYGPATH_W) '$(srcdir)/cmp/cmp_handshaker.c'; fi`
 
+cmp_pcapreader.o: cmp/cmp_pcapreader.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT cmp_pcapreader.o -MD -MP -MF $(DEPDIR)/cmp_pcapreader.Tpo -c -o cmp_pcapreader.o `test -f 'cmp/cmp_pcapreader.c' || echo '$(srcdir)/'`cmp/cmp_pcapreader.c
+	$(AM_V_at)$(am__mv) $(DEPDIR)/cmp_pcapreader.Tpo $(DEPDIR)/cmp_pcapreader.Po
+#	$(AM_V_CC)source='cmp/cmp_pcapreader.c' object='cmp_pcapreader.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o cmp_pcapreader.o `test -f 'cmp/cmp_pcapreader.c' || echo '$(srcdir)/'`cmp/cmp_pcapreader.c
+
+cmp_pcapreader.obj: cmp/cmp_pcapreader.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT cmp_pcapreader.obj -MD -MP -MF $(DEPDIR)/cmp_pcapreader.Tpo -c -o cmp_pcapreader.obj `if test -f 'cmp/cmp_pcapreader.c'; then $(CYGPATH_W) 'cmp/cmp_pcapreader.c'; else $(CYGPATH_W) '$(srcdir)/cmp/cmp_pcapreader.c'; fi`
+	$(AM_V_at)$(am__mv) $(DEPDIR)/cmp_pcapreader.Tpo $(DEPDIR)/cmp_pcapreader.Po
+#	$(AM_V_CC)source='cmp/cmp_pcapreader.c' object='cmp_pcapreader.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o cmp_pcapreader.obj `if test -f 'cmp/cmp_pcapreader.c'; then $(CYGPATH_W) 'cmp/cmp_pcapreader.c'; else $(CYGPATH_W) '$(srcdir)/cmp/cmp_pcapreader.c'; fi`
+
 cmp_precver.o: cmp/cmp_precver.c
 	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT cmp_precver.o -MD -MP -MF $(DEPDIR)/cmp_precver.Tpo -c -o cmp_precver.o `test -f 'cmp/cmp_precver.c' || echo '$(srcdir)/'`cmp/cmp_precver.c
 	$(AM_V_at)$(am__mv) $(DEPDIR)/cmp_precver.Tpo $(DEPDIR)/cmp_precver.Po
@@ -688,34 +698,6 @@ cmp_tests.obj: cmp/cmp_tests.c
 #	$(AM_V_CC)source='cmp/cmp_tests.c' object='cmp_tests.obj' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
 #	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o cmp_tests.obj `if test -f 'cmp/cmp_tests.c'; then $(CYGPATH_W) 'cmp/cmp_tests.c'; else $(CYGPATH_W) '$(srcdir)/cmp/cmp_tests.c'; fi`
-
-cmp_tunreader.o: cmp/cmp_tunreader.c
-	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT cmp_tunreader.o -MD -MP -MF $(DEPDIR)/cmp_tunreader.Tpo -c -o cmp_tunreader.o `test -f 'cmp/cmp_tunreader.c' || echo '$(srcdir)/'`cmp/cmp_tunreader.c
-	$(AM_V_at)$(am__mv) $(DEPDIR)/cmp_tunreader.Tpo $(DEPDIR)/cmp_tunreader.Po
-#	$(AM_V_CC)source='cmp/cmp_tunreader.c' object='cmp_tunreader.o' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o cmp_tunreader.o `test -f 'cmp/cmp_tunreader.c' || echo '$(srcdir)/'`cmp/cmp_tunreader.c
-
-cmp_tunreader.obj: cmp/cmp_tunreader.c
-	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT cmp_tunreader.obj -MD -MP -MF $(DEPDIR)/cmp_tunreader.Tpo -c -o cmp_tunreader.obj `if test -f 'cmp/cmp_tunreader.c'; then $(CYGPATH_W) 'cmp/cmp_tunreader.c'; else $(CYGPATH_W) '$(srcdir)/cmp/cmp_tunreader.c'; fi`
-	$(AM_V_at)$(am__mv) $(DEPDIR)/cmp_tunreader.Tpo $(DEPDIR)/cmp_tunreader.Po
-#	$(AM_V_CC)source='cmp/cmp_tunreader.c' object='cmp_tunreader.obj' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o cmp_tunreader.obj `if test -f 'cmp/cmp_tunreader.c'; then $(CYGPATH_W) 'cmp/cmp_tunreader.c'; else $(CYGPATH_W) '$(srcdir)/cmp/cmp_tunreader.c'; fi`
-
-cmp_tunwriter.o: cmp/cmp_tunwriter.c
-	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT cmp_tunwriter.o -MD -MP -MF $(DEPDIR)/cmp_tunwriter.Tpo -c -o cmp_tunwriter.o `test -f 'cmp/cmp_tunwriter.c' || echo '$(srcdir)/'`cmp/cmp_tunwriter.c
-	$(AM_V_at)$(am__mv) $(DEPDIR)/cmp_tunwriter.Tpo $(DEPDIR)/cmp_tunwriter.Po
-#	$(AM_V_CC)source='cmp/cmp_tunwriter.c' object='cmp_tunwriter.o' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o cmp_tunwriter.o `test -f 'cmp/cmp_tunwriter.c' || echo '$(srcdir)/'`cmp/cmp_tunwriter.c
-
-cmp_tunwriter.obj: cmp/cmp_tunwriter.c
-	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT cmp_tunwriter.obj -MD -MP -MF $(DEPDIR)/cmp_tunwriter.Tpo -c -o cmp_tunwriter.obj `if test -f 'cmp/cmp_tunwriter.c'; then $(CYGPATH_W) 'cmp/cmp_tunwriter.c'; else $(CYGPATH_W) '$(srcdir)/cmp/cmp_tunwriter.c'; fi`
-	$(AM_V_at)$(am__mv) $(DEPDIR)/cmp_tunwriter.Tpo $(DEPDIR)/cmp_tunwriter.Po
-#	$(AM_V_CC)source='cmp/cmp_tunwriter.c' object='cmp_tunwriter.obj' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o cmp_tunwriter.obj `if test -f 'cmp/cmp_tunwriter.c'; then $(CYGPATH_W) 'cmp/cmp_tunwriter.c'; else $(CYGPATH_W) '$(srcdir)/cmp/cmp_tunwriter.c'; fi`
 
 dmap_sel.o: dmap/dmap_sel.c
 	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT dmap_sel.o -MD -MP -MF $(DEPDIR)/dmap_sel.Tpo -c -o dmap_sel.o `test -f 'dmap/dmap_sel.c' || echo '$(srcdir)/'`dmap/dmap_sel.c

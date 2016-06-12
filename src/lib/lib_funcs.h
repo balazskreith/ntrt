@@ -19,13 +19,12 @@
 void	execute_cback(callback_t* cback);
 void*	execute_rcback(rcallback_t* cback);
 
-void datchain_add_item(datchain_t *chain, void *item);
-void datchain_rem_item(datchain_t *item);
+datchain_t* datchain_prepend(datchain_t *chain, ptr_t item);
+datchain_t* datchain_append(datchain_t *chain, ptr_t item);
+void datchain_foreach(datchain_t* chain, void (*process)(datchain_t*, ptr_t), ptr_t data);
 
-pathring_t* pathring_add(pathring_t** ring, path_t *path);
 void *eventer(eventer_arg_t *eventer_arg);
 
-command_t* cmdcat(command_t*, command_t*);
 void ptrmov(void **dst, void **src);
 
 #define get_array_item(ARRAYPTR, TYPE, ITEM_NUM) \

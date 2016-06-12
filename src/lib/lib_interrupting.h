@@ -2,6 +2,7 @@
 
 //if we want to use interrupting we must include a library called rt.
 //in that case we need to define the following macro:
+#define REALTIME_LIBRARY_NEEDED
 
 #ifdef REALTIME_LIBRARY_NEEDED
 #ifndef INCGUARD_LIB_INTERRUPTING_H_

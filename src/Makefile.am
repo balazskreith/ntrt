@@ -1,70 +1,44 @@
 AM_CPPFLAGS = -Iinc -Icmp -Idmap -Ifsm -Ilib -Isys -Ietc -std=gnu99
-LIBS = -lpthread -lm -lcrypto -lssl
+LIBS = -lpthread -lm -lcrypto -lssl -lpcap
 
 bin_PROGRAMS = $(top_builddir)/bin/ntrt
 __top_builddir__bin_ntrt_SOURCES =       \
 			  ntrt.c                    \
-			  cmp/cmp_cli.h             \
-			  cmp/cmp_cli.c             \
-			  cmp/cmp_cmdexetor.h       \
-			  cmp/cmp_cmdexetor.c       \
-			  cmp/cmp_conasr.h          \
-			  cmp/cmp_conasr.c          \
+			  cmp/cmp_sniffer.h         \
+			  cmp/cmp_sniffer.c         \
+			  cmp/cmp_evaluator.h       \
+			  cmp/cmp_evaluator.c       \
+			  cmp/cmp_recorder.h        \
+			  cmp/cmp_recorder.c        \
 			  cmp/cmp_defs.h            \
 			  cmp/cmp_defs.c            \
-			  cmp/cmp_handshaker.h      \
-			  cmp/cmp_handshaker.c      \
-			  cmp/cmp_precver.h         \
-			  cmp/cmp_precver.c         \
 			  cmp/cmp_predefs.h         \
 			  cmp/cmp_predefs.c         \
-			  cmp/cmp_psender.h         \
-			  cmp/cmp_psender.c         \
-			  cmp/cmp_pthsch.h          \
-			  cmp/cmp_pthsch.c          \
-			  cmp/cmp_screener.h        \
-			  cmp/cmp_screener.c        \
-			  cmp/cmp_tests.h           \
 			  cmp/cmp_tests.c           \
-			  cmp/cmp_tunreader.h       \
-			  cmp/cmp_tunreader.c       \
-			  cmp/cmp_tunwriter.h       \
-			  cmp/cmp_tunwriter.c       \
 			  dmap/dmap_defs.h          \
 			  dmap/dmap_predefs.h       \
 			  dmap/dmap_sel.h           \
 			  dmap/dmap_sel.c           \
 			  dmap/dmap.h               \
 			  dmap/dmap.c               \
-			  etc/etc_cli.def           \
-			  etc/etc_cli.h             \
-			  etc/etc_cli.c             \
 			  etc/etc_argtable2.h       \
 			  etc/etc_argtable2.c       \
-			  etc/etc_auth.h            \
-			  etc/etc_auth.c            \
 			  etc/etc_dict.h            \
 			  etc/etc_dict.c            \
 			  etc/etc_endian.h          \
 			  etc/etc_endian.c          \
 			  etc/etc_iniparser.h       \
 			  etc/etc_iniparser.c       \
-			  etc/etc_ipsearch.h        \
-			  etc/etc_ipsearch.c        \
 			  etc/etc_utils.h           \
 			  etc/etc_utils.c           \
 			  fsm/fsm_actions.h         \
 			  fsm/fsm_actions.c         \
 			  fsm/fsm_cmpactions.h      \
 			  fsm/fsm_cmpactions.c      \
-			  fsm/fsm_exist.h           \
-			  fsm/fsm_exist.c           \
 			  fsm/fsm_halt.h            \
 			  fsm/fsm_halt.c            \
 			  fsm/fsm_run.h             \
 			  fsm/fsm_run.c             \
-			  fsm/fsm_client.h          \
-			  fsm/fsm_client.c          \
               fsm/fsm.h                 \
               fsm/fsm.c                 \
               inc/inc_inet.h            \

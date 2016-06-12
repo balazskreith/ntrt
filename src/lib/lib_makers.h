@@ -71,73 +71,6 @@ rcallback_t* make_rcallback_pa(void* (*paction)(void *), void *aparam);
 	 \param cback Pointing to an callback an executor will call after it executed the command
 	 \return Returns a prepared command
   */
-command_t* make_command(char_t *desc, rcallback_t* action, callback_t* cback);
-
-
-/** \fn callback_t* make_command_sa(void(*action)())
-     \brief Make a command with a simple action
-     \param desc Pointing to a character string describes the command
-	 \param action Pointing to a void fn() an executor will call when executing this command
-	 \return Returns a prepared command
-  */
-command_t* make_command_sa(char_t *desc, void*(*action)());
-
-/** \fn callback_t* make_command_pa(void(*paction)(void*), void *aparam)
-     \brief Make a command with a parametirezed action
-     \param desc Pointing to a character string describes the command
-	 \param paction Pointing to a void fn(void*) function an executor will call when executing this command
-	 \param aparam Pointing to a void* type parameter an executor will pass to the called void fn(void*) function
-	 \return Returns a prepared command
-  */
-command_t* make_command_pa(char_t *desc, void*(*paction)(void*), void *aparam);
-
-/** \fn callback_t* make_command_sa_sc(void(*action)(), void (*callback)())
-     \brief Make a command with a simple action and a simple callback
-     \param desc Pointing to a character string describes the command
-	 \param Pointing to a void fn() function an executor will call when executing this command
-	 \param Pointing to a void fn() function an executor will call after it executed the command
-	 \return a prepared command
-  */
-command_t* make_command_sa_sc(char_t *desc, void*(*action)(), void (*callback)());
-
-/** \fn callback_t* make_command_sa_sc(void(*action)(void*), void *action_parameter)
-     \brief make a command with a simple action and a simple callback
-     \param desc Pointing to a character string describes the command
-	 \param pointing to a void fn() function an executor will call when executing this command
-	 \param pointing to a void fn() function an executor will call after it executed the command
-	 \return a prepared command
-  */
-command_t* make_command_pa_sc(char_t *desc, void*(*paction)(void*), void *aparam, void (*callback)());
-
-/** \fn callback_t* make_command_sa_sc(void(*action)(void*), void *action_parameter)
-     \brief make a command with simple action and parametrezied callback
-     \param desc Pointing to a character string describes the command
-	 \param action Pointing to a void fn() function an executor will call when executing this command
-	 \param cback Pointing to a void fn(void*) function an executor will call after it executed this command
-	 \param cparam Pointing to a void* type parameter an executor will pass to the called void fn(void*) function
-	 \return a prepared command
-  */
-command_t* make_command_sa_pc(char_t *desc, void*(*action)(), void (*cback)(void*), void *cparam);
-
-
-/** \fn callback_t* make_command_sa_sc(void(*action)(void*), void *action_parameter)
-     \brief make a command with a parameterized action and a parameterized callback
-     \param desc Pointing to a character string describes the command
-	 \param paction Pointing to a void fn(void*) function an executor will call when executing this command
-	 \param aparam Pointing to a void* type parameter an executor will pass to the called void fn(void*) function
-	 \param cback Pointing to a void fn(void*) function an executor will call after it executed this command
-	 \param cparam Pointing to a void* type parameter an executor will pass to the called void fn(void*) function
-	 \return a prepared command
-  */
-command_t* make_command_pa_pc(char_t *desc, void*(*action)(void*), void*, void (*callback)(void*), void *callback_parameter);
-
-
-/** \fn callback_t* make_packet(int32_t size)
-     \brief Make a packet
-	 \param size determining the size of the bytes the packet will contains.
-	 \return Returns a prepared packet
-  */
-packet_t* make_packet();
 
 /** \fn callback_t* make_string(char_t* characters)
      \brief make a string and copy the characters from the passed argument
@@ -156,9 +89,13 @@ thread_t *make_thread(void *(*method)(void*), void *arg);
 
 barrier_t *make_barrier(int32_t gatenum);
 
-
-request_t *make_request(byte_t command, byte_t status, byte_t *message, connection_t *connection, int32_t size);
-
 eventer_arg_t *make_eventer_arg(int32_t event, void *arg);
+
+feature_t* make_feature(const char_t* name,
+                        const char_t* identifier,
+                        uint32_t (*evaluator)(sniff_t*,ptr_t),
+                        ptr_t evaluator_data);
+
+datchain_t* make_datchain(ptr_t item);
 
 #endif //INCGUARD_NTRT_LIBRARY_MAKERS_H_

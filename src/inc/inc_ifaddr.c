@@ -24,8 +24,6 @@ array_t* get_machine_ip()
 
 	int32_t index = dmap_add_etc(item, free);
 	return index;
-	dmap_rem_etc_byindex(index);
-
 	set_array_item(result, 0, item);
 	return result;
 }

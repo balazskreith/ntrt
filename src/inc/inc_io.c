@@ -24,67 +24,6 @@ void sysio_print_stdout(const char *format,...)
 	va_end (args);
 }
 
-int32_t sysio_tunnel_start(tunnel_t *tun)
-{
-	char cmdbuf[256], ipstr[256];
-	//int mtu = 1452; // 1500-sizeof(IPv6+UDP header)
-	int mtu = NTRT_MTU_SIZE - 48; // 1500-sizeof(IPv6+UDP header)
-	int qlen = NTRT_MTU_SIZE, sockfd;
-	struct ifreq ifr;
-	int32_t result;
-	if ((result = open(tun->device, O_RDWR)) < 0){
-		EXERROR("Tunnel inteface opening error. ", errno);
-		return -1;
-	}
-
-	memset(&ifr, 0, sizeof(ifr));
-	ifr.ifr_flags = IFF_TUN | IFF_NO_PI;  // for tun (point-to-point) interface
-	strncpy(ifr.ifr_name, tun->if_name, IFNAMSIZ);
-	if (ioctl(result, TUNSETIFF, (void *) &ifr) < 0) {
-		/* Try old ioctl */
-		if (ioctl(result, OTUNSETIFF, (void *) &ifr) < 0) {
-			close(result);
-			EXERROR("Tunnel interface IOCTL error.", errno);
-			return -2;
-		}
-	}
-	sockfd = socket(PF_INET, SOCK_DGRAM, 0); // set the outgoing que length
-	if (sockfd > 0) {
-			strcpy(ifr.ifr_name, tun->if_name);
-			ifr.ifr_qlen = qlen;
-			if (ioctl(sockfd, SIOCSIFTXQLEN, &ifr) < 0) {
-				fprintf(stderr, "Tunnel interface qlen IOCTL error - %d.", errno);
-			}
-			close(sockfd);
-	}
-
-	if (tun->ip4len) {
-		inet_ntop(AF_INET, &tun->ip4, ipstr, 255);
-		sprintf(cmdbuf,"%s/mpt_tunnel_start.sh ipv4 %s %s/%d %d",
-			sysio->bash_dir, tun->if_name, ipstr, tun->ip4len, mtu);
-//printf("Cmd: %s\n", cmdbuf);
-		system(cmdbuf);
-	}
-
-	if (tun->ip6len ) {
-		inet_ntop(AF_INET6, &tun->ip6, ipstr, 255);
-		sprintf(cmdbuf,"%s/mpt_tunnel_start.sh ipv6 %s %s/%d %d",
-			sysio->bash_dir, tun->if_name, ipstr, tun->ip6len, mtu);
-//printf("Cmd: %s\n", cmdbuf);
-		system(cmdbuf);
-	}
-	return result;
-}
-
-void sysio_tunnel_stop(tunnel_t *tun)
-{
-	if(tun == NULL){
-		ERRORPRINT("The tunnel you want to close is not exists.");
-		return;
-	}
-	close(tun->fd);
-}
-
 
 int32_t sysio_bind_socket(int32_t port)
 {
