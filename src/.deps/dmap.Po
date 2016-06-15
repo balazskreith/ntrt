@@ -60,9 +60,10 @@ dmap.o: dmap/dmap.c /usr/include/stdc-predef.h dmap/dmap.h lib/lib_defs.h \
  /usr/include/x86_64-linux-gnu/bits/sigcontext.h \
  /usr/include/x86_64-linux-gnu/bits/sigstack.h \
  /usr/include/x86_64-linux-gnu/sys/ucontext.h \
- /usr/include/x86_64-linux-gnu/bits/sigthread.h lib/lib_threading.h \
- dmap/dmap_defs.h dmap/dmap_predefs.h lib/lib_tors.h lib/lib_descs.h \
- lib/lib_makers.h inc/inc_texts.h lib/lib_debuglog.h
+ /usr/include/x86_64-linux-gnu/bits/sigthread.h /usr/local/include/pcap.h \
+ /usr/local/include/pcap/pcap.h /usr/local/include/pcap/bpf.h \
+ lib/lib_threading.h dmap/dmap_defs.h dmap/dmap_predefs.h lib/lib_tors.h \
+ lib/lib_descs.h lib/lib_makers.h inc/inc_texts.h lib/lib_debuglog.h
 
 /usr/include/stdc-predef.h:
 
@@ -239,6 +240,12 @@ lib/../inc/inc_predefs.h:
 /usr/include/x86_64-linux-gnu/sys/ucontext.h:
 
 /usr/include/x86_64-linux-gnu/bits/sigthread.h:
+
+/usr/local/include/pcap.h:
+
+/usr/local/include/pcap/pcap.h:
+
+/usr/local/include/pcap/bpf.h:
 
 lib/lib_threading.h:
 

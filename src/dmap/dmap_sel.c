@@ -24,7 +24,7 @@ feature_t* dmap_get_feature_by_identifier(char_t* identifier)
 {
     int32_t    index;
     feature_t* result = NULL;
-    for(index = 0; dmap_itr_table_feature(&index, &result) == BOOL_TRUE; ++index){
+    for(index = 0; dmap_itr_table_features(&index, &result) == BOOL_TRUE; ++index){
         if(strcmp(identifier, result->identifier) != 0){
           continue;
         }

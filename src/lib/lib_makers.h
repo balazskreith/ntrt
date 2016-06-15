@@ -93,9 +93,10 @@ eventer_arg_t *make_eventer_arg(int32_t event, void *arg);
 
 feature_t* make_feature(const char_t* name,
                         const char_t* identifier,
-                        uint32_t (*evaluator)(sniff_t*,ptr_t),
-                        ptr_t evaluator_data);
+                        uint32_t (*evaluator)(sniff_t*,evaluator_container_t*));
 
 datchain_t* make_datchain(ptr_t item);
+
+evaluator_item_t* make_evaluator_item(feature_t* feature, evaluator_container_t* evaluator_container);
 
 #endif //INCGUARD_NTRT_LIBRARY_MAKERS_H_

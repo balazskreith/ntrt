@@ -59,11 +59,8 @@ datchain_t* datchain_append(datchain_t *chain, ptr_t item)
   if(!chain){
     return tail;
   }
-  for(head = chain; chain; chain = chain->next){
-    tail->prev = chain;
-    chain = chain->next;
-  }
-  tail->prev->next = tail;
+  for(tail = head = chain; tail->next; tail = tail->next);
+  tail->next = item;
   return head;
 }
 

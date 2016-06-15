@@ -92,31 +92,28 @@ CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
 am__installdirs = "$(DESTDIR)$(bindir)"
 PROGRAMS = $(bin_PROGRAMS)
-am___top_builddir__bin_ntrt_OBJECTS = ntrt.$(OBJEXT) cmp_cli.$(OBJEXT) \
-	cmp_cmdexetor.$(OBJEXT) cmp_conasr.$(OBJEXT) \
-	cmp_defs.$(OBJEXT) cmp_handshaker.$(OBJEXT) \
-	cmp_pcapreader.$(OBJEXT) cmp_precver.$(OBJEXT) \
-	cmp_predefs.$(OBJEXT) cmp_psender.$(OBJEXT) \
-	cmp_pthsch.$(OBJEXT) cmp_screener.$(OBJEXT) \
-	cmp_tests.$(OBJEXT) dmap_sel.$(OBJEXT) dmap.$(OBJEXT) \
-	etc_cli.$(OBJEXT) etc_argtable2.$(OBJEXT) etc_auth.$(OBJEXT) \
-	etc_dict.$(OBJEXT) etc_endian.$(OBJEXT) \
-	etc_iniparser.$(OBJEXT) etc_ipsearch.$(OBJEXT) \
-	etc_utils.$(OBJEXT) fsm_actions.$(OBJEXT) \
-	fsm_cmpactions.$(OBJEXT) fsm_exist.$(OBJEXT) \
-	fsm_halt.$(OBJEXT) fsm_run.$(OBJEXT) fsm_client.$(OBJEXT) \
-	fsm.$(OBJEXT) inc_io.$(OBJEXT) inc_mtime.$(OBJEXT) \
-	inc_opcall.$(OBJEXT) lib_debuglog.$(OBJEXT) \
-	lib_dispers.$(OBJEXT) lib_funcs.$(OBJEXT) lib_heap.$(OBJEXT) \
-	lib_interrupting.$(OBJEXT) lib_makers.$(OBJEXT) \
-	lib_predefs.$(OBJEXT) lib_puffers.$(OBJEXT) \
-	lib_threading.$(OBJEXT) lib_tors.$(OBJEXT) \
-	lib_vector.$(OBJEXT) sys_confs.$(OBJEXT) sys_ctrls.$(OBJEXT) \
-	sys_prints.$(OBJEXT)
+am__dirstamp = $(am__leading_dot)dirstamp
+am___top_builddir__bin_ntrt_OBJECTS = ntrt.$(OBJEXT) \
+	cmp/cmp_sniffer.$(OBJEXT) cmp/cmp_evaluator.$(OBJEXT) \
+	cmp/cmp_recorder.$(OBJEXT) cmp/cmp_defs.$(OBJEXT) \
+	cmp/cmp_predefs.$(OBJEXT) cmp/cmp_tests.$(OBJEXT) \
+	dmap/dmap_sel.$(OBJEXT) dmap/dmap.$(OBJEXT) \
+	etc/etc_argtable2.$(OBJEXT) etc/etc_dict.$(OBJEXT) \
+	etc/etc_endian.$(OBJEXT) etc/etc_iniparser.$(OBJEXT) \
+	etc/etc_sniffex.$(OBJEXT) etc/etc_utils.$(OBJEXT) \
+	fsm/fsm_actions.$(OBJEXT) fsm/fsm_cmpactions.$(OBJEXT) \
+	fsm/fsm_halt.$(OBJEXT) fsm/fsm_run.$(OBJEXT) fsm/fsm.$(OBJEXT) \
+	inc/inc_io.$(OBJEXT) inc/inc_mtime.$(OBJEXT) \
+	inc/inc_opcall.$(OBJEXT) lib/lib_debuglog.$(OBJEXT) \
+	lib/lib_dispers.$(OBJEXT) lib/lib_features.$(OBJEXT) \
+	lib/lib_funcs.$(OBJEXT) lib/lib_heap.$(OBJEXT) \
+	lib/lib_interrupting.$(OBJEXT) lib/lib_makers.$(OBJEXT) \
+	lib/lib_predefs.$(OBJEXT) lib/lib_puffers.$(OBJEXT) \
+	lib/lib_threading.$(OBJEXT) lib/lib_tors.$(OBJEXT) \
+	lib/lib_vector.$(OBJEXT) sys/sys_confs.$(OBJEXT)
 __top_builddir__bin_ntrt_OBJECTS =  \
 	$(am___top_builddir__bin_ntrt_OBJECTS)
 __top_builddir__bin_ntrt_LDADD = $(LDADD)
-am__dirstamp = $(am__leading_dot)dirstamp
 AM_V_P = $(am__v_P_$(V))
 am__v_P_ = $(am__v_P_$(AM_DEFAULT_VERBOSITY))
 am__v_P_0 = false
@@ -133,10 +130,6 @@ DEFAULT_INCLUDES = -I.
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__depfiles_maybe = depfiles
 am__mv = mv -f
-AM_V_lt = $(am__v_lt_$(V))
-am__v_lt_ = $(am__v_lt_$(AM_DEFAULT_VERBOSITY))
-am__v_lt_0 = --silent
-am__v_lt_1 = 
 COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
 	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
 AM_V_CC = $(am__v_CC_$(V))
@@ -201,7 +194,7 @@ INSTALL_SCRIPT = ${INSTALL}
 INSTALL_STRIP_PROGRAM = $(install_sh) -c -s
 LDFLAGS = 
 LIBOBJS = 
-LIBS = -lpthread -lm -lcrypto -lssl
+LIBS = -lpthread -lm -lcrypto -lssl -lpcap -lrt
 LTLIBOBJS = 
 MAKEINFO = ${SHELL} /home/balazs/gst/master/ntrt/missing makeinfo
 MKDIR_P = /bin/mkdir -p
@@ -275,29 +268,16 @@ top_srcdir = ..
 AM_CPPFLAGS = -Iinc -Icmp -Idmap -Ifsm -Ilib -Isys -Ietc -std=gnu99
 __top_builddir__bin_ntrt_SOURCES = \
 			  ntrt.c                    \
-			  cmp/cmp_cli.h             \
-			  cmp/cmp_cli.c             \
-			  cmp/cmp_cmdexetor.h       \
-			  cmp/cmp_cmdexetor.c       \
-			  cmp/cmp_conasr.h          \
-			  cmp/cmp_conasr.c          \
+			  cmp/cmp_sniffer.h         \
+			  cmp/cmp_sniffer.c         \
+			  cmp/cmp_evaluator.h       \
+			  cmp/cmp_evaluator.c       \
+			  cmp/cmp_recorder.h        \
+			  cmp/cmp_recorder.c        \
 			  cmp/cmp_defs.h            \
 			  cmp/cmp_defs.c            \
-			  cmp/cmp_handshaker.h      \
-			  cmp/cmp_handshaker.c      \
-			  cmp/cmp_pcapreader.h      \
-			  cmp/cmp_pcapreader.c      \
-			  cmp/cmp_precver.h         \
-			  cmp/cmp_precver.c         \
 			  cmp/cmp_predefs.h         \
 			  cmp/cmp_predefs.c         \
-			  cmp/cmp_psender.h         \
-			  cmp/cmp_psender.c         \
-			  cmp/cmp_pthsch.h          \
-			  cmp/cmp_pthsch.c          \
-			  cmp/cmp_screener.h        \
-			  cmp/cmp_screener.c        \
-			  cmp/cmp_tests.h           \
 			  cmp/cmp_tests.c           \
 			  dmap/dmap_defs.h          \
 			  dmap/dmap_predefs.h       \
@@ -305,35 +285,26 @@ __top_builddir__bin_ntrt_SOURCES = \
 			  dmap/dmap_sel.c           \
 			  dmap/dmap.h               \
 			  dmap/dmap.c               \
-			  etc/etc_cli.def           \
-			  etc/etc_cli.h             \
-			  etc/etc_cli.c             \
 			  etc/etc_argtable2.h       \
 			  etc/etc_argtable2.c       \
-			  etc/etc_auth.h            \
-			  etc/etc_auth.c            \
 			  etc/etc_dict.h            \
 			  etc/etc_dict.c            \
 			  etc/etc_endian.h          \
 			  etc/etc_endian.c          \
 			  etc/etc_iniparser.h       \
 			  etc/etc_iniparser.c       \
-			  etc/etc_ipsearch.h        \
-			  etc/etc_ipsearch.c        \
+  			  etc/etc_sniffex.h         \
+			  etc/etc_sniffex.c         \
 			  etc/etc_utils.h           \
 			  etc/etc_utils.c           \
 			  fsm/fsm_actions.h         \
 			  fsm/fsm_actions.c         \
 			  fsm/fsm_cmpactions.h      \
 			  fsm/fsm_cmpactions.c      \
-			  fsm/fsm_exist.h           \
-			  fsm/fsm_exist.c           \
 			  fsm/fsm_halt.h            \
 			  fsm/fsm_halt.c            \
 			  fsm/fsm_run.h             \
 			  fsm/fsm_run.c             \
-			  fsm/fsm_client.h          \
-			  fsm/fsm_client.c          \
               fsm/fsm.h                 \
               fsm/fsm.c                 \
               inc/inc_inet.h            \
@@ -353,6 +324,8 @@ __top_builddir__bin_ntrt_SOURCES = \
               lib/lib_defs.h            \
               lib/lib_dispers.h         \
               lib/lib_dispers.c         \
+              lib/lib_features.c        \
+              lib/lib_features.h        \
               lib/lib_funcs.h           \
               lib/lib_funcs.c           \
               lib/lib_heap.h            \
@@ -373,11 +346,7 @@ __top_builddir__bin_ntrt_SOURCES = \
               lib/lib_vector.c          \
               sys/sys_confs.h           \
               sys/sys_confs.c           \
-              sys/sys_ctrls.h           \
-              sys/sys_ctrls.c           \
-              sys/sys_predefs.h         \
-              sys/sys_prints.h          \
-              sys/sys_prints.c 
+              sys/sys_predefs.h         
 
 all: all-am
 
@@ -455,6 +424,117 @@ uninstall-binPROGRAMS:
 
 clean-binPROGRAMS:
 	-test -z "$(bin_PROGRAMS)" || rm -f $(bin_PROGRAMS)
+cmp/$(am__dirstamp):
+	@$(MKDIR_P) cmp
+	@: > cmp/$(am__dirstamp)
+cmp/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) cmp/$(DEPDIR)
+	@: > cmp/$(DEPDIR)/$(am__dirstamp)
+cmp/cmp_sniffer.$(OBJEXT): cmp/$(am__dirstamp) \
+	cmp/$(DEPDIR)/$(am__dirstamp)
+cmp/cmp_evaluator.$(OBJEXT): cmp/$(am__dirstamp) \
+	cmp/$(DEPDIR)/$(am__dirstamp)
+cmp/cmp_recorder.$(OBJEXT): cmp/$(am__dirstamp) \
+	cmp/$(DEPDIR)/$(am__dirstamp)
+cmp/cmp_defs.$(OBJEXT): cmp/$(am__dirstamp) \
+	cmp/$(DEPDIR)/$(am__dirstamp)
+cmp/cmp_predefs.$(OBJEXT): cmp/$(am__dirstamp) \
+	cmp/$(DEPDIR)/$(am__dirstamp)
+cmp/cmp_tests.$(OBJEXT): cmp/$(am__dirstamp) \
+	cmp/$(DEPDIR)/$(am__dirstamp)
+dmap/$(am__dirstamp):
+	@$(MKDIR_P) dmap
+	@: > dmap/$(am__dirstamp)
+dmap/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) dmap/$(DEPDIR)
+	@: > dmap/$(DEPDIR)/$(am__dirstamp)
+dmap/dmap_sel.$(OBJEXT): dmap/$(am__dirstamp) \
+	dmap/$(DEPDIR)/$(am__dirstamp)
+dmap/dmap.$(OBJEXT): dmap/$(am__dirstamp) \
+	dmap/$(DEPDIR)/$(am__dirstamp)
+etc/$(am__dirstamp):
+	@$(MKDIR_P) etc
+	@: > etc/$(am__dirstamp)
+etc/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) etc/$(DEPDIR)
+	@: > etc/$(DEPDIR)/$(am__dirstamp)
+etc/etc_argtable2.$(OBJEXT): etc/$(am__dirstamp) \
+	etc/$(DEPDIR)/$(am__dirstamp)
+etc/etc_dict.$(OBJEXT): etc/$(am__dirstamp) \
+	etc/$(DEPDIR)/$(am__dirstamp)
+etc/etc_endian.$(OBJEXT): etc/$(am__dirstamp) \
+	etc/$(DEPDIR)/$(am__dirstamp)
+etc/etc_iniparser.$(OBJEXT): etc/$(am__dirstamp) \
+	etc/$(DEPDIR)/$(am__dirstamp)
+etc/etc_sniffex.$(OBJEXT): etc/$(am__dirstamp) \
+	etc/$(DEPDIR)/$(am__dirstamp)
+etc/etc_utils.$(OBJEXT): etc/$(am__dirstamp) \
+	etc/$(DEPDIR)/$(am__dirstamp)
+fsm/$(am__dirstamp):
+	@$(MKDIR_P) fsm
+	@: > fsm/$(am__dirstamp)
+fsm/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) fsm/$(DEPDIR)
+	@: > fsm/$(DEPDIR)/$(am__dirstamp)
+fsm/fsm_actions.$(OBJEXT): fsm/$(am__dirstamp) \
+	fsm/$(DEPDIR)/$(am__dirstamp)
+fsm/fsm_cmpactions.$(OBJEXT): fsm/$(am__dirstamp) \
+	fsm/$(DEPDIR)/$(am__dirstamp)
+fsm/fsm_halt.$(OBJEXT): fsm/$(am__dirstamp) \
+	fsm/$(DEPDIR)/$(am__dirstamp)
+fsm/fsm_run.$(OBJEXT): fsm/$(am__dirstamp) \
+	fsm/$(DEPDIR)/$(am__dirstamp)
+fsm/fsm.$(OBJEXT): fsm/$(am__dirstamp) fsm/$(DEPDIR)/$(am__dirstamp)
+inc/$(am__dirstamp):
+	@$(MKDIR_P) inc
+	@: > inc/$(am__dirstamp)
+inc/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) inc/$(DEPDIR)
+	@: > inc/$(DEPDIR)/$(am__dirstamp)
+inc/inc_io.$(OBJEXT): inc/$(am__dirstamp) \
+	inc/$(DEPDIR)/$(am__dirstamp)
+inc/inc_mtime.$(OBJEXT): inc/$(am__dirstamp) \
+	inc/$(DEPDIR)/$(am__dirstamp)
+inc/inc_opcall.$(OBJEXT): inc/$(am__dirstamp) \
+	inc/$(DEPDIR)/$(am__dirstamp)
+lib/$(am__dirstamp):
+	@$(MKDIR_P) lib
+	@: > lib/$(am__dirstamp)
+lib/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) lib/$(DEPDIR)
+	@: > lib/$(DEPDIR)/$(am__dirstamp)
+lib/lib_debuglog.$(OBJEXT): lib/$(am__dirstamp) \
+	lib/$(DEPDIR)/$(am__dirstamp)
+lib/lib_dispers.$(OBJEXT): lib/$(am__dirstamp) \
+	lib/$(DEPDIR)/$(am__dirstamp)
+lib/lib_features.$(OBJEXT): lib/$(am__dirstamp) \
+	lib/$(DEPDIR)/$(am__dirstamp)
+lib/lib_funcs.$(OBJEXT): lib/$(am__dirstamp) \
+	lib/$(DEPDIR)/$(am__dirstamp)
+lib/lib_heap.$(OBJEXT): lib/$(am__dirstamp) \
+	lib/$(DEPDIR)/$(am__dirstamp)
+lib/lib_interrupting.$(OBJEXT): lib/$(am__dirstamp) \
+	lib/$(DEPDIR)/$(am__dirstamp)
+lib/lib_makers.$(OBJEXT): lib/$(am__dirstamp) \
+	lib/$(DEPDIR)/$(am__dirstamp)
+lib/lib_predefs.$(OBJEXT): lib/$(am__dirstamp) \
+	lib/$(DEPDIR)/$(am__dirstamp)
+lib/lib_puffers.$(OBJEXT): lib/$(am__dirstamp) \
+	lib/$(DEPDIR)/$(am__dirstamp)
+lib/lib_threading.$(OBJEXT): lib/$(am__dirstamp) \
+	lib/$(DEPDIR)/$(am__dirstamp)
+lib/lib_tors.$(OBJEXT): lib/$(am__dirstamp) \
+	lib/$(DEPDIR)/$(am__dirstamp)
+lib/lib_vector.$(OBJEXT): lib/$(am__dirstamp) \
+	lib/$(DEPDIR)/$(am__dirstamp)
+sys/$(am__dirstamp):
+	@$(MKDIR_P) sys
+	@: > sys/$(am__dirstamp)
+sys/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) sys/$(DEPDIR)
+	@: > sys/$(DEPDIR)/$(am__dirstamp)
+sys/sys_confs.$(OBJEXT): sys/$(am__dirstamp) \
+	sys/$(DEPDIR)/$(am__dirstamp)
 $(top_builddir)/bin/$(am__dirstamp):
 	@$(MKDIR_P) $(top_builddir)/bin
 	@: > $(top_builddir)/bin/$(am__dirstamp)
@@ -465,715 +545,69 @@ $(top_builddir)/bin/ntrt$(EXEEXT): $(__top_builddir__bin_ntrt_OBJECTS) $(__top_b
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
+	-rm -f cmp/*.$(OBJEXT)
+	-rm -f dmap/*.$(OBJEXT)
+	-rm -f etc/*.$(OBJEXT)
+	-rm -f fsm/*.$(OBJEXT)
+	-rm -f inc/*.$(OBJEXT)
+	-rm -f lib/*.$(OBJEXT)
+	-rm -f sys/*.$(OBJEXT)
 
 distclean-compile:
 	-rm -f *.tab.c
 
-include ./$(DEPDIR)/cmp_cli.Po
-include ./$(DEPDIR)/cmp_cmdexetor.Po
-include ./$(DEPDIR)/cmp_conasr.Po
-include ./$(DEPDIR)/cmp_defs.Po
-include ./$(DEPDIR)/cmp_handshaker.Po
-include ./$(DEPDIR)/cmp_pcapreader.Po
-include ./$(DEPDIR)/cmp_precver.Po
-include ./$(DEPDIR)/cmp_predefs.Po
-include ./$(DEPDIR)/cmp_psender.Po
-include ./$(DEPDIR)/cmp_pthsch.Po
-include ./$(DEPDIR)/cmp_screener.Po
-include ./$(DEPDIR)/cmp_tests.Po
-include ./$(DEPDIR)/dmap.Po
-include ./$(DEPDIR)/dmap_sel.Po
-include ./$(DEPDIR)/etc_argtable2.Po
-include ./$(DEPDIR)/etc_auth.Po
-include ./$(DEPDIR)/etc_cli.Po
-include ./$(DEPDIR)/etc_dict.Po
-include ./$(DEPDIR)/etc_endian.Po
-include ./$(DEPDIR)/etc_iniparser.Po
-include ./$(DEPDIR)/etc_ipsearch.Po
-include ./$(DEPDIR)/etc_utils.Po
-include ./$(DEPDIR)/fsm.Po
-include ./$(DEPDIR)/fsm_actions.Po
-include ./$(DEPDIR)/fsm_client.Po
-include ./$(DEPDIR)/fsm_cmpactions.Po
-include ./$(DEPDIR)/fsm_exist.Po
-include ./$(DEPDIR)/fsm_halt.Po
-include ./$(DEPDIR)/fsm_run.Po
-include ./$(DEPDIR)/inc_io.Po
-include ./$(DEPDIR)/inc_mtime.Po
-include ./$(DEPDIR)/inc_opcall.Po
-include ./$(DEPDIR)/lib_debuglog.Po
-include ./$(DEPDIR)/lib_dispers.Po
-include ./$(DEPDIR)/lib_funcs.Po
-include ./$(DEPDIR)/lib_heap.Po
-include ./$(DEPDIR)/lib_interrupting.Po
-include ./$(DEPDIR)/lib_makers.Po
-include ./$(DEPDIR)/lib_predefs.Po
-include ./$(DEPDIR)/lib_puffers.Po
-include ./$(DEPDIR)/lib_threading.Po
-include ./$(DEPDIR)/lib_tors.Po
-include ./$(DEPDIR)/lib_vector.Po
 include ./$(DEPDIR)/ntrt.Po
-include ./$(DEPDIR)/sys_confs.Po
-include ./$(DEPDIR)/sys_ctrls.Po
-include ./$(DEPDIR)/sys_prints.Po
+include cmp/$(DEPDIR)/cmp_defs.Po
+include cmp/$(DEPDIR)/cmp_evaluator.Po
+include cmp/$(DEPDIR)/cmp_predefs.Po
+include cmp/$(DEPDIR)/cmp_recorder.Po
+include cmp/$(DEPDIR)/cmp_sniffer.Po
+include cmp/$(DEPDIR)/cmp_tests.Po
+include dmap/$(DEPDIR)/dmap.Po
+include dmap/$(DEPDIR)/dmap_sel.Po
+include etc/$(DEPDIR)/etc_argtable2.Po
+include etc/$(DEPDIR)/etc_dict.Po
+include etc/$(DEPDIR)/etc_endian.Po
+include etc/$(DEPDIR)/etc_iniparser.Po
+include etc/$(DEPDIR)/etc_sniffex.Po
+include etc/$(DEPDIR)/etc_utils.Po
+include fsm/$(DEPDIR)/fsm.Po
+include fsm/$(DEPDIR)/fsm_actions.Po
+include fsm/$(DEPDIR)/fsm_cmpactions.Po
+include fsm/$(DEPDIR)/fsm_halt.Po
+include fsm/$(DEPDIR)/fsm_run.Po
+include inc/$(DEPDIR)/inc_io.Po
+include inc/$(DEPDIR)/inc_mtime.Po
+include inc/$(DEPDIR)/inc_opcall.Po
+include lib/$(DEPDIR)/lib_debuglog.Po
+include lib/$(DEPDIR)/lib_dispers.Po
+include lib/$(DEPDIR)/lib_features.Po
+include lib/$(DEPDIR)/lib_funcs.Po
+include lib/$(DEPDIR)/lib_heap.Po
+include lib/$(DEPDIR)/lib_interrupting.Po
+include lib/$(DEPDIR)/lib_makers.Po
+include lib/$(DEPDIR)/lib_predefs.Po
+include lib/$(DEPDIR)/lib_puffers.Po
+include lib/$(DEPDIR)/lib_threading.Po
+include lib/$(DEPDIR)/lib_tors.Po
+include lib/$(DEPDIR)/lib_vector.Po
+include sys/$(DEPDIR)/sys_confs.Po
 
 .c.o:
-	$(AM_V_CC)$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
-	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+	$(AM_V_CC)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.o$$||'`;\
+	$(COMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
+	$(am__mv) $$depbase.Tpo $$depbase.Po
 #	$(AM_V_CC)source='$<' object='$@' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
 #	$(AM_V_CC_no)$(COMPILE) -c -o $@ $<
 
 .c.obj:
-	$(AM_V_CC)$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ `$(CYGPATH_W) '$<'`
-	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+	$(AM_V_CC)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.obj$$||'`;\
+	$(COMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ `$(CYGPATH_W) '$<'` &&\
+	$(am__mv) $$depbase.Tpo $$depbase.Po
 #	$(AM_V_CC)source='$<' object='$@' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
 #	$(AM_V_CC_no)$(COMPILE) -c -o $@ `$(CYGPATH_W) '$<'`
-
-cmp_cli.o: cmp/cmp_cli.c
-	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT cmp_cli.o -MD -MP -MF $(DEPDIR)/cmp_cli.Tpo -c -o cmp_cli.o `test -f 'cmp/cmp_cli.c' || echo '$(srcdir)/'`cmp/cmp_cli.c
-	$(AM_V_at)$(am__mv) $(DEPDIR)/cmp_cli.Tpo $(DEPDIR)/cmp_cli.Po
-#	$(AM_V_CC)source='cmp/cmp_cli.c' object='cmp_cli.o' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o cmp_cli.o `test -f 'cmp/cmp_cli.c' || echo '$(srcdir)/'`cmp/cmp_cli.c
-
-cmp_cli.obj: cmp/cmp_cli.c
-	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT cmp_cli.obj -MD -MP -MF $(DEPDIR)/cmp_cli.Tpo -c -o cmp_cli.obj `if test -f 'cmp/cmp_cli.c'; then $(CYGPATH_W) 'cmp/cmp_cli.c'; else $(CYGPATH_W) '$(srcdir)/cmp/cmp_cli.c'; fi`
-	$(AM_V_at)$(am__mv) $(DEPDIR)/cmp_cli.Tpo $(DEPDIR)/cmp_cli.Po
-#	$(AM_V_CC)source='cmp/cmp_cli.c' object='cmp_cli.obj' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o cmp_cli.obj `if test -f 'cmp/cmp_cli.c'; then $(CYGPATH_W) 'cmp/cmp_cli.c'; else $(CYGPATH_W) '$(srcdir)/cmp/cmp_cli.c'; fi`
-
-cmp_cmdexetor.o: cmp/cmp_cmdexetor.c
-	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT cmp_cmdexetor.o -MD -MP -MF $(DEPDIR)/cmp_cmdexetor.Tpo -c -o cmp_cmdexetor.o `test -f 'cmp/cmp_cmdexetor.c' || echo '$(srcdir)/'`cmp/cmp_cmdexetor.c
-	$(AM_V_at)$(am__mv) $(DEPDIR)/cmp_cmdexetor.Tpo $(DEPDIR)/cmp_cmdexetor.Po
-#	$(AM_V_CC)source='cmp/cmp_cmdexetor.c' object='cmp_cmdexetor.o' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o cmp_cmdexetor.o `test -f 'cmp/cmp_cmdexetor.c' || echo '$(srcdir)/'`cmp/cmp_cmdexetor.c
-
-cmp_cmdexetor.obj: cmp/cmp_cmdexetor.c
-	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT cmp_cmdexetor.obj -MD -MP -MF $(DEPDIR)/cmp_cmdexetor.Tpo -c -o cmp_cmdexetor.obj `if test -f 'cmp/cmp_cmdexetor.c'; then $(CYGPATH_W) 'cmp/cmp_cmdexetor.c'; else $(CYGPATH_W) '$(srcdir)/cmp/cmp_cmdexetor.c'; fi`
-	$(AM_V_at)$(am__mv) $(DEPDIR)/cmp_cmdexetor.Tpo $(DEPDIR)/cmp_cmdexetor.Po
-#	$(AM_V_CC)source='cmp/cmp_cmdexetor.c' object='cmp_cmdexetor.obj' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o cmp_cmdexetor.obj `if test -f 'cmp/cmp_cmdexetor.c'; then $(CYGPATH_W) 'cmp/cmp_cmdexetor.c'; else $(CYGPATH_W) '$(srcdir)/cmp/cmp_cmdexetor.c'; fi`
-
-cmp_conasr.o: cmp/cmp_conasr.c
-	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT cmp_conasr.o -MD -MP -MF $(DEPDIR)/cmp_conasr.Tpo -c -o cmp_conasr.o `test -f 'cmp/cmp_conasr.c' || echo '$(srcdir)/'`cmp/cmp_conasr.c
-	$(AM_V_at)$(am__mv) $(DEPDIR)/cmp_conasr.Tpo $(DEPDIR)/cmp_conasr.Po
-#	$(AM_V_CC)source='cmp/cmp_conasr.c' object='cmp_conasr.o' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o cmp_conasr.o `test -f 'cmp/cmp_conasr.c' || echo '$(srcdir)/'`cmp/cmp_conasr.c
-
-cmp_conasr.obj: cmp/cmp_conasr.c
-	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT cmp_conasr.obj -MD -MP -MF $(DEPDIR)/cmp_conasr.Tpo -c -o cmp_conasr.obj `if test -f 'cmp/cmp_conasr.c'; then $(CYGPATH_W) 'cmp/cmp_conasr.c'; else $(CYGPATH_W) '$(srcdir)/cmp/cmp_conasr.c'; fi`
-	$(AM_V_at)$(am__mv) $(DEPDIR)/cmp_conasr.Tpo $(DEPDIR)/cmp_conasr.Po
-#	$(AM_V_CC)source='cmp/cmp_conasr.c' object='cmp_conasr.obj' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o cmp_conasr.obj `if test -f 'cmp/cmp_conasr.c'; then $(CYGPATH_W) 'cmp/cmp_conasr.c'; else $(CYGPATH_W) '$(srcdir)/cmp/cmp_conasr.c'; fi`
-
-cmp_defs.o: cmp/cmp_defs.c
-	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT cmp_defs.o -MD -MP -MF $(DEPDIR)/cmp_defs.Tpo -c -o cmp_defs.o `test -f 'cmp/cmp_defs.c' || echo '$(srcdir)/'`cmp/cmp_defs.c
-	$(AM_V_at)$(am__mv) $(DEPDIR)/cmp_defs.Tpo $(DEPDIR)/cmp_defs.Po
-#	$(AM_V_CC)source='cmp/cmp_defs.c' object='cmp_defs.o' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o cmp_defs.o `test -f 'cmp/cmp_defs.c' || echo '$(srcdir)/'`cmp/cmp_defs.c
-
-cmp_defs.obj: cmp/cmp_defs.c
-	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT cmp_defs.obj -MD -MP -MF $(DEPDIR)/cmp_defs.Tpo -c -o cmp_defs.obj `if test -f 'cmp/cmp_defs.c'; then $(CYGPATH_W) 'cmp/cmp_defs.c'; else $(CYGPATH_W) '$(srcdir)/cmp/cmp_defs.c'; fi`
-	$(AM_V_at)$(am__mv) $(DEPDIR)/cmp_defs.Tpo $(DEPDIR)/cmp_defs.Po
-#	$(AM_V_CC)source='cmp/cmp_defs.c' object='cmp_defs.obj' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o cmp_defs.obj `if test -f 'cmp/cmp_defs.c'; then $(CYGPATH_W) 'cmp/cmp_defs.c'; else $(CYGPATH_W) '$(srcdir)/cmp/cmp_defs.c'; fi`
-
-cmp_handshaker.o: cmp/cmp_handshaker.c
-	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT cmp_handshaker.o -MD -MP -MF $(DEPDIR)/cmp_handshaker.Tpo -c -o cmp_handshaker.o `test -f 'cmp/cmp_handshaker.c' || echo '$(srcdir)/'`cmp/cmp_handshaker.c
-	$(AM_V_at)$(am__mv) $(DEPDIR)/cmp_handshaker.Tpo $(DEPDIR)/cmp_handshaker.Po
-#	$(AM_V_CC)source='cmp/cmp_handshaker.c' object='cmp_handshaker.o' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o cmp_handshaker.o `test -f 'cmp/cmp_handshaker.c' || echo '$(srcdir)/'`cmp/cmp_handshaker.c
-
-cmp_handshaker.obj: cmp/cmp_handshaker.c
-	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT cmp_handshaker.obj -MD -MP -MF $(DEPDIR)/cmp_handshaker.Tpo -c -o cmp_handshaker.obj `if test -f 'cmp/cmp_handshaker.c'; then $(CYGPATH_W) 'cmp/cmp_handshaker.c'; else $(CYGPATH_W) '$(srcdir)/cmp/cmp_handshaker.c'; fi`
-	$(AM_V_at)$(am__mv) $(DEPDIR)/cmp_handshaker.Tpo $(DEPDIR)/cmp_handshaker.Po
-#	$(AM_V_CC)source='cmp/cmp_handshaker.c' object='cmp_handshaker.obj' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o cmp_handshaker.obj `if test -f 'cmp/cmp_handshaker.c'; then $(CYGPATH_W) 'cmp/cmp_handshaker.c'; else $(CYGPATH_W) '$(srcdir)/cmp/cmp_handshaker.c'; fi`
-
-cmp_pcapreader.o: cmp/cmp_pcapreader.c
-	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT cmp_pcapreader.o -MD -MP -MF $(DEPDIR)/cmp_pcapreader.Tpo -c -o cmp_pcapreader.o `test -f 'cmp/cmp_pcapreader.c' || echo '$(srcdir)/'`cmp/cmp_pcapreader.c
-	$(AM_V_at)$(am__mv) $(DEPDIR)/cmp_pcapreader.Tpo $(DEPDIR)/cmp_pcapreader.Po
-#	$(AM_V_CC)source='cmp/cmp_pcapreader.c' object='cmp_pcapreader.o' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o cmp_pcapreader.o `test -f 'cmp/cmp_pcapreader.c' || echo '$(srcdir)/'`cmp/cmp_pcapreader.c
-
-cmp_pcapreader.obj: cmp/cmp_pcapreader.c
-	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT cmp_pcapreader.obj -MD -MP -MF $(DEPDIR)/cmp_pcapreader.Tpo -c -o cmp_pcapreader.obj `if test -f 'cmp/cmp_pcapreader.c'; then $(CYGPATH_W) 'cmp/cmp_pcapreader.c'; else $(CYGPATH_W) '$(srcdir)/cmp/cmp_pcapreader.c'; fi`
-	$(AM_V_at)$(am__mv) $(DEPDIR)/cmp_pcapreader.Tpo $(DEPDIR)/cmp_pcapreader.Po
-#	$(AM_V_CC)source='cmp/cmp_pcapreader.c' object='cmp_pcapreader.obj' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o cmp_pcapreader.obj `if test -f 'cmp/cmp_pcapreader.c'; then $(CYGPATH_W) 'cmp/cmp_pcapreader.c'; else $(CYGPATH_W) '$(srcdir)/cmp/cmp_pcapreader.c'; fi`
-
-cmp_precver.o: cmp/cmp_precver.c
-	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT cmp_precver.o -MD -MP -MF $(DEPDIR)/cmp_precver.Tpo -c -o cmp_precver.o `test -f 'cmp/cmp_precver.c' || echo '$(srcdir)/'`cmp/cmp_precver.c
-	$(AM_V_at)$(am__mv) $(DEPDIR)/cmp_precver.Tpo $(DEPDIR)/cmp_precver.Po
-#	$(AM_V_CC)source='cmp/cmp_precver.c' object='cmp_precver.o' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o cmp_precver.o `test -f 'cmp/cmp_precver.c' || echo '$(srcdir)/'`cmp/cmp_precver.c
-
-cmp_precver.obj: cmp/cmp_precver.c
-	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT cmp_precver.obj -MD -MP -MF $(DEPDIR)/cmp_precver.Tpo -c -o cmp_precver.obj `if test -f 'cmp/cmp_precver.c'; then $(CYGPATH_W) 'cmp/cmp_precver.c'; else $(CYGPATH_W) '$(srcdir)/cmp/cmp_precver.c'; fi`
-	$(AM_V_at)$(am__mv) $(DEPDIR)/cmp_precver.Tpo $(DEPDIR)/cmp_precver.Po
-#	$(AM_V_CC)source='cmp/cmp_precver.c' object='cmp_precver.obj' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o cmp_precver.obj `if test -f 'cmp/cmp_precver.c'; then $(CYGPATH_W) 'cmp/cmp_precver.c'; else $(CYGPATH_W) '$(srcdir)/cmp/cmp_precver.c'; fi`
-
-cmp_predefs.o: cmp/cmp_predefs.c
-	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT cmp_predefs.o -MD -MP -MF $(DEPDIR)/cmp_predefs.Tpo -c -o cmp_predefs.o `test -f 'cmp/cmp_predefs.c' || echo '$(srcdir)/'`cmp/cmp_predefs.c
-	$(AM_V_at)$(am__mv) $(DEPDIR)/cmp_predefs.Tpo $(DEPDIR)/cmp_predefs.Po
-#	$(AM_V_CC)source='cmp/cmp_predefs.c' object='cmp_predefs.o' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o cmp_predefs.o `test -f 'cmp/cmp_predefs.c' || echo '$(srcdir)/'`cmp/cmp_predefs.c
-
-cmp_predefs.obj: cmp/cmp_predefs.c
-	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT cmp_predefs.obj -MD -MP -MF $(DEPDIR)/cmp_predefs.Tpo -c -o cmp_predefs.obj `if test -f 'cmp/cmp_predefs.c'; then $(CYGPATH_W) 'cmp/cmp_predefs.c'; else $(CYGPATH_W) '$(srcdir)/cmp/cmp_predefs.c'; fi`
-	$(AM_V_at)$(am__mv) $(DEPDIR)/cmp_predefs.Tpo $(DEPDIR)/cmp_predefs.Po
-#	$(AM_V_CC)source='cmp/cmp_predefs.c' object='cmp_predefs.obj' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o cmp_predefs.obj `if test -f 'cmp/cmp_predefs.c'; then $(CYGPATH_W) 'cmp/cmp_predefs.c'; else $(CYGPATH_W) '$(srcdir)/cmp/cmp_predefs.c'; fi`
-
-cmp_psender.o: cmp/cmp_psender.c
-	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT cmp_psender.o -MD -MP -MF $(DEPDIR)/cmp_psender.Tpo -c -o cmp_psender.o `test -f 'cmp/cmp_psender.c' || echo '$(srcdir)/'`cmp/cmp_psender.c
-	$(AM_V_at)$(am__mv) $(DEPDIR)/cmp_psender.Tpo $(DEPDIR)/cmp_psender.Po
-#	$(AM_V_CC)source='cmp/cmp_psender.c' object='cmp_psender.o' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o cmp_psender.o `test -f 'cmp/cmp_psender.c' || echo '$(srcdir)/'`cmp/cmp_psender.c
-
-cmp_psender.obj: cmp/cmp_psender.c
-	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT cmp_psender.obj -MD -MP -MF $(DEPDIR)/cmp_psender.Tpo -c -o cmp_psender.obj `if test -f 'cmp/cmp_psender.c'; then $(CYGPATH_W) 'cmp/cmp_psender.c'; else $(CYGPATH_W) '$(srcdir)/cmp/cmp_psender.c'; fi`
-	$(AM_V_at)$(am__mv) $(DEPDIR)/cmp_psender.Tpo $(DEPDIR)/cmp_psender.Po
-#	$(AM_V_CC)source='cmp/cmp_psender.c' object='cmp_psender.obj' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o cmp_psender.obj `if test -f 'cmp/cmp_psender.c'; then $(CYGPATH_W) 'cmp/cmp_psender.c'; else $(CYGPATH_W) '$(srcdir)/cmp/cmp_psender.c'; fi`
-
-cmp_pthsch.o: cmp/cmp_pthsch.c
-	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT cmp_pthsch.o -MD -MP -MF $(DEPDIR)/cmp_pthsch.Tpo -c -o cmp_pthsch.o `test -f 'cmp/cmp_pthsch.c' || echo '$(srcdir)/'`cmp/cmp_pthsch.c
-	$(AM_V_at)$(am__mv) $(DEPDIR)/cmp_pthsch.Tpo $(DEPDIR)/cmp_pthsch.Po
-#	$(AM_V_CC)source='cmp/cmp_pthsch.c' object='cmp_pthsch.o' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o cmp_pthsch.o `test -f 'cmp/cmp_pthsch.c' || echo '$(srcdir)/'`cmp/cmp_pthsch.c
-
-cmp_pthsch.obj: cmp/cmp_pthsch.c
-	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT cmp_pthsch.obj -MD -MP -MF $(DEPDIR)/cmp_pthsch.Tpo -c -o cmp_pthsch.obj `if test -f 'cmp/cmp_pthsch.c'; then $(CYGPATH_W) 'cmp/cmp_pthsch.c'; else $(CYGPATH_W) '$(srcdir)/cmp/cmp_pthsch.c'; fi`
-	$(AM_V_at)$(am__mv) $(DEPDIR)/cmp_pthsch.Tpo $(DEPDIR)/cmp_pthsch.Po
-#	$(AM_V_CC)source='cmp/cmp_pthsch.c' object='cmp_pthsch.obj' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o cmp_pthsch.obj `if test -f 'cmp/cmp_pthsch.c'; then $(CYGPATH_W) 'cmp/cmp_pthsch.c'; else $(CYGPATH_W) '$(srcdir)/cmp/cmp_pthsch.c'; fi`
-
-cmp_screener.o: cmp/cmp_screener.c
-	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT cmp_screener.o -MD -MP -MF $(DEPDIR)/cmp_screener.Tpo -c -o cmp_screener.o `test -f 'cmp/cmp_screener.c' || echo '$(srcdir)/'`cmp/cmp_screener.c
-	$(AM_V_at)$(am__mv) $(DEPDIR)/cmp_screener.Tpo $(DEPDIR)/cmp_screener.Po
-#	$(AM_V_CC)source='cmp/cmp_screener.c' object='cmp_screener.o' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o cmp_screener.o `test -f 'cmp/cmp_screener.c' || echo '$(srcdir)/'`cmp/cmp_screener.c
-
-cmp_screener.obj: cmp/cmp_screener.c
-	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT cmp_screener.obj -MD -MP -MF $(DEPDIR)/cmp_screener.Tpo -c -o cmp_screener.obj `if test -f 'cmp/cmp_screener.c'; then $(CYGPATH_W) 'cmp/cmp_screener.c'; else $(CYGPATH_W) '$(srcdir)/cmp/cmp_screener.c'; fi`
-	$(AM_V_at)$(am__mv) $(DEPDIR)/cmp_screener.Tpo $(DEPDIR)/cmp_screener.Po
-#	$(AM_V_CC)source='cmp/cmp_screener.c' object='cmp_screener.obj' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o cmp_screener.obj `if test -f 'cmp/cmp_screener.c'; then $(CYGPATH_W) 'cmp/cmp_screener.c'; else $(CYGPATH_W) '$(srcdir)/cmp/cmp_screener.c'; fi`
-
-cmp_tests.o: cmp/cmp_tests.c
-	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT cmp_tests.o -MD -MP -MF $(DEPDIR)/cmp_tests.Tpo -c -o cmp_tests.o `test -f 'cmp/cmp_tests.c' || echo '$(srcdir)/'`cmp/cmp_tests.c
-	$(AM_V_at)$(am__mv) $(DEPDIR)/cmp_tests.Tpo $(DEPDIR)/cmp_tests.Po
-#	$(AM_V_CC)source='cmp/cmp_tests.c' object='cmp_tests.o' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o cmp_tests.o `test -f 'cmp/cmp_tests.c' || echo '$(srcdir)/'`cmp/cmp_tests.c
-
-cmp_tests.obj: cmp/cmp_tests.c
-	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT cmp_tests.obj -MD -MP -MF $(DEPDIR)/cmp_tests.Tpo -c -o cmp_tests.obj `if test -f 'cmp/cmp_tests.c'; then $(CYGPATH_W) 'cmp/cmp_tests.c'; else $(CYGPATH_W) '$(srcdir)/cmp/cmp_tests.c'; fi`
-	$(AM_V_at)$(am__mv) $(DEPDIR)/cmp_tests.Tpo $(DEPDIR)/cmp_tests.Po
-#	$(AM_V_CC)source='cmp/cmp_tests.c' object='cmp_tests.obj' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o cmp_tests.obj `if test -f 'cmp/cmp_tests.c'; then $(CYGPATH_W) 'cmp/cmp_tests.c'; else $(CYGPATH_W) '$(srcdir)/cmp/cmp_tests.c'; fi`
-
-dmap_sel.o: dmap/dmap_sel.c
-	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT dmap_sel.o -MD -MP -MF $(DEPDIR)/dmap_sel.Tpo -c -o dmap_sel.o `test -f 'dmap/dmap_sel.c' || echo '$(srcdir)/'`dmap/dmap_sel.c
-	$(AM_V_at)$(am__mv) $(DEPDIR)/dmap_sel.Tpo $(DEPDIR)/dmap_sel.Po
-#	$(AM_V_CC)source='dmap/dmap_sel.c' object='dmap_sel.o' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o dmap_sel.o `test -f 'dmap/dmap_sel.c' || echo '$(srcdir)/'`dmap/dmap_sel.c
-
-dmap_sel.obj: dmap/dmap_sel.c
-	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT dmap_sel.obj -MD -MP -MF $(DEPDIR)/dmap_sel.Tpo -c -o dmap_sel.obj `if test -f 'dmap/dmap_sel.c'; then $(CYGPATH_W) 'dmap/dmap_sel.c'; else $(CYGPATH_W) '$(srcdir)/dmap/dmap_sel.c'; fi`
-	$(AM_V_at)$(am__mv) $(DEPDIR)/dmap_sel.Tpo $(DEPDIR)/dmap_sel.Po
-#	$(AM_V_CC)source='dmap/dmap_sel.c' object='dmap_sel.obj' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o dmap_sel.obj `if test -f 'dmap/dmap_sel.c'; then $(CYGPATH_W) 'dmap/dmap_sel.c'; else $(CYGPATH_W) '$(srcdir)/dmap/dmap_sel.c'; fi`
-
-dmap.o: dmap/dmap.c
-	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT dmap.o -MD -MP -MF $(DEPDIR)/dmap.Tpo -c -o dmap.o `test -f 'dmap/dmap.c' || echo '$(srcdir)/'`dmap/dmap.c
-	$(AM_V_at)$(am__mv) $(DEPDIR)/dmap.Tpo $(DEPDIR)/dmap.Po
-#	$(AM_V_CC)source='dmap/dmap.c' object='dmap.o' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o dmap.o `test -f 'dmap/dmap.c' || echo '$(srcdir)/'`dmap/dmap.c
-
-dmap.obj: dmap/dmap.c
-	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT dmap.obj -MD -MP -MF $(DEPDIR)/dmap.Tpo -c -o dmap.obj `if test -f 'dmap/dmap.c'; then $(CYGPATH_W) 'dmap/dmap.c'; else $(CYGPATH_W) '$(srcdir)/dmap/dmap.c'; fi`
-	$(AM_V_at)$(am__mv) $(DEPDIR)/dmap.Tpo $(DEPDIR)/dmap.Po
-#	$(AM_V_CC)source='dmap/dmap.c' object='dmap.obj' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o dmap.obj `if test -f 'dmap/dmap.c'; then $(CYGPATH_W) 'dmap/dmap.c'; else $(CYGPATH_W) '$(srcdir)/dmap/dmap.c'; fi`
-
-etc_cli.o: etc/etc_cli.c
-	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT etc_cli.o -MD -MP -MF $(DEPDIR)/etc_cli.Tpo -c -o etc_cli.o `test -f 'etc/etc_cli.c' || echo '$(srcdir)/'`etc/etc_cli.c
-	$(AM_V_at)$(am__mv) $(DEPDIR)/etc_cli.Tpo $(DEPDIR)/etc_cli.Po
-#	$(AM_V_CC)source='etc/etc_cli.c' object='etc_cli.o' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o etc_cli.o `test -f 'etc/etc_cli.c' || echo '$(srcdir)/'`etc/etc_cli.c
-
-etc_cli.obj: etc/etc_cli.c
-	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT etc_cli.obj -MD -MP -MF $(DEPDIR)/etc_cli.Tpo -c -o etc_cli.obj `if test -f 'etc/etc_cli.c'; then $(CYGPATH_W) 'etc/etc_cli.c'; else $(CYGPATH_W) '$(srcdir)/etc/etc_cli.c'; fi`
-	$(AM_V_at)$(am__mv) $(DEPDIR)/etc_cli.Tpo $(DEPDIR)/etc_cli.Po
-#	$(AM_V_CC)source='etc/etc_cli.c' object='etc_cli.obj' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o etc_cli.obj `if test -f 'etc/etc_cli.c'; then $(CYGPATH_W) 'etc/etc_cli.c'; else $(CYGPATH_W) '$(srcdir)/etc/etc_cli.c'; fi`
-
-etc_argtable2.o: etc/etc_argtable2.c
-	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT etc_argtable2.o -MD -MP -MF $(DEPDIR)/etc_argtable2.Tpo -c -o etc_argtable2.o `test -f 'etc/etc_argtable2.c' || echo '$(srcdir)/'`etc/etc_argtable2.c
-	$(AM_V_at)$(am__mv) $(DEPDIR)/etc_argtable2.Tpo $(DEPDIR)/etc_argtable2.Po
-#	$(AM_V_CC)source='etc/etc_argtable2.c' object='etc_argtable2.o' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o etc_argtable2.o `test -f 'etc/etc_argtable2.c' || echo '$(srcdir)/'`etc/etc_argtable2.c
-
-etc_argtable2.obj: etc/etc_argtable2.c
-	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT etc_argtable2.obj -MD -MP -MF $(DEPDIR)/etc_argtable2.Tpo -c -o etc_argtable2.obj `if test -f 'etc/etc_argtable2.c'; then $(CYGPATH_W) 'etc/etc_argtable2.c'; else $(CYGPATH_W) '$(srcdir)/etc/etc_argtable2.c'; fi`
-	$(AM_V_at)$(am__mv) $(DEPDIR)/etc_argtable2.Tpo $(DEPDIR)/etc_argtable2.Po
-#	$(AM_V_CC)source='etc/etc_argtable2.c' object='etc_argtable2.obj' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o etc_argtable2.obj `if test -f 'etc/etc_argtable2.c'; then $(CYGPATH_W) 'etc/etc_argtable2.c'; else $(CYGPATH_W) '$(srcdir)/etc/etc_argtable2.c'; fi`
-
-etc_auth.o: etc/etc_auth.c
-	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT etc_auth.o -MD -MP -MF $(DEPDIR)/etc_auth.Tpo -c -o etc_auth.o `test -f 'etc/etc_auth.c' || echo '$(srcdir)/'`etc/etc_auth.c
-	$(AM_V_at)$(am__mv) $(DEPDIR)/etc_auth.Tpo $(DEPDIR)/etc_auth.Po
-#	$(AM_V_CC)source='etc/etc_auth.c' object='etc_auth.o' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o etc_auth.o `test -f 'etc/etc_auth.c' || echo '$(srcdir)/'`etc/etc_auth.c
-
-etc_auth.obj: etc/etc_auth.c
-	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT etc_auth.obj -MD -MP -MF $(DEPDIR)/etc_auth.Tpo -c -o etc_auth.obj `if test -f 'etc/etc_auth.c'; then $(CYGPATH_W) 'etc/etc_auth.c'; else $(CYGPATH_W) '$(srcdir)/etc/etc_auth.c'; fi`
-	$(AM_V_at)$(am__mv) $(DEPDIR)/etc_auth.Tpo $(DEPDIR)/etc_auth.Po
-#	$(AM_V_CC)source='etc/etc_auth.c' object='etc_auth.obj' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o etc_auth.obj `if test -f 'etc/etc_auth.c'; then $(CYGPATH_W) 'etc/etc_auth.c'; else $(CYGPATH_W) '$(srcdir)/etc/etc_auth.c'; fi`
-
-etc_dict.o: etc/etc_dict.c
-	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT etc_dict.o -MD -MP -MF $(DEPDIR)/etc_dict.Tpo -c -o etc_dict.o `test -f 'etc/etc_dict.c' || echo '$(srcdir)/'`etc/etc_dict.c
-	$(AM_V_at)$(am__mv) $(DEPDIR)/etc_dict.Tpo $(DEPDIR)/etc_dict.Po
-#	$(AM_V_CC)source='etc/etc_dict.c' object='etc_dict.o' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o etc_dict.o `test -f 'etc/etc_dict.c' || echo '$(srcdir)/'`etc/etc_dict.c
-
-etc_dict.obj: etc/etc_dict.c
-	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT etc_dict.obj -MD -MP -MF $(DEPDIR)/etc_dict.Tpo -c -o etc_dict.obj `if test -f 'etc/etc_dict.c'; then $(CYGPATH_W) 'etc/etc_dict.c'; else $(CYGPATH_W) '$(srcdir)/etc/etc_dict.c'; fi`
-	$(AM_V_at)$(am__mv) $(DEPDIR)/etc_dict.Tpo $(DEPDIR)/etc_dict.Po
-#	$(AM_V_CC)source='etc/etc_dict.c' object='etc_dict.obj' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o etc_dict.obj `if test -f 'etc/etc_dict.c'; then $(CYGPATH_W) 'etc/etc_dict.c'; else $(CYGPATH_W) '$(srcdir)/etc/etc_dict.c'; fi`
-
-etc_endian.o: etc/etc_endian.c
-	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT etc_endian.o -MD -MP -MF $(DEPDIR)/etc_endian.Tpo -c -o etc_endian.o `test -f 'etc/etc_endian.c' || echo '$(srcdir)/'`etc/etc_endian.c
-	$(AM_V_at)$(am__mv) $(DEPDIR)/etc_endian.Tpo $(DEPDIR)/etc_endian.Po
-#	$(AM_V_CC)source='etc/etc_endian.c' object='etc_endian.o' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o etc_endian.o `test -f 'etc/etc_endian.c' || echo '$(srcdir)/'`etc/etc_endian.c
-
-etc_endian.obj: etc/etc_endian.c
-	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT etc_endian.obj -MD -MP -MF $(DEPDIR)/etc_endian.Tpo -c -o etc_endian.obj `if test -f 'etc/etc_endian.c'; then $(CYGPATH_W) 'etc/etc_endian.c'; else $(CYGPATH_W) '$(srcdir)/etc/etc_endian.c'; fi`
-	$(AM_V_at)$(am__mv) $(DEPDIR)/etc_endian.Tpo $(DEPDIR)/etc_endian.Po
-#	$(AM_V_CC)source='etc/etc_endian.c' object='etc_endian.obj' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o etc_endian.obj `if test -f 'etc/etc_endian.c'; then $(CYGPATH_W) 'etc/etc_endian.c'; else $(CYGPATH_W) '$(srcdir)/etc/etc_endian.c'; fi`
-
-etc_iniparser.o: etc/etc_iniparser.c
-	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT etc_iniparser.o -MD -MP -MF $(DEPDIR)/etc_iniparser.Tpo -c -o etc_iniparser.o `test -f 'etc/etc_iniparser.c' || echo '$(srcdir)/'`etc/etc_iniparser.c
-	$(AM_V_at)$(am__mv) $(DEPDIR)/etc_iniparser.Tpo $(DEPDIR)/etc_iniparser.Po
-#	$(AM_V_CC)source='etc/etc_iniparser.c' object='etc_iniparser.o' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o etc_iniparser.o `test -f 'etc/etc_iniparser.c' || echo '$(srcdir)/'`etc/etc_iniparser.c
-
-etc_iniparser.obj: etc/etc_iniparser.c
-	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT etc_iniparser.obj -MD -MP -MF $(DEPDIR)/etc_iniparser.Tpo -c -o etc_iniparser.obj `if test -f 'etc/etc_iniparser.c'; then $(CYGPATH_W) 'etc/etc_iniparser.c'; else $(CYGPATH_W) '$(srcdir)/etc/etc_iniparser.c'; fi`
-	$(AM_V_at)$(am__mv) $(DEPDIR)/etc_iniparser.Tpo $(DEPDIR)/etc_iniparser.Po
-#	$(AM_V_CC)source='etc/etc_iniparser.c' object='etc_iniparser.obj' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o etc_iniparser.obj `if test -f 'etc/etc_iniparser.c'; then $(CYGPATH_W) 'etc/etc_iniparser.c'; else $(CYGPATH_W) '$(srcdir)/etc/etc_iniparser.c'; fi`
-
-etc_ipsearch.o: etc/etc_ipsearch.c
-	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT etc_ipsearch.o -MD -MP -MF $(DEPDIR)/etc_ipsearch.Tpo -c -o etc_ipsearch.o `test -f 'etc/etc_ipsearch.c' || echo '$(srcdir)/'`etc/etc_ipsearch.c
-	$(AM_V_at)$(am__mv) $(DEPDIR)/etc_ipsearch.Tpo $(DEPDIR)/etc_ipsearch.Po
-#	$(AM_V_CC)source='etc/etc_ipsearch.c' object='etc_ipsearch.o' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o etc_ipsearch.o `test -f 'etc/etc_ipsearch.c' || echo '$(srcdir)/'`etc/etc_ipsearch.c
-
-etc_ipsearch.obj: etc/etc_ipsearch.c
-	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT etc_ipsearch.obj -MD -MP -MF $(DEPDIR)/etc_ipsearch.Tpo -c -o etc_ipsearch.obj `if test -f 'etc/etc_ipsearch.c'; then $(CYGPATH_W) 'etc/etc_ipsearch.c'; else $(CYGPATH_W) '$(srcdir)/etc/etc_ipsearch.c'; fi`
-	$(AM_V_at)$(am__mv) $(DEPDIR)/etc_ipsearch.Tpo $(DEPDIR)/etc_ipsearch.Po
-#	$(AM_V_CC)source='etc/etc_ipsearch.c' object='etc_ipsearch.obj' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o etc_ipsearch.obj `if test -f 'etc/etc_ipsearch.c'; then $(CYGPATH_W) 'etc/etc_ipsearch.c'; else $(CYGPATH_W) '$(srcdir)/etc/etc_ipsearch.c'; fi`
-
-etc_utils.o: etc/etc_utils.c
-	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT etc_utils.o -MD -MP -MF $(DEPDIR)/etc_utils.Tpo -c -o etc_utils.o `test -f 'etc/etc_utils.c' || echo '$(srcdir)/'`etc/etc_utils.c
-	$(AM_V_at)$(am__mv) $(DEPDIR)/etc_utils.Tpo $(DEPDIR)/etc_utils.Po
-#	$(AM_V_CC)source='etc/etc_utils.c' object='etc_utils.o' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o etc_utils.o `test -f 'etc/etc_utils.c' || echo '$(srcdir)/'`etc/etc_utils.c
-
-etc_utils.obj: etc/etc_utils.c
-	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT etc_utils.obj -MD -MP -MF $(DEPDIR)/etc_utils.Tpo -c -o etc_utils.obj `if test -f 'etc/etc_utils.c'; then $(CYGPATH_W) 'etc/etc_utils.c'; else $(CYGPATH_W) '$(srcdir)/etc/etc_utils.c'; fi`
-	$(AM_V_at)$(am__mv) $(DEPDIR)/etc_utils.Tpo $(DEPDIR)/etc_utils.Po
-#	$(AM_V_CC)source='etc/etc_utils.c' object='etc_utils.obj' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o etc_utils.obj `if test -f 'etc/etc_utils.c'; then $(CYGPATH_W) 'etc/etc_utils.c'; else $(CYGPATH_W) '$(srcdir)/etc/etc_utils.c'; fi`
-
-fsm_actions.o: fsm/fsm_actions.c
-	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT fsm_actions.o -MD -MP -MF $(DEPDIR)/fsm_actions.Tpo -c -o fsm_actions.o `test -f 'fsm/fsm_actions.c' || echo '$(srcdir)/'`fsm/fsm_actions.c
-	$(AM_V_at)$(am__mv) $(DEPDIR)/fsm_actions.Tpo $(DEPDIR)/fsm_actions.Po
-#	$(AM_V_CC)source='fsm/fsm_actions.c' object='fsm_actions.o' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o fsm_actions.o `test -f 'fsm/fsm_actions.c' || echo '$(srcdir)/'`fsm/fsm_actions.c
-
-fsm_actions.obj: fsm/fsm_actions.c
-	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT fsm_actions.obj -MD -MP -MF $(DEPDIR)/fsm_actions.Tpo -c -o fsm_actions.obj `if test -f 'fsm/fsm_actions.c'; then $(CYGPATH_W) 'fsm/fsm_actions.c'; else $(CYGPATH_W) '$(srcdir)/fsm/fsm_actions.c'; fi`
-	$(AM_V_at)$(am__mv) $(DEPDIR)/fsm_actions.Tpo $(DEPDIR)/fsm_actions.Po
-#	$(AM_V_CC)source='fsm/fsm_actions.c' object='fsm_actions.obj' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o fsm_actions.obj `if test -f 'fsm/fsm_actions.c'; then $(CYGPATH_W) 'fsm/fsm_actions.c'; else $(CYGPATH_W) '$(srcdir)/fsm/fsm_actions.c'; fi`
-
-fsm_cmpactions.o: fsm/fsm_cmpactions.c
-	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT fsm_cmpactions.o -MD -MP -MF $(DEPDIR)/fsm_cmpactions.Tpo -c -o fsm_cmpactions.o `test -f 'fsm/fsm_cmpactions.c' || echo '$(srcdir)/'`fsm/fsm_cmpactions.c
-	$(AM_V_at)$(am__mv) $(DEPDIR)/fsm_cmpactions.Tpo $(DEPDIR)/fsm_cmpactions.Po
-#	$(AM_V_CC)source='fsm/fsm_cmpactions.c' object='fsm_cmpactions.o' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o fsm_cmpactions.o `test -f 'fsm/fsm_cmpactions.c' || echo '$(srcdir)/'`fsm/fsm_cmpactions.c
-
-fsm_cmpactions.obj: fsm/fsm_cmpactions.c
-	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT fsm_cmpactions.obj -MD -MP -MF $(DEPDIR)/fsm_cmpactions.Tpo -c -o fsm_cmpactions.obj `if test -f 'fsm/fsm_cmpactions.c'; then $(CYGPATH_W) 'fsm/fsm_cmpactions.c'; else $(CYGPATH_W) '$(srcdir)/fsm/fsm_cmpactions.c'; fi`
-	$(AM_V_at)$(am__mv) $(DEPDIR)/fsm_cmpactions.Tpo $(DEPDIR)/fsm_cmpactions.Po
-#	$(AM_V_CC)source='fsm/fsm_cmpactions.c' object='fsm_cmpactions.obj' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o fsm_cmpactions.obj `if test -f 'fsm/fsm_cmpactions.c'; then $(CYGPATH_W) 'fsm/fsm_cmpactions.c'; else $(CYGPATH_W) '$(srcdir)/fsm/fsm_cmpactions.c'; fi`
-
-fsm_exist.o: fsm/fsm_exist.c
-	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT fsm_exist.o -MD -MP -MF $(DEPDIR)/fsm_exist.Tpo -c -o fsm_exist.o `test -f 'fsm/fsm_exist.c' || echo '$(srcdir)/'`fsm/fsm_exist.c
-	$(AM_V_at)$(am__mv) $(DEPDIR)/fsm_exist.Tpo $(DEPDIR)/fsm_exist.Po
-#	$(AM_V_CC)source='fsm/fsm_exist.c' object='fsm_exist.o' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o fsm_exist.o `test -f 'fsm/fsm_exist.c' || echo '$(srcdir)/'`fsm/fsm_exist.c
-
-fsm_exist.obj: fsm/fsm_exist.c
-	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT fsm_exist.obj -MD -MP -MF $(DEPDIR)/fsm_exist.Tpo -c -o fsm_exist.obj `if test -f 'fsm/fsm_exist.c'; then $(CYGPATH_W) 'fsm/fsm_exist.c'; else $(CYGPATH_W) '$(srcdir)/fsm/fsm_exist.c'; fi`
-	$(AM_V_at)$(am__mv) $(DEPDIR)/fsm_exist.Tpo $(DEPDIR)/fsm_exist.Po
-#	$(AM_V_CC)source='fsm/fsm_exist.c' object='fsm_exist.obj' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o fsm_exist.obj `if test -f 'fsm/fsm_exist.c'; then $(CYGPATH_W) 'fsm/fsm_exist.c'; else $(CYGPATH_W) '$(srcdir)/fsm/fsm_exist.c'; fi`
-
-fsm_halt.o: fsm/fsm_halt.c
-	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT fsm_halt.o -MD -MP -MF $(DEPDIR)/fsm_halt.Tpo -c -o fsm_halt.o `test -f 'fsm/fsm_halt.c' || echo '$(srcdir)/'`fsm/fsm_halt.c
-	$(AM_V_at)$(am__mv) $(DEPDIR)/fsm_halt.Tpo $(DEPDIR)/fsm_halt.Po
-#	$(AM_V_CC)source='fsm/fsm_halt.c' object='fsm_halt.o' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o fsm_halt.o `test -f 'fsm/fsm_halt.c' || echo '$(srcdir)/'`fsm/fsm_halt.c
-
-fsm_halt.obj: fsm/fsm_halt.c
-	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT fsm_halt.obj -MD -MP -MF $(DEPDIR)/fsm_halt.Tpo -c -o fsm_halt.obj `if test -f 'fsm/fsm_halt.c'; then $(CYGPATH_W) 'fsm/fsm_halt.c'; else $(CYGPATH_W) '$(srcdir)/fsm/fsm_halt.c'; fi`
-	$(AM_V_at)$(am__mv) $(DEPDIR)/fsm_halt.Tpo $(DEPDIR)/fsm_halt.Po
-#	$(AM_V_CC)source='fsm/fsm_halt.c' object='fsm_halt.obj' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o fsm_halt.obj `if test -f 'fsm/fsm_halt.c'; then $(CYGPATH_W) 'fsm/fsm_halt.c'; else $(CYGPATH_W) '$(srcdir)/fsm/fsm_halt.c'; fi`
-
-fsm_run.o: fsm/fsm_run.c
-	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT fsm_run.o -MD -MP -MF $(DEPDIR)/fsm_run.Tpo -c -o fsm_run.o `test -f 'fsm/fsm_run.c' || echo '$(srcdir)/'`fsm/fsm_run.c
-	$(AM_V_at)$(am__mv) $(DEPDIR)/fsm_run.Tpo $(DEPDIR)/fsm_run.Po
-#	$(AM_V_CC)source='fsm/fsm_run.c' object='fsm_run.o' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o fsm_run.o `test -f 'fsm/fsm_run.c' || echo '$(srcdir)/'`fsm/fsm_run.c
-
-fsm_run.obj: fsm/fsm_run.c
-	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT fsm_run.obj -MD -MP -MF $(DEPDIR)/fsm_run.Tpo -c -o fsm_run.obj `if test -f 'fsm/fsm_run.c'; then $(CYGPATH_W) 'fsm/fsm_run.c'; else $(CYGPATH_W) '$(srcdir)/fsm/fsm_run.c'; fi`
-	$(AM_V_at)$(am__mv) $(DEPDIR)/fsm_run.Tpo $(DEPDIR)/fsm_run.Po
-#	$(AM_V_CC)source='fsm/fsm_run.c' object='fsm_run.obj' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o fsm_run.obj `if test -f 'fsm/fsm_run.c'; then $(CYGPATH_W) 'fsm/fsm_run.c'; else $(CYGPATH_W) '$(srcdir)/fsm/fsm_run.c'; fi`
-
-fsm_client.o: fsm/fsm_client.c
-	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT fsm_client.o -MD -MP -MF $(DEPDIR)/fsm_client.Tpo -c -o fsm_client.o `test -f 'fsm/fsm_client.c' || echo '$(srcdir)/'`fsm/fsm_client.c
-	$(AM_V_at)$(am__mv) $(DEPDIR)/fsm_client.Tpo $(DEPDIR)/fsm_client.Po
-#	$(AM_V_CC)source='fsm/fsm_client.c' object='fsm_client.o' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o fsm_client.o `test -f 'fsm/fsm_client.c' || echo '$(srcdir)/'`fsm/fsm_client.c
-
-fsm_client.obj: fsm/fsm_client.c
-	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT fsm_client.obj -MD -MP -MF $(DEPDIR)/fsm_client.Tpo -c -o fsm_client.obj `if test -f 'fsm/fsm_client.c'; then $(CYGPATH_W) 'fsm/fsm_client.c'; else $(CYGPATH_W) '$(srcdir)/fsm/fsm_client.c'; fi`
-	$(AM_V_at)$(am__mv) $(DEPDIR)/fsm_client.Tpo $(DEPDIR)/fsm_client.Po
-#	$(AM_V_CC)source='fsm/fsm_client.c' object='fsm_client.obj' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o fsm_client.obj `if test -f 'fsm/fsm_client.c'; then $(CYGPATH_W) 'fsm/fsm_client.c'; else $(CYGPATH_W) '$(srcdir)/fsm/fsm_client.c'; fi`
-
-fsm.o: fsm/fsm.c
-	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT fsm.o -MD -MP -MF $(DEPDIR)/fsm.Tpo -c -o fsm.o `test -f 'fsm/fsm.c' || echo '$(srcdir)/'`fsm/fsm.c
-	$(AM_V_at)$(am__mv) $(DEPDIR)/fsm.Tpo $(DEPDIR)/fsm.Po
-#	$(AM_V_CC)source='fsm/fsm.c' object='fsm.o' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o fsm.o `test -f 'fsm/fsm.c' || echo '$(srcdir)/'`fsm/fsm.c
-
-fsm.obj: fsm/fsm.c
-	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT fsm.obj -MD -MP -MF $(DEPDIR)/fsm.Tpo -c -o fsm.obj `if test -f 'fsm/fsm.c'; then $(CYGPATH_W) 'fsm/fsm.c'; else $(CYGPATH_W) '$(srcdir)/fsm/fsm.c'; fi`
-	$(AM_V_at)$(am__mv) $(DEPDIR)/fsm.Tpo $(DEPDIR)/fsm.Po
-#	$(AM_V_CC)source='fsm/fsm.c' object='fsm.obj' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o fsm.obj `if test -f 'fsm/fsm.c'; then $(CYGPATH_W) 'fsm/fsm.c'; else $(CYGPATH_W) '$(srcdir)/fsm/fsm.c'; fi`
-
-inc_io.o: inc/inc_io.c
-	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT inc_io.o -MD -MP -MF $(DEPDIR)/inc_io.Tpo -c -o inc_io.o `test -f 'inc/inc_io.c' || echo '$(srcdir)/'`inc/inc_io.c
-	$(AM_V_at)$(am__mv) $(DEPDIR)/inc_io.Tpo $(DEPDIR)/inc_io.Po
-#	$(AM_V_CC)source='inc/inc_io.c' object='inc_io.o' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o inc_io.o `test -f 'inc/inc_io.c' || echo '$(srcdir)/'`inc/inc_io.c
-
-inc_io.obj: inc/inc_io.c
-	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT inc_io.obj -MD -MP -MF $(DEPDIR)/inc_io.Tpo -c -o inc_io.obj `if test -f 'inc/inc_io.c'; then $(CYGPATH_W) 'inc/inc_io.c'; else $(CYGPATH_W) '$(srcdir)/inc/inc_io.c'; fi`
-	$(AM_V_at)$(am__mv) $(DEPDIR)/inc_io.Tpo $(DEPDIR)/inc_io.Po
-#	$(AM_V_CC)source='inc/inc_io.c' object='inc_io.obj' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o inc_io.obj `if test -f 'inc/inc_io.c'; then $(CYGPATH_W) 'inc/inc_io.c'; else $(CYGPATH_W) '$(srcdir)/inc/inc_io.c'; fi`
-
-inc_mtime.o: inc/inc_mtime.c
-	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT inc_mtime.o -MD -MP -MF $(DEPDIR)/inc_mtime.Tpo -c -o inc_mtime.o `test -f 'inc/inc_mtime.c' || echo '$(srcdir)/'`inc/inc_mtime.c
-	$(AM_V_at)$(am__mv) $(DEPDIR)/inc_mtime.Tpo $(DEPDIR)/inc_mtime.Po
-#	$(AM_V_CC)source='inc/inc_mtime.c' object='inc_mtime.o' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o inc_mtime.o `test -f 'inc/inc_mtime.c' || echo '$(srcdir)/'`inc/inc_mtime.c
-
-inc_mtime.obj: inc/inc_mtime.c
-	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT inc_mtime.obj -MD -MP -MF $(DEPDIR)/inc_mtime.Tpo -c -o inc_mtime.obj `if test -f 'inc/inc_mtime.c'; then $(CYGPATH_W) 'inc/inc_mtime.c'; else $(CYGPATH_W) '$(srcdir)/inc/inc_mtime.c'; fi`
-	$(AM_V_at)$(am__mv) $(DEPDIR)/inc_mtime.Tpo $(DEPDIR)/inc_mtime.Po
-#	$(AM_V_CC)source='inc/inc_mtime.c' object='inc_mtime.obj' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o inc_mtime.obj `if test -f 'inc/inc_mtime.c'; then $(CYGPATH_W) 'inc/inc_mtime.c'; else $(CYGPATH_W) '$(srcdir)/inc/inc_mtime.c'; fi`
-
-inc_opcall.o: inc/inc_opcall.c
-	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT inc_opcall.o -MD -MP -MF $(DEPDIR)/inc_opcall.Tpo -c -o inc_opcall.o `test -f 'inc/inc_opcall.c' || echo '$(srcdir)/'`inc/inc_opcall.c
-	$(AM_V_at)$(am__mv) $(DEPDIR)/inc_opcall.Tpo $(DEPDIR)/inc_opcall.Po
-#	$(AM_V_CC)source='inc/inc_opcall.c' object='inc_opcall.o' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o inc_opcall.o `test -f 'inc/inc_opcall.c' || echo '$(srcdir)/'`inc/inc_opcall.c
-
-inc_opcall.obj: inc/inc_opcall.c
-	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT inc_opcall.obj -MD -MP -MF $(DEPDIR)/inc_opcall.Tpo -c -o inc_opcall.obj `if test -f 'inc/inc_opcall.c'; then $(CYGPATH_W) 'inc/inc_opcall.c'; else $(CYGPATH_W) '$(srcdir)/inc/inc_opcall.c'; fi`
-	$(AM_V_at)$(am__mv) $(DEPDIR)/inc_opcall.Tpo $(DEPDIR)/inc_opcall.Po
-#	$(AM_V_CC)source='inc/inc_opcall.c' object='inc_opcall.obj' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o inc_opcall.obj `if test -f 'inc/inc_opcall.c'; then $(CYGPATH_W) 'inc/inc_opcall.c'; else $(CYGPATH_W) '$(srcdir)/inc/inc_opcall.c'; fi`
-
-lib_debuglog.o: lib/lib_debuglog.c
-	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT lib_debuglog.o -MD -MP -MF $(DEPDIR)/lib_debuglog.Tpo -c -o lib_debuglog.o `test -f 'lib/lib_debuglog.c' || echo '$(srcdir)/'`lib/lib_debuglog.c
-	$(AM_V_at)$(am__mv) $(DEPDIR)/lib_debuglog.Tpo $(DEPDIR)/lib_debuglog.Po
-#	$(AM_V_CC)source='lib/lib_debuglog.c' object='lib_debuglog.o' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o lib_debuglog.o `test -f 'lib/lib_debuglog.c' || echo '$(srcdir)/'`lib/lib_debuglog.c
-
-lib_debuglog.obj: lib/lib_debuglog.c
-	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT lib_debuglog.obj -MD -MP -MF $(DEPDIR)/lib_debuglog.Tpo -c -o lib_debuglog.obj `if test -f 'lib/lib_debuglog.c'; then $(CYGPATH_W) 'lib/lib_debuglog.c'; else $(CYGPATH_W) '$(srcdir)/lib/lib_debuglog.c'; fi`
-	$(AM_V_at)$(am__mv) $(DEPDIR)/lib_debuglog.Tpo $(DEPDIR)/lib_debuglog.Po
-#	$(AM_V_CC)source='lib/lib_debuglog.c' object='lib_debuglog.obj' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o lib_debuglog.obj `if test -f 'lib/lib_debuglog.c'; then $(CYGPATH_W) 'lib/lib_debuglog.c'; else $(CYGPATH_W) '$(srcdir)/lib/lib_debuglog.c'; fi`
-
-lib_dispers.o: lib/lib_dispers.c
-	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT lib_dispers.o -MD -MP -MF $(DEPDIR)/lib_dispers.Tpo -c -o lib_dispers.o `test -f 'lib/lib_dispers.c' || echo '$(srcdir)/'`lib/lib_dispers.c
-	$(AM_V_at)$(am__mv) $(DEPDIR)/lib_dispers.Tpo $(DEPDIR)/lib_dispers.Po
-#	$(AM_V_CC)source='lib/lib_dispers.c' object='lib_dispers.o' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o lib_dispers.o `test -f 'lib/lib_dispers.c' || echo '$(srcdir)/'`lib/lib_dispers.c
-
-lib_dispers.obj: lib/lib_dispers.c
-	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT lib_dispers.obj -MD -MP -MF $(DEPDIR)/lib_dispers.Tpo -c -o lib_dispers.obj `if test -f 'lib/lib_dispers.c'; then $(CYGPATH_W) 'lib/lib_dispers.c'; else $(CYGPATH_W) '$(srcdir)/lib/lib_dispers.c'; fi`
-	$(AM_V_at)$(am__mv) $(DEPDIR)/lib_dispers.Tpo $(DEPDIR)/lib_dispers.Po
-#	$(AM_V_CC)source='lib/lib_dispers.c' object='lib_dispers.obj' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o lib_dispers.obj `if test -f 'lib/lib_dispers.c'; then $(CYGPATH_W) 'lib/lib_dispers.c'; else $(CYGPATH_W) '$(srcdir)/lib/lib_dispers.c'; fi`
-
-lib_funcs.o: lib/lib_funcs.c
-	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT lib_funcs.o -MD -MP -MF $(DEPDIR)/lib_funcs.Tpo -c -o lib_funcs.o `test -f 'lib/lib_funcs.c' || echo '$(srcdir)/'`lib/lib_funcs.c
-	$(AM_V_at)$(am__mv) $(DEPDIR)/lib_funcs.Tpo $(DEPDIR)/lib_funcs.Po
-#	$(AM_V_CC)source='lib/lib_funcs.c' object='lib_funcs.o' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o lib_funcs.o `test -f 'lib/lib_funcs.c' || echo '$(srcdir)/'`lib/lib_funcs.c
-
-lib_funcs.obj: lib/lib_funcs.c
-	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT lib_funcs.obj -MD -MP -MF $(DEPDIR)/lib_funcs.Tpo -c -o lib_funcs.obj `if test -f 'lib/lib_funcs.c'; then $(CYGPATH_W) 'lib/lib_funcs.c'; else $(CYGPATH_W) '$(srcdir)/lib/lib_funcs.c'; fi`
-	$(AM_V_at)$(am__mv) $(DEPDIR)/lib_funcs.Tpo $(DEPDIR)/lib_funcs.Po
-#	$(AM_V_CC)source='lib/lib_funcs.c' object='lib_funcs.obj' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o lib_funcs.obj `if test -f 'lib/lib_funcs.c'; then $(CYGPATH_W) 'lib/lib_funcs.c'; else $(CYGPATH_W) '$(srcdir)/lib/lib_funcs.c'; fi`
-
-lib_heap.o: lib/lib_heap.c
-	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT lib_heap.o -MD -MP -MF $(DEPDIR)/lib_heap.Tpo -c -o lib_heap.o `test -f 'lib/lib_heap.c' || echo '$(srcdir)/'`lib/lib_heap.c
-	$(AM_V_at)$(am__mv) $(DEPDIR)/lib_heap.Tpo $(DEPDIR)/lib_heap.Po
-#	$(AM_V_CC)source='lib/lib_heap.c' object='lib_heap.o' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o lib_heap.o `test -f 'lib/lib_heap.c' || echo '$(srcdir)/'`lib/lib_heap.c
-
-lib_heap.obj: lib/lib_heap.c
-	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT lib_heap.obj -MD -MP -MF $(DEPDIR)/lib_heap.Tpo -c -o lib_heap.obj `if test -f 'lib/lib_heap.c'; then $(CYGPATH_W) 'lib/lib_heap.c'; else $(CYGPATH_W) '$(srcdir)/lib/lib_heap.c'; fi`
-	$(AM_V_at)$(am__mv) $(DEPDIR)/lib_heap.Tpo $(DEPDIR)/lib_heap.Po
-#	$(AM_V_CC)source='lib/lib_heap.c' object='lib_heap.obj' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o lib_heap.obj `if test -f 'lib/lib_heap.c'; then $(CYGPATH_W) 'lib/lib_heap.c'; else $(CYGPATH_W) '$(srcdir)/lib/lib_heap.c'; fi`
-
-lib_interrupting.o: lib/lib_interrupting.c
-	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT lib_interrupting.o -MD -MP -MF $(DEPDIR)/lib_interrupting.Tpo -c -o lib_interrupting.o `test -f 'lib/lib_interrupting.c' || echo '$(srcdir)/'`lib/lib_interrupting.c
-	$(AM_V_at)$(am__mv) $(DEPDIR)/lib_interrupting.Tpo $(DEPDIR)/lib_interrupting.Po
-#	$(AM_V_CC)source='lib/lib_interrupting.c' object='lib_interrupting.o' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o lib_interrupting.o `test -f 'lib/lib_interrupting.c' || echo '$(srcdir)/'`lib/lib_interrupting.c
-
-lib_interrupting.obj: lib/lib_interrupting.c
-	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT lib_interrupting.obj -MD -MP -MF $(DEPDIR)/lib_interrupting.Tpo -c -o lib_interrupting.obj `if test -f 'lib/lib_interrupting.c'; then $(CYGPATH_W) 'lib/lib_interrupting.c'; else $(CYGPATH_W) '$(srcdir)/lib/lib_interrupting.c'; fi`
-	$(AM_V_at)$(am__mv) $(DEPDIR)/lib_interrupting.Tpo $(DEPDIR)/lib_interrupting.Po
-#	$(AM_V_CC)source='lib/lib_interrupting.c' object='lib_interrupting.obj' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o lib_interrupting.obj `if test -f 'lib/lib_interrupting.c'; then $(CYGPATH_W) 'lib/lib_interrupting.c'; else $(CYGPATH_W) '$(srcdir)/lib/lib_interrupting.c'; fi`
-
-lib_makers.o: lib/lib_makers.c
-	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT lib_makers.o -MD -MP -MF $(DEPDIR)/lib_makers.Tpo -c -o lib_makers.o `test -f 'lib/lib_makers.c' || echo '$(srcdir)/'`lib/lib_makers.c
-	$(AM_V_at)$(am__mv) $(DEPDIR)/lib_makers.Tpo $(DEPDIR)/lib_makers.Po
-#	$(AM_V_CC)source='lib/lib_makers.c' object='lib_makers.o' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o lib_makers.o `test -f 'lib/lib_makers.c' || echo '$(srcdir)/'`lib/lib_makers.c
-
-lib_makers.obj: lib/lib_makers.c
-	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT lib_makers.obj -MD -MP -MF $(DEPDIR)/lib_makers.Tpo -c -o lib_makers.obj `if test -f 'lib/lib_makers.c'; then $(CYGPATH_W) 'lib/lib_makers.c'; else $(CYGPATH_W) '$(srcdir)/lib/lib_makers.c'; fi`
-	$(AM_V_at)$(am__mv) $(DEPDIR)/lib_makers.Tpo $(DEPDIR)/lib_makers.Po
-#	$(AM_V_CC)source='lib/lib_makers.c' object='lib_makers.obj' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o lib_makers.obj `if test -f 'lib/lib_makers.c'; then $(CYGPATH_W) 'lib/lib_makers.c'; else $(CYGPATH_W) '$(srcdir)/lib/lib_makers.c'; fi`
-
-lib_predefs.o: lib/lib_predefs.c
-	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT lib_predefs.o -MD -MP -MF $(DEPDIR)/lib_predefs.Tpo -c -o lib_predefs.o `test -f 'lib/lib_predefs.c' || echo '$(srcdir)/'`lib/lib_predefs.c
-	$(AM_V_at)$(am__mv) $(DEPDIR)/lib_predefs.Tpo $(DEPDIR)/lib_predefs.Po
-#	$(AM_V_CC)source='lib/lib_predefs.c' object='lib_predefs.o' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o lib_predefs.o `test -f 'lib/lib_predefs.c' || echo '$(srcdir)/'`lib/lib_predefs.c
-
-lib_predefs.obj: lib/lib_predefs.c
-	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT lib_predefs.obj -MD -MP -MF $(DEPDIR)/lib_predefs.Tpo -c -o lib_predefs.obj `if test -f 'lib/lib_predefs.c'; then $(CYGPATH_W) 'lib/lib_predefs.c'; else $(CYGPATH_W) '$(srcdir)/lib/lib_predefs.c'; fi`
-	$(AM_V_at)$(am__mv) $(DEPDIR)/lib_predefs.Tpo $(DEPDIR)/lib_predefs.Po
-#	$(AM_V_CC)source='lib/lib_predefs.c' object='lib_predefs.obj' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o lib_predefs.obj `if test -f 'lib/lib_predefs.c'; then $(CYGPATH_W) 'lib/lib_predefs.c'; else $(CYGPATH_W) '$(srcdir)/lib/lib_predefs.c'; fi`
-
-lib_puffers.o: lib/lib_puffers.c
-	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT lib_puffers.o -MD -MP -MF $(DEPDIR)/lib_puffers.Tpo -c -o lib_puffers.o `test -f 'lib/lib_puffers.c' || echo '$(srcdir)/'`lib/lib_puffers.c
-	$(AM_V_at)$(am__mv) $(DEPDIR)/lib_puffers.Tpo $(DEPDIR)/lib_puffers.Po
-#	$(AM_V_CC)source='lib/lib_puffers.c' object='lib_puffers.o' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o lib_puffers.o `test -f 'lib/lib_puffers.c' || echo '$(srcdir)/'`lib/lib_puffers.c
-
-lib_puffers.obj: lib/lib_puffers.c
-	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT lib_puffers.obj -MD -MP -MF $(DEPDIR)/lib_puffers.Tpo -c -o lib_puffers.obj `if test -f 'lib/lib_puffers.c'; then $(CYGPATH_W) 'lib/lib_puffers.c'; else $(CYGPATH_W) '$(srcdir)/lib/lib_puffers.c'; fi`
-	$(AM_V_at)$(am__mv) $(DEPDIR)/lib_puffers.Tpo $(DEPDIR)/lib_puffers.Po
-#	$(AM_V_CC)source='lib/lib_puffers.c' object='lib_puffers.obj' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o lib_puffers.obj `if test -f 'lib/lib_puffers.c'; then $(CYGPATH_W) 'lib/lib_puffers.c'; else $(CYGPATH_W) '$(srcdir)/lib/lib_puffers.c'; fi`
-
-lib_threading.o: lib/lib_threading.c
-	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT lib_threading.o -MD -MP -MF $(DEPDIR)/lib_threading.Tpo -c -o lib_threading.o `test -f 'lib/lib_threading.c' || echo '$(srcdir)/'`lib/lib_threading.c
-	$(AM_V_at)$(am__mv) $(DEPDIR)/lib_threading.Tpo $(DEPDIR)/lib_threading.Po
-#	$(AM_V_CC)source='lib/lib_threading.c' object='lib_threading.o' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o lib_threading.o `test -f 'lib/lib_threading.c' || echo '$(srcdir)/'`lib/lib_threading.c
-
-lib_threading.obj: lib/lib_threading.c
-	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT lib_threading.obj -MD -MP -MF $(DEPDIR)/lib_threading.Tpo -c -o lib_threading.obj `if test -f 'lib/lib_threading.c'; then $(CYGPATH_W) 'lib/lib_threading.c'; else $(CYGPATH_W) '$(srcdir)/lib/lib_threading.c'; fi`
-	$(AM_V_at)$(am__mv) $(DEPDIR)/lib_threading.Tpo $(DEPDIR)/lib_threading.Po
-#	$(AM_V_CC)source='lib/lib_threading.c' object='lib_threading.obj' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o lib_threading.obj `if test -f 'lib/lib_threading.c'; then $(CYGPATH_W) 'lib/lib_threading.c'; else $(CYGPATH_W) '$(srcdir)/lib/lib_threading.c'; fi`
-
-lib_tors.o: lib/lib_tors.c
-	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT lib_tors.o -MD -MP -MF $(DEPDIR)/lib_tors.Tpo -c -o lib_tors.o `test -f 'lib/lib_tors.c' || echo '$(srcdir)/'`lib/lib_tors.c
-	$(AM_V_at)$(am__mv) $(DEPDIR)/lib_tors.Tpo $(DEPDIR)/lib_tors.Po
-#	$(AM_V_CC)source='lib/lib_tors.c' object='lib_tors.o' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o lib_tors.o `test -f 'lib/lib_tors.c' || echo '$(srcdir)/'`lib/lib_tors.c
-
-lib_tors.obj: lib/lib_tors.c
-	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT lib_tors.obj -MD -MP -MF $(DEPDIR)/lib_tors.Tpo -c -o lib_tors.obj `if test -f 'lib/lib_tors.c'; then $(CYGPATH_W) 'lib/lib_tors.c'; else $(CYGPATH_W) '$(srcdir)/lib/lib_tors.c'; fi`
-	$(AM_V_at)$(am__mv) $(DEPDIR)/lib_tors.Tpo $(DEPDIR)/lib_tors.Po
-#	$(AM_V_CC)source='lib/lib_tors.c' object='lib_tors.obj' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o lib_tors.obj `if test -f 'lib/lib_tors.c'; then $(CYGPATH_W) 'lib/lib_tors.c'; else $(CYGPATH_W) '$(srcdir)/lib/lib_tors.c'; fi`
-
-lib_vector.o: lib/lib_vector.c
-	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT lib_vector.o -MD -MP -MF $(DEPDIR)/lib_vector.Tpo -c -o lib_vector.o `test -f 'lib/lib_vector.c' || echo '$(srcdir)/'`lib/lib_vector.c
-	$(AM_V_at)$(am__mv) $(DEPDIR)/lib_vector.Tpo $(DEPDIR)/lib_vector.Po
-#	$(AM_V_CC)source='lib/lib_vector.c' object='lib_vector.o' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o lib_vector.o `test -f 'lib/lib_vector.c' || echo '$(srcdir)/'`lib/lib_vector.c
-
-lib_vector.obj: lib/lib_vector.c
-	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT lib_vector.obj -MD -MP -MF $(DEPDIR)/lib_vector.Tpo -c -o lib_vector.obj `if test -f 'lib/lib_vector.c'; then $(CYGPATH_W) 'lib/lib_vector.c'; else $(CYGPATH_W) '$(srcdir)/lib/lib_vector.c'; fi`
-	$(AM_V_at)$(am__mv) $(DEPDIR)/lib_vector.Tpo $(DEPDIR)/lib_vector.Po
-#	$(AM_V_CC)source='lib/lib_vector.c' object='lib_vector.obj' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o lib_vector.obj `if test -f 'lib/lib_vector.c'; then $(CYGPATH_W) 'lib/lib_vector.c'; else $(CYGPATH_W) '$(srcdir)/lib/lib_vector.c'; fi`
-
-sys_confs.o: sys/sys_confs.c
-	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sys_confs.o -MD -MP -MF $(DEPDIR)/sys_confs.Tpo -c -o sys_confs.o `test -f 'sys/sys_confs.c' || echo '$(srcdir)/'`sys/sys_confs.c
-	$(AM_V_at)$(am__mv) $(DEPDIR)/sys_confs.Tpo $(DEPDIR)/sys_confs.Po
-#	$(AM_V_CC)source='sys/sys_confs.c' object='sys_confs.o' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sys_confs.o `test -f 'sys/sys_confs.c' || echo '$(srcdir)/'`sys/sys_confs.c
-
-sys_confs.obj: sys/sys_confs.c
-	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sys_confs.obj -MD -MP -MF $(DEPDIR)/sys_confs.Tpo -c -o sys_confs.obj `if test -f 'sys/sys_confs.c'; then $(CYGPATH_W) 'sys/sys_confs.c'; else $(CYGPATH_W) '$(srcdir)/sys/sys_confs.c'; fi`
-	$(AM_V_at)$(am__mv) $(DEPDIR)/sys_confs.Tpo $(DEPDIR)/sys_confs.Po
-#	$(AM_V_CC)source='sys/sys_confs.c' object='sys_confs.obj' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sys_confs.obj `if test -f 'sys/sys_confs.c'; then $(CYGPATH_W) 'sys/sys_confs.c'; else $(CYGPATH_W) '$(srcdir)/sys/sys_confs.c'; fi`
-
-sys_ctrls.o: sys/sys_ctrls.c
-	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sys_ctrls.o -MD -MP -MF $(DEPDIR)/sys_ctrls.Tpo -c -o sys_ctrls.o `test -f 'sys/sys_ctrls.c' || echo '$(srcdir)/'`sys/sys_ctrls.c
-	$(AM_V_at)$(am__mv) $(DEPDIR)/sys_ctrls.Tpo $(DEPDIR)/sys_ctrls.Po
-#	$(AM_V_CC)source='sys/sys_ctrls.c' object='sys_ctrls.o' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sys_ctrls.o `test -f 'sys/sys_ctrls.c' || echo '$(srcdir)/'`sys/sys_ctrls.c
-
-sys_ctrls.obj: sys/sys_ctrls.c
-	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sys_ctrls.obj -MD -MP -MF $(DEPDIR)/sys_ctrls.Tpo -c -o sys_ctrls.obj `if test -f 'sys/sys_ctrls.c'; then $(CYGPATH_W) 'sys/sys_ctrls.c'; else $(CYGPATH_W) '$(srcdir)/sys/sys_ctrls.c'; fi`
-	$(AM_V_at)$(am__mv) $(DEPDIR)/sys_ctrls.Tpo $(DEPDIR)/sys_ctrls.Po
-#	$(AM_V_CC)source='sys/sys_ctrls.c' object='sys_ctrls.obj' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sys_ctrls.obj `if test -f 'sys/sys_ctrls.c'; then $(CYGPATH_W) 'sys/sys_ctrls.c'; else $(CYGPATH_W) '$(srcdir)/sys/sys_ctrls.c'; fi`
-
-sys_prints.o: sys/sys_prints.c
-	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sys_prints.o -MD -MP -MF $(DEPDIR)/sys_prints.Tpo -c -o sys_prints.o `test -f 'sys/sys_prints.c' || echo '$(srcdir)/'`sys/sys_prints.c
-	$(AM_V_at)$(am__mv) $(DEPDIR)/sys_prints.Tpo $(DEPDIR)/sys_prints.Po
-#	$(AM_V_CC)source='sys/sys_prints.c' object='sys_prints.o' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sys_prints.o `test -f 'sys/sys_prints.c' || echo '$(srcdir)/'`sys/sys_prints.c
-
-sys_prints.obj: sys/sys_prints.c
-	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sys_prints.obj -MD -MP -MF $(DEPDIR)/sys_prints.Tpo -c -o sys_prints.obj `if test -f 'sys/sys_prints.c'; then $(CYGPATH_W) 'sys/sys_prints.c'; else $(CYGPATH_W) '$(srcdir)/sys/sys_prints.c'; fi`
-	$(AM_V_at)$(am__mv) $(DEPDIR)/sys_prints.Tpo $(DEPDIR)/sys_prints.Po
-#	$(AM_V_CC)source='sys/sys_prints.c' object='sys_prints.obj' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sys_prints.obj `if test -f 'sys/sys_prints.c'; then $(CYGPATH_W) 'sys/sys_prints.c'; else $(CYGPATH_W) '$(srcdir)/sys/sys_prints.c'; fi`
 
 ID: $(am__tagged_files)
 	$(am__define_uniq_tagged_files); mkid -fID $$unique
@@ -1290,6 +724,20 @@ clean-generic:
 distclean-generic:
 	-test -z "$(CONFIG_CLEAN_FILES)" || rm -f $(CONFIG_CLEAN_FILES)
 	-test . = "$(srcdir)" || test -z "$(CONFIG_CLEAN_VPATH_FILES)" || rm -f $(CONFIG_CLEAN_VPATH_FILES)
+	-rm -f cmp/$(DEPDIR)/$(am__dirstamp)
+	-rm -f cmp/$(am__dirstamp)
+	-rm -f dmap/$(DEPDIR)/$(am__dirstamp)
+	-rm -f dmap/$(am__dirstamp)
+	-rm -f etc/$(DEPDIR)/$(am__dirstamp)
+	-rm -f etc/$(am__dirstamp)
+	-rm -f fsm/$(DEPDIR)/$(am__dirstamp)
+	-rm -f fsm/$(am__dirstamp)
+	-rm -f inc/$(DEPDIR)/$(am__dirstamp)
+	-rm -f inc/$(am__dirstamp)
+	-rm -f lib/$(DEPDIR)/$(am__dirstamp)
+	-rm -f lib/$(am__dirstamp)
+	-rm -f sys/$(DEPDIR)/$(am__dirstamp)
+	-rm -f sys/$(am__dirstamp)
 	-test -z "$(top_builddir)/bin/$(am__dirstamp)" || rm -f $(top_builddir)/bin/$(am__dirstamp)
 
 maintainer-clean-generic:
@@ -1300,7 +748,7 @@ clean: clean-am
 clean-am: clean-binPROGRAMS clean-generic mostlyclean-am
 
 distclean: distclean-am
-	-rm -rf ./$(DEPDIR)
+	-rm -rf ./$(DEPDIR) cmp/$(DEPDIR) dmap/$(DEPDIR) etc/$(DEPDIR) fsm/$(DEPDIR) inc/$(DEPDIR) lib/$(DEPDIR) sys/$(DEPDIR)
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-tags
@@ -1346,7 +794,7 @@ install-ps-am:
 installcheck-am:
 
 maintainer-clean: maintainer-clean-am
-	-rm -rf ./$(DEPDIR)
+	-rm -rf ./$(DEPDIR) cmp/$(DEPDIR) dmap/$(DEPDIR) etc/$(DEPDIR) fsm/$(DEPDIR) inc/$(DEPDIR) lib/$(DEPDIR) sys/$(DEPDIR)
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 

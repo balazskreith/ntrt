@@ -101,15 +101,13 @@ eventer_arg_t *make_eventer_arg(int32_t event, void *arg)
 
 feature_t* make_feature(const char_t* name,
                         const char_t* identifier,
-                        uint32_t (*evaluator)(sniff_t*,ptr_t),
-                        ptr_t evaluator_data)
+                        uint32_t (*evaluator)(sniff_t*,evaluator_container_t*))
 {
    feature_t *result;
    result = feature_ctor();
    strcpy(result->name, name);
    strcpy(result->identifier, identifier);
    result->evaluator = evaluator;
-   result->evaluator_data = evaluator_data;
    return result;
 }
 
@@ -117,9 +115,19 @@ datchain_t* make_datchain(ptr_t item)
 {
   datchain_t *result;
   result = datchain_ctor();
-  result->item = item;
+  result->data = item;
   result->next = NULL;
   result->prev = NULL;
+  return result;
 }
 
+
+evaluator_item_t* make_evaluator_item(feature_t* feature, evaluator_container_t* evaluator_container)
+{
+  evaluator_item_t* result;
+  result = evaluator_item_ctor();
+  memcpy(&result->evaluator_container, evaluator_container, sizeof(evaluator_container_t));
+  result->feature = feature;
+  return result;
+}
 

@@ -79,7 +79,7 @@ datchain_t* datchain_ctor()
 	memset(result, 0, sizeof(datchain_t));
 	result->next = NULL;
 	result->prev = NULL;
-	result->item = NULL;
+	result->data = NULL;
 	return result;
 }//#datchain_ctor end 
 
@@ -124,6 +124,22 @@ pcap_listener_t* pcap_listener_ctor()
   pcap_listener_t* result;
   result = (pcap_listener_t*) malloc(sizeof(pcap_listener_t));
   memset(result, 0, sizeof(pcap_listener_t));
+  return result;
+}
+
+record_t* record_ctor()
+{
+  record_t* result;
+  result = (record_t*) malloc(sizeof(record_t));
+  memset(result, 0, sizeof(record_t));
+  return result;
+}
+
+evaluator_item_t* evaluator_item_ctor()
+{
+  evaluator_item_t* result;
+  result = (evaluator_item_t*) malloc(sizeof(evaluator_item_t));
+  memset(result, 0, sizeof(evaluator_item_t));
   return result;
 }
 
@@ -205,7 +221,7 @@ void datarray_dtor(void* datarray)
 }//# datarray_dtor end
 
 
-void datchain_dtor(void* datchain)
+void datchain_dtor(void* datchain, void (*data_dtor)(ptr_t))
 {
         datchain_t *target,*next;
         if(datchain == NULL){
@@ -214,6 +230,9 @@ void datchain_dtor(void* datchain)
         target = (datchain_t*) datchain;
         do{
                 next = target->next;
+                if(data_dtor){
+                  data_dtor(target->data);
+                }
                 free(target);
                 target = next;
         } while(target != NULL);
@@ -256,6 +275,20 @@ void pcap_listener_dtor(ptr_t target)
 {
   pcap_listener_t *listener;
   listener = target;
-  datchain_dtor(listener->features);
+  datchain_dtor(listener->evaluators, evaluator_item_dtor);
   free(listener);
+}
+
+void record_dtor(ptr_t target)
+{
+  record_t *record;
+  record = target;
+  free(record);
+}
+
+void evaluator_item_dtor(ptr_t target)
+{
+  evaluator_item_t *evaluator_item;
+  evaluator_item = target;
+  free(evaluator_item);
 }

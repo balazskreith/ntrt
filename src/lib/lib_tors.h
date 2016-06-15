@@ -74,6 +74,10 @@ array_t* array_ctor(int32_t length);
 feature_t* feature_ctor();
 
 pcap_listener_t* pcap_listener_ctor();
+
+record_t* record_ctor();
+
+evaluator_item_t* evaluator_item_ctor();
 //-------------------------------------------------------------------------------------
 //----------------------- Destructors--------------------------------------------------
 //-------------------------------------------------------------------------------------
@@ -111,7 +115,7 @@ void datarray_dtor(void* datarray);
 /** \fn void datchain_dtor(void*)
       \brief Destroy an instance of a datchain_t
   */
-void datchain_dtor(void* datchain);
+void datchain_dtor(void* datchain, void (*data_dtor)(ptr_t));
 
 
 /** \fn void bytes_dtor(void*)
@@ -131,8 +135,12 @@ void clock_event_dtor(void *clock_event);
 
 void array_dtor(void *target);
 
-void feature_dtor(ptr_t);
+void feature_dtor(ptr_t target);
 
-void pcap_listener_dtor(ptr_t);
+void pcap_listener_dtor(ptr_t target);
+
+void record_dtor(ptr_t target);
+
+void evaluator_item_dtor(ptr_t target);
 
 #endif //INCGUARD_NTRT_LIBRARY_CONSTRUCTORS_H_

@@ -61,8 +61,10 @@ lib_threading.o: lib/lib_threading.c /usr/include/stdc-predef.h \
  /usr/include/x86_64-linux-gnu/bits/sigcontext.h \
  /usr/include/x86_64-linux-gnu/bits/sigstack.h \
  /usr/include/x86_64-linux-gnu/sys/ucontext.h \
- /usr/include/x86_64-linux-gnu/bits/sigthread.h inc/inc_unistd.h \
- /usr/include/unistd.h /usr/include/x86_64-linux-gnu/bits/posix_opt.h \
+ /usr/include/x86_64-linux-gnu/bits/sigthread.h /usr/local/include/pcap.h \
+ /usr/local/include/pcap/pcap.h /usr/local/include/pcap/bpf.h \
+ inc/inc_unistd.h /usr/include/unistd.h \
+ /usr/include/x86_64-linux-gnu/bits/posix_opt.h \
  /usr/include/x86_64-linux-gnu/bits/environments.h \
  /usr/include/x86_64-linux-gnu/bits/confname.h /usr/include/getopt.h \
  /usr/include/x86_64-linux-gnu/bits/unistd.h lib/lib_debuglog.h
@@ -242,6 +244,12 @@ lib/lib_descs.h:
 /usr/include/x86_64-linux-gnu/sys/ucontext.h:
 
 /usr/include/x86_64-linux-gnu/bits/sigthread.h:
+
+/usr/local/include/pcap.h:
+
+/usr/local/include/pcap/pcap.h:
+
+/usr/local/include/pcap/bpf.h:
 
 inc/inc_unistd.h:
 

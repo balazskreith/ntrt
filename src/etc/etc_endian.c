@@ -48,21 +48,6 @@ bool_t set_bytes_for_sending(void *dst, void *src, int32_t size)
 	return BOOL_TRUE;
 }
 
-void set_packet_for_sending(packet_t *packet)
-{
-	byte_t copied[NTRT_PACKET_LENGTH];
-	if(packet == NULL){
-		WARNINGPRINT("Packet is null at sending.");
-		return;
-	}
-
-	if(set_bytes_for_sending(copied, packet->bytes, packet->length) == BOOL_FALSE){
-		ERRORPRINT("Unrecognized endianness");
-		return;
-	}
-	memcpy(packet->bytes, copied, packet->length);
-}
-
 bool_t set_bytes_for_receiving(void *dst, void *src, int32_t size)
 {
 	byte_t *destination = (byte_t*) dst;
@@ -86,18 +71,3 @@ bool_t set_bytes_for_receiving(void *dst, void *src, int32_t size)
 	return BOOL_TRUE;
 }
 
-
-void set_packet_for_receiving(packet_t *packet)
-{
-	byte_t copied[NTRT_PACKET_LENGTH];
-	if(packet == NULL){
-		WARNINGPRINT("Packet is null at receiving.");
-		return;
-	}
-
-	if(set_bytes_for_receiving(copied, packet->bytes, packet->length) == BOOL_FALSE){
-		ERRORPRINT("Unrecognized endianness");
-		return;
-	}
-	memcpy(packet->bytes, copied, packet->length);
-}

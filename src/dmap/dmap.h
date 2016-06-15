@@ -34,15 +34,15 @@ int32_t     _dmap_add_row(dmap_table_t *table, dmap_row_t *row)                 
 DMAP_DECL_SPECT_TABLE(
 	feature_t,		   /*type of the items stored in the table*/
 	dmap_get_table_features,	   /*name of the process gets the table*/
-	dmap_get_features,		   /*name of the process gets an item from the table by index*/
-	dmap_add_features,		   /*name of the process adds an item and returns with its index*/
+	dmap_get_feature,		   /*name of the process gets an item from the table by index*/
+	dmap_add_feature,		   /*name of the process adds an item and returns with its index*/
 	dmap_rem_feature_byindex,  /*name of the process remove an item from the table by index*/
-	dmap_rem_features, 		   /*name of the process remove an item from the table by pointer*/
+	dmap_rem_feature, 		   /*name of the process remove an item from the table by pointer*/
 	dmap_rdlock_table_features,  /*name of the process lock the table for reading*/
 	dmap_rdunlock_table_features,/*name of the process unlock the table from reading*/
 	dmap_wrlock_table_features,  /*name of the process lock the table for writing*/
 	dmap_wrunlock_table_features,/*name of the process unlock the table from writing*/
-	dmap_itr_table_feature	   /*name of the process iterate the table*/
+	dmap_itr_table_features	   /*name of the process iterate the table*/
 );
 
 DMAP_DECL_SPECT_TABLE(

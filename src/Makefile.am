@@ -1,5 +1,5 @@
 AM_CPPFLAGS = -Iinc -Icmp -Idmap -Ifsm -Ilib -Isys -Ietc -std=gnu99
-LIBS = -lpthread -lm -lcrypto -lssl -lpcap
+LIBS = -lpthread -lm -lcrypto -lssl -lpcap -lrt
 
 bin_PROGRAMS = $(top_builddir)/bin/ntrt
 __top_builddir__bin_ntrt_SOURCES =       \
@@ -29,6 +29,8 @@ __top_builddir__bin_ntrt_SOURCES =       \
 			  etc/etc_endian.c          \
 			  etc/etc_iniparser.h       \
 			  etc/etc_iniparser.c       \
+  			  etc/etc_sniffex.h         \
+			  etc/etc_sniffex.c         \
 			  etc/etc_utils.h           \
 			  etc/etc_utils.c           \
 			  fsm/fsm_actions.h         \
@@ -58,6 +60,8 @@ __top_builddir__bin_ntrt_SOURCES =       \
               lib/lib_defs.h            \
               lib/lib_dispers.h         \
               lib/lib_dispers.c         \
+              lib/lib_features.c        \
+              lib/lib_features.h        \
               lib/lib_funcs.h           \
               lib/lib_funcs.c           \
               lib/lib_heap.h            \
@@ -78,9 +82,5 @@ __top_builddir__bin_ntrt_SOURCES =       \
               lib/lib_vector.c          \
               sys/sys_confs.h           \
               sys/sys_confs.c           \
-              sys/sys_ctrls.h           \
-              sys/sys_ctrls.c           \
-              sys/sys_predefs.h         \
-              sys/sys_prints.h          \
-              sys/sys_prints.c 
+              sys/sys_predefs.h         
 

@@ -61,7 +61,8 @@ lib_puffers.o: lib/lib_puffers.c /usr/include/stdc-predef.h \
  /usr/include/x86_64-linux-gnu/bits/sigcontext.h \
  /usr/include/x86_64-linux-gnu/bits/sigstack.h \
  /usr/include/x86_64-linux-gnu/sys/ucontext.h \
- /usr/include/x86_64-linux-gnu/bits/sigthread.h
+ /usr/include/x86_64-linux-gnu/bits/sigthread.h /usr/local/include/pcap.h \
+ /usr/local/include/pcap/pcap.h /usr/local/include/pcap/bpf.h
 
 /usr/include/stdc-predef.h:
 
@@ -236,3 +237,9 @@ lib/lib_threading.h:
 /usr/include/x86_64-linux-gnu/sys/ucontext.h:
 
 /usr/include/x86_64-linux-gnu/bits/sigthread.h:
+
+/usr/local/include/pcap.h:
+
+/usr/local/include/pcap/pcap.h:
+
+/usr/local/include/pcap/bpf.h:

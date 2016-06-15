@@ -18,7 +18,7 @@ typedef struct timeb mtime_t;
 void set_mtime(mtime_t*);
 double diffmtime(mtime_t *begin, mtime_t *end);
 void print_mtime(mtime_t* time);
-double diffmtime_fromnow(mtime_t *end);
+double diffmtime_fromnow(mtime_t *begin);
 
 
 

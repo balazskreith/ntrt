@@ -62,8 +62,9 @@ etc_endian.o: etc/etc_endian.c /usr/include/stdc-predef.h \
  /usr/include/x86_64-linux-gnu/bits/sigcontext.h \
  /usr/include/x86_64-linux-gnu/bits/sigstack.h \
  /usr/include/x86_64-linux-gnu/sys/ucontext.h \
- /usr/include/x86_64-linux-gnu/bits/sigthread.h inc/inc_texts.h \
- lib/lib_debuglog.h lib/lib_descs.h \
+ /usr/include/x86_64-linux-gnu/bits/sigthread.h /usr/local/include/pcap.h \
+ /usr/local/include/pcap/pcap.h /usr/local/include/pcap/bpf.h \
+ inc/inc_texts.h lib/lib_debuglog.h lib/lib_descs.h \
  /usr/lib/gcc/x86_64-linux-gnu/4.8/include-fixed/limits.h \
  /usr/lib/gcc/x86_64-linux-gnu/4.8/include-fixed/syslimits.h \
  /usr/include/limits.h /usr/include/x86_64-linux-gnu/bits/posix1_lim.h \
@@ -254,6 +255,12 @@ lib/lib_threading.h:
 /usr/include/x86_64-linux-gnu/sys/ucontext.h:
 
 /usr/include/x86_64-linux-gnu/bits/sigthread.h:
+
+/usr/local/include/pcap.h:
+
+/usr/local/include/pcap/pcap.h:
+
+/usr/local/include/pcap/bpf.h:
 
 inc/inc_texts.h:
 

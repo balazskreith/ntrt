@@ -61,8 +61,9 @@ lib_debuglog.o: lib/lib_debuglog.c /usr/include/stdc-predef.h \
  /usr/include/x86_64-linux-gnu/bits/sigcontext.h \
  /usr/include/x86_64-linux-gnu/bits/sigstack.h \
  /usr/include/x86_64-linux-gnu/sys/ucontext.h \
- /usr/include/x86_64-linux-gnu/bits/sigthread.h etc/etc_utils.h \
- lib/lib_defs.h lib/lib_descs.h
+ /usr/include/x86_64-linux-gnu/bits/sigthread.h /usr/local/include/pcap.h \
+ /usr/local/include/pcap/pcap.h /usr/local/include/pcap/bpf.h \
+ etc/etc_utils.h lib/lib_defs.h lib/lib_descs.h
 
 /usr/include/stdc-predef.h:
 
@@ -237,6 +238,12 @@ lib/../inc/inc_predefs.h:
 /usr/include/x86_64-linux-gnu/sys/ucontext.h:
 
 /usr/include/x86_64-linux-gnu/bits/sigthread.h:
+
+/usr/local/include/pcap.h:
+
+/usr/local/include/pcap/pcap.h:
+
+/usr/local/include/pcap/bpf.h:
 
 etc/etc_utils.h:
 

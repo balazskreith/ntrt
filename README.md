@@ -9,7 +9,7 @@ It accumulates the network traffic for a
 certain amount of time configured in the config.ini. 
 The main purpose of the program is to listen and accumulate
 network activity using various filter type parallely and 
-exporting the result to a csv file.
+exporting the result into a csv file.
 
 
 **The Latest Version**
@@ -24,5 +24,13 @@ https://github.com/balazskreith/ntrt
  3. Setup config.ini (see below)
  4. ./ntrt -cfg=path/to/config.ini
 
-**Configuration**
-  
+**Example**
+
+The following example filter udp and tcp traffic parallely with a 100ms rate
+
+TODO: The config.ini:
+TODO: The script
+
+**Available Features**
+TODO: List the available features
+

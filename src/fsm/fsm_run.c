@@ -1,5 +1,4 @@
 #include "../cmp/cmp_evaluator.h"
-#include "../cmp/cmp_listener.h"
 #include "../cmp/cmp_recorder.h"
 #include "../cmp/cmp_sniffer.h"
 #include "fsm.h"
@@ -7,7 +6,6 @@
 #include "etc_utils.h"
 #include "fsm_actions.h"
 #include "inc_opcall.h"
-#include "sys_prints.h"
 
 //components:
 #include "cmp_predefs.h"
@@ -44,9 +42,9 @@ fsm_states_t _fsm_run_trans(int32_t event, void *arg)
 
 void _sys_stop()
 {
-	get_cmp_psender()->stop();
+	get_cmp_recorder()->stop();
 	get_cmp_evaluator()->stop();
 
-	dmap_itr_do(dmap_itr_table_con, get_cmp_precver()->stop);
+	dmap_itr_do(dmap_itr_table_pcapls, get_cmp_sniffer()->stop);
 }
 

@@ -1,5 +1,5 @@
 fsm_run.o: fsm/fsm_run.c /usr/include/stdc-predef.h \
- fsm/../cmp/cmp_pcapreader.h lib/lib_descs.h /usr/include/time.h \
+ fsm/../cmp/cmp_evaluator.h lib/lib_descs.h /usr/include/time.h \
  /usr/include/features.h /usr/include/x86_64-linux-gnu/sys/cdefs.h \
  /usr/include/x86_64-linux-gnu/bits/wordsize.h \
  /usr/include/x86_64-linux-gnu/gnu/stubs.h \
@@ -61,18 +61,18 @@ fsm_run.o: fsm/fsm_run.c /usr/include/stdc-predef.h \
  /usr/include/x86_64-linux-gnu/bits/sigcontext.h \
  /usr/include/x86_64-linux-gnu/bits/sigstack.h \
  /usr/include/x86_64-linux-gnu/sys/ucontext.h \
- /usr/include/x86_64-linux-gnu/bits/sigthread.h fsm/fsm.h \
- lib/lib_threading.h dmap/dmap.h lib/lib_defs.h dmap/dmap_defs.h \
- dmap/dmap_predefs.h etc/etc_utils.h fsm/fsm_actions.h inc/inc_opcall.h \
- sys/sys_prints.h cmp/cmp_predefs.h lib/lib_predefs.h lib/lib_debuglog.h \
+ /usr/include/x86_64-linux-gnu/bits/sigthread.h /usr/local/include/pcap.h \
+ /usr/local/include/pcap/pcap.h /usr/local/include/pcap/bpf.h \
+ fsm/../cmp/cmp_recorder.h fsm/../cmp/cmp_defs.h fsm/../cmp/cmp_sniffer.h \
+ fsm/../cmp/cmp_predefs.h lib/lib_predefs.h lib/lib_debuglog.h \
  lib/lib_descs.h lib/lib_funcs.h inc/inc_texts.h lib/lib_puffers.h \
- cmp/cmp_defs.h cmp/cmp_conasr.h cmp/cmp_cmdexetor.h cmp/cmp_predefs.h \
- cmp/cmp_pthsch.h cmp/cmp_precver.h cmp/cmp_psender.h cmp/cmp_defs.h \
- cmp/cmp_cli.h cmp/cmp_screener.h cmp/cmp_handshaker.h
+ fsm/fsm.h lib/lib_threading.h dmap/dmap.h lib/lib_defs.h \
+ dmap/dmap_defs.h dmap/dmap_predefs.h etc/etc_utils.h fsm/fsm_actions.h \
+ inc/inc_opcall.h cmp/cmp_predefs.h cmp/cmp_defs.h
 
 /usr/include/stdc-predef.h:
 
-fsm/../cmp/cmp_pcapreader.h:
+fsm/../cmp/cmp_evaluator.h:
 
 lib/lib_descs.h:
 
@@ -244,6 +244,32 @@ lib/../inc/inc_predefs.h:
 
 /usr/include/x86_64-linux-gnu/bits/sigthread.h:
 
+/usr/local/include/pcap.h:
+
+/usr/local/include/pcap/pcap.h:
+
+/usr/local/include/pcap/bpf.h:
+
+fsm/../cmp/cmp_recorder.h:
+
+fsm/../cmp/cmp_defs.h:
+
+fsm/../cmp/cmp_sniffer.h:
+
+fsm/../cmp/cmp_predefs.h:
+
+lib/lib_predefs.h:
+
+lib/lib_debuglog.h:
+
+lib/lib_descs.h:
+
+lib/lib_funcs.h:
+
+inc/inc_texts.h:
+
+lib/lib_puffers.h:
+
 fsm/fsm.h:
 
 lib/lib_threading.h:
@@ -262,40 +288,6 @@ fsm/fsm_actions.h:
 
 inc/inc_opcall.h:
 
-sys/sys_prints.h:
-
 cmp/cmp_predefs.h:
 
-lib/lib_predefs.h:
-
-lib/lib_debuglog.h:
-
-lib/lib_descs.h:
-
-lib/lib_funcs.h:
-
-inc/inc_texts.h:
-
-lib/lib_puffers.h:
-
 cmp/cmp_defs.h:
-
-cmp/cmp_conasr.h:
-
-cmp/cmp_cmdexetor.h:
-
-cmp/cmp_predefs.h:
-
-cmp/cmp_pthsch.h:
-
-cmp/cmp_precver.h:
-
-cmp/cmp_psender.h:
-
-cmp/cmp_defs.h:
-
-cmp/cmp_cli.h:
-
-cmp/cmp_screener.h:
-
-cmp/cmp_handshaker.h:

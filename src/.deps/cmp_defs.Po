@@ -61,9 +61,10 @@ cmp_defs.o: cmp/cmp_defs.c /usr/include/stdc-predef.h cmp/cmp_defs.h \
  /usr/include/x86_64-linux-gnu/bits/sigcontext.h \
  /usr/include/x86_64-linux-gnu/bits/sigstack.h \
  /usr/include/x86_64-linux-gnu/sys/ucontext.h \
- /usr/include/x86_64-linux-gnu/bits/sigthread.h lib/lib_defs.h \
- lib/lib_threading.h lib/lib_tors.h lib/lib_descs.h lib/lib_makers.h \
- inc/inc_texts.h lib/lib_debuglog.h inc/inc_unistd.h \
+ /usr/include/x86_64-linux-gnu/bits/sigthread.h /usr/local/include/pcap.h \
+ /usr/local/include/pcap/pcap.h /usr/local/include/pcap/bpf.h \
+ lib/lib_defs.h lib/lib_threading.h lib/lib_tors.h lib/lib_descs.h \
+ lib/lib_makers.h inc/inc_texts.h lib/lib_debuglog.h inc/inc_unistd.h \
  /usr/include/unistd.h /usr/include/x86_64-linux-gnu/bits/posix_opt.h \
  /usr/include/x86_64-linux-gnu/bits/environments.h \
  /usr/include/x86_64-linux-gnu/bits/confname.h /usr/include/getopt.h \
@@ -243,6 +244,12 @@ lib/../inc/inc_predefs.h:
 /usr/include/x86_64-linux-gnu/sys/ucontext.h:
 
 /usr/include/x86_64-linux-gnu/bits/sigthread.h:
+
+/usr/local/include/pcap.h:
+
+/usr/local/include/pcap/pcap.h:
+
+/usr/local/include/pcap/bpf.h:
 
 lib/lib_defs.h:
 

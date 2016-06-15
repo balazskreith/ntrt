@@ -61,9 +61,10 @@ fsm.o: fsm/fsm.c /usr/include/stdc-predef.h fsm/fsm.h lib/lib_descs.h \
  /usr/include/x86_64-linux-gnu/bits/sigcontext.h \
  /usr/include/x86_64-linux-gnu/bits/sigstack.h \
  /usr/include/x86_64-linux-gnu/sys/ucontext.h \
- /usr/include/x86_64-linux-gnu/bits/sigthread.h lib/lib_threading.h \
- lib/lib_tors.h lib/lib_descs.h dmap/dmap.h lib/lib_defs.h \
- dmap/dmap_defs.h dmap/dmap_predefs.h sys/sys_prints.h sys/sys_confs.h \
+ /usr/include/x86_64-linux-gnu/bits/sigthread.h /usr/local/include/pcap.h \
+ /usr/local/include/pcap/pcap.h /usr/local/include/pcap/bpf.h \
+ lib/lib_threading.h lib/lib_tors.h lib/lib_descs.h dmap/dmap.h \
+ lib/lib_defs.h dmap/dmap_defs.h dmap/dmap_predefs.h sys/sys_confs.h \
  etc/etc_iniparser.h etc/etc_dict.h /usr/include/unistd.h \
  /usr/include/x86_64-linux-gnu/bits/posix_opt.h \
  /usr/include/x86_64-linux-gnu/bits/environments.h \
@@ -71,7 +72,7 @@ fsm.o: fsm/fsm.c /usr/include/stdc-predef.h fsm/fsm.h lib/lib_descs.h \
  /usr/include/x86_64-linux-gnu/bits/unistd.h lib/lib_makers.h \
  lib/lib_dispers.h cmp/cmp_defs.h cmp/cmp_predefs.h lib/lib_predefs.h \
  lib/lib_debuglog.h lib/lib_funcs.h inc/inc_texts.h lib/lib_puffers.h \
- fsm/fsm_halt.h fsm/fsm_exist.h fsm/fsm_run.h fsm/fsm_client.h
+ fsm/fsm_halt.h fsm/fsm_run.h
 
 /usr/include/stdc-predef.h:
 
@@ -247,6 +248,12 @@ lib/../inc/inc_predefs.h:
 
 /usr/include/x86_64-linux-gnu/bits/sigthread.h:
 
+/usr/local/include/pcap.h:
+
+/usr/local/include/pcap/pcap.h:
+
+/usr/local/include/pcap/bpf.h:
+
 lib/lib_threading.h:
 
 lib/lib_tors.h:
@@ -260,8 +267,6 @@ lib/lib_defs.h:
 dmap/dmap_defs.h:
 
 dmap/dmap_predefs.h:
-
-sys/sys_prints.h:
 
 sys/sys_confs.h:
 
@@ -301,8 +306,4 @@ lib/lib_puffers.h:
 
 fsm/fsm_halt.h:
 
-fsm/fsm_exist.h:
-
 fsm/fsm_run.h:
-
-fsm/fsm_client.h:

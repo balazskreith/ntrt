@@ -12,7 +12,9 @@
 #include "inc_inet.h"
 #include "inc_mtime.h"
 
-
+#define MIN(x,y) (x < y ? x : y)
+#define MAX(x,y) (x < y ? y : x)
+#define CONSTRAIN(min,max,value) MIN(max,MAX(min,value))
 /** \def SIZE_INADDR
       \brief The size of an IPv4 address
   */
@@ -233,7 +235,7 @@ typedef struct datarray_struct_t{
       \brief describes a chain of consecutive unspecified data 
   */
 typedef struct datchain_struct_t{
-	void*                     item;      ///< Pointing to the actual data item
+	void*                     data;      ///< Pointing to the actual data item
 	struct datchain_struct_t* next;      ///< Pointing to the next element of the chain
 	struct datchain_struct_t* prev;      ///< Pointing to the previous element of the chain
 }datchain_t;

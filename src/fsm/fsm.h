@@ -29,6 +29,7 @@ typedef struct fsm_mpt_struct_t
 void fsm_ctor();
 void fsm_dtor();
 fsm_t* get_fsm();
+void fsm_kill();
 
 //private tools
 void fsm_str_state(int32_t state, char_t *dst);

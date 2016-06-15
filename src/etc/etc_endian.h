@@ -21,8 +21,6 @@ typedef enum {
 
 endian_types_t get_system_endianness(void);
 bool_t set_bytes_for_receiving(void *dst, void *src, int32_t size);
-void set_packet_for_receiving(packet_t *packet);
 bool_t set_bytes_for_sending(void *dst, void *src, int32_t size);
-void set_packet_for_sending(packet_t *packet);
 
 #endif /* INCGUARD_ETC_ENDIAN_H_ */

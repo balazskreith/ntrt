@@ -2,7 +2,6 @@
 #include "lib_tors.h"
 #include "dmap.h"
 #include "inc_predefs.h"
-#include "sys_prints.h"
 #include "sys_confs.h"
 #include "lib_makers.h"
 #include "lib_dispers.h"
@@ -12,12 +11,10 @@
 
 //states:
 #include "fsm_halt.h"
-#include "fsm_exist.h"
 #include "fsm_run.h"
-#include "fsm_client.h"
 
-static void  _fsm_mpt_init();
-static void  _fsm_mpt_deinit();
+static void  _fsm_ntrt_init();
+static void  _fsm_ntrt_deinit();
 #define FSM_NAME_NTRT "NTRT system machine"
 CMP_DEF(, 			         /*type of definitions*/ 										   \
 		fsm_t,       /*type of component*/ 										  	   \
@@ -25,9 +22,9 @@ CMP_DEF(, 			         /*type of definitions*/ 										   \
 		 _fsm_mpt,        /*variable name of the component*/  							   \
 		 fsm_ctor,    /*name of the constructor function implemented automatically*/     \
 		 fsm_dtor,    /*name of the destructor function implemented automatically*/      \
-		 _fsm_mpt_init,   /*name of the external function called after construction*/        \
+		 _fsm_ntrt_init,   /*name of the external function called after construction*/        \
 		 __NO_TEST_FUNC_,      /*name of the external function called after initialization*/       \
-		 _fsm_mpt_deinit  /*name of the external function called before destruction*/        \
+		 _fsm_ntrt_deinit  /*name of the external function called before destruction*/        \
 		);																						   \
 
 CMP_DEF_GET_PROC(get_fsm, fsm_t, _fsm_mpt);
@@ -38,11 +35,19 @@ static void _fsm_fire(int, void*);
 //private tools
 static void _str_state(int32_t state, char_t *dst);
 static void _str_event(int32_t event, char_t *dst);
+
+void fsm_kill()
+{
+  CRITICALPRINT("%s", "The program is terminated");
+  get_fsm()->fire(NTRT_EVENT_STOP, NULL);
+  get_fsm()->fire(NTRT_EVENT_SHUTDOWN, NULL);
+}
+
 //----------------------------------------------------------------------------------------------------
 //------------------------- Initializations  ---------------------------------------------------------
 //----------------------------------------------------------------------------------------------------
 
-void _fsm_mpt_init()
+void _fsm_ntrt_init()
 {
 	CMP_DEF_THIS(fsm_t, _fsm_mpt);
 
@@ -50,20 +55,20 @@ void _fsm_mpt_init()
 	this->signal = signal_ctor();
 
 	dmap_init();
-	cmplib_init();
 
 	//Binding
 	CMP_BIND(this->fire, _fsm_fire);
-
-	//Connecting
 
 	//start value:
 	this->current = NTRT_STATE_HALT;
 }
 
-void _fsm_mpt_deinit()
+void _fsm_ntrt_deinit()
 {
 	CMP_DEF_THIS(fsm_t, _fsm_mpt);
+
+        //Destruct
+        dmap_deinit();
 
 	signal_dtor(this->signal);
 }
