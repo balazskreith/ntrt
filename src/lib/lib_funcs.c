@@ -71,6 +71,54 @@ void datchain_foreach(datchain_t* chain, void (*process)(datchain_t*, ptr_t), pt
   }
 }
 
+slist_t* slist_append(slist_t *slist, ptr_t item)
+{
+  slist_t* tail;
+  if(!slist){
+    return make_slist(item);
+  }
+  tail = slist;
+  while(tail->next){
+    tail = tail->next;
+  }
+  tail->next = make_slist(item);
+  return slist;
+}
+
+slist_t* slist_prepend(slist_t* slist, ptr_t item)
+{
+  slist_t* head;
+  if(!slist){
+    return make_slist(item);
+  }
+  head = make_slist(item);
+  head->next = slist;
+  return head;
+}
+
+void slist_foreach(slist_t* slist, void (*process)(slist_t*, ptr_t), ptr_t data)
+{
+  for(; slist; slist = slist->next){
+    process(slist, data);
+  }
+}
+
+slist_t* slist_cpy(slist_t* slist)
+{
+  slist_t* head, *actual;
+  if(!slist){
+    return NULL;
+  }
+  actual = slist;
+again:
+  head = slist_append(head, actual->data);
+  actual = actual->next;
+  if(actual){
+    goto again;
+  }
+  return head;
+}
+
 void *eventer(eventer_arg_t *eventer_arg)
 {
 	int32_t event;

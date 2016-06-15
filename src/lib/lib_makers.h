@@ -99,4 +99,6 @@ datchain_t* make_datchain(ptr_t item);
 
 evaluator_item_t* make_evaluator_item(feature_t* feature, evaluator_container_t* evaluator_container);
 
+slist_t* make_slist(ptr_t item);
+
 #endif //INCGUARD_NTRT_LIBRARY_MAKERS_H_

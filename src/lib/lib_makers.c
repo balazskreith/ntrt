@@ -131,3 +131,12 @@ evaluator_item_t* make_evaluator_item(feature_t* feature, evaluator_container_t*
   return result;
 }
 
+slist_t* make_slist(ptr_t item)
+{
+  slist_t* result;
+  result       = malloc(sizeof(slist_t));
+  result->data = item;
+  result->next = NULL;
+  return result;
+}
+

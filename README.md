@@ -51,11 +51,61 @@ https://github.com/balazskreith/ntrt
 
 **Example**
 
-The following example filter udp and tcp traffic parallely with a 100ms rate
+The following example filter udp and tcp traffic parallely with a 100ms resolution and a one seconds accumulation
 
-TODO: The config.ini:
-TODO: The script
+*The contents of the config.ini file:*
+
+[global]
+sampling_rate      = 100
+pcap_listeners_num = 1
+
+[pcap_0]
+accumulation_length = 10
+device              = wlan0
+output              = wlan0_stats.csv
+feature_num         = 4
+feature_0           = UDP_PACKETS
+feature_1           = TCP_PACKETS
+feature_2           = TCP_BYTES
+feature_3           = UDP_BYTES
+
+
+*The script file*
+
+./ntrt -cconfig.ini
+
+The output is a comma separated list in wlan0_stats.csv. The sampling period determines the resolution of the measure and the accumulation length determines how many sampling period is accumulated in one measure. The example above sampling is 100ms and accumulates the last 10 samples.
+
+More examples on TODO....
 
 **Available Features**
-TODO: List the available features
+
+The following features are available:
+
+*UDP_PACKETS*   
+                    
+*UDP_BYTES*       
+                 
+*TCP_PACKETS*        
+               
+*TCP_BYTES*              
+      
+*PACKETS_SRC_PORT_X*      
+           
+*BYTES_SRC_PORT_X*        
+      
+*BYTES_RTP_SRC_PORT_X*       
+   
+*PACKETS_RTP_SRC_PORT_X*       
+ 
+*PACKETS_DST_PORT_X*  
+
+*BYTES_DST_PORT_X*   
+
+*BYTES_RTP_DST_PORT_X_PAYLOAD_Y* 
+
+*PACKETS_RTP_DST_PORT_X_PAYLOAD_Y*
+
+
+    
 

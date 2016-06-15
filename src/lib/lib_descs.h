@@ -54,7 +54,7 @@ typedef struct pcap_listener_struct_t{
   char_t             pcap_filter[1024];
   pcap_t*            handler;
 //  datchain_t*        features;
-  datchain_t*        evaluators;
+  slist_t*           evaluators;
   bpf_u_int32        mask;               /* Our netmask */
   bpf_u_int32        net;                /* Our IP */
   struct bpf_program fp;                 /* The compiled filter */
@@ -79,15 +79,15 @@ typedef struct sniff_struct_t{
   struct pcap_pkthdr* header;
   extended_bool_t     is_ip_packet;
   extended_bool_t     is_udp_packet;
+  extended_bool_t     is_tcp_packet;
   struct  in_addr     ip_src,ip_dst;
   u_char              ip_p;                  /* protocol */
   u_short             ip_len;
+  int32_t             size_ip;
   u_short             port_src;               /* source port */
   u_short             port_dst;               /* destination port */
   int32_t             size_payload;
   u_char*             payload;
-  datchain_t*         evaluators;
-  int32_t             features_num;
   int32_t             listener_id;
   struct{
     extended_bool_t analyzed;

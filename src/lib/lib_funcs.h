@@ -23,6 +23,10 @@ datchain_t* datchain_prepend(datchain_t *chain, ptr_t item);
 datchain_t* datchain_append(datchain_t *chain, ptr_t item);
 void datchain_foreach(datchain_t* chain, void (*process)(datchain_t*, ptr_t), ptr_t data);
 
+slist_t* slist_append(slist_t *slist, ptr_t item);
+slist_t* slist_prepend(slist_t* slist, ptr_t item);
+void slist_foreach(slist_t* slist, void (*process)(slist_t*, ptr_t), ptr_t data);
+
 void *eventer(eventer_arg_t *eventer_arg);
 
 void ptrmov(void **dst, void **src);

@@ -174,9 +174,9 @@ pcap_listener_t* _listener_from_conf(dictionary *conf, char_t *section)
                   result->pcap_filter);
 
         for(i=0; i<result->feature_num; ++i){
-          feature_t *feature;
-          evaluator_item_t *evaluator_item;
-          evaluator_container_t evaluator_container;
+          feature_t             *feature;
+          evaluator_item_t      *evaluator_item;
+          evaluator_container_t  evaluator_container;
 
           memset(&evaluator_container, 0, sizeof(evaluator_container_t));
           memset(conf_key, 0, strlen(conf_key));
@@ -188,7 +188,7 @@ pcap_listener_t* _listener_from_conf(dictionary *conf, char_t *section)
             continue;
           }
           evaluator_item = make_evaluator_item(feature, &evaluator_container);
-          result->evaluators = datchain_append(result->evaluators, evaluator_item);
+          result->evaluators = slist_append(result->evaluators, evaluator_item);
           INFOPRINT("Feature %s is added listening for device %s", read_str, result->device);
         }
 

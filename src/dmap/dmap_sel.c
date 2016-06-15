@@ -34,3 +34,15 @@ feature_t* dmap_get_feature_by_identifier(char_t* identifier)
     return result;
 }
 
+
+int32_t dmap_get_id_by_pcapls(pcap_listener_t* pcap_listener)
+{
+  int32_t result,index;
+  pcap_listener_t* it = NULL;
+  for(index = 0; dmap_itr_table_pcapls(&index, &it) == BOOL_TRUE; ++index){
+      if(it == pcap_listener){
+        return index;
+      }
+  }
+  return DEVCLEGO_DMAP_ERROR_ITEM_NOT_FOUND;
+}
