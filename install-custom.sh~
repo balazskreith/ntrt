@@ -1,8 +1,0 @@
-#!/bin/bash
-
-autoreconf -iv
-./configure
-make install
-mkdir /usr/local/etc/mptsrv
-mkdir /usr/local/etc/mptsrv/conf
-
