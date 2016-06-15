@@ -39,15 +39,15 @@ Yes.
 
 **The Latest Version**
 
-Details of the latest version can be found at 
-https://github.com/balazskreith/ntrt
+Details of the latest version can be found at   
+https://github.com/balazskreith/ntrt  
 
 **Install and Run**
 
- 1. Download or clone the source.
- 2. ./confgiure; make install
- 3. Setup config.ini (see below)
- 4. ./ntrt -cpath/to/config.ini
+ 1. Download or clone the source.  
+ 2. ./confgiure; make install   
+ 3. Setup config.ini (see below)  
+ 4. ./ntrt -cpath/to/config.ini  
 
 **Example**
 
@@ -56,31 +56,31 @@ The following example filter udp and tcp traffic parallely with a 100ms resoluti
 *The contents of the config.ini file:*
 
 [global]
-sampling_rate      = 100
-pcap_listeners_num = 1
+sampling_rate      = 100  
+pcap_listeners_num = 1  
 
 [pcap_0]
-accumulation_length = 10
-device              = wlan0
-output              = wlan0_stats.csv
-feature_num         = 4
-feature_0           = UDP_PACKETS
-feature_1           = TCP_PACKETS
-feature_2           = TCP_BYTES
-feature_3           = UDP_BYTES
+accumulation_length = 10  
+device              = wlan0  
+output              = wlan0_stats.csv  
+feature_num         = 4  
+feature_0           = UDP_PACKETS  
+feature_1           = TCP_PACKETS  
+feature_2           = TCP_BYTES  
+feature_3           = UDP_BYTES  
 
 
 *The script file*
 
-./ntrt -cconfig.ini
+./ntrt -cconfig.ini  
 
-The output is a comma separated list in wlan0_stats.csv. The sampling period determines the resolution of the measure and the accumulation length determines how many sampling period is accumulated in one measure. The example above sampling is 100ms and accumulates the last 10 samples.
+The output is a comma separated list in wlan0_stats.csv. The sampling period determines the resolution of the measure and the accumulation length determines how many sampling period is accumulated in one measure. The example above sampling is 100ms and accumulates the last 10 samples.  
 
-More examples on TODO....
+More examples on TODO....  
 
 **Available Features**
 
-The following features are available:
+The following features are available:  
 
 *UDP_PACKETS*   
                     
