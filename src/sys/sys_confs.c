@@ -38,31 +38,32 @@ static void _add_features (feature_t* first, ... )
 static feature_t* _get_feature_by_identifier(char_t *identifier, evaluator_container_t* evaluator_container)
 {
   feature_t *result;
+  char_t prototype[255];
 
   result = dmap_get_feature_by_identifier(identifier);
   if(result){
     return result;
   }
+
   if(sscanf(identifier, "BYTES_SRC_PORT_%d",&evaluator_container->port_num) == 1){
-    return dmap_get_feature_by_identifier("BYTES_SRC_PORT_X");
-  }
+     return dmap_get_feature_by_identifier("BYTES_SRC_PORT_X");
+   }
 
-  if(sscanf(identifier, "PACKETS_SRC_PORT_%d",&evaluator_container->port_num) == 1){
-    return dmap_get_feature_by_identifier("PACKETS_SRC_PORT_X");
-  }
+   if(sscanf(identifier, "PACKETS_SRC_PORT_%d",&evaluator_container->port_num) == 1){
+     return dmap_get_feature_by_identifier("PACKETS_SRC_PORT_X");
+   }
 
-  if(sscanf(identifier, "BYTES_SRC_RTP_PORT_%d_PAYLOAD_%d",
-              &evaluator_container->port_num,
-              &evaluator_container->payload_type) == 2){
-    return dmap_get_feature_by_identifier("BYTES_SRC_RTP_PORT_X_PAYLOAD_Y");
-  }
+   if(sscanf(identifier, "BYTES_RTP_PAYLOAD_%d_SRC_PORT_%d",
+               &evaluator_container->port_num,
+               &evaluator_container->payload_type) == 2){
+     return dmap_get_feature_by_identifier("BYTES_RTP_PAYLOAD_X_SRC_PORT_Y");
+   }
 
-  if(sscanf(identifier, "PACKETS_SRC_RTP_PORT_%d_PAYLOAD_%d",
-              &evaluator_container->port_num,
-              &evaluator_container->payload_type) == 2){
-    return dmap_get_feature_by_identifier("PACKETS_SRC_RTP_PORT_X_PAYLOAD_Y");
-  }
-
+   if(sscanf(identifier, "PACKETS_RTP_PAYLOAD_%d_SRC_PORT_%d",
+               &evaluator_container->port_num,
+               &evaluator_container->payload_type) == 2){
+     return dmap_get_feature_by_identifier("PACKETS_RTP_PAYLOAD_X_SRC_PORT_Y");
+   }
 
 
   if(sscanf(identifier, "BYTES_DST_PORT_%d",&evaluator_container->port_num) == 1){
@@ -73,16 +74,16 @@ static feature_t* _get_feature_by_identifier(char_t *identifier, evaluator_conta
     return dmap_get_feature_by_identifier("PACKETS_DST_PORT_X");
   }
 
-  if(sscanf(identifier, "BYTES_DST_RTP_PORT_%d_PAYLOAD_%d",
+  if(sscanf(identifier, "BYTES_RTP_PAYLOAD_%d_DST_PORT_%d",
               &evaluator_container->port_num,
               &evaluator_container->payload_type) == 2){
-    return dmap_get_feature_by_identifier("BYTES_DST_RTP_PORT_X_PAYLOAD_Y");
+    return dmap_get_feature_by_identifier("BYTES_RTP_PAYLOAD_X_SRC_PORT_Y");
   }
 
-  if(sscanf(identifier, "PACKETS_DST_RTP_PORT_%d_PAYLOAD_%d",
+  if(sscanf(identifier, "PACKETS_RTP_PAYLOAD_%d_DST_PORT_%d",
               &evaluator_container->port_num,
               &evaluator_container->payload_type) == 2){
-    return dmap_get_feature_by_identifier("PACKETS_DST_RTP_PORT_X_PAYLOAD_Y");
+    return dmap_get_feature_by_identifier("PACKETS_RTP_PAYLOAD_X_SRC_PORT_Y");
   }
 
   return NULL;
@@ -93,20 +94,22 @@ void features_load()
 {
   //Add all features the program have
   _add_features(
-      make_feature_udp_packet_num(),               //UDP_PACKET_NUM
-      make_feature_udp_bytes_num(),                    //UDP_BYTES
-      make_feature_tcp_packet_num(),               //TCP_PACKET_NUM
-      make_feature_tcp_bytes_num(),                    //TCP_BYTES
+      make_feature_ip_packets(),
+      make_feature_ip_bytes(),
+      make_feature_tcp_packets(),
+      make_feature_tcp_bytes(),
+      make_feature_udp_packets(),
+      make_feature_udp_bytes(),
 
-      make_feature_packets_num_for_src_port(),     //PACKETS_SRC_PORT_X
-      make_feature_bytes_num_for_src_port(),       //BYTES_SRC_PORT_X
-      make_feature_bytes_num_for_rtp_src_port(),   //BYTES_RTP_SRC_PORT_X
-      make_feature_packets_num_for_rtp_src_port(), //PACKETS_RTP_SRC_PORT_X
+      make_feature_packets_src_port(),
+      make_feature_bytes_src_port(),
+      make_feature_packets_rtp_payload_src_port(),
+      make_feature_bytes_rtp_payload_src_port(),
 
-      make_feature_packets_num_for_dst_port(),     //PACKETS_DST_PORT_X
-      make_feature_bytes_num_for_dst_port(),       //BYTES_DST_PORT_X
-      make_feature_bytes_num_for_rtp_dst_port(),   //BYTES_RTP_DST_PORT_X_PAYLOAD_Y
-      make_feature_packets_num_for_rtp_dst_port(), //PACKETS_RTP_DST_PORT_X_PAYLOAD_Y
+      make_feature_packets_dst_port(),
+      make_feature_bytes_dst_port(),
+      make_feature_packets_rtp_payload_dst_port(),
+      make_feature_bytes_rtp_payload_dst_port(),
 
       NULL);
 
