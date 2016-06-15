@@ -55,11 +55,11 @@ The following example filter udp and tcp traffic parallely with a 100ms resoluti
 
 *The contents of the config.ini file:*
 
-[global]
+[global]  
 sampling_rate      = 100  
 pcap_listeners_num = 1  
 
-[pcap_0]
+[pcap_0]  
 accumulation_length = 10  
 device              = wlan0  
 output              = wlan0_stats.csv  
