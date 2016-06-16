@@ -32,8 +32,8 @@ manual page.
 
 **Can I extend it and add my own wonderful tools?**
 
-Yes. 
-0. Get familiar with devclego framework (link: https://github.com/balazskreith/devclego)
+Yes.   
+0. Get familiar with devclego framework (link: https://github.com/balazskreith/devclego)  
 1. Read the developer manual (A direct link is at the bottom of the page <- TODO).  
 2. Clone the repo (or fork whatever you want)  
 3. Edit.  
