@@ -82,29 +82,77 @@ More examples on TODO....
 
 The following features are available:  
 
-*UDP_PACKETS*   
-                    
-*UDP_BYTES*       
-                 
-*TCP_PACKETS*        
-               
-*TCP_BYTES*              
-      
-*PACKETS_SRC_PORT_X*      
-           
-*BYTES_SRC_PORT_X*        
-      
-*BYTES_RTP_SRC_PORT_X*       
-   
-*PACKETS_RTP_SRC_PORT_X*       
- 
-*PACKETS_DST_PORT_X*  
+*IP_PACKETS*
+Track the number of ip packets.
 
-*BYTES_DST_PORT_X*   
+*IP_BYTES*
+Track the length of the ip packets
 
-*BYTES_RTP_DST_PORT_X_PAYLOAD_Y* 
+*TCP_PACKETS*
+Track the number of TCP packets.
 
-*PACKETS_RTP_DST_PORT_X_PAYLOAD_Y*
+*TCP_BYTES*
+Track the length of TCP packets.
+
+*UDP_PACKETS*
+Track the number of UDP packets.
+
+*UDP_BYTES*
+Track the length of UDP packets.
+
+*RTP_PACKETS_X*
+Track the number of RTP packets with a given payload type. (Only useful if only RTP packets goes through the device).
+
+*RTP_BYTES_X*
+Track the length of RTP packets with a given payload type. (Only useful if only RTP packets goes through the device).
+
+*LOST_RTP_PACKETS_X*
+Track the number of gaps experienced for a given payload type. (Only useful if only RTP packets goes through the device).
+
+*SRC_UDP_PACKETS_X*
+Track the number of UDP packets originated from port X.
+
+*SRC_UDP_BYTES_X*
+Track the length of UDP packets originated from port X.
+
+*SRC_TCP_PACKETS_X*
+Track the number of TCP packets originated from port X.
+
+*SRC_TCP_BYTES_X*
+Track the length of TCP packets originated from port X.
+
+*SRC_RTP_PACKETS_X_Y*
+Track the number of RTP packets originated from port X with a given payload type Y.
+
+*SRC_RTP_BYTES_X_Y*
+Track the length of RTP packets originated from port X with a given payload type Y.
+
+*SRC_LOST_RTP_PACKETS_X_Y*
+Track the number of gaps experienced on packets originated from port X with a given payload type Y.
+
+*DST_UDP_PACKETS_X*
+Track the number of UDP packets sent to port X.
+
+*DST_UDP_BYTES_X*
+Track the length of UDP packets sent to port X.
+
+*DST_TCP_PACKETS_X*
+Track the number of TCP packets sent to port X.
+
+*DST_TCP_BYTES_X*
+Track the length of TCP packets sent to port X.
+
+*DST_RTP_PACKETS_X_Y*
+Track the number of RTP packets sent to port X with a given payload type Y.
+
+*DST_RTP_BYTES_X_Y*
+Track the length of RTP packets sent to port X with a given payload type Y.
+
+*DST_LOST_RTP_PACKETS_X_Y*
+Track the number of gaps experienced for RTP packets sent to port X with a given payload type Y.
+
+*MAPPED_VAR_X*
+Track a value mapped to an identifier X. (variable X can be changed from a command line)
 
 
     

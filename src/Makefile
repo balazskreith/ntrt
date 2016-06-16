@@ -94,23 +94,24 @@ am__installdirs = "$(DESTDIR)$(bindir)"
 PROGRAMS = $(bin_PROGRAMS)
 am__dirstamp = $(am__leading_dot)dirstamp
 am___top_builddir__bin_ntrt_OBJECTS = ntrt.$(OBJEXT) \
-	cmp/cmp_sniffer.$(OBJEXT) cmp/cmp_evaluator.$(OBJEXT) \
-	cmp/cmp_recorder.$(OBJEXT) cmp/cmp_defs.$(OBJEXT) \
-	cmp/cmp_predefs.$(OBJEXT) cmp/cmp_tests.$(OBJEXT) \
-	dmap/dmap_sel.$(OBJEXT) dmap/dmap.$(OBJEXT) \
-	etc/etc_argtable2.$(OBJEXT) etc/etc_dict.$(OBJEXT) \
-	etc/etc_endian.$(OBJEXT) etc/etc_iniparser.$(OBJEXT) \
-	etc/etc_sniffex.$(OBJEXT) etc/etc_utils.$(OBJEXT) \
-	fsm/fsm_actions.$(OBJEXT) fsm/fsm_cmpactions.$(OBJEXT) \
-	fsm/fsm_halt.$(OBJEXT) fsm/fsm_run.$(OBJEXT) fsm/fsm.$(OBJEXT) \
-	inc/inc_io.$(OBJEXT) inc/inc_mtime.$(OBJEXT) \
-	inc/inc_opcall.$(OBJEXT) lib/lib_debuglog.$(OBJEXT) \
-	lib/lib_dispers.$(OBJEXT) lib/lib_features.$(OBJEXT) \
-	lib/lib_funcs.$(OBJEXT) lib/lib_heap.$(OBJEXT) \
-	lib/lib_interrupting.$(OBJEXT) lib/lib_makers.$(OBJEXT) \
-	lib/lib_predefs.$(OBJEXT) lib/lib_puffers.$(OBJEXT) \
-	lib/lib_threading.$(OBJEXT) lib/lib_tors.$(OBJEXT) \
-	lib/lib_vector.$(OBJEXT) sys/sys_confs.$(OBJEXT)
+	cmp/cmp_cmdexecutor.$(OBJEXT) cmp/cmp_sniffer.$(OBJEXT) \
+	cmp/cmp_evaluator.$(OBJEXT) cmp/cmp_recorder.$(OBJEXT) \
+	cmp/cmp_defs.$(OBJEXT) cmp/cmp_predefs.$(OBJEXT) \
+	cmp/cmp_tests.$(OBJEXT) dmap/dmap_sel.$(OBJEXT) \
+	dmap/dmap.$(OBJEXT) etc/etc_argtable2.$(OBJEXT) \
+	etc/etc_dict.$(OBJEXT) etc/etc_endian.$(OBJEXT) \
+	etc/etc_iniparser.$(OBJEXT) etc/etc_sniffex.$(OBJEXT) \
+	etc/etc_utils.$(OBJEXT) fsm/fsm_actions.$(OBJEXT) \
+	fsm/fsm_cmpactions.$(OBJEXT) fsm/fsm_halt.$(OBJEXT) \
+	fsm/fsm_run.$(OBJEXT) fsm/fsm.$(OBJEXT) inc/inc_io.$(OBJEXT) \
+	inc/inc_mtime.$(OBJEXT) inc/inc_opcall.$(OBJEXT) \
+	lib/lib_debuglog.$(OBJEXT) lib/lib_dispers.$(OBJEXT) \
+	lib/lib_features.$(OBJEXT) lib/lib_funcs.$(OBJEXT) \
+	lib/lib_heap.$(OBJEXT) lib/lib_interrupting.$(OBJEXT) \
+	lib/lib_makers.$(OBJEXT) lib/lib_predefs.$(OBJEXT) \
+	lib/lib_puffers.$(OBJEXT) lib/lib_threading.$(OBJEXT) \
+	lib/lib_tors.$(OBJEXT) lib/lib_vector.$(OBJEXT) \
+	sys/sys_confs.$(OBJEXT)
 __top_builddir__bin_ntrt_OBJECTS =  \
 	$(am___top_builddir__bin_ntrt_OBJECTS)
 __top_builddir__bin_ntrt_LDADD = $(LDADD)
@@ -268,6 +269,8 @@ top_srcdir = ..
 AM_CPPFLAGS = -Iinc -Icmp -Idmap -Ifsm -Ilib -Isys -Ietc -std=gnu99
 __top_builddir__bin_ntrt_SOURCES = \
 			  ntrt.c                    \
+			  cmp/cmp_cmdexecutor.h     \
+			  cmp/cmp_cmdexecutor.c     \
 			  cmp/cmp_sniffer.h         \
 			  cmp/cmp_sniffer.c         \
 			  cmp/cmp_evaluator.h       \
@@ -430,6 +433,8 @@ cmp/$(am__dirstamp):
 cmp/$(DEPDIR)/$(am__dirstamp):
 	@$(MKDIR_P) cmp/$(DEPDIR)
 	@: > cmp/$(DEPDIR)/$(am__dirstamp)
+cmp/cmp_cmdexecutor.$(OBJEXT): cmp/$(am__dirstamp) \
+	cmp/$(DEPDIR)/$(am__dirstamp)
 cmp/cmp_sniffer.$(OBJEXT): cmp/$(am__dirstamp) \
 	cmp/$(DEPDIR)/$(am__dirstamp)
 cmp/cmp_evaluator.$(OBJEXT): cmp/$(am__dirstamp) \
@@ -557,6 +562,7 @@ distclean-compile:
 	-rm -f *.tab.c
 
 include ./$(DEPDIR)/ntrt.Po
+include cmp/$(DEPDIR)/cmp_cmdexecutor.Po
 include cmp/$(DEPDIR)/cmp_defs.Po
 include cmp/$(DEPDIR)/cmp_evaluator.Po
 include cmp/$(DEPDIR)/cmp_predefs.Po

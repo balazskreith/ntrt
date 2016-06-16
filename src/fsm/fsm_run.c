@@ -1,6 +1,7 @@
 #include "../cmp/cmp_evaluator.h"
 #include "../cmp/cmp_recorder.h"
 #include "../cmp/cmp_sniffer.h"
+#include "../cmp/cmp_cmdexecutor.h"
 #include "fsm.h"
 #include "dmap.h"
 #include "etc_utils.h"
@@ -44,6 +45,7 @@ void _sys_stop()
 {
 	get_cmp_recorder()->stop();
 	get_cmp_evaluator()->stop();
+	get_cmp_cmdexecutor()->stop();
 
 	dmap_itr_do(dmap_itr_table_pcapls, get_cmp_sniffer()->stop);
 }

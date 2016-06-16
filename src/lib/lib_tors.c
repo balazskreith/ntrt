@@ -143,6 +143,14 @@ evaluator_item_t* evaluator_item_ctor()
   return result;
 }
 
+mapped_var_t* mapped_var_ctor()
+{
+  mapped_var_t* result;
+  result = (mapped_var_t*) malloc(sizeof(mapped_var_t));
+  memset(result, 0, sizeof(mapped_var_t));
+  return result;
+}
+
 //-------------------------------------------------------------------------------------
 //----------------------- Destructors--------------------------------------------------
 //-------------------------------------------------------------------------------------
@@ -291,4 +299,11 @@ void evaluator_item_dtor(ptr_t target)
   evaluator_item_t *evaluator_item;
   evaluator_item = target;
   free(evaluator_item);
+}
+
+void mapped_var_dtor(ptr_t target)
+{
+  mapped_var_t *mapped_var;
+  mapped_var = target;
+  free(mapped_var);
 }

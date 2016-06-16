@@ -15,8 +15,7 @@ extern int errno;
 
 #define ERRORPRINT(M, ...) sysio->print_stdout("[ERR] (errno: %s) "M"\n", _CLEAN_ERRNO(), ##__VA_ARGS__)
 
-#define WARNINGPRINT(M, ...)
-//sysio->print_stdout("[WARN] (errno: %s) "M"\n",  _CLEAN_ERRNO(), ##__VA_ARGS__)
+#define WARNINGPRINT(M, ...) sysio->print_stdout("[WARN] (errno: %s) "M"\n",  _CLEAN_ERRNO(), ##__VA_ARGS__)
 
 #define INFOPRINT(M, ...) sysio->print_stdout("[INFO] "M"\n",  ##__VA_ARGS__)
 

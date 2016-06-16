@@ -35,6 +35,25 @@ static void _add_features (feature_t* first, ... )
 
 }
 
+static void _add_mapped_var(int32_t map_id)
+{
+  mapped_var_t *mapped_var;
+  dmap_wrlock_table_mapped_var();
+  if(dmap_get_mapped_var_by_var_id(map_id) != NULL){
+    WARNINGPRINT("Mapped var with id: %d is already added", map_id);
+    goto done;
+  }
+  mapped_var = make_mapped_var(map_id);
+  if(dmap_add_mapped_var(mapped_var) < 0){
+    WARNINGPRINT("Mapped var with id: %d can not be added to DMAP", map_id);
+    mapped_var_dtor(mapped_var);
+    goto done;
+  }
+  INFOPRINT("Mapped var with id %d is successfully addded to DMAP", map_id);
+done:
+  dmap_wrunlock_table_mapped_var();
+}
+
 static feature_t* _get_feature_by_identifier(char_t *identifier, evaluator_container_t* evaluator_container)
 {
   feature_t *result;
@@ -45,45 +64,91 @@ static feature_t* _get_feature_by_identifier(char_t *identifier, evaluator_conta
     return result;
   }
 
-  if(sscanf(identifier, "BYTES_SRC_PORT_%d",&evaluator_container->port_num) == 1){
-     return dmap_get_feature_by_identifier("BYTES_SRC_PORT_X");
+  if(sscanf(identifier, "RTP_PACKETS_%d",&evaluator_container->port_num) == 1){
+     return dmap_get_feature_by_identifier("RTP_PACKETS_X");
    }
 
-   if(sscanf(identifier, "PACKETS_SRC_PORT_%d",&evaluator_container->port_num) == 1){
-     return dmap_get_feature_by_identifier("PACKETS_SRC_PORT_X");
+   if(sscanf(identifier, "RTP_BYTES_%d",&evaluator_container->port_num) == 1){
+     return dmap_get_feature_by_identifier("RTP_BYTES_X");
    }
 
-   if(sscanf(identifier, "BYTES_RTP_PAYLOAD_%d_SRC_PORT_%d",
-               &evaluator_container->port_num,
-               &evaluator_container->payload_type) == 2){
-     return dmap_get_feature_by_identifier("BYTES_RTP_PAYLOAD_X_SRC_PORT_Y");
+   if(sscanf(identifier, "LOST_RTP_PACKETS_%d", &evaluator_container->payload_type) == 1){
+     return dmap_get_feature_by_identifier("LOST_RTP_PACKETS_X");
    }
 
-   if(sscanf(identifier, "PACKETS_RTP_PAYLOAD_%d_SRC_PORT_%d",
-               &evaluator_container->port_num,
-               &evaluator_container->payload_type) == 2){
-     return dmap_get_feature_by_identifier("PACKETS_RTP_PAYLOAD_X_SRC_PORT_Y");
+   if(sscanf(identifier, "SRC_UDP_BYTES_%d", &evaluator_container->port_num) == 1){
+     return dmap_get_feature_by_identifier("SRC_UDP_BYTES_X");
    }
 
+   if(sscanf(identifier, "SRC_UDP_PACKETS_%d", &evaluator_container->port_num) == 1){
+     return dmap_get_feature_by_identifier("SRC_UDP_PACKETS_X");
+   }
 
-  if(sscanf(identifier, "BYTES_DST_PORT_%d",&evaluator_container->port_num) == 1){
-    return dmap_get_feature_by_identifier("BYTES_DST_PORT_X");
+  if(sscanf(identifier, "SRC_TCP_PACKETS_%d",&evaluator_container->port_num) == 1){
+    return dmap_get_feature_by_identifier("SRC_TCP_PACKETS_X");
   }
 
-  if(sscanf(identifier, "PACKETS_DST_PORT_%d",&evaluator_container->port_num) == 1){
-    return dmap_get_feature_by_identifier("PACKETS_DST_PORT_X");
+  if(sscanf(identifier, "SRC_TCP_BYTES_%d",&evaluator_container->port_num) == 1){
+    return dmap_get_feature_by_identifier("SRC_TCP_BYTES_X");
   }
 
-  if(sscanf(identifier, "BYTES_RTP_PAYLOAD_%d_DST_PORT_%d",
+  if(sscanf(identifier, "SRC_RTP_PACKETS_%d_%d",
               &evaluator_container->port_num,
               &evaluator_container->payload_type) == 2){
-    return dmap_get_feature_by_identifier("BYTES_RTP_PAYLOAD_X_SRC_PORT_Y");
+    return dmap_get_feature_by_identifier("SRC_RTP_PACKETS_X_Y");
   }
 
-  if(sscanf(identifier, "PACKETS_RTP_PAYLOAD_%d_DST_PORT_%d",
+  if(sscanf(identifier, "SRC_RTP_BYTES_%d_%d",
               &evaluator_container->port_num,
               &evaluator_container->payload_type) == 2){
-    return dmap_get_feature_by_identifier("PACKETS_RTP_PAYLOAD_X_SRC_PORT_Y");
+    return dmap_get_feature_by_identifier("SRC_RTP_BYTES_X_Y");
+  }
+
+  if(sscanf(identifier, "SRC_LOST_RTP_PACKETS_%d_%d",
+              &evaluator_container->port_num,
+              &evaluator_container->payload_type) == 2){
+    return dmap_get_feature_by_identifier("SRC_LOST_RTP_PACKETS_X_Y");
+  }
+
+
+
+  if(sscanf(identifier, "DST_UDP_BYTES_%d", &evaluator_container->port_num) == 1){
+    return dmap_get_feature_by_identifier("DST_UDP_BYTES_X");
+  }
+
+  if(sscanf(identifier, "DST_UDP_PACKETS_%d", &evaluator_container->port_num) == 1){
+    return dmap_get_feature_by_identifier("DST_UDP_PACKETS_X");
+  }
+
+  if(sscanf(identifier, "DST_TCP_PACKETS_%d",&evaluator_container->port_num) == 1){
+    return dmap_get_feature_by_identifier("DST_TCP_PACKETS_X");
+  }
+
+  if(sscanf(identifier, "DST_TCP_BYTES_%d",&evaluator_container->port_num) == 1){
+    return dmap_get_feature_by_identifier("DST_TCP_BYTES_X");
+  }
+
+  if(sscanf(identifier, "DST_RTP_PACKETS_%d_%d",
+              &evaluator_container->port_num,
+              &evaluator_container->payload_type) == 2){
+    return dmap_get_feature_by_identifier("DST_RTP_PACKETS_X_Y");
+  }
+
+  if(sscanf(identifier, "DST_RTP_BYTES_%d_%d",
+              &evaluator_container->port_num,
+              &evaluator_container->payload_type) == 2){
+    return dmap_get_feature_by_identifier("DST_RTP_BYTES_X_Y");
+  }
+
+  if(sscanf(identifier, "DST_LOST_RTP_PACKETS_%d_%d",
+              &evaluator_container->port_num,
+              &evaluator_container->payload_type) == 2){
+    return dmap_get_feature_by_identifier("DST_LOST_RTP_PACKETS_X_Y");
+  }
+
+  if(sscanf(identifier, "MAPPED_VAR_%d", &evaluator_container->mapped_var_id) == 1){
+    _add_mapped_var(evaluator_container->mapped_var_id);
+    return dmap_get_feature_by_identifier("MAPPED_VAR_X");
   }
 
   return NULL;
@@ -94,6 +159,7 @@ void features_load()
 {
   //Add all features the program have
   _add_features(
+
       make_feature_ip_packets(),
       make_feature_ip_bytes(),
       make_feature_tcp_packets(),
@@ -101,15 +167,27 @@ void features_load()
       make_feature_udp_packets(),
       make_feature_udp_bytes(),
 
-      make_feature_packets_src_port(),
-      make_feature_bytes_src_port(),
-      make_feature_packets_rtp_payload_src_port(),
-      make_feature_bytes_rtp_payload_src_port(),
+      make_feature_rtp_packets(),
+      make_feature_rtp_bytes(),
+      make_feature_lost_rtp_packets(),
 
-      make_feature_packets_dst_port(),
-      make_feature_bytes_dst_port(),
-      make_feature_packets_rtp_payload_dst_port(),
-      make_feature_bytes_rtp_payload_dst_port(),
+      make_feature_src_udp_packets(),
+      make_feature_src_udp_bytes(),
+      make_feature_src_tcp_packets(),
+      make_feature_src_tcp_bytes(),
+      make_feature_src_rtp_packets(),
+      make_feature_src_rtp_bytes(),
+      make_feature_src_lost_rtp_packets(),
+
+      make_feature_dst_udp_packets(),
+      make_feature_dst_udp_bytes(),
+      make_feature_dst_tcp_packets(),
+      make_feature_dst_tcp_bytes(),
+      make_feature_dst_rtp_packets(),
+      make_feature_dst_rtp_bytes(),
+      make_feature_dst_lost_rtp_packets(),
+
+      make_feature_mapped_var(),
 
       NULL);
 

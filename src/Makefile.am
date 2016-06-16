@@ -4,6 +4,8 @@ LIBS = -lpthread -lm -lcrypto -lssl -lpcap -lrt
 bin_PROGRAMS = $(top_builddir)/bin/ntrt
 __top_builddir__bin_ntrt_SOURCES =       \
 			  ntrt.c                    \
+			  cmp/cmp_cmdexecutor.h     \
+			  cmp/cmp_cmdexecutor.c     \
 			  cmp/cmp_sniffer.h         \
 			  cmp/cmp_sniffer.c         \
 			  cmp/cmp_evaluator.h       \

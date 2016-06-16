@@ -22,16 +22,14 @@ void dmap_rem_pths_byconid(int32_t con_dmap_id)
 
 feature_t* dmap_get_feature_by_identifier(char_t* identifier)
 {
-    int32_t    index;
-    feature_t* result = NULL;
-    for(index = 0; dmap_itr_table_features(&index, &result) == BOOL_TRUE; ++index){
-        if(strcmp(identifier, result->identifier) != 0){
-          continue;
-        }
-        break;
-    }
-
-    return result;
+  int32_t    index;
+  feature_t* result = NULL;
+  for(index = 0; dmap_itr_table_features(&index, &result) == BOOL_TRUE; ++index){
+      if(strcmp(identifier, result->identifier) == 0){
+        return result;
+      }
+  }
+  return NULL;
 }
 
 
@@ -45,4 +43,16 @@ int32_t dmap_get_id_by_pcapls(pcap_listener_t* pcap_listener)
       }
   }
   return DEVCLEGO_DMAP_ERROR_ITEM_NOT_FOUND;
+}
+
+mapped_var_t* dmap_get_mapped_var_by_var_id(int32_t map_id)
+{
+  int32_t    index;
+  mapped_var_t* result = NULL;
+  for(index = 0; dmap_itr_table_mapped_var(&index, &result) == BOOL_TRUE; ++index){
+    if(result->identifier == map_id){
+      return result;
+    }
+  }
+  return NULL;
 }

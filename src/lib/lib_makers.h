@@ -101,4 +101,6 @@ evaluator_item_t* make_evaluator_item(feature_t* feature, evaluator_container_t*
 
 slist_t* make_slist(ptr_t item);
 
+mapped_var_t* make_mapped_var(int32_t id);
+
 #endif //INCGUARD_NTRT_LIBRARY_MAKERS_H_

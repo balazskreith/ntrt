@@ -46,24 +46,45 @@ DMAP_DEF_SPECT_TABLE(																	 		 \
 	dmap_itr_table_features	   /*name of the process iterate the table*/							 \
 );
 
-DMAP_DEF_SPECT_TABLE(																	 		 \
-	pcap_listener_t,         /*name of the specific data type*/									 \
-	pcap_listener_dtor,		   /*name of the destructor for the specified data*/					 \
-	_dmap_table_pcapls,	   /*name of the variable reference to the table*/						 \
-	DMAP_NAME_TABLE_PCAPLS,   /*name of the table*/						 	     				 \
-	NTRT_MAX_PCAPLS_NUM,    /*maximal number of item the table can contain. */                    \
-	dmap_init_table_pcapls,   /*name of the process initialize the table*/                          \
-	dmap_deinit_table_pcapls, /*name of the process deinitialze the table*/                         \
-	dmap_get_table_pcapls,	   /*name of the process gets the table*/								 \
-	dmap_get_pcapls,		   /*name of the process gets an item from the table by index*/			 \
-	dmap_add_pcapls,		   /*name of the process adds an item and returns with its index*/  	 \
-	dmap_rem_pcapls_byindex,  /*name of the process remove an item from the table by index*/   	 \
-	dmap_rem_pcapls, 		   /*name of the process remove an item from the table by pointer*/ 	 \
-	dmap_rdlock_table_pcapls,  /*name of the process lock the table for reading*/					 \
-	dmap_rdunlock_table_pcapls,/*name of the process unlock the table from reading*/				 \
-	dmap_wrlock_table_pcapls,  /*name of the process lock the table for writing*/					 \
-	dmap_wrunlock_table_pcapls,/*name of the process unlock the table from writing*/				 \
-	dmap_itr_table_pcapls	   /*name of the process iterate the table*/							 \
+DMAP_DEF_SPECT_TABLE(                                                                                                                                                    \
+        pcap_listener_t,         /*name of the specific data type*/                                                                      \
+        pcap_listener_dtor,                /*name of the destructor for the specified data*/                                     \
+        _dmap_table_pcapls,        /*name of the variable reference to the table*/                                               \
+        DMAP_NAME_TABLE_PCAPLS,   /*name of the table*/                                                                                  \
+        NTRT_MAX_PCAPLS_NUM,    /*maximal number of item the table can contain. */                    \
+        dmap_init_table_pcapls,   /*name of the process initialize the table*/                          \
+        dmap_deinit_table_pcapls, /*name of the process deinitialze the table*/                         \
+        dmap_get_table_pcapls,     /*name of the process gets the table*/                                                                \
+        dmap_get_pcapls,                   /*name of the process gets an item from the table by index*/                  \
+        dmap_add_pcapls,                   /*name of the process adds an item and returns with its index*/       \
+        dmap_rem_pcapls_byindex,  /*name of the process remove an item from the table by index*/         \
+        dmap_rem_pcapls,                   /*name of the process remove an item from the table by pointer*/      \
+        dmap_rdlock_table_pcapls,  /*name of the process lock the table for reading*/                                    \
+        dmap_rdunlock_table_pcapls,/*name of the process unlock the table from reading*/                                 \
+        dmap_wrlock_table_pcapls,  /*name of the process lock the table for writing*/                                    \
+        dmap_wrunlock_table_pcapls,/*name of the process unlock the table from writing*/                                 \
+        dmap_itr_table_pcapls      /*name of the process iterate the table*/                                                     \
+);
+
+
+DMAP_DEF_SPECT_TABLE(                                                                                                                                                    \
+        mapped_var_t,         /*name of the specific data type*/                                                                      \
+        mapped_var_dtor,                /*name of the destructor for the specified data*/                                     \
+        _dmap_table_mapped_var,        /*name of the variable reference to the table*/                                               \
+        DMAP_NAME_TABLE_PCAPLS,   /*name of the table*/                                                                                  \
+        NTRT_MAX_PCAPLS_NUM,    /*maximal number of item the table can contain. */                    \
+        dmap_init_table_mapped_vars,   /*name of the process initialize the table*/                          \
+        dmap_deinit_table_mapped_vars, /*name of the process deinitialze the table*/                         \
+        dmap_get_table_mapped_var,     /*name of the process gets the table*/                                                                \
+        dmap_get_mapped_var,                   /*name of the process gets an item from the table by index*/                  \
+        dmap_add_mapped_var,                   /*name of the process adds an item and returns with its index*/       \
+        dmap_rem_mapped_var_byindex,  /*name of the process remove an item from the table by index*/         \
+        dmap_rem_mapped_var,                   /*name of the process remove an item from the table by pointer*/      \
+        dmap_rdlock_table_mapped_var,  /*name of the process lock the table for reading*/                                    \
+        dmap_rdunlock_table_mapped_var,/*name of the process unlock the table from reading*/                                 \
+        dmap_wrlock_table_mapped_var,  /*name of the process lock the table for writing*/                                    \
+        dmap_wrunlock_table_mapped_var,/*name of the process unlock the table from writing*/                                 \
+        dmap_itr_table_mapped_var      /*name of the process iterate the table*/                                                     \
 );
 
 DMAP_DEF_SPECT_TABLE(																	 		 \
@@ -110,6 +131,7 @@ void dmap_init()
 	dmap_init_table_features();
 	dmap_init_table_thr();
 	dmap_init_table_pcapls();
+	dmap_init_table_mapped_vars();
 	_dmap_sysdat_mutex = mutex_ctor();
 	PRINTING_SG_IS_CONSTRUCTED(DMAP_NAME);
 }
@@ -121,6 +143,7 @@ void dmap_deinit()
 	dmap_deinit_table_features();
 	dmap_deinit_table_thr();
 	dmap_deinit_table_pcapls();
+	dmap_deinit_table_mapped_vars();
 	PRINTING_SG_IS_DESTRUCTED(DMAP_NAME);
 }
 //------------------------------------------------------------------------------------------------

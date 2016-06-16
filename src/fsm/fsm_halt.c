@@ -1,6 +1,7 @@
 #include "../cmp/cmp_evaluator.h"
 #include "../cmp/cmp_recorder.h"
 #include "../cmp/cmp_sniffer.h"
+#include "../cmp/cmp_cmdexecutor.h"
 #include "fsm.h"
 #include "fsm_actions.h"
 #include "cmp_predefs.h"
@@ -67,6 +68,7 @@ void _sys_start()
 
   get_cmp_recorder()->start();
   get_cmp_evaluator()->start();
+  get_cmp_cmdexecutor()->start();
 
   dmap_itr_do(dmap_itr_table_pcapls, get_cmp_sniffer()->start);
 

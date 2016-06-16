@@ -62,7 +62,8 @@ typedef struct pcap_listener_struct_t{
 }pcap_listener_t;
 
 typedef struct record_struct_t{
-  uint32_t    items[32];
+  uint32_t    items[NTRT_MAX_FEATURES_NUM];
+  bool_t      accumulable[NTRT_MAX_FEATURES_NUM];
   uint32_t    length;
   int32_t     listener_id;
 }record_t;
@@ -73,6 +74,11 @@ typedef enum
         EXTENDED_BOOL_FALSE = 0,  ///< Indicates a boolean false value
         EXTENDED_BOOL_TRUE = 1    ///< Indicates a boolean true value
 }extended_bool_t;
+
+typedef struct mapped_var_struct_t{
+  int32_t   identifier;
+  uint32_t  value;
+}mapped_var_t;
 
 typedef struct sniff_struct_t{
   const u_char*       packet;
@@ -99,6 +105,9 @@ typedef struct sniff_struct_t{
 typedef struct evaluator_container_struct_t{
   int32_t port_num;
   int32_t payload_type;
+  u_short seq_num;
+  bool_t  seq_num_initialized;
+  int32_t mapped_var_id;
 }evaluator_container_t;
 
 typedef struct feature_struct_t{
@@ -122,6 +131,8 @@ typedef struct devlegoio_struct_t
 
 	int32_t          (*opcall)(const char*);
 	char_t           config_file[255];
+	char_t           command_file[255];
+	bool_t           command_file_initialized;
 //	char_t           bash_dir[255];
 	//
 }devlegoio_t;

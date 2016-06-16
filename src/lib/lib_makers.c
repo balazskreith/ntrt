@@ -140,3 +140,11 @@ slist_t* make_slist(ptr_t item)
   return result;
 }
 
+mapped_var_t* make_mapped_var(int32_t id)
+{
+  mapped_var_t* result;
+  result             = mapped_var_ctor();
+  result->identifier = id;
+  result->value      = 0;
+  return result;
+}

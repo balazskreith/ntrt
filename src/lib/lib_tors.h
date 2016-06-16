@@ -78,6 +78,8 @@ pcap_listener_t* pcap_listener_ctor();
 record_t* record_ctor();
 
 evaluator_item_t* evaluator_item_ctor();
+
+mapped_var_t* mapped_var_ctor();
 //-------------------------------------------------------------------------------------
 //----------------------- Destructors--------------------------------------------------
 //-------------------------------------------------------------------------------------
@@ -142,5 +144,7 @@ void pcap_listener_dtor(ptr_t target);
 void record_dtor(ptr_t target);
 
 void evaluator_item_dtor(ptr_t target);
+
+void mapped_var_dtor(ptr_t target);
 
 #endif //INCGUARD_NTRT_LIBRARY_CONSTRUCTORS_H_
