@@ -33,6 +33,7 @@ manual page.
 **Can I extend it and add my own wonderful tools?**
 
 Yes. 
+0. Get familiar with devclego framework (link: https://github.com/balazskreith/devclego)
 1. Read the developer manual (A direct link is at the bottom of the page <- TODO).  
 2. Clone the repo (or fork whatever you want)  
 3. Edit.  
@@ -76,7 +77,7 @@ feature_3           = UDP_BYTES
 
 The output is a comma separated list in wlan0_stats.csv. The sampling period determines the resolution of the measure and the accumulation length determines how many sampling period is accumulated in one measure. The example above sampling is 100ms and accumulates the last 10 samples.  
 
-More examples on TODO....  
+More examples at https://goo.gl/RIqGFO  
 
 **Available Features**
 
