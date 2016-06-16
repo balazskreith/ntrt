@@ -46,9 +46,10 @@ https://github.com/balazskreith/ntrt
 **Install and Run**
 
  1. Download or clone the source.  
- 2. ./confgiure; make install   
- 3. Setup config.ini (see below)  
- 4. ./ntrt -cpath/to/config.ini  
+ 2. ./confgiure
+ 3. sudo make install
+ 4. Setup config.ini (see below)  
+ 5. ./ntrt -cpath/to/config.ini  
 
 **Example**
 
