@@ -95,7 +95,6 @@ void* _evaluator_start()
     cmp_evaluator_item = &this->evaluators[index];
     cmp_evaluator_item->evaluators = slist_cpy(pcap_listener->evaluators);
     cmp_evaluator_item->feature_num = pcap_listener->feature_num;
-    memset(&cmp_evaluator_item->record, 0, sizeof(record_t));
   }
   dmap_rdunlock_table_pcapls();
 
@@ -107,6 +106,17 @@ void* _evaluator_start()
 
 void* _evaluator_stop()
 {
+  CMP_DEF_THIS(cmp_evaluator_t, _cmp_evaluator);
+  pcap_listener_t *pcap_listener;
+  cmp_evaluator_item_t *cmp_evaluator_item;
+  int32_t index;
+
+  dmap_rdlock_table_pcapls();
+  for(index = 0; dmap_itr_table_pcapls(&index, &pcap_listener) == BOOL_TRUE; ++index){
+    cmp_evaluator_item = &this->evaluators[index];
+    //TODO: free the copied slist:         cmp_evaluator_item->evaluators
+  }
+  dmap_rdunlock_table_pcapls();
   return NULL;
 }
 
@@ -119,10 +129,6 @@ void* _evaluator_restart()
 //----------------------------------------------------------------------------------------------------
 //---------------------------- Processes --------------------------------------------
 //----------------------------------------------------------------------------------------------------
-typedef struct{
-  sniff_t *sniff;
-
-}evaluator_container;
 
 void _evaluator_process(sniff_t* sniff)
 {
@@ -136,39 +142,25 @@ void _evaluator_process(sniff_t* sniff)
   cmp_evaluator_item_t *cmp_evaluator_item;
 
   if(!sniff){
-    ERRORPRINT("sniff or its features can not be zero in order to do evaluation");
-    return;
-  }
-
-  cmp_evaluator_item = &this->evaluators[sniff->listener_id];
-  for(i = 0, it = cmp_evaluator_item->evaluators; it; it = it->next, ++i){
-    evaluator_item = it->data;
-    feature = evaluator_item->feature;
-    if(0 < evaluator_item->evaluator_container.mapped_var_id){
-      cmp_evaluator_item->record.items[i] = feature->evaluator(sniff, &evaluator_item->evaluator_container);
-      cmp_evaluator_item->record.accumulable[i] = BOOL_FALSE;
-    }else{
-      cmp_evaluator_item->record.items[i] += feature->evaluator(sniff, &evaluator_item->evaluator_container);
-      cmp_evaluator_item->record.accumulable[i] = BOOL_TRUE;
-    }
-  }
-
-record:
-  if(diffmtime_fromnow(&cmp_evaluator_item->last_impulse) < (double)sampling_rate_){
+    //It is an impulse
+    this->send(NULL);
     return;
   }
 
   record = this->demand_record();
 
-  memcpy(record, &cmp_evaluator_item->record, sizeof(record_t));
-  memset(&cmp_evaluator_item->record, 0, sizeof(record_t));
+  cmp_evaluator_item = &this->evaluators[sniff->listener_id];
+  for(i = 0, it = cmp_evaluator_item->evaluators; it; it = it->next, ++i){
+    evaluator_item = it->data;
+    feature = evaluator_item->feature;
+    record->items[i] = feature->evaluator(sniff, &evaluator_item->evaluator_container);
+  }
 
-  record->length = cmp_evaluator_item->feature_num;
   record->listener_id = sniff->listener_id;
+  set_mtime(&record->timestamp);
 
   this->send(record);
 
-  set_mtime(&cmp_evaluator_item->last_impulse);
 }
 
 void clean_record(record_t* record)

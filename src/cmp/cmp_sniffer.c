@@ -212,6 +212,11 @@ void _thr_listener_proc_main(thread_t *thread)
 
 	do{
           packet = pcap_next(pcap_listener->handler, &header);
+          if(!packet){
+            //it is only an impulse
+            this->send(NULL);
+            continue;
+          }
           _reset_sniff(&sniff);
           //setup sniff
           sniff.packet = packet;

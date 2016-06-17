@@ -401,93 +401,96 @@ void cmp_handshake_dtor(handshake_t*);
 
 
 //declare and define a puffer component usd for recycling types
-#define CMP_DEF_RECPUFFER(DECL_TYPE,										\
-				 ITEM_TYPE,													\
-				 ITEM_CTOR,													\
-				 ITEM_DTOR,													\
-				 ITEM_CLEAN,												\
-				 CMP_NAME,													\
-				 CMP_VAR,													\
-				 PUFFER_LENGTH,												\
-				 CTOR_PROC_NAME,											\
-				 DTOR_PROC_NAME												\
-				 )															\
-				 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	\
-		CMP_DECL_RECPUFFER(CMP_VAR, ITEM_TYPE);								\
-		static void CMP_VAR##_init();										\
-		static void CMP_VAR##_deinit();										\
-																			\
-		CMP_DEF(DECL_TYPE, 		 										    \
-		CMP_VAR##_t,    										 	    	\
-		 CMP_NAME,    		 								         	    \
-		 CMP_VAR,        	  							 	  				\
-		 CTOR_PROC_NAME,    	  											\
-		 DTOR_PROC_NAME,     	   											\
-		 CMP_VAR##_init,           											\
-		 __NO_TEST_FUNC_,             										\
-		 CMP_VAR##_deinit            										\
-		);																	\
-																			\
-	static void CMP_VAR##_process_receiver(ITEM_TYPE* item)					\
-	{																		\
-		CMP_DEF_THIS(CMP_VAR##_t, CMP_VAR);									\
-		datapuffer_t    *puffer = this->puffer;								\
-		spin_t        	*spin = this->spin;									\
-		spin_lock(spin);													\
-																			\
-		/*CMP_RECEIVE(CMP_NAME, item);	*/									\
-		/*if(puffer->is_full == BOOL_TRUE){								  */\
-		if(datapuffer_isfull(puffer) == BOOL_TRUE){							\
-			runtime_warning("%s is full", CMP_NAME);				 		\
-			spin_unlock(spin);										     	\
-			ITEM_DTOR(item);												\
-			return;															\
-		}																	\
-																			\
-		ITEM_CLEAN(item);													\
-		datapuffer_write(puffer, (void*) item);								\
-																			\
-		spin_unlock(spin);										     		\
-	}/*#PROC_NAME end*/										 		   		\
-																			\
-	static ITEM_TYPE* CMP_VAR##_process_supplier()					 	 	\
-	{																		\
-		CMP_DEF_THIS(CMP_VAR##_t, CMP_VAR);								 	\
-		ITEM_TYPE       *result = NULL;									 	\
-		datapuffer_t    *puffer = this->puffer;							 	\
-		spin_t        	*spin = this->spin;							 		\
-																		 	\
-		spin_lock(spin);											    	\
-		/*if(puffer->is_empty == BOOL_TRUE){							  */\
-	    if(datapuffer_isempty(puffer) == BOOL_TRUE){						\
-			logging("%s is empty", CMP_NAME);				 		 	 	\
-			spin_unlock(spin);												\
-			result = ITEM_CTOR();											\
-			return result;													\
-		}																	\
-																			\
-		result = (ITEM_TYPE*) datapuffer_read(puffer);						\
-																			\
-		/*CMP_SUPPLY(CMP_NAME, result);*/									\
-		spin_unlock(spin);     												\
-		return result;														\
-	}/*#PROC_NAME end*/										 		     	\
-																			\
-	void CMP_VAR##_init()													\
-	{																		\
-		CMP_VAR->puffer = datapuffer_ctor(PUFFER_LENGTH);					\
-		CMP_VAR->spin = spin_ctor();										\
-		CMP_BIND(CMP_VAR->receiver, CMP_VAR##_process_receiver)			    \
-		CMP_BIND(CMP_VAR->supplier, CMP_VAR##_process_supplier)				\
-	}																		\
-																			\
-	void CMP_VAR##_deinit()													\
-	{																		\
-		datapuffer_t*  puffer = CMP_VAR->puffer;							\
-		GEN_PUFF_CLEAR_PROC(puffer, ITEM_TYPE, ITEM_DTOR);					\
-		datapuffer_dtor(CMP_VAR->puffer);									\
-		spin_dtor(CMP_VAR->spin);											\
-	}																		\
+#define CMP_DEF_RECPUFFER(DECL_TYPE,                                                                            \
+                                 ITEM_TYPE,                                                                                                     \
+                                 ITEM_CTOR,                                                                                                     \
+                                 ITEM_DTOR,                                                                                                     \
+                                 ITEM_CLEAN,                                                                                            \
+                                 CMP_NAME,                                                                                                      \
+                                 CMP_VAR,                                                                                                       \
+                                 PUFFER_LENGTH,                                                                                         \
+                                 CTOR_PROC_NAME,                                                                                        \
+                                 DTOR_PROC_NAME                                                                                         \
+                                 )                                                                                                                      \
+                                                                                                                                                        \
+                CMP_DECL_RECPUFFER(CMP_VAR, ITEM_TYPE);                                                         \
+                static void CMP_VAR##_init();                                                                           \
+                static void CMP_VAR##_deinit();                                                                         \
+                                                                                                                                                        \
+                CMP_DEF(DECL_TYPE,                                                                                                  \
+                CMP_VAR##_t,                                                                                                    \
+                 CMP_NAME,                                                                                                  \
+                 CMP_VAR,                                                                                                               \
+                 CTOR_PROC_NAME,                                                                                                \
+                 DTOR_PROC_NAME,                                                                                                \
+                 CMP_VAR##_init,                                                                                                \
+                 __NO_TEST_FUNC_,                                                                                       \
+                 CMP_VAR##_deinit                                                                                       \
+                );                                                                                                                                      \
+                                                                                                                                                        \
+        static void CMP_VAR##_process_receiver(ITEM_TYPE* item)                                 \
+        {                                                                                                                                               \
+                CMP_DEF_THIS(CMP_VAR##_t, CMP_VAR);                                                                     \
+                datapuffer_t    *puffer = this->puffer;                                                         \
+                spin_t          *spin = this->spin;                                                                     \
+                spin_lock(spin);                                                                                                        \
+                                                                                                                                                        \
+                /*CMP_RECEIVE(CMP_NAME, item);  */                                                                      \
+                /*if(puffer->is_full == BOOL_TRUE){                                                               */\
+                if(datapuffer_isfull(puffer) == BOOL_TRUE){                                                     \
+                        runtime_warning("%s is full", CMP_NAME);                                                \
+                        spin_unlock(spin);                                                                                      \
+                        ITEM_DTOR(item);                                                                                                \
+                        return;                                                                                                                 \
+                }                                                                                                                                       \
+                                                                                                                                                        \
+                ITEM_CLEAN(item);                                                                                                       \
+                datapuffer_write(puffer, (void*) item);                                                         \
+                                                                                                                                                        \
+                spin_unlock(spin);                                                                                              \
+        }/*#PROC_NAME end*/                                                                                                             \
+                                                                                                                                                        \
+        static ITEM_TYPE* CMP_VAR##_process_supplier()                                                  \
+        {                                                                                                                                               \
+                CMP_DEF_THIS(CMP_VAR##_t, CMP_VAR);                                                                     \
+                ITEM_TYPE       *result = NULL;                                                                         \
+                datapuffer_t    *puffer = this->puffer;                                                         \
+                spin_t          *spin = this->spin;                                                                     \
+                                                                                                                                                        \
+                spin_lock(spin);                                                                                                \
+                /*if(puffer->is_empty == BOOL_TRUE){                                                      */\
+            if(datapuffer_isempty(puffer) == BOOL_TRUE){                                                \
+                        logging("%s is empty", CMP_NAME);                                                               \
+                        spin_unlock(spin);                                                                                              \
+                        result = ITEM_CTOR();                                                                                   \
+                        return result;                                                                                                  \
+                }                                                                                                                                       \
+                                                                                                                                                        \
+                result = (ITEM_TYPE*) datapuffer_read(puffer);                                          \
+                                                                                                                                                        \
+                /*CMP_SUPPLY(CMP_NAME, result);*/                                                                       \
+                spin_unlock(spin);                                                                                              \
+                return result;                                                                                                          \
+        }/*#PROC_NAME end*/                                                                                                     \
+                                                                                                                                                        \
+        void CMP_VAR##_init()                                                                                                   \
+        {                                                                                                                                               \
+                CMP_VAR->puffer = datapuffer_ctor(PUFFER_LENGTH);                                       \
+                CMP_VAR->spin = spin_ctor();                                                                            \
+                CMP_BIND(CMP_VAR->receiver, CMP_VAR##_process_receiver)                     \
+                CMP_BIND(CMP_VAR->supplier, CMP_VAR##_process_supplier)                         \
+        }                                                                                                                                               \
+                                                                                                                                                        \
+        void CMP_VAR##_deinit()                                                                                                 \
+        {                                                                                                                                               \
+                datapuffer_t*  puffer = CMP_VAR->puffer;                                                        \
+                GEN_PUFF_CLEAR_PROC(puffer, ITEM_TYPE, ITEM_DTOR);                                      \
+                datapuffer_dtor(CMP_VAR->puffer);                                                                       \
+                spin_dtor(CMP_VAR->spin);                                                                                       \
+        }                                                                                                                                               \
+
+
+
 
 #define CMP_THREAD(													\
 				DECL_TYPE,											\

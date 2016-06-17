@@ -146,11 +146,6 @@ static feature_t* _get_feature_by_identifier(char_t *identifier, evaluator_conta
     return dmap_get_feature_by_identifier("DST_LOST_RTP_PACKETS_X_Y");
   }
 
-  if(sscanf(identifier, "MAPPED_VAR_%d", &evaluator_container->mapped_var_id) == 1){
-    _add_mapped_var(evaluator_container->mapped_var_id);
-    return dmap_get_feature_by_identifier("MAPPED_VAR_X");
-  }
-
   return NULL;
 }
 
@@ -187,8 +182,6 @@ void features_load()
       make_feature_dst_rtp_bytes(),
       make_feature_dst_lost_rtp_packets(),
 
-      make_feature_mapped_var(),
-
       NULL);
 
 }
@@ -204,6 +197,9 @@ void conf_load(dictionary *conf)
 
   dmap_get_sysdat()->sampling_rate =
     iniparser_getint(conf, "global:sampling_rate", 100);
+
+  dmap_get_sysdat()->accumulation_time =
+      iniparser_getint(conf, "global:accumulation_time", 1000);
 
   for(i=0; i<dmap_get_sysdat()->pcap_listeners_num; ++i){
     pcap_listener_t* pcap_listener;
@@ -233,7 +229,13 @@ pcap_listener_t* _listener_from_conf(dictionary *conf, char_t *section)
 
         memset(conf_key, 0, strlen(conf_key));
         sprintf(conf_key, "%s:accumulation_length", section);
-        result->accumulation_length = iniparser_getint(conf, conf_key, 1);
+        if(0 < iniparser_getint(conf, conf_key, 0)){
+          WARNINGPRINT("Accumulation length is a depricated and not considered any longer. Use accumulation_time at global section instead");
+        }
+
+        memset(conf_key, 0, strlen(conf_key));
+        sprintf(conf_key, "%s:puffer_size", section);
+        result->puffer_size = iniparser_getint(conf, conf_key, 2000);
 
         memset(conf_key, 0, strlen(conf_key));
         sprintf(conf_key, "%s:output", section);
@@ -271,6 +273,18 @@ pcap_listener_t* _listener_from_conf(dictionary *conf, char_t *section)
           evaluator_item = make_evaluator_item(feature, &evaluator_container);
           result->evaluators = slist_append(result->evaluators, evaluator_item);
           INFOPRINT("Feature %s is added listening for device %s", read_str, result->device);
+        }
+
+        memset(conf_key, 0, strlen(conf_key));
+        sprintf(conf_key, "%s:mapped_vars_num", section);
+        result->mapped_vars_num = iniparser_getint(conf, conf_key, 0);
+
+        for(i=0; i<NTRT_MAX_MAPPED_VARS; ++i){
+          sprintf(conf_key, "%s:mapped_var_id_%d", section,i);
+          result->mapped_var_ids[i] = iniparser_getint(conf, conf_key, 0);
+          if(0 < result->mapped_var_ids[i]){
+            _add_mapped_var(result->mapped_var_ids[i]);
+          }
         }
 
 	return result;

@@ -14,6 +14,7 @@
 #include <signal.h>
 #include <pcap.h>
 
+#define NTRT_MAX_MAPPED_VARS 32
 #define NTRT_MAX_FEATURES_NUM 32
 #define NTRT_MAX_THREAD_NUM 32
 #define NTRT_MAX_PCAPLS_NUM 32
@@ -41,6 +42,7 @@ typedef struct array_struct_t
 typedef struct sysdat_struct_t
 {
   uint32_t     sampling_rate;
+  uint32_t     accumulation_time;
   uint32_t     pcap_listeners_num;
   uint32_t     sniff_size;
 }sysdat_t;
@@ -50,10 +52,14 @@ typedef struct pcap_listener_struct_t{
   uint32_t           accumulation_length;
   char_t             device[255];
   char_t             output[255];
+  uint32_t           puffer_size;
   int32_t            append_output;
   char_t             pcap_filter[1024];
   pcap_t*            handler;
 //  datchain_t*        features;
+  uint32_t           mapped_vars_num;
+  uint32_t           mapped_var_ids[NTRT_MAX_MAPPED_VARS];
+
   slist_t*           evaluators;
   bpf_u_int32        mask;               /* Our netmask */
   bpf_u_int32        net;                /* Our IP */
@@ -63,9 +69,8 @@ typedef struct pcap_listener_struct_t{
 
 typedef struct record_struct_t{
   uint32_t    items[NTRT_MAX_FEATURES_NUM];
-  bool_t      accumulable[NTRT_MAX_FEATURES_NUM];
-  uint32_t    length;
   int32_t     listener_id;
+  mtime_t     timestamp;
 }record_t;
 
 typedef enum
@@ -107,7 +112,6 @@ typedef struct evaluator_container_struct_t{
   int32_t payload_type;
   u_short seq_num;
   bool_t  seq_num_initialized;
-  int32_t mapped_var_id;
 }evaluator_container_t;
 
 typedef struct feature_struct_t{

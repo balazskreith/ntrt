@@ -41,37 +41,10 @@ CMP_DEF(, 			      		/*type of definitions*/ 										   \
 
 CMP_DEF_GET_PROC(get_cmp_recorder, cmp_recorder_t, _cmp_recorder);
 
-#define CMP_PUFFER_RECORDS_SIZE 128
-#define CMP_NAME_RECORDSPUFFER "Records Signal Puffer"
-CMP_DEF_SGPUFFER(
-                        static,                                 /*type of declaration*/
-                        record_t,                              /*type of items*/
-                        record_dtor,                       /*name of the destrctor process*/
-                        CMP_NAME_RECORDSPUFFER,    /*name of the component*/
-                        _cmp_recordpuffer,         /*name of the variable used for referencing it*/
-                        CMP_PUFFER_RECORDS_SIZE,  /*maximal number of items in the puffer*/
-                        _cmp_recordspuffer_ctor,    /*name of the process used for constructing*/
-                        _cmp_recordspuffer_dtor     /*name of the process used for deconstructing*/
-                );
-
-typedef struct output_file_struct_t{
-  char_t    filename[255];
-  bool_t    append_output;
-}output_file_t;
-
-typedef struct ratewindow_struct_t{
-  int32_t       length;
-  int32_t       index;
-  record_t*     records;
-  record_t      result;
-  output_file_t output_file;
-}ratewindow_t;
-
 typedef struct _cmp_cmdrelayer_struct_t
 {
-        record_t*    (*demand)();
-        void         (**send)(record_t*);
-        ratewindow_t   rate_windows[NTRT_MAX_PCAPLS_NUM];
+        void         (**requester)(int32_t, record_t*);
+        int32_t         sampling_rate;
 }_cmp_recordsrelayer_t;
 
 #define CMP_NAME_RECORDSRELAYER "Records relayer component"
@@ -91,28 +64,20 @@ CMP_THREAD(
 static void* _recorder_start();
 static void* _recorder_stop();
 static void* _sender_restart();
-static void _records_subtract(record_t* result, record_t* subtraction);
-static void _records_addition(record_t* result, record_t* addition);
-static void _update_rate_window(ratewindow_t* ratewindow, record_t* record);
-static void _update_file(output_file_t* output_file, record_t* record);
+static void _update_file(record_t* record, pcap_listener_t* pcap_listener);
 
 void  _cmp_recorder_init()
 {
-  _cmp_recordspuffer_ctor();
   _cmp_recordsrelayer_ctor();
 
   CMP_BIND(_cmp_recorder->start, _recorder_start);
   CMP_BIND(_cmp_recorder->stop, _recorder_stop);
-  CMP_BIND(_cmp_recorder->receiver, _cmp_recordpuffer->receiver);
 
-  CMP_CONNECT(_cmp_recordsrelayer->demand, _cmp_recordpuffer->supplier);
-  CMP_CONNECT(_cmp_recordsrelayer->send, &_cmp_recorder->send);
-
+  CMP_CONNECT(_cmp_recordsrelayer->requester, &_cmp_recorder->requester);
 }
 
 void _cmp_recorder_deinit()
 {
-  _cmp_recordspuffer_dtor();
   _cmp_recordsrelayer_dtor();
 
 }
@@ -120,28 +85,18 @@ void _cmp_recorder_deinit()
 
 static void _recordsrelayer_thr_init()
 {
-  int32_t index;
-  int32_t j;
-  pcap_listener_t *pcap_listener;
-  CMP_DEF_THIS(_cmp_recordsrelayer_t, _cmp_recordsrelayer);
 
-  dmap_rdlock_table_pcapls();
-  for(index = 0; dmap_itr_table_pcapls(&index, &pcap_listener) == BOOL_TRUE; ++index){
-    memset(&this->rate_windows[index], 0, sizeof(ratewindow_t));
-    strcpy(this->rate_windows[index].output_file.filename, pcap_listener->output);
-    this->rate_windows[index].output_file.append_output = pcap_listener->append_output;
-    this->rate_windows[index].records = malloc(sizeof(record_t) * pcap_listener->accumulation_length);
-    memset(this->rate_windows[index].records, 0, sizeof(record_t) * pcap_listener->accumulation_length);
-    this->rate_windows[index].length = pcap_listener->accumulation_length;
-    this->rate_windows[index].index = 0;
-  }
-  dmap_rdunlock_table_pcapls();
+  dmap_lock_sysdat();
+  _cmp_recordsrelayer->sampling_rate = dmap_get_sysdat()->sampling_rate;
+  dmap_unlock_sysdat();
+
 }
 
 void* _recorder_start()
 {
   _recordsrelayer_thr_init();
   _recordsrelayer_start();
+
    return NULL;
 }
 
@@ -165,23 +120,24 @@ void* _recorder_stop()
 void _thr_recordsrelayer_main_proc(thread_t *thread)
 {
     CMP_DEF_THIS(_cmp_recordsrelayer_t, (_cmp_recordsrelayer_t*) thread->arg);
-    record_t    *record;
-    int32_t     i;
-    void       (*send)(record_t*);
-    int32_t      listener_id;
-    ratewindow_t *ratewindow;
-    //        time_t       now;
-    send = *(this->send);
+    record_t         record;
+    void           (*requester)(int32_t, record_t*);
+    int32_t          listener_id;
+    pcap_listener_t *pcap_listener;
+
+    requester = *(this->requester);
+
     do
     {
-        //CMP_DEMAND(CMP_NAME_CMDRELAYER, command, this->demand);
-        record = this->demand();
-        listener_id = record->listener_id;
-        ratewindow = &this->rate_windows[listener_id];
-        _update_rate_window(ratewindow, record);
-        _update_file(&ratewindow->output_file, &ratewindow->result);
+        dmap_rdlock_table_pcapls();
+        for(listener_id = 0; dmap_itr_table_pcapls(&listener_id, &pcap_listener) == BOOL_TRUE; ++listener_id){
+          memset(&record, 0, sizeof(record_t));
+          requester(listener_id, &record);
+          _update_file(&record, pcap_listener);
+        }
+        dmap_rdunlock_table_pcapls();
+        thread_sleep(this->sampling_rate);
 
-        send(record);
     }while(thread->state == THREAD_STATE_RUN);
 }
 
@@ -189,58 +145,50 @@ void _thr_recordsrelayer_main_proc(thread_t *thread)
 //----------------------------------------------------------------------------------------------------
 //------------------------- Utils  ---------------------------------------------------------------
 //----------------------------------------------------------------------------------------------------
-void _records_subtract(record_t* result, record_t* subtraction)
+
+static uint32_t _mapped_var_evaluator(uint32_t map_id)
 {
-  int32_t i,c;
-  c = MIN(result->length, subtraction->length);
-  for(i=0; i<c; ++i){
-    if(!result->accumulable[i]){
-      continue;
-    }else{
-      result->items[i] -= subtraction->items[i];
-    }
+  mapped_var_t *mapped_var;
+  uint32_t result = 0;
+  mapped_var = dmap_get_mapped_var_by_var_id(map_id);
+  if(!mapped_var){
+    WARNINGPRINT("mapped var with id %d not found", map_id);
+    goto done;
   }
+  result = mapped_var->value;
+done:
+  return result;
 }
 
-void _records_addition(record_t* result, record_t* addition)
-{
-  int32_t i,c;
-  c = MIN(result->length, addition->length);
-  for(i=0; i<c; ++i){
-    if(result->accumulable[i] == BOOL_FALSE){
-      result->items[i] = addition->items[i];
-    }else{
-      result->items[i] += addition->items[i];
-    }
-  }
-}
-
-void _update_rate_window(ratewindow_t* ratewindow, record_t* record)
-{
-  _records_subtract(&ratewindow->result, ratewindow->records + ratewindow->index);
-  memcpy(ratewindow->records + ratewindow->index, record, sizeof(record_t));
-  _records_addition(&ratewindow->result, ratewindow->records + ratewindow->index);
-
-  ratewindow->result.length = record->length;
-
-  if(++(ratewindow->index) == ratewindow->length){
-      ratewindow->index = 0;
-  }
-}
-
-void _update_file(output_file_t* output_file, record_t* record)
+void _update_file(record_t* record, pcap_listener_t* pcap_listener)
 {
   FILE *fp;
+  char_t  end;
   int32_t i,c;
-  if(output_file->append_output){
-    fp=fopen(output_file->filename, "a+");
+  if(pcap_listener->append_output){
+    fp=fopen(pcap_listener->output, "a+");
   }else{
-    fp=fopen(output_file->filename, "w+");
-    output_file->append_output = BOOL_TRUE;
+    fp=fopen(pcap_listener->output, "w+");
+    pcap_listener->append_output = BOOL_TRUE;
   }
-  for(i=0,c=record->length; i<c; ++i){
-      fprintf(fp,"%d%c", record->items[i], i == (c-1) ? '\n' : ',');
+  end = 0 < pcap_listener->mapped_vars_num ? ',' : '\n';
+  for(i=0,c=pcap_listener->feature_num; i<c; ++i){
+      fprintf(fp,"%d%c", record->items[i], i == (c-1) ? end : ',');
   }
+  c=pcap_listener->mapped_vars_num;
+  if(!c){
+    goto done;
+  }
+
+  dmap_rdlock_table_mapped_var();
+  for(i=0; i<c; ++i){
+    uint32_t map_id;
+    map_id = pcap_listener->mapped_var_ids[i];
+    fprintf(fp,"%d%c", _mapped_var_evaluator(map_id), i == (c-1) ? '\n' : ',');
+  }
+  dmap_rdunlock_table_mapped_var();
+
+done:
   fclose(fp);
 }
 

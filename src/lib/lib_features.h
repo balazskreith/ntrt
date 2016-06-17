@@ -31,6 +31,5 @@ feature_t *make_feature_dst_rtp_packets();
 feature_t *make_feature_dst_rtp_bytes();
 feature_t *make_feature_dst_lost_rtp_packets();
 
-feature_t *make_feature_mapped_var();
 
 #endif /* INCGUARD_LIB_FEATURES_CONFS_H_ */

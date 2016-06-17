@@ -548,27 +548,3 @@ feature_t *make_feature_dst_lost_rtp_packets()
   return result;
 }
 
-
-//-------------------------FEATURE BEGIN------------------------
-static uint32_t _mapped_var_evaluator(sniff_t *sniff, evaluator_container_t* data)
-{
-  mapped_var_t *mapped_var;
-  uint32_t result;
-  dmap_rdlock_table_mapped_var();
-  mapped_var = dmap_get_mapped_var_by_var_id(data->mapped_var_id);
-  if(!mapped_var){
-    WARNINGPRINT("mapped var with id %d not found", data->mapped_var_id);
-    goto done;
-  }
-  result = mapped_var->value;
-done:
-  dmap_rdunlock_table_mapped_var();
-  return result;
-}
-
-feature_t *make_feature_mapped_var()
-{
-  feature_t* result;
-  result = make_feature("Mapped variable", "MAPPED_VAR_X", _mapped_var_evaluator);
-  return result;
-}

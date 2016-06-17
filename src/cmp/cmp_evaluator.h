@@ -6,8 +6,6 @@
 #define CMP_NAME_EVALUATOR "Sniff Evaluator component"
 
 typedef struct cmp_evaluator_item_struct_t{
-  record_t  record;
-  mtime_t   last_impulse;
   slist_t*  evaluators;
   int32_t   feature_num;
 }cmp_evaluator_item_t;

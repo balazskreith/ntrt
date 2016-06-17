@@ -55,6 +55,7 @@ void mdatapuffer_reset(mdatapuffer_t *mdatapuffer);
 datapuffer_t* datapuffer_ctor(int32_t items_num);
 void datapuffer_dtor(datapuffer_t *datapuffer);
 void* datapuffer_read(datapuffer_t *datapuffer);
+void* datapuffer_peek(datapuffer_t* puffer);
 void datapuffer_write(datapuffer_t *datapuffer, void *item);
 int32_t datapuffer_capacity(datapuffer_t *datapuffer);
 int32_t datapuffer_readcapacity(datapuffer_t *datapuffer);

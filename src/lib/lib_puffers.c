@@ -220,13 +220,18 @@ void datapuffer_write(datapuffer_t* puffer, void* item)
 
 void* datapuffer_read(datapuffer_t* puffer)
 {
-	puffer->read = puffer->items[puffer->start];
-	puffer->items[puffer->start] = NULL;
-	if(puffer->length <= ++puffer->start){
-		puffer->start = 0;
-	}
-	--puffer->count;
-	return puffer->read;
+        puffer->read = puffer->items[puffer->start];
+        puffer->items[puffer->start] = NULL;
+        if(puffer->length <= ++puffer->start){
+                puffer->start = 0;
+        }
+        --puffer->count;
+        return puffer->read;
+}//# datapuffer_read end
+
+void* datapuffer_peek(datapuffer_t* puffer)
+{
+        return puffer->items[puffer->start];
 }//# datapuffer_read end
 
 int32_t datapuffer_readcapacity(datapuffer_t *datapuffer)

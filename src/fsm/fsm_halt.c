@@ -2,6 +2,7 @@
 #include "../cmp/cmp_recorder.h"
 #include "../cmp/cmp_sniffer.h"
 #include "../cmp/cmp_cmdexecutor.h"
+#include "../cmp/cmp_accumulator.h"
 #include "fsm.h"
 #include "fsm_actions.h"
 #include "cmp_predefs.h"
@@ -65,7 +66,7 @@ void _sys_setup()
 
 void _sys_start()
 {
-
+  get_cmp_accumulator()->start();
   get_cmp_recorder()->start();
   get_cmp_evaluator()->start();
   get_cmp_cmdexecutor()->start();
@@ -79,6 +80,7 @@ void _sys_shutdown()
 
   dmap_itr_do(dmap_itr_table_features, dmap_rem_feature);
   dmap_itr_do(dmap_itr_table_pcapls, dmap_rem_pcapls);
+  dmap_itr_do(dmap_itr_table_mapped_var, dmap_rem_mapped_var);
   dmap_itr_do(dmap_itr_table_thr, dmap_rem_thr);
 
 }

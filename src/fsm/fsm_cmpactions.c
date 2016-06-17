@@ -4,6 +4,7 @@
 #include "../cmp/cmp_recorder.h"
 #include "../cmp/cmp_sniffer.h"
 #include "../cmp/cmp_cmdexecutor.h"
+#include "../cmp/cmp_accumulator.h"
 #include "fsm.h"
 #include "lib_tors.h"
 
@@ -20,14 +21,17 @@ void _cmps_ntrt_ctor()
 	cmp_sniffer_ctor();
 	cmp_evaluator_ctor();
 	cmp_recorder_ctor();
+	cmp_accumulator_ctor();
 	cmp_cmdexecutor_ctor();
 
 	//Bind:
 	PRINTING_CONNECT_COMPONENTS;
 
 	CMP_CONNECT(get_cmp_sniffer()->send, get_cmp_evaluator()->sniff_receiver);
-	CMP_CONNECT(get_cmp_evaluator()->send, get_cmp_recorder()->receiver);
-	CMP_CONNECT(get_cmp_recorder()->send, get_cmp_evaluator()->record_receiver);
+	CMP_CONNECT(get_cmp_evaluator()->send, get_cmp_accumulator()->record_receiver);
+	CMP_CONNECT(get_cmp_accumulator()->send_record, get_cmp_evaluator()->record_receiver);
+
+	CMP_CONNECT(get_cmp_recorder()->requester, get_cmp_accumulator()->result_requester);
 }
 
 void _cmps_ntrt_dtor()
@@ -35,6 +39,7 @@ void _cmps_ntrt_dtor()
   cmp_sniffer_dtor();
   cmp_evaluator_dtor();
   cmp_recorder_dtor();
+  cmp_accumulator_dtor();
   cmp_cmdexecutor_dtor();
 
 }

@@ -85,7 +85,7 @@ void _exit_handler(int sgno)
 
 void program_main(struct arg_int  *time, struct arg_file *cfg_file, struct arg_file *cmd_file)
 {
-    int sec;
+    int sec = 0;
 
     if(cfg_file->count){
       strcpy(sysio->config_file, *(cfg_file->filename));
@@ -98,14 +98,15 @@ void program_main(struct arg_int  *time, struct arg_file *cfg_file, struct arg_f
 
     get_fsm()->fire(NTRT_EVENT_SETUP, NULL);
     get_fsm()->fire(NTRT_EVENT_START, NULL);
+    if(time->count){
+      INFOPRINT("NTRT is going to be terminated %d sec later", *(time->ival));
+    }
 
-    if(!time->count){
-      while(1){
-        thread_sleep(1000);
+    while(1){
+      thread_sleep(1000);
+      if(time->count && *(time->ival) < ++sec){
+        break;
       }
-    }else{
-      sec = *(time->ival);
-      thread_sleep(1000 * sec);
     }
 
     get_fsm()->fire(NTRT_EVENT_STOP, NULL);
@@ -115,10 +116,10 @@ void program_main(struct arg_int  *time, struct arg_file *cfg_file, struct arg_f
 
 void init_sysio()
 {
-	sysio = (devlegoio_t*) malloc(sizeof(devlegoio_t));
-	sysio->print_stdlog = sysio_print_stdlog;
-	sysio->print_stdout = sysio_print_stdout;
-	sysio->opcall = system;
-	sysio->command_file_initialized = BOOL_FALSE;
-	strcpy(sysio->config_file, "./config.ini");
+    sysio = (devlegoio_t*) malloc(sizeof(devlegoio_t));
+    sysio->print_stdlog = sysio_print_stdlog;
+    sysio->print_stdout = sysio_print_stdout;
+    sysio->opcall = system;
+    sysio->command_file_initialized = BOOL_FALSE;
+    strcpy(sysio->config_file, "./config.ini");
 }

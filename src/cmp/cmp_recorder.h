@@ -8,11 +8,10 @@
 #define CMP_NAME_RECORDER "Recorder component"
 typedef struct cmp_recorder_struct_t
 {
-	void         (*receiver)(record_t*);
+        void         (*requester)(int32_t, record_t*);
 	void*        (*start)();
 	void*        (*restart)();
 	void*        (*stop)();
-	void         (*send)(record_t*);
 }cmp_recorder_t;
 
 void cmp_recorder_ctor();
