@@ -32,7 +32,7 @@ CMP_DEF(, 			      	/*type of definitions*/ 									      \
 		);
 
 static void clean_record(record_t* record);
-#define CMP_PUFFER_RECYCLE_SIZE 128
+#define CMP_PUFFER_RECYCLE_SIZE 2048
 #define CMP_NAME_RRECYCLE "Records Recycle component"
 CMP_DEF_RECPUFFER(
                 static,                         /*type of the declarations*/

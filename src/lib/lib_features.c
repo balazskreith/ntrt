@@ -90,7 +90,7 @@ static uint32_t _udp_bytes_evaluator(sniff_t *sniff, evaluator_container_t* data
   if(!sniff_is_udp_packet(sniff)){
     return 0;
   }
-  return ntohs(sniff->ip_len) * 8;
+  return ntohs(sniff->ip_len);
 }
 
 feature_t *make_feature_udp_bytes()
@@ -134,7 +134,7 @@ static uint32_t _rtp_bytes_evaluator(sniff_t *sniff, evaluator_container_t* data
   if(rtph->PT != data->payload_type){
       return 0;
   }
-  return sniff->ip_len;
+  return ntohs(sniff->ip_len);;
 }
 
 feature_t *make_feature_rtp_bytes()
@@ -231,7 +231,7 @@ static uint32_t _src_udp_bytes_evaluator(sniff_t *sniff, evaluator_container_t* 
   if(ntohs(sniff->port_src) != data->port_num){
     return 0;
   }
-  return sniff->ip_len;
+  return ntohs(sniff->ip_len);
 }
 
 feature_t *make_feature_src_udp_bytes()
@@ -271,7 +271,7 @@ static uint32_t _src_tcp_bytes_evaluator(sniff_t *sniff, evaluator_container_t* 
   if(ntohs(sniff->port_src) != data->port_num){
     return 0;
   }
-  return sniff->ip_len;
+  return ntohs(sniff->ip_len);
 }
 
 feature_t *make_feature_src_tcp_bytes()
@@ -320,7 +320,7 @@ static uint32_t _src_rtp_bytes_evaluator(sniff_t *sniff, evaluator_container_t* 
   if(rtph->PT != data->payload_type){
       return 0;
   }
-  return sniff->ip_len;
+  return ntohs(sniff->ip_len);
 }
 
 feature_t *make_feature_src_rtp_bytes()
@@ -410,7 +410,7 @@ static uint32_t _dst_udp_bytes_evaluator(sniff_t *sniff, evaluator_container_t* 
   if(ntohs(sniff->port_dst) != data->port_num){
     return 0;
   }
-  return sniff->ip_len;
+  return ntohs(sniff->ip_len);
 }
 
 feature_t *make_feature_dst_udp_bytes()
@@ -450,7 +450,7 @@ static uint32_t _dst_tcp_bytes_evaluator(sniff_t *sniff, evaluator_container_t* 
   if(ntohs(sniff->port_dst) != data->port_num){
     return 0;
   }
-  return sniff->ip_len;
+  return ntohs(sniff->ip_len);
 }
 
 feature_t *make_feature_dst_tcp_bytes()
@@ -500,7 +500,7 @@ static uint32_t _dst_rtp_bytes_evaluator(sniff_t *sniff, evaluator_container_t* 
   if(rtph->PT != data->payload_type){
       return 0;
   }
-  return sniff->ip_len;
+  return ntohs(sniff->ip_len);
 }
 
 feature_t *make_feature_dst_rtp_bytes()
