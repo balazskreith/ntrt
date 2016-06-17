@@ -180,7 +180,6 @@ again:
   }
   item = datapuffer_peek(records);
   if(this->accumulation_time < diffmtime_fromnow(&item->timestamp)){
-    printf("item diffmtime: %f\n", diffmtime_fromnow(&item->timestamp));
     item = datapuffer_read(records);
     _records_subtract(&accumulator->result, item, accumulator->length);
     this->send_record(item);

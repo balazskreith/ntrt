@@ -58,11 +58,11 @@ The following example filter udp and tcp traffic parallely with a 100ms resoluti
 *The contents of the config.ini file:*
 
 [global]  
+accumulation_time  = 1000
 sampling_rate      = 100  
 pcap_listeners_num = 1  
 
 [pcap_0]  
-accumulation_length = 10  
 device              = wlan0  
 output              = wlan0_stats.csv  
 feature_num         = 4  
@@ -152,9 +152,6 @@ Track the length of RTP packets sent to port X with a given payload type Y.
 
 *DST_LOST_RTP_PACKETS_X_Y*  
 Track the number of gaps experienced for RTP packets sent to port X with a given payload type Y.
-
-*MAPPED_VAR_X*  
-Track a value mapped to an identifier X. (variable X can be changed from a command line)
 
 
     
