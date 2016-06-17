@@ -58,7 +58,7 @@ The following example filter udp and tcp traffic parallely with a 100ms resoluti
 *The contents of the config.ini file:*
 
 [global]  
-accumulation_time  = 1000
+accumulation_time  = 1000  
 sampling_rate      = 100  
 pcap_listeners_num = 1  
 
