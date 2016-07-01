@@ -131,11 +131,21 @@ void _thr_cmdinterpreter_main_proc(thread_t *thread)
       if(read == -1){
         break;
       }
+      if(line[0] != '#'){
+        //Comment omitted
+        continue;
+      }
+
       sscanf(line, "%d %d", &read_num, &wait_in_seconds);
       for(i=0; i<read_num; ++i){
         read = getline(&line, &len, fp);
         if(read == -1){
           break;
+        }
+        if(line[0] != '#'){
+          //Comment omitted
+          --i; //comments inside blocks are not counted
+          continue;
         }
         _command_interpreter_process(line);
       }
@@ -162,11 +172,6 @@ void _command_interpreter_process(const char_t* str)
   uint32_t var_value;
   mapped_var_t *mapped_var;
   const char_t* cmd = str + 2;
-
-  if(str[0] != '#'){
-    //Comment omitted
-    goto done;
-  }
 
   INFOPRINT("Executing command %s", str);
   if(str[0] == 'O'){
