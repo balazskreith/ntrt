@@ -131,7 +131,7 @@ void _thr_cmdinterpreter_main_proc(thread_t *thread)
       if(read == -1){
         break;
       }
-      if(line[0] != '#'){
+      if(line[0] == '#'){
         //Comment omitted
         continue;
       }
@@ -142,7 +142,7 @@ void _thr_cmdinterpreter_main_proc(thread_t *thread)
         if(read == -1){
           break;
         }
-        if(line[0] != '#'){
+        if(line[0] == '#'){
           //Comment omitted
           --i; //comments inside blocks are not counted
           continue;
