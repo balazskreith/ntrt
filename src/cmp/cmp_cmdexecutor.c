@@ -163,6 +163,11 @@ void _command_interpreter_process(const char_t* str)
   mapped_var_t *mapped_var;
   const char_t* cmd = str + 2;
 
+  if(str[0] != '#'){
+    //Comment omitted
+    goto done;
+  }
+
   INFOPRINT("Executing command %s", str);
   if(str[0] == 'O'){
     sysio->opcall(cmd);
