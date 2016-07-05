@@ -71,6 +71,10 @@ eventer_arg_t* eventer_arg_ctor();
 
 array_t* array_ctor(int32_t length);
 
+groupcounter_prototype_t* groupcounter_prototype_ctor();
+
+groupcounter_t* groupcounter_ctor();
+
 feature_t* feature_ctor();
 
 pcap_listener_t* pcap_listener_ctor();
@@ -139,12 +143,18 @@ void array_dtor(void *target);
 
 void feature_dtor(ptr_t target);
 
+void groupcounter_prototype_dtor(ptr_t target);
+
 void pcap_listener_dtor(ptr_t target);
 
 void record_dtor(ptr_t target);
 
 void evaluator_item_dtor(ptr_t target);
 
+void groupcounter_dtor(ptr_t target);
+
 void mapped_var_dtor(ptr_t target);
+
+void slist_dtor(ptr_t target, void (*data_dtor)(ptr_t));
 
 #endif //INCGUARD_NTRT_LIBRARY_CONSTRUCTORS_H_

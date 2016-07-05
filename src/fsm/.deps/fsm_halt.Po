@@ -66,10 +66,10 @@ fsm/fsm_halt.o: fsm/fsm_halt.c /usr/include/stdc-predef.h \
  fsm/../cmp/cmp_recorder.h fsm/../cmp/cmp_defs.h fsm/../cmp/cmp_sniffer.h \
  fsm/../cmp/cmp_predefs.h lib/lib_predefs.h lib/lib_debuglog.h \
  lib/lib_descs.h lib/lib_funcs.h inc/inc_texts.h lib/lib_puffers.h \
- fsm/../cmp/cmp_cmdexecutor.h fsm/../cmp/cmp_accumulator.h fsm/fsm.h \
- lib/lib_threading.h fsm/fsm_actions.h cmp/cmp_predefs.h \
- etc/etc_iniparser.h etc/etc_dict.h /usr/include/unistd.h \
- /usr/include/x86_64-linux-gnu/bits/posix_opt.h \
+ fsm/../cmp/cmp_cmdexecutor.h fsm/../cmp/cmp_accumulator.h \
+ fsm/../cmp/cmp_groupcounter.h fsm/fsm.h lib/lib_threading.h \
+ fsm/fsm_actions.h cmp/cmp_predefs.h etc/etc_iniparser.h etc/etc_dict.h \
+ /usr/include/unistd.h /usr/include/x86_64-linux-gnu/bits/posix_opt.h \
  /usr/include/x86_64-linux-gnu/bits/environments.h \
  /usr/include/x86_64-linux-gnu/bits/confname.h /usr/include/getopt.h \
  /usr/include/x86_64-linux-gnu/bits/unistd.h dmap/dmap.h lib/lib_defs.h \
@@ -279,6 +279,8 @@ lib/lib_puffers.h:
 fsm/../cmp/cmp_cmdexecutor.h:
 
 fsm/../cmp/cmp_accumulator.h:
+
+fsm/../cmp/cmp_groupcounter.h:
 
 fsm/fsm.h:
 

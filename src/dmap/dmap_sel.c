@@ -33,6 +33,19 @@ feature_t* dmap_get_feature_by_identifier(char_t* identifier)
 }
 
 
+groupcounter_prototype_t* dmap_get_groupcounter_prototype_by_identifier(char_t* identifier)
+{
+  int32_t    index;
+  groupcounter_prototype_t* result = NULL;
+  for(index = 0; dmap_itr_table_groupcounter_protos(&index, &result) == BOOL_TRUE; ++index){
+      if(strcmp(identifier, result->identifier) == 0){
+        return result;
+      }
+  }
+  return NULL;
+}
+
+
 int32_t dmap_get_id_by_pcapls(pcap_listener_t* pcap_listener)
 {
   int32_t result,index;

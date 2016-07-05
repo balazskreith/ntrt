@@ -12,6 +12,8 @@ __top_builddir__bin_ntrt_SOURCES =       \
 			  cmp/cmp_sniffer.c         \
 			  cmp/cmp_evaluator.h       \
 			  cmp/cmp_evaluator.c       \
+  			  cmp/cmp_groupcounter.h    \
+			  cmp/cmp_groupcounter.c    \
 			  cmp/cmp_recorder.h        \
 			  cmp/cmp_recorder.c        \
 			  cmp/cmp_defs.h            \
@@ -68,6 +70,8 @@ __top_builddir__bin_ntrt_SOURCES =       \
               lib/lib_features.h        \
               lib/lib_funcs.h           \
               lib/lib_funcs.c           \
+              lib/lib_groupcounters.h   \
+              lib/lib_groupcounters.c   \
               lib/lib_heap.h            \
               lib/lib_heap.c            \
               lib/lib_interrupting.h    \

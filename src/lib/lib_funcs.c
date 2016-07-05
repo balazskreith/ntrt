@@ -75,7 +75,9 @@ slist_t* slist_append(slist_t *slist, ptr_t item)
 {
   slist_t* tail;
   if(!slist){
-    return make_slist(item);
+    slist_t* new;
+    new = make_slist(item);
+    return new;
   }
   tail = slist;
   while(tail->next){

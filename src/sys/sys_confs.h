@@ -4,6 +4,7 @@
 #include "etc_iniparser.h"
 
 void features_load();
+void groupcounter_prototypes_load();
 void conf_load(dictionary *conf);
 
 #endif /* INCGUARD_SYS_CONFS_H_ */

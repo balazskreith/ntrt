@@ -66,10 +66,10 @@ fsm/fsm_run.o: fsm/fsm_run.c /usr/include/stdc-predef.h \
  fsm/../cmp/cmp_recorder.h fsm/../cmp/cmp_defs.h fsm/../cmp/cmp_sniffer.h \
  fsm/../cmp/cmp_predefs.h lib/lib_predefs.h lib/lib_debuglog.h \
  lib/lib_descs.h lib/lib_funcs.h inc/inc_texts.h lib/lib_puffers.h \
- fsm/../cmp/cmp_cmdexecutor.h fsm/../cmp/cmp_accumulator.h fsm/fsm.h \
- lib/lib_threading.h dmap/dmap.h lib/lib_defs.h dmap/dmap_defs.h \
- dmap/dmap_predefs.h etc/etc_utils.h fsm/fsm_actions.h inc/inc_opcall.h \
- cmp/cmp_predefs.h cmp/cmp_defs.h
+ fsm/../cmp/cmp_cmdexecutor.h fsm/../cmp/cmp_accumulator.h \
+ fsm/../cmp/cmp_groupcounter.h fsm/fsm.h lib/lib_threading.h dmap/dmap.h \
+ lib/lib_defs.h dmap/dmap_defs.h dmap/dmap_predefs.h etc/etc_utils.h \
+ fsm/fsm_actions.h inc/inc_opcall.h cmp/cmp_predefs.h cmp/cmp_defs.h
 
 /usr/include/stdc-predef.h:
 
@@ -274,6 +274,8 @@ lib/lib_puffers.h:
 fsm/../cmp/cmp_cmdexecutor.h:
 
 fsm/../cmp/cmp_accumulator.h:
+
+fsm/../cmp/cmp_groupcounter.h:
 
 fsm/fsm.h:
 

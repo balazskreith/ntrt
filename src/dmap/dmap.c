@@ -26,24 +26,44 @@ static int32_t     _dmap_add_row(dmap_table_t *table, dmap_row_t *row)          
 //------------------------------------------------------------------------------------------------
 //------------------------------------ Table definitions -----------------------------------------
 //------------------------------------------------------------------------------------------------
-DMAP_DEF_SPECT_TABLE(																	 		 \
-	feature_t,		   /*name of the specific data type*/									 \
-	feature_dtor,			   /*name of the destructor for the specified data*/					 \
-	_dmap_table_features,	   /*name of the variable reference to the table*/						 \
-	DMAP_NAME_TABLE_FEATURES,   /*name of the table*/						 	     				 \
-	NTRT_MAX_FEATURES_NUM,/*maximal number of item the table can contain. */                    \
-	dmap_init_table_features,   /*name of the process initialize the table*/                          \
-	dmap_deinit_table_features, /*name of the process deinitialze the table*/                         \
-	dmap_get_table_features,	   /*name of the process gets the table*/								 \
-	dmap_get_feature,		   /*name of the process gets an item from the table by index*/			 \
-	dmap_add_feature,		   /*name of the process adds an item and returns with its index*/  	 \
-	dmap_rem_feature_byindex,  /*name of the process remove an item from the table by index*/   	 \
-	dmap_rem_feature, 		   /*name of the process remove an item from the table by pointer*/ 	 \
-	dmap_rdlock_table_features,  /*name of the process lock the table for reading*/					 \
-	dmap_rdunlock_table_features,/*name of the process unlock the table from reading*/				 \
-	dmap_wrlock_table_features,  /*name of the process lock the table for writing*/					 \
-	dmap_wrunlock_table_features,/*name of the process unlock the table from writing*/				 \
-	dmap_itr_table_features	   /*name of the process iterate the table*/							 \
+DMAP_DEF_SPECT_TABLE(                                                                                                                                                    \
+        feature_t,                 /*name of the specific data type*/                                                                    \
+        feature_dtor,                      /*name of the destructor for the specified data*/                                     \
+        _dmap_table_features,      /*name of the variable reference to the table*/                                               \
+        DMAP_NAME_TABLE_FEATURES,   /*name of the table*/                                                                                        \
+        NTRT_MAX_FEATURES_NUM,/*maximal number of item the table can contain. */                    \
+        dmap_init_table_features,   /*name of the process initialize the table*/                          \
+        dmap_deinit_table_features, /*name of the process deinitialze the table*/                         \
+        dmap_get_table_features,           /*name of the process gets the table*/                                                                \
+        dmap_get_feature,                  /*name of the process gets an item from the table by index*/                  \
+        dmap_add_feature,                  /*name of the process adds an item and returns with its index*/       \
+        dmap_rem_feature_byindex,  /*name of the process remove an item from the table by index*/        \
+        dmap_rem_feature,                  /*name of the process remove an item from the table by pointer*/      \
+        dmap_rdlock_table_features,  /*name of the process lock the table for reading*/                                  \
+        dmap_rdunlock_table_features,/*name of the process unlock the table from reading*/                               \
+        dmap_wrlock_table_features,  /*name of the process lock the table for writing*/                                  \
+        dmap_wrunlock_table_features,/*name of the process unlock the table from writing*/                               \
+        dmap_itr_table_features    /*name of the process iterate the table*/                                                     \
+);
+
+DMAP_DEF_SPECT_TABLE(                                                                                                                                                    \
+        groupcounter_prototype_t,                 /*name of the specific data type*/                                                                    \
+        groupcounter_prototype_dtor,                      /*name of the destructor for the specified data*/                                     \
+        _dmap_table_groupcounter_protos,      /*name of the variable reference to the table*/                                               \
+        DMAP_NAME_TABLE_FEATURES,   /*name of the table*/                                                                                        \
+        NTRT_MAX_GROUPCOUNTERS_NUM,/*maximal number of item the table can contain. */                    \
+        dmap_init_table_groupcounter_protos,   /*name of the process initialize the table*/                          \
+        dmap_deinit_table_groupcounter_protos, /*name of the process deinitialze the table*/                         \
+        dmap_get_table_groupcounter_protos,           /*name of the process gets the table*/                                                                \
+        dmap_get_groupcounter_proto,                  /*name of the process gets an item from the table by index*/                  \
+        dmap_add_groupcounter_proto,                  /*name of the process adds an item and returns with its index*/       \
+        dmap_rem_groupcounter_proto_byindex,  /*name of the process remove an item from the table by index*/        \
+        dmap_rem_groupcounter_proto,                  /*name of the process remove an item from the table by pointer*/      \
+        dmap_rdlock_table_groupcounter_protos,  /*name of the process lock the table for reading*/                                  \
+        dmap_rdunlock_table_groupcounter_protos,/*name of the process unlock the table from reading*/                               \
+        dmap_wrlock_table_groupcounter_protos,  /*name of the process lock the table for writing*/                                  \
+        dmap_wrunlock_table_groupcounter_protos,/*name of the process unlock the table from writing*/                               \
+        dmap_itr_table_groupcounter_protos    /*name of the process iterate the table*/                                                     \
 );
 
 DMAP_DEF_SPECT_TABLE(                                                                                                                                                    \
@@ -129,6 +149,7 @@ void dmap_init()
 {
 	PRINTING_CONSTRUCTING_SG(DMAP_NAME);
 	dmap_init_table_features();
+	dmap_init_table_groupcounter_protos();
 	dmap_init_table_thr();
 	dmap_init_table_pcapls();
 	dmap_init_table_mapped_vars();
@@ -141,6 +162,7 @@ void dmap_deinit()
 	PRINTING_DESTRUCTING_SG(DMAP_NAME);
 	mutex_dtor(_dmap_sysdat_mutex);
 	dmap_deinit_table_features();
+	dmap_deinit_table_groupcounter_protos();
 	dmap_deinit_table_thr();
 	dmap_deinit_table_pcapls();
 	dmap_deinit_table_mapped_vars();

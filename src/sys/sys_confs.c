@@ -12,6 +12,7 @@
 #include <stdarg.h>
 #include <stdio.h>
 #include "lib_features.h"
+#include "lib_groupcounters.h"
 #include "etc_sniffex.h"
 #include "lib_funcs.h"
 
@@ -23,6 +24,13 @@ static void _add_feature(feature_t *feature)
   INFOPRINT("Feature %-35s is installed", feature->identifier);
 }
 
+
+static void _add_groupcounter_prototype(groupcounter_prototype_t *groupcounter)
+{
+  dmap_add_groupcounter_proto(groupcounter);
+  INFOPRINT("Groupcounter %-35s is installed", groupcounter->identifier);
+}
+
 static void _add_features (feature_t* first, ... )
 {
     va_list arguments;
@@ -30,6 +38,18 @@ static void _add_features (feature_t* first, ... )
     va_start ( arguments, first );
     for(feature = first; feature; feature = va_arg ( arguments, feature_t* )){
       _add_feature(feature);
+    }
+    va_end ( arguments );                  // Cleans up the list
+
+}
+
+static void _add_groupcounter_prototypes (groupcounter_prototype_t* first, ... )
+{
+    va_list arguments;
+    groupcounter_prototype_t* groupcounter = NULL;
+    va_start ( arguments, first );
+    for(groupcounter = first; groupcounter; groupcounter = va_arg ( arguments, groupcounter_prototype_t* )){
+      _add_groupcounter_prototype(groupcounter);
     }
     va_end ( arguments );                  // Cleans up the list
 
@@ -57,7 +77,6 @@ done:
 static feature_t* _get_feature_by_identifier(char_t *identifier, evaluator_container_t* evaluator_container)
 {
   feature_t *result;
-  char_t prototype[255];
 
   result = dmap_get_feature_by_identifier(identifier);
   if(result){
@@ -186,6 +205,37 @@ void features_load()
 
 }
 
+
+static groupcounter_prototype_t* _get_groupcounter_prototype_by_identifier(char_t *identifier)
+{
+  groupcounter_prototype_t *result;
+  char_t prototype[255];
+
+  result = dmap_get_groupcounter_prototype_by_identifier(identifier);
+  if(result){
+    return result;
+  }
+
+  return NULL;
+}
+
+
+void groupcounter_prototypes_load()
+{
+  //Add all features the program have
+  _add_groupcounter_prototypes(
+
+      make_groupcounter_prototype_src_udp_flows(),
+      make_groupcounter_prototype_dst_udp_flows(),
+      make_groupcounter_prototype_src_tcp_flows(),
+      make_groupcounter_prototype_dst_tcp_flows(),
+
+      NULL
+      );
+
+}
+
+
 void conf_load(dictionary *conf)
 {
   int32_t i;
@@ -285,6 +335,25 @@ pcap_listener_t* _listener_from_conf(dictionary *conf, char_t *section)
           if(0 < result->mapped_var_ids[i]){
             _add_mapped_var(result->mapped_var_ids[i]);
           }
+        }
+
+        memset(conf_key, 0, strlen(conf_key));
+        sprintf(conf_key, "%s:groupcounter_num", section);
+        result->groupcounter_num = iniparser_getint(conf, conf_key, 0);
+
+        for(i=0; i<result->groupcounter_num; ++i){
+            groupcounter_prototype_t            *groupcounter_prototype;
+
+            memset(conf_key, 0, strlen(conf_key));
+            sprintf(conf_key, "%s:groupcounter_%d", section, i);
+            read_str = iniparser_getstring(conf, conf_key, "\0");
+            groupcounter_prototype = _get_groupcounter_prototype_by_identifier(read_str);
+            if(!groupcounter_prototype){
+              ERRORPRINT("Requested groupcounter %s not found for device %s", read_str, result->device);
+              continue;
+            }
+            result->groupcounter_prototypes = slist_append(result->groupcounter_prototypes, groupcounter_prototype);
+            INFOPRINT("Groupcounter %s is listening for device %s", read_str, result->device);
         }
 
 	return result;

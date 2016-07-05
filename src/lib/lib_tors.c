@@ -111,6 +111,22 @@ array_t* array_ctor(int32_t length)
 	return result;
 }
 
+groupcounter_prototype_t* groupcounter_prototype_ctor()
+{
+  groupcounter_prototype_t* result;
+  result = (groupcounter_prototype_t*) malloc(sizeof(groupcounter_prototype_t));
+  memset(result, 0, sizeof(groupcounter_prototype_t));
+  return result;
+}
+
+groupcounter_t* groupcounter_ctor()
+{
+  groupcounter_t* result;
+  result = (groupcounter_t*) malloc(sizeof(groupcounter_t));
+  memset(result, 0, sizeof(groupcounter_t));
+  return result;
+}
+
 feature_t* feature_ctor()
 {
   feature_t* result;
@@ -279,6 +295,13 @@ void feature_dtor(ptr_t target)
   free(target);
 }
 
+void groupcounter_prototype_dtor(ptr_t target)
+{
+  groupcounter_prototype_t *groupcounter;
+  groupcounter = target;
+  free(target);
+}
+
 void pcap_listener_dtor(ptr_t target)
 {
   pcap_listener_t *listener;
@@ -301,9 +324,31 @@ void evaluator_item_dtor(ptr_t target)
   free(evaluator_item);
 }
 
+void groupcounter_dtor(ptr_t target)
+{
+  groupcounter_t *groupcounter;
+  groupcounter = target;
+  groupcounter->interface.deinit(groupcounter);
+  free(groupcounter);
+}
+
 void mapped_var_dtor(ptr_t target)
 {
   mapped_var_t *mapped_var;
   mapped_var = target;
   free(mapped_var);
+}
+
+void slist_dtor(ptr_t target, void (*data_dtor)(ptr_t))
+{
+  slist_t *slist = target,*next;
+  if(target){
+    return;
+  }
+  next = slist->next;
+  if(data_dtor && slist->data){
+    data_dtor(slist->data);
+  }
+  slist_dtor(next, data_dtor);
+  free(slist);
 }

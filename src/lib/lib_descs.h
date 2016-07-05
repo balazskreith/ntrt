@@ -16,6 +16,7 @@
 
 #define NTRT_MAX_MAPPED_VARS 32
 #define NTRT_MAX_FEATURES_NUM 32
+#define NTRT_MAX_GROUPCOUNTERS_NUM 32
 #define NTRT_MAX_THREAD_NUM 32
 #define NTRT_MAX_PCAPLS_NUM 32
 
@@ -60,11 +61,13 @@ typedef struct pcap_listener_struct_t{
   uint32_t           mapped_vars_num;
   uint32_t           mapped_var_ids[NTRT_MAX_MAPPED_VARS];
 
+  uint32_t           groupcounter_num;
+
   slist_t*           evaluators;
+  slist_t*           groupcounter_prototypes;
   bpf_u_int32        mask;               /* Our netmask */
   bpf_u_int32        net;                /* Our IP */
   struct bpf_program fp;                 /* The compiled filter */
-  uint32_t           values[NTRT_MAX_FEATURES_NUM];
 }pcap_listener_t;
 
 typedef struct record_struct_t{
@@ -119,6 +122,34 @@ typedef struct feature_struct_t{
   char_t                     identifier[128];
   uint32_t                 (*evaluator)(sniff_t*,evaluator_container_t*);
 }feature_t;
+
+
+typedef struct groupcounter_interface_struct_t groupcounter_interface_t;
+typedef struct groupcounter_struct_t groupcounter_t;
+
+struct groupcounter_interface_struct_t{
+  void     (*init)(groupcounter_t*, ptr_t);
+  void     (*add_sniff)(groupcounter_t*,sniff_t*);
+  int32_t  (*get_counter)(groupcounter_t*);
+  void     (*deinit)(groupcounter_t*);
+};
+
+struct groupcounter_struct_t{
+  groupcounter_interface_t interface;
+  slist_t*                 flows;
+  int32_t                  flowcounts;
+  int32_t                  timeout_treshold;
+};
+
+typedef struct groupcounter_prototype_struct_t{
+  char_t                   identifier[128];
+  groupcounter_interface_t interface;
+//  void     (*collection_data_dtor)(ptr_t);
+//  void     (*push_cb)(sniff_t*,groupcounter_item_t*);
+//  void     (*pop_cb)(groupcounter_item_t*, ptr_t);
+}groupcounter_prototype_t;
+
+
 
 typedef struct evaluation_item_struct_t{
   feature_t            *feature;

@@ -9,6 +9,7 @@
 typedef struct cmp_recorder_struct_t
 {
         void         (*requester)(int32_t, record_t*);
+        void         (*groupcounter_requester)(int32_t, record_t*);
 	void*        (*start)();
 	void*        (*restart)();
 	void*        (*stop)();

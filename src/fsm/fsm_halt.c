@@ -3,6 +3,7 @@
 #include "../cmp/cmp_sniffer.h"
 #include "../cmp/cmp_cmdexecutor.h"
 #include "../cmp/cmp_accumulator.h"
+#include "../cmp/cmp_groupcounter.h"
 #include "fsm.h"
 #include "fsm_actions.h"
 #include "cmp_predefs.h"
@@ -61,6 +62,7 @@ fsm_states_t _fsm_halt_trans(int32_t event, void *arg)
 void _sys_setup()
 {
   features_load();
+  groupcounter_prototypes_load();
   con_load_from_file(sysio->config_file);
 }
 
@@ -69,6 +71,7 @@ void _sys_start()
   get_cmp_accumulator()->start();
   get_cmp_recorder()->start();
   get_cmp_evaluator()->start();
+  get_cmp_groupcounter()->start();
   get_cmp_cmdexecutor()->start();
 
   dmap_itr_do(dmap_itr_table_pcapls, get_cmp_sniffer()->start);

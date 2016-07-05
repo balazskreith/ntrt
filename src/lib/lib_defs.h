@@ -235,13 +235,13 @@ typedef struct datarray_struct_t{
       \brief describes a chain of consecutive unspecified data 
   */
 typedef struct datchain_struct_t{
-        void*                     data;      ///< Pointing to the actual data item
+        ptr_t                     data;      ///< Pointing to the actual data item
         struct datchain_struct_t* next;      ///< Pointing to the next element of the chain
         struct datchain_struct_t* prev;      ///< Pointing to the previous element of the chain
 }datchain_t;
 
 typedef struct slist_struct_t{
-        void*                  data;      ///< Pointing to the actual data item
+        ptr_t                  data;      ///< Pointing to the actual data item
         struct slist_struct_t* next;      ///< Pointing to the next element of the list
 }slist_t;
 

@@ -75,7 +75,8 @@ sys/sys_confs.o: sys/sys_confs.c /usr/include/stdc-predef.h \
  /usr/include/linux/limits.h lib/lib_debuglog.h dmap/dmap.h \
  lib/lib_defs.h lib/lib_threading.h dmap/dmap_defs.h dmap/dmap_predefs.h \
  dmap/dmap_sel.h dmap/dmap.h inc/inc_texts.h lib/lib_features.h \
- lib/lib_makers.h etc/etc_sniffex.h /usr/include/ctype.h lib/lib_funcs.h
+ lib/lib_makers.h lib/lib_groupcounters.h etc/etc_sniffex.h \
+ /usr/include/ctype.h lib/lib_funcs.h
 
 /usr/include/stdc-predef.h:
 
@@ -310,6 +311,8 @@ inc/inc_texts.h:
 lib/lib_features.h:
 
 lib/lib_makers.h:
+
+lib/lib_groupcounters.h:
 
 etc/etc_sniffex.h:
 

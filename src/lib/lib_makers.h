@@ -95,6 +95,15 @@ feature_t* make_feature(const char_t* name,
                         const char_t* identifier,
                         uint32_t (*evaluator)(sniff_t*,evaluator_container_t*));
 
+groupcounter_prototype_t* make_groupcounter_prototype(const char_t* identifier,
+                                                      void     (*setup)(groupcounter_t*, ptr_t),
+                                                      void     (*add_sniff)(groupcounter_t*,sniff_t*),
+                                                      int32_t  (*get_counter)(groupcounter_t*),
+                                                      void     (*deinit)(groupcounter_t*)
+                                                      );
+
+groupcounter_t* make_groupcounter(groupcounter_prototype_t* prototype);
+
 datchain_t* make_datchain(ptr_t item);
 
 evaluator_item_t* make_evaluator_item(feature_t* feature, evaluator_container_t* evaluator_container);

@@ -10,6 +10,7 @@
 typedef struct cmp_sniffer_struct_t
 {
 	void      (*send)(sniff_t*);
+	void      (*send2groupcounter)(sniff_t*,int32_t);
 	void*     (*start)(pcap_listener_t*);
 	void*     (*stop)(pcap_listener_t*);
 }cmp_sniffer_t;

@@ -37,6 +37,7 @@ typedef struct _cmp_listener_struct_t
 	pcap_listener_t*     pcap_listener;
 	int32_t              pcap_listener_id;
 	void               (*send)(sniff_t*); //send to the packet router
+	void               (*send2groupcounter)(sniff_t*,int32_t);
 }_cmp_listener_t;
 
 
@@ -122,6 +123,7 @@ void _thr_listener_init(thread_t *thread)
 
     //connect
     CMP_CONNECT(cmp->send, _cmp_sniffer->send);
+    CMP_CONNECT(cmp->send2groupcounter, _cmp_sniffer->send2groupcounter);
 
     dmap_lock_sysdat();
     sampling_rate = dmap_get_sysdat()->sampling_rate;
@@ -224,6 +226,11 @@ void _thr_listener_proc_main(thread_t *thread)
           sniff.listener_id = this->pcap_listener_id;
 
           this->send(&sniff);
+
+          if(pcap_listener->groupcounter_num){
+            this->send2groupcounter(&sniff, this->pcap_listener_id);
+          }
+
 	}while(thread->state == THREAD_STATE_RUN);
 }
 

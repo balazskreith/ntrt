@@ -44,6 +44,7 @@ CMP_DEF_GET_PROC(get_cmp_recorder, cmp_recorder_t, _cmp_recorder);
 typedef struct _cmp_cmdrelayer_struct_t
 {
         void         (**requester)(int32_t, record_t*);
+        void         (**groupcounter_requester)(int32_t, record_t*);
         int32_t         sampling_rate;
 }_cmp_recordsrelayer_t;
 
@@ -64,7 +65,7 @@ CMP_THREAD(
 static void* _recorder_start();
 static void* _recorder_stop();
 static void* _sender_restart();
-static void _update_file(record_t* record, pcap_listener_t* pcap_listener);
+static void _update_file(record_t* record,  record_t* groupcounter_record, pcap_listener_t* pcap_listener);
 
 void  _cmp_recorder_init()
 {
@@ -74,6 +75,7 @@ void  _cmp_recorder_init()
   CMP_BIND(_cmp_recorder->stop, _recorder_stop);
 
   CMP_CONNECT(_cmp_recordsrelayer->requester, &_cmp_recorder->requester);
+  CMP_CONNECT(_cmp_recordsrelayer->groupcounter_requester, &_cmp_recorder->groupcounter_requester);
 }
 
 void _cmp_recorder_deinit()
@@ -120,12 +122,14 @@ void* _recorder_stop()
 void _thr_recordsrelayer_main_proc(thread_t *thread)
 {
     CMP_DEF_THIS(_cmp_recordsrelayer_t, (_cmp_recordsrelayer_t*) thread->arg);
-    record_t         record;
+    record_t         record, groupcounter_record;
     void           (*requester)(int32_t, record_t*);
+    void           (*groupcounter_requester)(int32_t, record_t*);
     int32_t          listener_id;
     pcap_listener_t *pcap_listener;
 
     requester = *(this->requester);
+    groupcounter_requester = *(this->groupcounter_requester);
 
     do
     {
@@ -133,7 +137,11 @@ void _thr_recordsrelayer_main_proc(thread_t *thread)
         for(listener_id = 0; dmap_itr_table_pcapls(&listener_id, &pcap_listener) == BOOL_TRUE; ++listener_id){
           memset(&record, 0, sizeof(record_t));
           requester(listener_id, &record);
-          _update_file(&record, pcap_listener);
+          if(0 < pcap_listener->groupcounter_num){
+            memset(&groupcounter_record, 0, sizeof(record_t));
+            groupcounter_requester(listener_id, &groupcounter_record);
+          }
+          _update_file(&record, &groupcounter_record, pcap_listener);
         }
         dmap_rdunlock_table_pcapls();
         thread_sleep(this->sampling_rate);
@@ -160,7 +168,7 @@ done:
   return result;
 }
 
-void _update_file(record_t* record, pcap_listener_t* pcap_listener)
+void _update_file(record_t* record, record_t* groupcounter_record, pcap_listener_t* pcap_listener)
 {
   FILE *fp;
   char_t  end;
@@ -171,10 +179,16 @@ void _update_file(record_t* record, pcap_listener_t* pcap_listener)
     fp=fopen(pcap_listener->output, "w+");
     pcap_listener->append_output = BOOL_TRUE;
   }
-  end = 0 < pcap_listener->mapped_vars_num ? ',' : '\n';
+  end = 0 < pcap_listener->mapped_vars_num || 0 < pcap_listener->groupcounter_num? ',' : '\n';
   for(i=0,c=pcap_listener->feature_num; i<c; ++i){
       fprintf(fp,"%d%c", record->items[i], i == (c-1) ? end : ',');
   }
+
+  end = 0 < pcap_listener->mapped_vars_num ? ',' : '\n';
+  for(i=0,c=pcap_listener->groupcounter_num; i<c; ++i){
+    fprintf(fp,"%d%c", groupcounter_record->items[i], i == (c-1) ? end : ',');
+  }
+
   c=pcap_listener->mapped_vars_num;
   if(!c){
     goto done;

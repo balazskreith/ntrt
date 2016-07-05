@@ -96,18 +96,19 @@ am__dirstamp = $(am__leading_dot)dirstamp
 am___top_builddir__bin_ntrt_OBJECTS = ntrt.$(OBJEXT) \
 	cmp/cmp_accumulator.$(OBJEXT) cmp/cmp_cmdexecutor.$(OBJEXT) \
 	cmp/cmp_sniffer.$(OBJEXT) cmp/cmp_evaluator.$(OBJEXT) \
-	cmp/cmp_recorder.$(OBJEXT) cmp/cmp_defs.$(OBJEXT) \
-	cmp/cmp_predefs.$(OBJEXT) cmp/cmp_tests.$(OBJEXT) \
-	dmap/dmap_sel.$(OBJEXT) dmap/dmap.$(OBJEXT) \
-	etc/etc_argtable2.$(OBJEXT) etc/etc_dict.$(OBJEXT) \
-	etc/etc_endian.$(OBJEXT) etc/etc_iniparser.$(OBJEXT) \
-	etc/etc_sniffex.$(OBJEXT) etc/etc_utils.$(OBJEXT) \
-	fsm/fsm_actions.$(OBJEXT) fsm/fsm_cmpactions.$(OBJEXT) \
-	fsm/fsm_halt.$(OBJEXT) fsm/fsm_run.$(OBJEXT) fsm/fsm.$(OBJEXT) \
-	inc/inc_io.$(OBJEXT) inc/inc_mtime.$(OBJEXT) \
-	inc/inc_opcall.$(OBJEXT) lib/lib_debuglog.$(OBJEXT) \
-	lib/lib_dispers.$(OBJEXT) lib/lib_features.$(OBJEXT) \
-	lib/lib_funcs.$(OBJEXT) lib/lib_heap.$(OBJEXT) \
+	cmp/cmp_groupcounter.$(OBJEXT) cmp/cmp_recorder.$(OBJEXT) \
+	cmp/cmp_defs.$(OBJEXT) cmp/cmp_predefs.$(OBJEXT) \
+	cmp/cmp_tests.$(OBJEXT) dmap/dmap_sel.$(OBJEXT) \
+	dmap/dmap.$(OBJEXT) etc/etc_argtable2.$(OBJEXT) \
+	etc/etc_dict.$(OBJEXT) etc/etc_endian.$(OBJEXT) \
+	etc/etc_iniparser.$(OBJEXT) etc/etc_sniffex.$(OBJEXT) \
+	etc/etc_utils.$(OBJEXT) fsm/fsm_actions.$(OBJEXT) \
+	fsm/fsm_cmpactions.$(OBJEXT) fsm/fsm_halt.$(OBJEXT) \
+	fsm/fsm_run.$(OBJEXT) fsm/fsm.$(OBJEXT) inc/inc_io.$(OBJEXT) \
+	inc/inc_mtime.$(OBJEXT) inc/inc_opcall.$(OBJEXT) \
+	lib/lib_debuglog.$(OBJEXT) lib/lib_dispers.$(OBJEXT) \
+	lib/lib_features.$(OBJEXT) lib/lib_funcs.$(OBJEXT) \
+	lib/lib_groupcounters.$(OBJEXT) lib/lib_heap.$(OBJEXT) \
 	lib/lib_interrupting.$(OBJEXT) lib/lib_makers.$(OBJEXT) \
 	lib/lib_predefs.$(OBJEXT) lib/lib_puffers.$(OBJEXT) \
 	lib/lib_threading.$(OBJEXT) lib/lib_tors.$(OBJEXT) \
@@ -277,6 +278,8 @@ __top_builddir__bin_ntrt_SOURCES = \
 			  cmp/cmp_sniffer.c         \
 			  cmp/cmp_evaluator.h       \
 			  cmp/cmp_evaluator.c       \
+  			  cmp/cmp_groupcounter.h    \
+			  cmp/cmp_groupcounter.c    \
 			  cmp/cmp_recorder.h        \
 			  cmp/cmp_recorder.c        \
 			  cmp/cmp_defs.h            \
@@ -333,6 +336,8 @@ __top_builddir__bin_ntrt_SOURCES = \
               lib/lib_features.h        \
               lib/lib_funcs.h           \
               lib/lib_funcs.c           \
+              lib/lib_groupcounters.h   \
+              lib/lib_groupcounters.c   \
               lib/lib_heap.h            \
               lib/lib_heap.c            \
               lib/lib_interrupting.h    \
@@ -443,6 +448,8 @@ cmp/cmp_sniffer.$(OBJEXT): cmp/$(am__dirstamp) \
 	cmp/$(DEPDIR)/$(am__dirstamp)
 cmp/cmp_evaluator.$(OBJEXT): cmp/$(am__dirstamp) \
 	cmp/$(DEPDIR)/$(am__dirstamp)
+cmp/cmp_groupcounter.$(OBJEXT): cmp/$(am__dirstamp) \
+	cmp/$(DEPDIR)/$(am__dirstamp)
 cmp/cmp_recorder.$(OBJEXT): cmp/$(am__dirstamp) \
 	cmp/$(DEPDIR)/$(am__dirstamp)
 cmp/cmp_defs.$(OBJEXT): cmp/$(am__dirstamp) \
@@ -520,6 +527,8 @@ lib/lib_features.$(OBJEXT): lib/$(am__dirstamp) \
 	lib/$(DEPDIR)/$(am__dirstamp)
 lib/lib_funcs.$(OBJEXT): lib/$(am__dirstamp) \
 	lib/$(DEPDIR)/$(am__dirstamp)
+lib/lib_groupcounters.$(OBJEXT): lib/$(am__dirstamp) \
+	lib/$(DEPDIR)/$(am__dirstamp)
 lib/lib_heap.$(OBJEXT): lib/$(am__dirstamp) \
 	lib/$(DEPDIR)/$(am__dirstamp)
 lib/lib_interrupting.$(OBJEXT): lib/$(am__dirstamp) \
@@ -570,6 +579,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@cmp/$(DEPDIR)/cmp_cmdexecutor.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@cmp/$(DEPDIR)/cmp_defs.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@cmp/$(DEPDIR)/cmp_evaluator.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@cmp/$(DEPDIR)/cmp_groupcounter.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@cmp/$(DEPDIR)/cmp_predefs.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@cmp/$(DEPDIR)/cmp_recorder.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@cmp/$(DEPDIR)/cmp_sniffer.Po@am__quote@
@@ -594,6 +604,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@lib/$(DEPDIR)/lib_dispers.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@lib/$(DEPDIR)/lib_features.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@lib/$(DEPDIR)/lib_funcs.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@lib/$(DEPDIR)/lib_groupcounters.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@lib/$(DEPDIR)/lib_heap.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@lib/$(DEPDIR)/lib_interrupting.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@lib/$(DEPDIR)/lib_makers.Po@am__quote@
