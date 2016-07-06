@@ -33,7 +33,7 @@ void _cmps_ntrt_ctor()
 	CMP_CONNECT(get_cmp_evaluator()->send, get_cmp_accumulator()->record_receiver);
 	CMP_CONNECT(get_cmp_accumulator()->send_record, get_cmp_evaluator()->record_receiver);
 
-	CMP_CONNECT(get_cmp_recorder()->requester, get_cmp_accumulator()->result_requester);
+	CMP_CONNECT(get_cmp_recorder()->features_requester, get_cmp_accumulator()->features_requester);
 
 	CMP_CONNECT(get_cmp_sniffer()->send2groupcounter, get_cmp_groupcounter()->sniff_receiver);
 	CMP_CONNECT(get_cmp_recorder()->groupcounter_requester, get_cmp_groupcounter()->record_requester);

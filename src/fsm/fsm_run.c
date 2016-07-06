@@ -45,12 +45,12 @@ fsm_states_t _fsm_run_trans(int32_t event, void *arg)
 
 void _sys_stop()
 {
-	get_cmp_recorder()->stop();
-	get_cmp_evaluator()->stop();
-	get_cmp_cmdexecutor()->stop();
-	get_cmp_accumulator()->stop();
-	get_cmp_groupcounter()->stop();
+  get_cmp_accumulator()->stop();
+  get_cmp_recorder()->stop();
+  get_cmp_evaluator()->stop();
+  get_cmp_cmdexecutor()->stop();
+  get_cmp_groupcounter()->stop();
 
-	dmap_itr_do(dmap_itr_table_pcapls, get_cmp_sniffer()->stop);
+  dmap_itr_do(dmap_itr_table_pcapls, get_cmp_sniffer()->stop);
 }
 

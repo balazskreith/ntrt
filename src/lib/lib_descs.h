@@ -58,6 +58,9 @@ typedef struct pcap_listener_struct_t{
   char_t             pcap_filter[1024];
   pcap_t*            handler;
 //  datchain_t*        features;
+
+  int32_t            save_aggregation;
+  char_t             aggregation_path[255];
   uint32_t           mapped_vars_num;
   uint32_t           mapped_var_ids[NTRT_MAX_MAPPED_VARS];
 

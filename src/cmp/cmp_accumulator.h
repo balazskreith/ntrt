@@ -10,6 +10,7 @@ typedef struct cmp_accumulator_item_struct_t{
   datapuffer_t* records;
   record_t      result;
   int32_t       length;
+  record_t      total;
 }accumulator_t;
 
 typedef struct cmp_accumulator_struct_t
@@ -19,7 +20,7 @@ typedef struct cmp_accumulator_struct_t
 	void*       (*stop)();
 	void*       (*restart)();
         void        (*record_receiver)(record_t*);
-        void        (*result_requester)(int32_t listener_id, record_t* result);
+        void        (*features_requester)(int32_t listener_id, record_t* result, record_t* total);
         record_t*   (*record)();
 	void        (*send_record)(record_t*);
 	mutex_t*      mutex;

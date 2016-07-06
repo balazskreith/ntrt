@@ -41,11 +41,11 @@ CMP_DEF(, 			      		/*type of definitions*/ 										   \
 
 CMP_DEF_GET_PROC(get_cmp_recorder, cmp_recorder_t, _cmp_recorder);
 
-typedef struct _cmp_cmdrelayer_struct_t
+typedef struct _cmp_recordsrelayer_struct_t
 {
-        void         (**requester)(int32_t, record_t*);
-        void         (**groupcounter_requester)(int32_t, record_t*);
-        int32_t         sampling_rate;
+  void         (**features_requester)(int32_t, record_t*, record_t*);
+  void         (**groupcounter_requester)(int32_t, record_t*);
+  int32_t         sampling_rate;
 }_cmp_recordsrelayer_t;
 
 #define CMP_NAME_RECORDSRELAYER "Records relayer component"
@@ -66,6 +66,7 @@ static void* _recorder_start();
 static void* _recorder_stop();
 static void* _sender_restart();
 static void _update_file(record_t* record,  record_t* groupcounter_record, pcap_listener_t* pcap_listener);
+static void _aggregation_saver(pcap_listener_t *pcap_listener, record_t *record);
 
 void  _cmp_recorder_init()
 {
@@ -74,7 +75,7 @@ void  _cmp_recorder_init()
   CMP_BIND(_cmp_recorder->start, _recorder_start);
   CMP_BIND(_cmp_recorder->stop, _recorder_stop);
 
-  CMP_CONNECT(_cmp_recordsrelayer->requester, &_cmp_recorder->requester);
+  CMP_CONNECT(_cmp_recordsrelayer->features_requester, &_cmp_recorder->features_requester);
   CMP_CONNECT(_cmp_recordsrelayer->groupcounter_requester, &_cmp_recorder->groupcounter_requester);
 }
 
@@ -122,31 +123,49 @@ void* _recorder_stop()
 void _thr_recordsrelayer_main_proc(thread_t *thread)
 {
     CMP_DEF_THIS(_cmp_recordsrelayer_t, (_cmp_recordsrelayer_t*) thread->arg);
-    record_t         record, groupcounter_record;
-    void           (*requester)(int32_t, record_t*);
+    record_t         record, groupcounter_record, total;
+    void           (*features_requester)(int32_t, record_t*, record_t*);
     void           (*groupcounter_requester)(int32_t, record_t*);
     int32_t          listener_id;
     pcap_listener_t *pcap_listener;
 
-    requester = *(this->requester);
+    features_requester = *(this->features_requester);
     groupcounter_requester = *(this->groupcounter_requester);
-
+    memset(&total, 0, sizeof(record_t));
+    memset(&record, 0, sizeof(record_t));
     do
     {
         dmap_rdlock_table_pcapls();
         for(listener_id = 0; dmap_itr_table_pcapls(&listener_id, &pcap_listener) == BOOL_TRUE; ++listener_id){
-          memset(&record, 0, sizeof(record_t));
-          requester(listener_id, &record);
+          features_requester(listener_id, &record, &total);
           if(0 < pcap_listener->groupcounter_num){
             memset(&groupcounter_record, 0, sizeof(record_t));
             groupcounter_requester(listener_id, &groupcounter_record);
           }
           _update_file(&record, &groupcounter_record, pcap_listener);
+          if(pcap_listener->save_aggregation){
+            _aggregation_saver(pcap_listener, &total);
+            memset(&total, 0, sizeof(record_t));
+          }
+          memset(&record, 0, sizeof(record_t));
         }
         dmap_rdunlock_table_pcapls();
         thread_sleep(this->sampling_rate);
 
     }while(thread->state == THREAD_STATE_RUN);
+}
+
+void _aggregation_saver(pcap_listener_t *pcap_listener, record_t *record)
+{
+  CMP_DEF_THIS(cmp_recorder_t, (cmp_recorder_t*) _cmp_recorder);
+  FILE *fp;
+  int32_t i,c;
+
+  fp=fopen(pcap_listener->aggregation_path, "w+");
+  for(i=0,c=pcap_listener->feature_num; i<c; ++i){
+    fprintf(fp,"%d%c", record->items[i], i == (c-1) ? '\n' : ',');
+  }
+  fclose(fp);
 }
 
 
@@ -205,4 +224,5 @@ void _update_file(record_t* record, record_t* groupcounter_record, pcap_listener
 done:
   fclose(fp);
 }
+
 

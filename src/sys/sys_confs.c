@@ -326,6 +326,19 @@ pcap_listener_t* _listener_from_conf(dictionary *conf, char_t *section)
         }
 
         memset(conf_key, 0, strlen(conf_key));
+        sprintf(conf_key, "%s:save_aggregation", section);
+        result->save_aggregation = iniparser_getint(conf, conf_key, 0);
+
+        memset(conf_key, 0, strlen(conf_key));
+        sprintf(conf_key, "%s:aggregation_path", section);
+        read_str = iniparser_getstring(conf, conf_key, "aggregation.csv");
+        strcpy(result->aggregation_path, read_str);
+
+        if(result->save_aggregation){
+            INFOPRINT("Save aggregated measurements at path: %s", result->aggregation_path);
+        }
+
+        memset(conf_key, 0, strlen(conf_key));
         sprintf(conf_key, "%s:mapped_vars_num", section);
         result->mapped_vars_num = iniparser_getint(conf, conf_key, 0);
 

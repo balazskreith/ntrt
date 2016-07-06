@@ -95,7 +95,8 @@ cmp/cmp_sniffer.o: cmp/cmp_sniffer.c /usr/include/stdc-predef.h \
  /usr/include/x86_64-linux-gnu/bits/stat.h \
  /usr/include/x86_64-linux-gnu/bits/fcntl2.h \
  /usr/include/x86_64-linux-gnu/sys/stat.h etc/etc_utils.h cmp/cmp_defs.h \
- etc/etc_endian.h dmap/dmap_defs.h etc/etc_sniffex.h /usr/include/ctype.h
+ etc/etc_endian.h dmap/dmap_defs.h etc/etc_sniffex.h /usr/include/ctype.h \
+ fsm/fsm.h
 
 /usr/include/stdc-predef.h:
 
@@ -396,3 +397,5 @@ dmap/dmap_defs.h:
 etc/etc_sniffex.h:
 
 /usr/include/ctype.h:
+
+fsm/fsm.h:

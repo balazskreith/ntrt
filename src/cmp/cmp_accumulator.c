@@ -38,7 +38,7 @@ static void* _accumulator_restart();
 static void* _accumulator_start();
 static void* _accumulator_stop();
 static void _accumulator_record_receiver(record_t* record);
-static void _accumulator_result_requester(int32_t listener_id, record_t* result);
+static void _accumulator_features_requester(int32_t listener_id, record_t* result, record_t* total);
 
 static void _push_record(accumulator_t *accumulator, record_t* record);
 static void _obsolate_records(accumulator_t *accumulator);
@@ -57,7 +57,7 @@ void  _cmp_accumulator_init()
     CMP_BIND(_cmp_accumulator->stop,             _accumulator_stop);
     CMP_BIND(_cmp_accumulator->restart,          _accumulator_restart);
     CMP_BIND(_cmp_accumulator->record_receiver,  _accumulator_record_receiver);
-    CMP_BIND(_cmp_accumulator->result_requester, _accumulator_result_requester);
+    CMP_BIND(_cmp_accumulator->features_requester, _accumulator_features_requester);
 
 }
 
@@ -78,6 +78,7 @@ void* _accumulator_start()
     accumulator = &this->accumulators[index];
     accumulator->records = datapuffer_ctor(pcap_listener->puffer_size);
     memset(&accumulator->result, 0, sizeof(record_t));
+    memset(&accumulator->total, 0, sizeof(record_t));
     accumulator->result.listener_id = index;
     accumulator->length = pcap_listener->feature_num;
   }
@@ -134,11 +135,12 @@ void _accumulator_record_receiver(record_t* record)
   accumulator = &this->accumulators[record->listener_id];
   _push_record(accumulator, record);
 
+
 done:
   mutex_unlock(this->mutex);
 }
 
-void _accumulator_result_requester(int32_t listener_id, record_t* result)
+void _accumulator_features_requester(int32_t listener_id, record_t* result, record_t* total)
 {
   CMP_DEF_THIS(cmp_accumulator_t, _cmp_accumulator);
   accumulator_t *accumulator;
@@ -147,6 +149,7 @@ void _accumulator_result_requester(int32_t listener_id, record_t* result)
   accumulator = this->accumulators + listener_id;
   _obsolate_records(accumulator);
   memcpy(result, &accumulator->result, sizeof(record_t));
+  memcpy(total, &accumulator->total, sizeof(record_t));
   mutex_unlock(this->mutex);
 }
 
@@ -162,6 +165,7 @@ void _push_record(accumulator_t *accumulator, record_t* record)
     this->send_record(item);
   }
   _records_addition(&accumulator->result, record, accumulator->length);
+  _records_addition(&accumulator->total, record, accumulator->length);
   datapuffer_write(records, record);
 
 }
