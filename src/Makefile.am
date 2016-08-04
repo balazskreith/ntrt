@@ -60,6 +60,8 @@ __top_builddir__bin_ntrt_SOURCES =       \
               inc/inc_socket.h          \
               inc/inc_texts.h           \
               inc/inc_unistd.h          \
+              lib/lib_bintree.h         \
+              lib/lib_bintree.c         \
               lib/lib_debuglog.h        \
               lib/lib_debuglog.c        \
               lib/lib_descs.h           \
@@ -82,6 +84,10 @@ __top_builddir__bin_ntrt_SOURCES =       \
               lib/lib_predefs.c         \
               lib/lib_puffers.h         \
               lib/lib_puffers.c         \
+              lib/lib_swplugins.h       \
+              lib/lib_swplugins.c       \
+              lib/lib_queue.h           \
+              lib/lib_queue.c           \
               lib/lib_threading.h       \
               lib/lib_threading.c       \
               lib/lib_tors.h            \

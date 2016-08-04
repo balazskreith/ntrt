@@ -68,6 +68,7 @@ void _sys_setup()
 
 void _sys_start()
 {
+
   get_cmp_accumulator()->start();
   get_cmp_recorder()->start();
   get_cmp_evaluator()->start();

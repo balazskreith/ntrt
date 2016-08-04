@@ -11,8 +11,7 @@
 #include "lib_defs.h"
 #include "lib_descs.h"
 #include "lib_threading.h"
-
-
+#include "lib_funcs.h"
 
 /** \typedef datapuffer_t
       \brief Describe a puffer used for stores unspecified data
@@ -20,7 +19,7 @@
 typedef struct datapuffer_struct_t
 {
 	void                    **items;		///< A pointer array of data the puffer will uses for storing
-	int32_t                   length;		///< The maximal amount of data the puffer can store
+	int32_t                   abs_length;		///< The maximal amount of data the puffer can store
 	int32_t                   start;	///< index for read operations. It points to the next element going to be read
 	int32_t                   end;	    ///< index for write operations. It points to the last element, which was written by the puffer
 	int32_t                   count;
@@ -40,6 +39,37 @@ typedef struct mdatapuffer_struct_t
 	void      *_read;
 }mdatapuffer_t;
 
+typedef struct swstorage_struct_t{
+  ptr_t    storage;
+  int32_t  index;
+  int32_t  length;
+  ptr_t    (*store)(struct swstorage_struct_t*,ptr_t);
+}swstorage_t;
+
+typedef struct slidingwindow_struct_t{
+  datapuffer_t  *recycle;
+  datapuffer_t  *trackeditems;
+  slist_t       *plugins;
+  swstorage_t   *storage;
+  int32_t        num_limit;
+  double         time_limit;
+}slidingwindow_t;
+
+typedef struct slidingwindowitem_struct_t{
+  ptr_t    data;
+  mtime_t  pushed;
+}slidingwindowitem_t;
+
+typedef struct swplugin_struct_t{
+  void   (*rem_pipe)(ptr_t,ptr_t);
+  ptr_t    rem_data;
+  void   (*add_pipe)(ptr_t,ptr_t);
+  ptr_t    add_data;
+  void   (*disposer)(ptr_t);
+  void   (*clear)(ptr_t);
+  ptr_t    priv;
+}swplugin_t;
+
 mdatapuffer_t* mdatapuffer_ctor(int32_t items_num);
 void mdatapuffer_dtor(mdatapuffer_t *mdatapuffer);
 void* mdatapuffer_read(mdatapuffer_t *mdatapuffer);
@@ -55,7 +85,7 @@ void mdatapuffer_reset(mdatapuffer_t *mdatapuffer);
 datapuffer_t* datapuffer_ctor(int32_t items_num);
 void datapuffer_dtor(datapuffer_t *datapuffer);
 void* datapuffer_read(datapuffer_t *datapuffer);
-void* datapuffer_peek(datapuffer_t* puffer);
+void* datapuffer_peek_first(datapuffer_t* puffer);
 void datapuffer_write(datapuffer_t *datapuffer, void *item);
 int32_t datapuffer_capacity(datapuffer_t *datapuffer);
 int32_t datapuffer_readcapacity(datapuffer_t *datapuffer);
@@ -63,6 +93,30 @@ int32_t datapuffer_writecapacity(datapuffer_t *datapuffer);
 bool_t datapuffer_isfull(datapuffer_t *datapuffer);
 bool_t datapuffer_isempty(datapuffer_t *datapuffer);
 void datapuffer_clear(datapuffer_t *datapuffer, void (*dtor)(void*));
+
+
+
+slidingwindow_t* slidingwindow_ctor(int32_t num_limit, double time_limit, swstorage_t* (*storage_maker)(int32_t));
+void slidingwindow_clear(slidingwindow_t* this);
+void slidingwindow_dtor(ptr_t target);
+void slidingwindow_refresh(slidingwindow_t *this);
+void slidingwindow_add_data(slidingwindow_t* this, ptr_t data);
+void slidingwindow_add_plugin(slidingwindow_t* this, swplugin_t *plugin);
+void slidingwindow_add_plugins (slidingwindow_t* this, ... );
+void slidingwindow_add_pipes(slidingwindow_t* this, void (*rem_pipe)(ptr_t,ptr_t),ptr_t rem_data, void (*add_pipe)(ptr_t,ptr_t),ptr_t add_data);
+bool_t slidingwindow_is_empty(slidingwindow_t* this);
+
+
+swstorage_t* make_swstorage_int32(int32_t num_limit);
+void slidingwindow_add_int(slidingwindow_t* this, int32_t num);
+#define slidingwindow_int32_ctor(num_limit, time_limit) slidingwindow_ctor(num_limit, time_limit, make_swstorage_int32)
+
+void swstorage_disposer(ptr_t target);
+
+swplugin_t* swplugin_ctor();
+void swplugin_dtor(ptr_t target);
+
+
 
 /** \typedef datapuffer_t
       \brief Describe a puffer used for stores unspecified data

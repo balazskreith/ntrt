@@ -72,7 +72,7 @@ fsm/fsm.o: fsm/fsm.c /usr/include/stdc-predef.h fsm/fsm.h lib/lib_descs.h \
  /usr/include/x86_64-linux-gnu/bits/unistd.h lib/lib_makers.h \
  lib/lib_dispers.h cmp/cmp_defs.h cmp/cmp_predefs.h lib/lib_predefs.h \
  lib/lib_debuglog.h lib/lib_funcs.h inc/inc_texts.h lib/lib_puffers.h \
- fsm/fsm_halt.h fsm/fsm_run.h
+ lib/lib_funcs.h fsm/fsm_halt.h fsm/fsm_run.h
 
 /usr/include/stdc-predef.h:
 
@@ -303,6 +303,8 @@ lib/lib_funcs.h:
 inc/inc_texts.h:
 
 lib/lib_puffers.h:
+
+lib/lib_funcs.h:
 
 fsm/fsm_halt.h:
 

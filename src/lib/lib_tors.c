@@ -342,7 +342,7 @@ void mapped_var_dtor(ptr_t target)
 void slist_dtor(ptr_t target, void (*data_dtor)(ptr_t))
 {
   slist_t *slist = target,*next;
-  if(target){
+  if(!target){
     return;
   }
   next = slist->next;

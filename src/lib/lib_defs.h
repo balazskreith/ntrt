@@ -245,4 +245,9 @@ typedef struct slist_struct_t{
         struct slist_struct_t* next;      ///< Pointing to the next element of the list
 }slist_t;
 
+typedef struct dlist_struct_t{
+        ptr_t                  data;      ///< Pointing to the actual data item
+        struct dlist_struct_t* next,*prev;
+}dlist_t;
+
 #endif //INCGUARD_NTRT_LIBRARY_DEFINITIONS_H_

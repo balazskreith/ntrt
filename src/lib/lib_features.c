@@ -202,6 +202,50 @@ feature_t *make_feature_lost_rtp_packets()
 }
 
 
+
+//-------------------------FEATURE BEGIN------------------------
+
+static uint32_t _lost_rtp_frames_evaluator(sniff_t *sniff, evaluator_container_t* data)
+{
+  sniff_rtp_t *rtph;
+  u_short rtph_seq_num, diff;
+  uint32_t rtph_timestamp;
+  if(!sniff_is_udp_packet(sniff) && !sniff_is_tcp_packet(sniff)){
+    return 0;
+  }
+  rtph = (sniff_rtp_t *) sniff_get_payload(sniff);
+  if(rtph->PT != data->payload_type){
+    return 0;
+  }
+  rtph_seq_num   = ntohs(rtph->seq_num);
+  rtph_timestamp = ntohl(rtph->TS);
+  if(data->seq_num_initialized == BOOL_FALSE){
+    data->seq_num = rtph_seq_num;
+    data->seq_num_initialized = BOOL_TRUE;
+    return 0;
+  }
+  if(_cmp_u_short(rtph_seq_num, data->seq_num) <= 0){
+    return 0;
+  }
+
+  diff = _u_short_diff(data->seq_num, rtph_seq_num);
+  data->seq_num = rtph_seq_num;
+  if(1 < diff && rtph_timestamp != data->last_timestamp){
+    data->last_timestamp = rtph_timestamp;
+    return 1;
+  }
+  data->last_timestamp = rtph_timestamp;
+  return 0;
+}
+
+feature_t *make_feature_lost_rtp_frames()
+{
+  feature_t* result;
+  result = make_feature("Lost RTP Frames", "LOST_RTP_FRAMES_X", _lost_rtp_frames_evaluator);
+  return result;
+}
+
+
 //-------------------------FEATURE BEGIN------------------------
 static uint32_t _src_udp_packets_evaluator(sniff_t *sniff, evaluator_container_t* data)
 {
@@ -370,7 +414,49 @@ feature_t *make_feature_src_lost_rtp_packets()
 
 
 
+//-------------------------FEATURE BEGIN------------------------
+static uint32_t _src_lost_rtp_frames_evaluator(sniff_t *sniff, evaluator_container_t* data)
+{
+  sniff_rtp_t *rtph;
+  u_short rtph_seq_num, diff;
+  uint32_t rtph_timestamp;
+  if(!sniff_is_udp_packet(sniff) && !sniff_is_tcp_packet(sniff)){
+    return 0;
+  }
+  if(ntohs(sniff->port_src) != data->port_num){
+    return 0;
+  }
+  rtph = (sniff_rtp_t *) sniff_get_payload(sniff);
+  if(rtph->PT != data->payload_type){
+    return 0;
+  }
+  rtph_seq_num = ntohs(rtph->seq_num);
+  rtph_timestamp = ntohl(rtph->TS);
+  if(data->seq_num_initialized == BOOL_FALSE){
+    data->seq_num = rtph_seq_num;
+    data->seq_num_initialized = BOOL_TRUE;
+    return 0;
+  }
+  if(_cmp_u_short(rtph_seq_num, data->seq_num) <= 0){
+    return 0;
+  }
 
+  diff = _u_short_diff(data->seq_num, rtph_seq_num);
+  data->seq_num = rtph_seq_num;
+  if(1 < diff && rtph_timestamp != data->last_timestamp){
+    data->last_timestamp = rtph_timestamp;
+    return 1;
+  }
+  data->last_timestamp = rtph_timestamp;
+  return 0;
+}
+
+feature_t *make_feature_src_lost_rtp_frames()
+{
+  feature_t* result;
+  result = make_feature("Lost RTP Frames on src port", "SRC_LOST_RTP_FRAMES_X_Y", _src_lost_rtp_frames_evaluator);
+  return result;
+}
 
 
 
@@ -545,6 +631,50 @@ feature_t *make_feature_dst_lost_rtp_packets()
 {
   feature_t* result;
   result = make_feature("Lost RTP Packets on dst port", "DST_LOST_RTP_PACKETS_X_Y", _dst_lost_rtp_packets_evaluator);
+  return result;
+}
+
+//-------------------------FEATURE BEGIN------------------------
+static uint32_t _dst_lost_rtp_frames_evaluator(sniff_t *sniff, evaluator_container_t* data)
+{
+  sniff_rtp_t *rtph;
+  u_short rtph_seq_num, diff;
+  uint32_t rtph_timestamp;
+  if(!sniff_is_udp_packet(sniff) && !sniff_is_tcp_packet(sniff)){
+    return 0;
+  }
+  if(ntohs(sniff->port_dst) != data->port_num){
+    return 0;
+  }
+  rtph = (sniff_rtp_t *) sniff_get_payload(sniff);
+  if(rtph->PT != data->payload_type){
+    return 0;
+  }
+  rtph_seq_num = ntohs(rtph->seq_num);
+  rtph_timestamp = ntohl(rtph->TS);
+  if(data->seq_num_initialized == BOOL_FALSE){
+    data->seq_num = rtph_seq_num;
+    data->seq_num_initialized = BOOL_TRUE;
+    return 0;
+  }
+  if(_cmp_u_short(rtph_seq_num, data->seq_num) <= 0){
+    return 0;
+  }
+
+  diff = _u_short_diff(data->seq_num, rtph_seq_num);
+  data->seq_num = rtph_seq_num;
+  if(1 < diff && rtph_timestamp != data->last_timestamp){
+    data->last_timestamp = rtph_timestamp;
+    return 1;
+  }
+  data->last_timestamp = rtph_timestamp;
+  return 0;
+}
+
+feature_t *make_feature_dst_lost_rtp_frames()
+{
+  feature_t* result;
+  result = make_feature("Lost RTP Frames on src port", "DST_LOST_RTP_FRAMES_X_Y", _dst_lost_rtp_frames_evaluator);
   return result;
 }
 

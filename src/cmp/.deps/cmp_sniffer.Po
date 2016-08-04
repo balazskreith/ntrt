@@ -65,9 +65,9 @@ cmp/cmp_sniffer.o: cmp/cmp_sniffer.c /usr/include/stdc-predef.h \
  /usr/include/x86_64-linux-gnu/bits/sigthread.h /usr/local/include/pcap.h \
  /usr/local/include/pcap/pcap.h /usr/local/include/pcap/bpf.h \
  lib/lib_descs.h lib/lib_funcs.h inc/inc_texts.h lib/lib_puffers.h \
- dmap/dmap_sel.h lib/lib_defs.h dmap/dmap.h lib/lib_threading.h \
- dmap/dmap_defs.h dmap/dmap_predefs.h lib/lib_tors.h lib/lib_makers.h \
- inc/inc_unistd.h /usr/include/unistd.h \
+ lib/lib_funcs.h dmap/dmap_sel.h lib/lib_defs.h dmap/dmap.h \
+ lib/lib_threading.h dmap/dmap_defs.h dmap/dmap_predefs.h lib/lib_tors.h \
+ lib/lib_makers.h inc/inc_unistd.h /usr/include/unistd.h \
  /usr/include/x86_64-linux-gnu/bits/posix_opt.h \
  /usr/include/x86_64-linux-gnu/bits/environments.h \
  /usr/include/x86_64-linux-gnu/bits/confname.h /usr/include/getopt.h \
@@ -291,6 +291,8 @@ lib/lib_funcs.h:
 inc/inc_texts.h:
 
 lib/lib_puffers.h:
+
+lib/lib_funcs.h:
 
 dmap/dmap_sel.h:
 

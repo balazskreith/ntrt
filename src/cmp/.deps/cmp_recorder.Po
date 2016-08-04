@@ -66,8 +66,8 @@ cmp/cmp_recorder.o: cmp/cmp_recorder.c /usr/include/stdc-predef.h \
  cmp/cmp_defs.h dmap/dmap_sel.h lib/lib_defs.h dmap/dmap.h \
  lib/lib_threading.h dmap/dmap_defs.h dmap/dmap_predefs.h \
  cmp/cmp_predefs.h lib/lib_predefs.h lib/lib_debuglog.h lib/lib_descs.h \
- lib/lib_funcs.h inc/inc_texts.h lib/lib_puffers.h etc/etc_utils.h \
- inc/inc_unistd.h /usr/include/unistd.h \
+ lib/lib_funcs.h inc/inc_texts.h lib/lib_puffers.h lib/lib_funcs.h \
+ etc/etc_utils.h inc/inc_unistd.h /usr/include/unistd.h \
  /usr/include/x86_64-linux-gnu/bits/posix_opt.h \
  /usr/include/x86_64-linux-gnu/bits/environments.h \
  /usr/include/x86_64-linux-gnu/bits/confname.h /usr/include/getopt.h \
@@ -320,6 +320,8 @@ lib/lib_funcs.h:
 inc/inc_texts.h:
 
 lib/lib_puffers.h:
+
+lib/lib_funcs.h:
 
 etc/etc_utils.h:
 

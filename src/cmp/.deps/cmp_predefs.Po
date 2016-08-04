@@ -65,7 +65,7 @@ cmp/cmp_predefs.o: cmp/cmp_predefs.c /usr/include/stdc-predef.h \
  /usr/include/x86_64-linux-gnu/bits/sigthread.h /usr/local/include/pcap.h \
  /usr/local/include/pcap/pcap.h /usr/local/include/pcap/bpf.h \
  lib/lib_descs.h lib/lib_funcs.h inc/inc_texts.h lib/lib_puffers.h \
- lib/lib_tors.h
+ lib/lib_funcs.h lib/lib_tors.h
 
 /usr/include/stdc-predef.h:
 
@@ -258,5 +258,7 @@ lib/lib_funcs.h:
 inc/inc_texts.h:
 
 lib/lib_puffers.h:
+
+lib/lib_funcs.h:
 
 lib/lib_tors.h:

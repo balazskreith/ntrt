@@ -20,6 +20,15 @@ double diffmtime(mtime_t *begin, mtime_t *end);
 void print_mtime(mtime_t* time);
 double diffmtime_fromnow(mtime_t *begin);
 
+#define PROFILING(msg,func) \
+{  \
+  mtime_t start; \
+  double_t elapsed; \
+  set_mtime(&start); \
+  func; \
+  elapsed = diffmtime_fromnow(&start); \
+  if(1. < elapsed) WARNINGPRINT(msg" elapsed time in ms: %f\n", elapsed); \
+} \
 
 
 #endif //INGUARD_NTRT_INCLUDE_TIME_H_

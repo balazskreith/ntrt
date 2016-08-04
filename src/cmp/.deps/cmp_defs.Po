@@ -69,7 +69,7 @@ cmp/cmp_defs.o: cmp/cmp_defs.c /usr/include/stdc-predef.h cmp/cmp_defs.h \
  /usr/include/x86_64-linux-gnu/bits/environments.h \
  /usr/include/x86_64-linux-gnu/bits/confname.h /usr/include/getopt.h \
  /usr/include/x86_64-linux-gnu/bits/unistd.h cmp/cmp_predefs.h \
- lib/lib_predefs.h lib/lib_funcs.h lib/lib_puffers.h
+ lib/lib_predefs.h lib/lib_funcs.h lib/lib_puffers.h lib/lib_funcs.h
 
 /usr/include/stdc-predef.h:
 
@@ -286,3 +286,5 @@ lib/lib_predefs.h:
 lib/lib_funcs.h:
 
 lib/lib_puffers.h:
+
+lib/lib_funcs.h:

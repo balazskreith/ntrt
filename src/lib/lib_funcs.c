@@ -121,6 +121,43 @@ again:
   return head;
 }
 
+
+dlist_t* dlist_append(dlist_t *dlist, ptr_t item)
+{
+  dlist_t* tail;
+  if(!dlist){
+    dlist_t* new;
+    new = make_dlist(item);
+    return new;
+  }
+  tail = dlist;
+  while(tail->next){
+    tail = tail->next;
+  }
+  tail->next = make_dlist(item);
+  tail->next->prev = tail;
+  return dlist;
+}
+
+dlist_t* dlist_prepend(dlist_t* dlist, ptr_t item)
+{
+  dlist_t* head;
+  if(!dlist){
+    return make_dlist(item);
+  }
+  head = make_dlist(item);
+  head->next = dlist;
+  dlist->prev = head;
+  return head;
+}
+
+void dlist_foreach(dlist_t* dlist, void (*process)(dlist_t*, ptr_t), ptr_t data)
+{
+  for(; dlist; dlist = dlist->next){
+    process(dlist, data);
+  }
+}
+
 void *eventer(eventer_arg_t *eventer_arg)
 {
 	int32_t event;

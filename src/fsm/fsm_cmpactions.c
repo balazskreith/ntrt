@@ -16,7 +16,6 @@
 
 void _cmps_ntrt_ctor()
 {
-
 	fsm_t* machine = get_fsm();
 
 	cmp_sniffer_ctor();

@@ -13,6 +13,7 @@ feature_t *make_feature_udp_bytes();
 feature_t *make_feature_rtp_packets();
 feature_t *make_feature_rtp_bytes();
 feature_t *make_feature_lost_rtp_packets();
+feature_t *make_feature_lost_rtp_frames();
 
 feature_t *make_feature_src_udp_packets();
 feature_t *make_feature_src_udp_bytes();
@@ -22,6 +23,7 @@ feature_t *make_feature_src_tcp_bytes();
 feature_t *make_feature_src_rtp_packets();
 feature_t *make_feature_src_rtp_bytes();
 feature_t *make_feature_src_lost_rtp_packets();
+feature_t *make_feature_src_lost_rtp_frames();
 
 feature_t *make_feature_dst_udp_packets();
 feature_t *make_feature_dst_udp_bytes();
@@ -30,6 +32,7 @@ feature_t *make_feature_dst_tcp_bytes();
 feature_t *make_feature_dst_rtp_packets();
 feature_t *make_feature_dst_rtp_bytes();
 feature_t *make_feature_dst_lost_rtp_packets();
+feature_t *make_feature_dst_lost_rtp_frames();
 
 
 #endif /* INCGUARD_LIB_FEATURES_CONFS_H_ */

@@ -15,7 +15,7 @@
 #include <pcap.h>
 
 #define NTRT_MAX_MAPPED_VARS 32
-#define NTRT_MAX_FEATURES_NUM 32
+#define NTRT_MAX_FEATURES_NUM 64
 #define NTRT_MAX_GROUPCOUNTERS_NUM 32
 #define NTRT_MAX_THREAD_NUM 32
 #define NTRT_MAX_PCAPLS_NUM 32
@@ -114,9 +114,10 @@ typedef struct sniff_struct_t{
 }sniff_t;
 
 typedef struct evaluator_container_struct_t{
-  int32_t port_num;
-  int32_t payload_type;
-  u_short seq_num;
+  int32_t  port_num;
+  int32_t  payload_type;
+  u_short  seq_num;
+  uint32_t last_timestamp;
   bool_t  seq_num_initialized;
 }evaluator_container_t;
 

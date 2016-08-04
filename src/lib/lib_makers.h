@@ -109,6 +109,7 @@ datchain_t* make_datchain(ptr_t item);
 evaluator_item_t* make_evaluator_item(feature_t* feature, evaluator_container_t* evaluator_container);
 
 slist_t* make_slist(ptr_t item);
+dlist_t* make_dlist(ptr_t item);
 
 mapped_var_t* make_mapped_var(int32_t id);
 

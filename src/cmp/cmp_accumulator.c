@@ -182,7 +182,7 @@ again:
   if(datapuffer_isempty(records)){
     goto done;
   }
-  item = datapuffer_peek(records);
+  item = datapuffer_peek_first(records);
   if(this->accumulation_time < diffmtime_fromnow(&item->timestamp)){
     item = datapuffer_read(records);
     _records_subtract(&accumulator->result, item, accumulator->length);

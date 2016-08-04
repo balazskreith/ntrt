@@ -95,6 +95,10 @@ static feature_t* _get_feature_by_identifier(char_t *identifier, evaluator_conta
      return dmap_get_feature_by_identifier("LOST_RTP_PACKETS_X");
    }
 
+   if(sscanf(identifier, "LOST_RTP_FRAMES_%d", &evaluator_container->payload_type) == 1){
+     return dmap_get_feature_by_identifier("LOST_RTP_FRAMES_X");
+   }
+
    if(sscanf(identifier, "SRC_UDP_BYTES_%d", &evaluator_container->port_num) == 1){
      return dmap_get_feature_by_identifier("SRC_UDP_BYTES_X");
    }
@@ -127,6 +131,12 @@ static feature_t* _get_feature_by_identifier(char_t *identifier, evaluator_conta
               &evaluator_container->port_num,
               &evaluator_container->payload_type) == 2){
     return dmap_get_feature_by_identifier("SRC_LOST_RTP_PACKETS_X_Y");
+  }
+
+  if(sscanf(identifier, "SRC_LOST_RTP_FRAMES_%d_%d",
+              &evaluator_container->port_num,
+              &evaluator_container->payload_type) == 2){
+    return dmap_get_feature_by_identifier("SRC_LOST_RTP_FRAMES_X_Y");
   }
 
 
@@ -165,6 +175,12 @@ static feature_t* _get_feature_by_identifier(char_t *identifier, evaluator_conta
     return dmap_get_feature_by_identifier("DST_LOST_RTP_PACKETS_X_Y");
   }
 
+  if(sscanf(identifier, "DST_LOST_RTP_FRAMES_%d_%d",
+              &evaluator_container->port_num,
+              &evaluator_container->payload_type) == 2){
+    return dmap_get_feature_by_identifier("DST_LOST_RTP_FRAMES_X_Y");
+  }
+
   return NULL;
 }
 
@@ -184,6 +200,7 @@ void features_load()
       make_feature_rtp_packets(),
       make_feature_rtp_bytes(),
       make_feature_lost_rtp_packets(),
+      make_feature_lost_rtp_frames(),
 
       make_feature_src_udp_packets(),
       make_feature_src_udp_bytes(),
@@ -192,6 +209,7 @@ void features_load()
       make_feature_src_rtp_packets(),
       make_feature_src_rtp_bytes(),
       make_feature_src_lost_rtp_packets(),
+      make_feature_src_lost_rtp_frames(),
 
       make_feature_dst_udp_packets(),
       make_feature_dst_udp_bytes(),
@@ -200,6 +218,7 @@ void features_load()
       make_feature_dst_rtp_packets(),
       make_feature_dst_rtp_bytes(),
       make_feature_dst_lost_rtp_packets(),
+      make_feature_dst_lost_rtp_frames(),
 
       NULL);
 

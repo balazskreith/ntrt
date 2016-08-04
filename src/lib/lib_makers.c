@@ -167,6 +167,15 @@ slist_t* make_slist(ptr_t item)
   return result;
 }
 
+dlist_t* make_dlist(ptr_t item)
+{
+  dlist_t* result;
+  result       = malloc(sizeof(dlist_t));
+  result->data = item;
+  result->next = result->prev = NULL;
+  return result;
+}
+
 mapped_var_t* make_mapped_var(int32_t id)
 {
   mapped_var_t* result;
