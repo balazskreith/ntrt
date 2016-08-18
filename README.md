@@ -52,9 +52,9 @@ NTRT works under linux. *libpcap* is obligated to be installed.
 **Install**
 
 ```
- clone http://github.com/balazskreith/ntrt  
- ./confgiure && make  
- sudo make install  
+ git clone http://github.com/balazskreith/ntrt && \  
+ ./confgiure && make  && \
+ sudo make install  \
  ```
  
 **Example of config file**
@@ -82,7 +82,6 @@ feature_3           = UDP_BYTES
 ./ntrt -cconfig.ini  
 
 The output is a comma separated list in wlan0_stats.csv. 
-
 
 
 **Available Features**
