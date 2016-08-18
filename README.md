@@ -32,10 +32,10 @@ restricting the source or destination port. You can track the number of parallel
   
 *For RTP traffic:* You can track the number of packets and the 
 accumulated size of bytes for specified payload type on a source destination port you defined. 
-It is also implemented as features that lost packets and frames are tracked.  
-Note: You are obligated to ensure only RTP traffic goes through on the selected port.  
-Note 2: Lost frames and packets are lies on a fact that sequence is not reordered. Please NOT rely 
-on this metric if the high jitter is observed. 
+It is also implemented as features that lost packets and frames are tracked.    
+_Note_: You are obligated to ensure only RTP traffic goes through on the selected port.    
+_Note 2_: Lost frames and packets are lies on a fact that sequence is not reordered. Please NOT rely 
+on this metric if the high jitter is observed.   
 
 **How can I configure NTRT to listen a network device?**
 
@@ -44,34 +44,24 @@ you can define the interfaces you would like to listen and the list of features
 you want to keep track on the selected devices. See the example config files later.
 
 
-**Can I extend it and add my own wonderful tools?**
-
-Yes.   
-0. Get familiar with devclego framework (link: https://github.com/balazskreith/devclego)  
-1. Read the developer manual (A direct link is at the bottom of the page <- TODO).  
-2. Clone the repo (or fork whatever you want)  
-3. Edit.  
-
-**The Latest Version**
-
-Details of the latest version can be found at   
-https://github.com/balazskreith/ntrt  
-
 **Requirements** 
   
-NTRT works under linux. *libpcap* is obligated to be installed.
+NTRT works under linux. *libpcap* is obligated to be installed.  
 (sudo apt-get install libpcap-dev)  
   
 **Install**
 
- clone http://github.com/balazskreith/ntrt 
- ./confgiure && make
- sudo make install
+```
+ clone http://github.com/balazskreith/ntrt  
+ ./confgiure && make  
+ sudo make install  
+ ```
  
 **Example of config file**
 
 The following example filter udp and tcp traffic parallely. It keeps track of 1s sliding window (accumulation time) and sampling it with a 100ms period.  
 
+```
 [global]  
 accumulation_time  = 1000  
 sampling_rate      = 100  
@@ -85,6 +75,7 @@ feature_0           = UDP_PACKETS
 feature_1           = TCP_PACKETS  
 feature_2           = TCP_BYTES  
 feature_3           = UDP_BYTES  
+```
 
 **Example of running ntrt**
 
@@ -168,5 +159,16 @@ Track the length of RTP packets sent to port X with a given payload type Y.
 Track the number of gaps experienced for RTP packets sent to port X with a given payload type Y.
 
 
-    
+**Can I extend it and add my own wonderful tools?**
+
+Yes.   
+0. Get familiar with devclego framework (link: https://github.com/balazskreith/devclego)  
+1. Read the developer manual (A direct link is at the bottom of the page <- TODO).  
+2. Clone the repo (or fork whatever you want)  
+3. Edit.  
+
+**The Latest Version**
+
+Details of the latest version can be found at   
+https://github.com/balazskreith/ntrt      
 
