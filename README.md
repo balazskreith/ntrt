@@ -78,8 +78,10 @@ feature_3           = UDP_BYTES
 ```
 
 **Example of running ntrt**
-
-./ntrt -cconfig.ini  
+  
+```
+ntrt -cconfig.ini  
+```
 
 The output is a comma separated list in wlan0_stats.csv. 
 
