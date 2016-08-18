@@ -62,6 +62,9 @@ NTRT works under linux. *libpcap* is obligated to be installed.
 The following example filter udp and tcp traffic parallely. It keeps track of 1s sliding window (accumulation time) and sampling it with a 100ms period.  
 
 ```
+config.ini:  
+  
+  
 [global]  
 accumulation_time  = 1000  
 sampling_rate      = 100  
