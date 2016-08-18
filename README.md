@@ -1,34 +1,48 @@
 # ntrt
 Network Traffic Rate Tracker
 
-**What is it?**
-  
+**What is it?**  
+   
 Network Traffic Rate Tracker is yet another network 
-analyzing and monitoring tool using pcaps. 
-The main purpose of the program, aside that I 
-fed up using the combination of many others, 
-is that it accumulates and measure network traffic on 
-specified interfaces and export it into a csv output. 
+analyzing and monitoring tool for network interfaces. 
+It analyze packets send through the selected interface in or out.
+By analyzing them it tracks an accumulative statistics about the 
+analization results (TCP flownum, UDP bytes for specific port, etc...).
+By defining a sampling period ntrt records the results of the accumulative statistics 
+into a csv file. 
 
 
-**What is it good for?**
+**What is it good for?**  
+  
+It is recommended to use for creating accumulative statistics 
+for network traffics on specified interface(s). For an instance 
+we can capture how many UDP bytes goes through a network device 
+in one seconds by sampling it in every 100ms. NTRT accumulates the 
+UDP byte traffic over the last one second in a sliding window works inside 
+of the program and record the measurement results after each 100ms. 
+By using the csv output directly we can monitor the traffic in 
+plots real-time. 
 
-I used it to measure the traffic throughput 
-over a second long sliding window by a 100ms sampling period 
-and then analyzing and creating nice plot from the output
-so Profs. are understand. 
 
-**What is the difference between this and thousands of others?**
+**What type of network traffic can be tracked?**  
+  
+*For UDP/TCP traffic:* You can track the number of packets and the 
+accumulated size of bytes for UDP/TCP traffic. You can filter it by 
+restricting the source or destination port. You can track the number of parallel TCP flows either.  
+  
+*For RTP traffic:* You can track the number of packets and the 
+accumulated size of bytes for specified payload type on a source destination port you defined. 
+It is also implemented as features that lost packets and frames are tracked.  
+Note: You are obligated to ensure only RTP traffic goes through on the selected port.  
+Note 2: Lost frames and packets are lies on a fact that sequence is not reordered. Please NOT rely 
+on this metric if the high jitter is observed. 
 
-Thats mine. Besides, I was fed up to create shell scripts and 
-configure tcpdump, tcprate and sar and awk to get what I want. 
-It has a slightly (or highly) chance that somebody else did 
-something very similar in order to measure the traffic rate 
-on network devices (No, not iperf, since it generates it also), 
-but that wonderful tool was hidden from my eyes before. 
-Next to it, I made it scalable and (for me) easily programmable 
-so you can measure your specific traffic if you read the developers 
-manual page. 
+**How can I configure NTRT to listen a network device?**
+
+All it comes from a config file obligatory for ntrt to work. In config file 
+you can define the interfaces you would like to listen and the list of features 
+you want to keep track on the selected devices. See the example config files later.
+
 
 **Can I extend it and add my own wonderful tools?**
 
@@ -43,19 +57,20 @@ Yes.
 Details of the latest version can be found at   
 https://github.com/balazskreith/ntrt  
 
-**Install and Run**
+**Requirements** 
+  
+NTRT works under linux. *libpcap* is obligated to be installed.
+(sudo apt-get install libpcap-dev)  
+  
+**Install**
 
- 1. Download or clone the source.  
- 2. ./confgiure
- 3. sudo make install
- 4. Setup config.ini (see below)  
- 5. ./ntrt -cpath/to/config.ini  
+ clone http://github.com/balazskreith/ntrt 
+ ./confgiure && make
+ sudo make install
+ 
+**Example of config file**
 
-**Example**
-
-The following example filter udp and tcp traffic parallely with a 100ms resolution and a one seconds accumulation
-
-*The contents of the config.ini file:*
+The following example filter udp and tcp traffic parallely. It keeps track of 1s sliding window (accumulation time) and sampling it with a 100ms period.  
 
 [global]  
 accumulation_time  = 1000  
@@ -71,14 +86,13 @@ feature_1           = TCP_PACKETS
 feature_2           = TCP_BYTES  
 feature_3           = UDP_BYTES  
 
-
-*The script file*
+**Example of running ntrt**
 
 ./ntrt -cconfig.ini  
 
-The output is a comma separated list in wlan0_stats.csv. The sampling period determines the resolution of the measure and the accumulation length determines how many sampling period is accumulated in one measure. The example above sampling is 100ms and accumulates the last 10 samples.  
+The output is a comma separated list in wlan0_stats.csv. 
 
-More examples at https://goo.gl/RIqGFO  
+
 
 **Available Features**
 
