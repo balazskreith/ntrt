@@ -277,6 +277,7 @@ void conf_load(dictionary *conf)
     pcap_listener = _listener_from_conf(conf, section);
     dmap_add_pcapls(pcap_listener);
   }
+  INFOPRINT("Accumulative statistic structure: features,groupcounters,mapped_vars");
 }
 
 pcap_listener_t* _listener_from_conf(dictionary *conf, char_t *section)
