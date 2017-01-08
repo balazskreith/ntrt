@@ -1,5 +1,4 @@
-# ntrt
-Network Traffic Rate Tracker
+# ntrt: Network Traffic Rate Tracker
 
 **What is it?**  
    
