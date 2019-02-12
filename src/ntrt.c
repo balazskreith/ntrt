@@ -12,6 +12,8 @@
 #include "etc_argtable2.h"
 #include "lib_interrupting.h"
 
+#define VERSION "0.9.1.0"
+
 static interrupt_t exit_signal;
 static void init_sysio();
 static void program_main(struct arg_int  *time, struct arg_file *cfg_file, struct arg_file *cmd_file);
@@ -98,6 +100,9 @@ void program_main(struct arg_int  *time, struct arg_file *cfg_file, struct arg_f
 
     get_fsm()->fire(NTRT_EVENT_SETUP, NULL);
     get_fsm()->fire(NTRT_EVENT_START, NULL);
+
+    INFOPRINT("NTRT is up and running, version: %s.\n\n", VERSION);
+
     if(time->count){
       INFOPRINT("NTRT is going to be terminated %d sec later", *(time->ival));
     }

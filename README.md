@@ -1,69 +1,73 @@
-# ntrt: Network Traffic Rate Tracker
+NTRT: Network Traffic Rate Tracker
+===
 
-**What is it?**  
-   
-Network Traffic Rate Tracker is yet another network 
-analyzing and monitoring tool for network interfaces. 
-It analyze packets send through the selected interface in or out.
-By analyzing them it tracks an accumulative statistics about the 
-analization results (TCP flownum, UDP bytes for specific port, etc...).
-By defining a sampling period ntrt records the results of the accumulative statistics 
-into a csv file. 
+## What is it?  
 
-
-**What is it good for?**  
-  
-It is recommended to use for creating accumulative statistics 
-for network traffics on specified interface(s). For an instance 
-we can capture how many UDP bytes goes through a network device 
-in one seconds by sampling it in every 100ms. NTRT accumulates the 
-UDP byte traffic over the last one second in a sliding window works inside 
-of the program and record the measurement results after each 100ms. 
-By using the csv output directly we can monitor the traffic in 
-plots real-time. 
+Network Traffic Rate Tracker (NTRT) is yet another network
+analyzing and monitoring tool for network interfaces.
+It analyze packets being sent through the selected interface,
+and tracks an accumulative statistics saving the observation
+into a csv file in a regular interval.
 
 
-**What type of network traffic can be tracked?**  
-  
-*For UDP/TCP traffic:* You can track the number of packets and the 
-accumulated size of bytes for UDP/TCP traffic. You can filter it by 
+## What is it good for?  
+
+It is recommended to use for collecting measurements
+of network traffics on specified interface(s). For an instance
+we can capture how many UDP bytes goes through a network device
+in one seconds by sampling it in every 100ms. NTRT accumulates the
+UDP byte traffic over the last one second and record the
+measurements into a csv file in 100ms resolution.
+
+
+## What type of network traffic can be tracked?  
+
+*For UDP/TCP traffic:* You can track the number of packets and the
+accumulated size of bytes for UDP/TCP traffic. You can filter it by
 restricting the source or destination port. You can track the number of parallel TCP flows either.  
-  
-*For RTP traffic:* You can track the number of packets and the 
-accumulated size of bytes for specified payload type on a source destination port you defined. 
+
+*For RTP traffic:* You can track the number of packets and the
+accumulated size of bytes for specified payload type on a source destination port you defined.
 It is also implemented as features that lost packets and frames are tracked.    
 _Note_: You are obligated to ensure only RTP traffic goes through on the selected port.    
-_Note 2_: Lost frames and packets are lies on a fact that sequence is not reordered. Please NOT rely 
-on this metric if the high jitter is observed.   
+_Note 2_: Lost frames and packets are based on a fact that sequence is not reordered. You should NOT rely
+on this metric if high jitter is observed.   
 
-**How can I configure NTRT to listen a network device?**
+## How can I configure NTRT to listen a network device?
 
-All it comes from a config file obligatory for ntrt to work. In config file 
-you can define the interfaces you would like to listen and the list of features 
+All it comes from a config file obligatory for NTRT to work. In config file
+you can define the interfaces you would like to listen and the list of features
 you want to keep track on the selected devices. See the example config files later.
 
 
-**Requirements** 
-  
-NTRT works under linux. *libpcap* is obligated to be installed.  
-(sudo apt-get install libpcap-dev)  
-  
-**Install**
+## Requirements
+
+NTRT works under linux using *automake* and *libpcap*.  
+
+ ```
+sudo apt-get install libpcap-dev  
+ ```
+
+## Install
 
 ```
  git clone http://github.com/balazskreith/ntrt && \  
  ./confgiure && make  && \
  sudo make install  \
  ```
- 
-**Example of config file**
 
-The following example filter udp and tcp traffic parallely. It keeps track of 1s sliding window (accumulation time) and sampling it with a 100ms period.  
+## Quick Start
+
+**Example of a config file**
+
+The following example filters UDP and TCP traffic parallely and
+save the measurements of 1s accumulation in every 100ms into a  ```wlan0_stats.csv```.
+
+
+__config.ini__:
 
 ```
-config.ini:  
-  
-  
+
 [global]  
 accumulation_time  = 1000  
 sampling_rate      = 100  
@@ -79,16 +83,18 @@ feature_2           = TCP_BYTES
 feature_3           = UDP_BYTES  
 ```
 
-**Example of running ntrt**
-  
+We call the observed attribute of the packets as **features**.
+The ```feature_num``` defines the number of features we observed starting from 0.
+All of the features observed must follow the naming convention ```feature_[INDEX]```.
+
+**Run ntrt**:
+
 ```
-ntrt -cconfig.ini  
+sudo ntrt -cconfig.ini  
 ```
 
-The output is a comma separated list in wlan0_stats.csv. 
 
-
-**Available Features**
+## Available Features
 
 The following features are available:  
 
@@ -162,16 +168,27 @@ Track the length of RTP packets sent to port X with a given payload type Y.
 Track the number of gaps experienced for RTP packets sent to port X with a given payload type Y.
 
 
-**Can I extend it and add my own wonderful tools?**
+## Add a feature.
 
-Yes.   
-0. Get familiar with devclego framework (link: https://github.com/balazskreith/devclego)  
-1. Read the developer manual (A direct link is at the bottom of the page <- TODO).  
-2. Clone the repo (or fork whatever you want)  
-3. Edit.  
+To add your specific feature please look at the ```lib/lib_feature.[h,c]```, and ```sys/sys_confs.[h,c]```.
+NTRT uses the [devclego](https://github.com/balazskreith/devclego) framework.
 
-**The Latest Version**
+## Bugs and feature requests
 
-Details of the latest version can be found at   
-https://github.com/balazskreith/ntrt      
+All bugs and comments are welcome, please create an issue for each.
 
+## Contributing
+
+Contact the author.
+
+## Authors
+
+- [Balazs Kreith](http://balazs.kreith.hu)
+
+## Versioning
+
+In the ntrt.c there is a macro called VERSION.
+
+# 8. License
+
+[Apache 2.0 License](LICENSE.md) - &copy; Balazs Kreith
