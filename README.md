@@ -52,8 +52,10 @@ sudo apt-get install libpcap-dev
 
 ```
  git clone http://github.com/balazskreith/ntrt && \  
- cd ntrt && autoreconf && \
- ./confgiure && make  && \
+ cd ntrt && \
+ ./confgiure && \
+ autoreconf -vfi && \
+ make  && \
  sudo make install  \
  ```
 
