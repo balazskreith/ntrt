@@ -4,6 +4,7 @@
 #include "lib_makers.h"
 
 feature_t *make_feature_ip_packets();
+feature_t *make_feature_ip_packets_by_src_x_x_x_x();
 feature_t *make_feature_ip_bytes();
 feature_t *make_feature_tcp_packets();
 feature_t *make_feature_tcp_bytes();

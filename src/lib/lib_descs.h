@@ -119,6 +119,7 @@ typedef struct evaluator_container_struct_t{
   u_short  seq_num;
   uint32_t last_timestamp;
   bool_t  seq_num_initialized;
+  uint32_t src_ipv4;
 }evaluator_container_t;
 
 typedef struct feature_struct_t{

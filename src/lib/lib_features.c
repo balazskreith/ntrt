@@ -19,7 +19,38 @@ static uint32_t _ip_packets_evaluator(sniff_t *sniff, evaluator_container_t* dat
 feature_t *make_feature_ip_packets()
 {
   feature_t* result;
-  result = make_feature("TCP Packets", "IP_PACKETS", _ip_packets_evaluator);
+  result = make_feature("IP packets", "IP_PACKETS", _ip_packets_evaluator);
+  return result;
+}
+
+static uint32_t _ip_packets_by_src_x_x_x_x_evaluator(sniff_t *sniff, evaluator_container_t* data)
+{
+  if (!sniff_is_ip_packet(sniff)) {
+    return 0;
+  }
+//  printf("Packet source: %s %X %X\n", inet_ntoa(sniff->ip_src), sniff->ip_src.s_addr, data->src_ipv4);
+//    return ((uint32_t)sniff->ip_src == data->src_ipv4) ? 1 : 0;
+  return (uint32_t) sniff->ip_src.s_addr == data->src_ipv4;
+}
+
+feature_t *make_feature_ip_packets_by_src_x_x_x_x()
+{
+  feature_t* result;
+  result = make_feature("IP packets", "IP_PACKETS_BY_SRC_X_X_X_X", _ip_packets_by_src_x_x_x_x_evaluator);
+  return result;
+}
+
+static uint32_t _ip_packets_src_x_evaluator(sniff_t *sniff, evaluator_container_t* data)
+{
+  if (!sniff_is_ip_packet(sniff)) {
+    return 0;
+  } 
+}
+
+feature_t *make_feature_ip_packets_src_x()
+{
+  feature_t* result;
+  result = make_feature("IP Packets From Source", "IP_PACKETS_SRC_X", _ip_packets_src_x_evaluator);
   return result;
 }
 

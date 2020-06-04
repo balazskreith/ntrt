@@ -142,7 +142,7 @@ sniff_is_ip_packet(sniff_t *sniff)
         sniff->ip_len  = ip->ip_len;
         sniff->size_ip = size_ip;
         sniff->is_ip_packet = EXTENDED_BOOL_TRUE;
-        return BOOL_TRUE;
+        return BOOL_TRUE; 
 }
 
 bool_t

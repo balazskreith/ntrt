@@ -82,6 +82,18 @@ static feature_t* _get_feature_by_identifier(char_t *identifier, evaluator_conta
   if(result){
     return result;
   }
+  
+  {
+    uint8_t ip[4];
+    if(sscanf(identifier, "IP_PACKETS_BY_SRC_%d_%d_%d_%d", ip, ip+1, ip+2, ip+3) == 4) {
+       evaluator_container->src_ipv4 = ip[0] + 
+                    (((uint32_t)ip[1]) << 8) +
+                    (((uint32_t)ip[2]) << 16) +
+                    (((uint32_t)ip[3]) << 24);
+       return dmap_get_feature_by_identifier("IP_PACKETS_BY_SRC_X_X_X_X");
+    }
+  }
+  
 
   if(sscanf(identifier, "RTP_PACKETS_%d",&evaluator_container->port_num) == 1){
      return dmap_get_feature_by_identifier("RTP_PACKETS_X");
@@ -114,6 +126,10 @@ static feature_t* _get_feature_by_identifier(char_t *identifier, evaluator_conta
   if(sscanf(identifier, "SRC_TCP_BYTES_%d",&evaluator_container->port_num) == 1){
     return dmap_get_feature_by_identifier("SRC_TCP_BYTES_X");
   }
+  
+//  if(sscanf(identifier, "SRC_IP_PACKETS_%d_%d_%d_%d", &evaluator_container->port_num) == 1){
+//    return dmap_get_feature_by_identifier("SRC_UDP_PACKETS_X");
+//  }
 
   if(sscanf(identifier, "SRC_RTP_PACKETS_%d_%d",
               &evaluator_container->port_num,
@@ -180,6 +196,11 @@ static feature_t* _get_feature_by_identifier(char_t *identifier, evaluator_conta
               &evaluator_container->payload_type) == 2){
     return dmap_get_feature_by_identifier("DST_LOST_RTP_FRAMES_X_Y");
   }
+  
+  
+    if(strcmp("IP_PACKETS", identifier) == 0){
+      return dmap_get_feature_by_identifier("IP_PACKETS");
+    }
 
   return NULL;
 }
@@ -191,6 +212,7 @@ void features_load()
   _add_features(
 
       make_feature_ip_packets(),
+      make_feature_ip_packets_by_src_x_x_x_x(),
       make_feature_ip_bytes(),
       make_feature_tcp_packets(),
       make_feature_tcp_bytes(),
